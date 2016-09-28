@@ -1,0 +1,42 @@
+﻿ body
+        {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+        #scrollToTop
+        {
+             cursor:pointer;
+             background-color:#0090CB;
+             display:inline-block;
+             height:40px;
+             width:40px;
+             color:#fff;
+             font-size:16pt;
+             text-align:center;
+             text-decoration:none;
+             line-height:40px;
+        }
+        
+.loginDisplay
+{
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    padding: 10px;
+    color: Gray;
+}
+
+.loginDisplay a:link
+{
+    color: #666666;
+}
+
+.loginDisplay a:visited
+{
+    color: white;
+}
+
+.loginDisplay a:hover
+{
+    color: Red;
+}
