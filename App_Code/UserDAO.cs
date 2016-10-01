@@ -29,7 +29,7 @@ public class UserDAO
         con.Open();
         var found =new UserDTO();
 
-        string checkTechnician = "SELECT * FROM Users where userName='"+username+"' " ;
+        string checkTechnician = "SELECT * FROM Users INNER JOIN UserType ON Users.userTypeId=UserType.userTypeId where userName='" + username + "' ";
         SqlCommand cmd = new SqlCommand(checkTechnician, con);
         SqlDataReader reader = cmd.ExecuteReader();
          while(reader.Read())
@@ -62,10 +62,11 @@ public class UserDAO
     public UserDTO makeUser (SqlDataReader reader)
     {
         UserDTO user = new UserDTO();
+        
        user.Id = reader.GetInt32(0);
        user.username = reader.GetString(1);
        user.password = reader.GetString(2);
-       //user.roleId = reader.GetInt32(3);
+       user.userTypeDto.name = reader.GetString(3);
        return user;
     }
 }

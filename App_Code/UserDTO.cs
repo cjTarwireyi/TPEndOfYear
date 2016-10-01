@@ -14,6 +14,7 @@ public class UserDTO
     public string username { get; set; }
     
     public int userType { get; set; }
+    public UserTypeDTO userTypeDto { get; set; }
      
 
 }
