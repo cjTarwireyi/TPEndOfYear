@@ -29,7 +29,8 @@ public class UserDAO
         con.Open();
         var found =new UserDTO();
 
-        string checkTechnician = "SELECT * FROM Users INNER JOIN UserType ON Users.userTypeId=UserType.userTypeId where userName='" + username + "' ";
+        string checkTechnician = "SELECT * FROM Users a INNER JOIN UserType b ON a.userTypeId = b.userTypeId where userName='" + username + "' ";
+        //string checkTechnician = "SELECT * FROM user_types";
         SqlCommand cmd = new SqlCommand(checkTechnician, con);
         SqlDataReader reader = cmd.ExecuteReader();
          while(reader.Read())
@@ -62,11 +63,15 @@ public class UserDAO
     public UserDTO makeUser (SqlDataReader reader)
     {
         UserDTO user = new UserDTO();
+        UserTypeDTO usertypeDto = new UserTypeDTO();
         
        user.Id = reader.GetInt32(0);
        user.username = reader.GetString(1);
        user.password = reader.GetString(2);
-       user.userTypeDto.name = reader.GetString(3);
+        //
+       usertypeDto.Id = reader.GetInt32(3);
+       usertypeDto.name = reader.GetString(5);
+       user.userTypeDto = usertypeDto;
        return user;
     }
 }

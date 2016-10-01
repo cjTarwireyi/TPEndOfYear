@@ -17,7 +17,9 @@ public partial class LoginPage : System.Web.UI.Page
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
+        UserTypeDTO usertypeDto = new UserTypeDTO();
         UserDAO userDao = new UserDAO();
+
         UserDTO userDto = new UserDTO();
         UserDTO empty = new UserDTO();
         userDto = userDao.getUser(username.Text, password.Text);
