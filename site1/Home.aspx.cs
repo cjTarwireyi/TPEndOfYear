@@ -16,9 +16,20 @@ public partial class Home : System.Web.UI.Page
       //  else {
         //    Response.Redirect("LoginPage.aspx");
         //}
+        UserDTO userDto = (UserDTO)Session["userDto"];
+        if (userDto.username.Trim() == "cj")
+        {
+
+        }
+        else
+        {
+            Control control = Master.FindControl("sideNav");
+            control.Visible = false;
+        }
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
+        
         Session.RemoveAll();
         Response.Redirect("LoginPage.aspx");
     }

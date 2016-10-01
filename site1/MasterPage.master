@@ -61,7 +61,8 @@
         </div> 
           
     </div>
-         
+    
+        
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -78,13 +79,15 @@
             <li><a href="Home.aspx">Home</a></li>
             <li><a href="LoginPage.aspx">Login</a></li>
             <li><a href="#">Profile</a></li>
-            <li onclick="LogoutMethod"><a href="LoginPage.aspx">Log out</a></li>
+            <li onclick="LogoutMethod"><a href="">Log out</a></li>
               <li></li>
           </ul>
            
         </div>
       </div>
     </nav>
+             
+              <asp:ContentPlaceHolder ID="sideNav" runat="server">
       
     <div class="container-fluid">
       <div class="row">
@@ -110,6 +113,7 @@
         </div>
       </div>
     </div>
+                  </asp:ContentPlaceHolder>
         </form>
     <!-- Bootstrap core JavaScript
     ================================================== -->

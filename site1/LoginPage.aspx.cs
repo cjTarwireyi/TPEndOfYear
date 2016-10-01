@@ -34,7 +34,7 @@ public partial class LoginPage : System.Web.UI.Page
                // userDto.password = password.Text;
                // userDto.password = userRole;
 
-                Session["userSession"] = userDto;
+                Session["userDto"] = userDto;
             if(Session.IsNewSession)
                 Response.Redirect("../site1/LoginPage.aspx");
             else

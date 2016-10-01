@@ -17,6 +17,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
     protected void LogoutMethod(object sender, EventArgs e)
     {
+        Response.Redirect("LoginPage.aspx");
+        Control control = Master.FindControl("sideNav");
+        control.Visible = false;
         Session.Abandon();
     }
 }

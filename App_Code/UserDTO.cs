@@ -13,7 +13,7 @@ public class UserDTO
     public string password { get; set; }
     public string username { get; set; }
     
-    public int roleId { get; set; }
+    public int userType { get; set; }
      
 
 }
