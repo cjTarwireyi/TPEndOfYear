@@ -15,7 +15,11 @@ public class UserDAO
 	public UserDAO()
 	{	
 	 con= new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
+<<<<<<< HEAD
+     con.Open();
+=======
         con.Open();
+>>>>>>> eeb918ba7fff5df47653ba169177ee8bbfa9e088
     }
     public List<UserDTO> getUsers()
     {
