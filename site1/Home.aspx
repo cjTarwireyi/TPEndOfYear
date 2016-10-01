@@ -7,12 +7,12 @@
 
     
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-           
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
 
           <div class="row placeholders">
             <div class="col-xs-6 col-sm-3 placeholder">
               <img src="images/Su16_NABD_FB_AirJordanV_Lateral_V1_native_1600.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
+              <h4>Labe<asp:ImageMap ID="ImageMap1" runat="server"></asp:ImageMap>l</h4>
               <span class="text-muted">Something else</span>
             </div>
             <div class="col-xs-6 col-sm-3 placeholder">

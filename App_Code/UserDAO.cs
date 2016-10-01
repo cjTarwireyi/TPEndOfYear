@@ -16,9 +16,9 @@ public class UserDAO
 	{	
 	 con= new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
 //<<<<<<< HEAD
-     con.Open();
+    // con.Open();
 //=======
-        con.Open();
+       
 //>>>>>>> eeb918ba7fff5df47653ba169177ee8bbfa9e088
     }
     public List<UserDTO> getUsers()
@@ -26,25 +26,32 @@ public class UserDAO
         return null;
     }
     public UserDTO getUser(string username, string password){
+        con.Open();
         var found =new UserDTO();
 
-        string checkTechnician = "SELECT *FROM Users WHERE username='" + username + "'" ;
+        string checkTechnician = "SELECT * FROM Users where userName='"+username+"' " ;
         SqlCommand cmd = new SqlCommand(checkTechnician, con);
         SqlDataReader reader = cmd.ExecuteReader();
-        if (reader.Read())
+         while(reader.Read())
         {
             
            found = makeUser(reader);
-           con.Close();
-           return found;
-      
-        
-        }
-        else
-        {
-            con.Close();
-            return null;
-        }
+           if (found.username.Trim()==username)
+           {
+               break;
+           }
+           else
+           {
+               found = null;
+           }
+         }
+        // else
+        //{
+        //    con.Close();
+        //    return null;
+        //}
+         con.Close();
+         return found;
        
         
     }
