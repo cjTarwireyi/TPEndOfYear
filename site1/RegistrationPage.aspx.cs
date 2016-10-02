@@ -37,11 +37,13 @@ public partial class RegistrationPage : System.Web.UI.Page {
         //}
         Control control = Master.FindControl("sideNav");
         Label loginControl = (Label)Master.FindControl("loginLable");
+        Label regUser = (Label)Master.FindControl("regUser");
 
         UserDTO userDto = new UserDTO();
         userDto = (UserDTO)Session["userDto"];
 
         control.Visible = false;
+        regUser.Visible = false;
         // loginControl.Visible = false;
         loginControl.Text = "Logged in as " + userDto.username + "Logout";
 
@@ -58,6 +60,7 @@ public partial class RegistrationPage : System.Web.UI.Page {
         if (userDto.userTypeDto.name.Trim() == "Admin")
         {
             control.Visible = true;
+            regUser.Visible = true;
         }
 
     }
