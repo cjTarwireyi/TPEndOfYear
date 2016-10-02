@@ -8,7 +8,7 @@
  
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
     <div class=" col-md-offset-2 main">
-
+        <form runat="server">
         <div class="page-header">
             <h3><strong>User</strong>   Registration</h3>
 
@@ -134,6 +134,7 @@
 
              
         </div>
+            </form>
     </div>
   <!--  <script type="text/javascript">
         function ValidateCheckBox(sender, args) {

@@ -62,7 +62,7 @@ public class UserDAO
             cmd.Parameters.AddWithValue("@username", model.username);
             //cmd.Parameters.AddWithValue("@name",FullName.Text);
             cmd.Parameters.AddWithValue("@pass", model.password);
-            cmd.Parameters.AddWithValue("@userType", model.userType);
+            cmd.Parameters.AddWithValue("@userTypeId", model.userType);
 
 
             cmd.ExecuteNonQuery();

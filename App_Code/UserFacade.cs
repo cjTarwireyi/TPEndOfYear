@@ -32,7 +32,7 @@ public class UserFacade
         userDto.username =  username; 
         userDto.password = pass ;
         //
-        userDto.Id = userTypeId;
+        userDto.userType = userTypeId;
         bool flag = userDao.addUser(userDto);
         if (flag==true){
             return "successfully Added";
