@@ -49,7 +49,7 @@ public partial class RegistrationPage : System.Web.UI.Page {
             SqlCommand cmd = new SqlCommand(insertQuery, con);
 
             cmd.Parameters.AddWithValue("@username", Username.Text);
-            cmd.Parameters.AddWithValue("@name",FullName.Text);
+            //cmd.Parameters.AddWithValue("@name",FullName.Text);
             cmd.Parameters.AddWithValue("@surname", Surname.Text);
             cmd.Parameters.AddWithValue("@contact", Phone.Text);
             cmd.Parameters.AddWithValue("@email", Email.Text);

@@ -39,14 +39,16 @@
 
   <body>
       <form id="form" runat="server">
-       <div class="navbar navbar-default no-margin">
+      <!-- <div class="navbar navbar-default no-margin">
      
         <p>         
+            
         </p>
         <asp:ContentPlaceHolder id="details" runat="server">
+            bvbvbvvvbvb
     </asp:ContentPlaceHolder>
         
-    </div>
+    </div>-->
     <div id="wrapper">
         <!-- Sidebar -->
         
@@ -83,7 +85,7 @@
                 
                   </a></li>
               
-            <li onclick="LogoutMethod"><a href=""><asp:Label ID="regUser" runat="server" ForeColor="white">Register User</asp:Label></a></li>
+            <li onclick="RegUser"><a href="RegistrationPage.aspx"><asp:Label ID="regUser" runat="server" ForeColor="white">Register User</asp:Label></a></li>
              
               <li></li>
           </ul>

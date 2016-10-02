@@ -28,6 +28,7 @@ public class UserDAO
     public UserDTO getUser(string username, string password){
         con.Open();
         var found =new UserDTO();
+        UserFacade userFacade = new UserFacade();
 
         string checkTechnician = "SELECT * FROM Users a INNER JOIN UserType b ON a.userTypeId = b.userTypeId where userName='" + username + "' ";
         //string checkTechnician = "SELECT * FROM user_types";
@@ -36,7 +37,7 @@ public class UserDAO
          while(reader.Read())
         {
             
-           found = makeUser(reader);
+           found =userFacade.makeUser(reader);
            if (found.username.Trim()==username)
            {
                break;
@@ -60,18 +61,5 @@ public class UserDAO
    // public bool UpdateUser(UserDTO model);
    // public UserDTO Delete(int id);
     
-    public UserDTO makeUser (SqlDataReader reader)
-    {
-        UserDTO user = new UserDTO();
-        UserTypeDTO usertypeDto = new UserTypeDTO();
-        
-       user.Id = reader.GetInt32(0);
-       user.username = reader.GetString(1);
-       user.password = reader.GetString(2);
-        //
-       usertypeDto.Id = reader.GetInt32(3);
-       usertypeDto.name = reader.GetString(5);
-       user.userTypeDto = usertypeDto;
-       return user;
-    }
+   
 }
