@@ -41,38 +41,12 @@ public partial class RegistrationPage : System.Web.UI.Page {
     {
         try{
 
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
-            con.Open();
-
-            string insertQuery
-            = "INSERT INTO Technician (techName,techSurname,techContact,techEmail,techPassword,username) VALUES (@name,@surname,@contact,@email,@password,@username)";
-            SqlCommand cmd = new SqlCommand(insertQuery, con);
-
-            cmd.Parameters.AddWithValue("@username", Username.Text);
-            //cmd.Parameters.AddWithValue("@name",FullName.Text);
-            cmd.Parameters.AddWithValue("@surname", Surname.Text);
-            cmd.Parameters.AddWithValue("@contact", Phone.Text);
-            cmd.Parameters.AddWithValue("@email", Email.Text);
-            cmd.Parameters.AddWithValue("@password", password.Text);
-
-            cmd.ExecuteNonQuery();
-
-            string message = "You have been successfully registered..";
-            string content = "window.onload=function(){ alert('";
-            content += message;
-
-            content += "');";
-            content += "window.location='";
-            content += Request.Url.AbsoluteUri;
-            content += "';}";
-            ClientScript.RegisterStartupScript(this.GetType(), "SuccessMessage", content, true);
-            
+             
 
 
             
 
-            con.Close();
-
+           
         }catch(Exception ex){
             Response.Write("Error: "+ ex.ToString());
         }

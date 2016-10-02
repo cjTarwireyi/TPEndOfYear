@@ -18,18 +18,30 @@ public class UserFacade
 		// TODO: Add constructor logic here
 		//
 	}
-    public UserDTO makeUser(SqlDataReader reader)
+    UserDAO userDao = new UserDAO();
+    public UserDTO login(string username, string pass)
     {
-        UserDTO user = new UserDTO();
-        UserTypeDTO usertypeDto = new UserTypeDTO();
-
-        user.Id = reader.GetInt32(0);
-        user.username = reader.GetString(1);
-        user.password = reader.GetString(2);
-        //
-        usertypeDto.Id = reader.GetInt32(3);
-        usertypeDto.name = reader.GetString(5);
-        user.userTypeDto = usertypeDto;
-        return user;
+       
+        return userDao.getUser(username, pass);
     }
+    public string makeUser(string username, string pass, int userTypeId)
+
+    {
+        UserDTO userDto = new UserDTO();
+        //userDto.Id =  
+        userDto.username =  username; 
+        userDto.password = pass ;
+        //
+        userDto.Id = userTypeId;
+        bool flag = userDao.addUser(userDto);
+        if (flag==true){
+            return "successfully Added";
+        }
+        else{
+            return "Failed";
+        }
+    }
+    
+         
+    
 }
