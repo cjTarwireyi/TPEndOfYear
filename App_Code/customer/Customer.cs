@@ -17,5 +17,7 @@ public class Customer
     public String name { set; get; }
     public String surname { set; get; }
     public String cellNumber { set; get; }
-    public Address address { set; get; }
+    public String streetName { set; get; }
+    public String suburb { set; get; }
+    public String postalCode { set; get; }
 }
