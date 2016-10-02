@@ -10,7 +10,15 @@ public partial class Home : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Control control = Master.FindControl("sideNav");
+        Label loginControl = (Label)Master.FindControl("loginLable");
+        
+        UserDTO userDto = new UserDTO();
+        userDto = (UserDTO)Session["userDto"];
+        
         control.Visible = false;
+       // loginControl.Visible = false;
+        loginControl.Text = "Logged in as " + userDto.username +"Logout";
+       
       //  if (Session["Username"] != null)
        // {
          //   Label1.Text = Session["Username"].ToString();
@@ -19,16 +27,15 @@ public partial class Home : System.Web.UI.Page
         //    Response.Redirect("LoginPage.aspx");
 
         //}
-        UserDTO userDto = new UserDTO();
-        userDto = (UserDTO)Session["userDto"];
+       
         
-        //if (userDto.username.Trim() != "cj")
-        //{
-        //    control.Visible = true;
-        //}
-        //else
-        //{
-     //   //Label1.Text = Session["Username"].ToString();
+        if (userDto.userTypeDto.name.Trim() == "Admin")
+        {
+            control.Visible = true;
+        }
+      //  else
+       // {
+        //Label1.Text = Session["Username"].ToString();
         //}   
     }
     protected void Submit_Click(object sender, EventArgs e)

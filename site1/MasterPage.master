@@ -77,9 +77,14 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="Home.aspx">Home</a></li>
-            <li><a href="LoginPage.aspx">Login</a></li>
-            <li><a href="#">Profile</a></li>
-            <li onclick="LogoutMethod"><a href="">Log out</a></li>
+              <li><a href="#">Profile</a></li>
+ 
+            <li><a href="LoginPage.aspx"><asp:Label ID="loginLable" runat="server" ForeColor="white">login</asp:Label>
+                
+                  </a></li>
+              
+            <li onclick="LogoutMethod"><a href=""><asp:Label ID="regUser" runat="server" ForeColor="white">Register User</asp:Label></a></li>
+             
               <li></li>
           </ul>
            

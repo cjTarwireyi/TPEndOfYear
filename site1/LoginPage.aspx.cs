@@ -11,8 +11,12 @@ public partial class LoginPage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        Label regUserControl = (Label)Master.FindControl("regUser");
+        regUserControl.Visible = false;
         Control control = Master.FindControl("sideNav");
+       // Control logoutControl = Master.FindControl("logOut");
         control.Visible = false;
+      //  logoutControl.Visible = false;
 
     }
     protected void Submit_Click(object sender, EventArgs e)
