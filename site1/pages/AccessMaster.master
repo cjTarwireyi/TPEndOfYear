@@ -1,0 +1,53 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AccessMaster.master.cs" Inherits="AccessMaster" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1"  http-equiv="X-UA-Compatible"/>
+    <title>
+        <asp:ContentPlaceHolder id="title" runat="server">
+        </asp:ContentPlaceHolder>
+     </title>
+     <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <style type="text/css">
+        .bg {
+        position: relative;
+        width: 100%;
+        background-image: url(header.jpg);
+        background-position: center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+    }
+    </style>
+
+</head>
+<body class = "bg">
+    <div class="container">
+    		<p><br/></p><p><br/></p>
+  		<div class="row">
+  			<div class="col-md-4">
+  				<div class="panel panel-default">
+  					<div class="panel-body">
+
+                            <div>
+                                <asp:ContentPlaceHolder id="content" runat="server">
+        
+                                 </asp:ContentPlaceHolder>
+                            </div>
+				    </div>
+  			    </div>
+		    </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

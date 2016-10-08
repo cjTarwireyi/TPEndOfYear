@@ -17,46 +17,51 @@ public class SupplierDAO
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
 	}
 
-    public void saveSupplier(Products product)
+    public void save(Supplier supplier)
     {
-        try
-        {
+        //try
+        //{
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            // cmd.CommandText = "insert into Technician([techName], [techSurname], [techContact], [techEmail],[StreetName],[Suburb],[PostalCode],[password],[username])values('" + emp.name + "','" + emp.surname + "','" + emp.cellNumber + "','" + emp.email + "','" + emp.streetName + "','" + emp.suburb + "','" + emp.postalCode + "','" + emp.password + "','" + emp.username + "')";
+             cmd.CommandText = "insert into Suppliers([SupplierName], [SupplierSurname], [SupplierCellNumber], [SupplierStreetName],[SupplierSuburb],[SupplierPostalCode])values('" + supplier.supplierName.Trim() + "','" + supplier.supplierSurname.Trim() + "','" + supplier.supplierCellNumber.Trim() + "','" + supplier.supplierStreetName.Trim() + "','" + supplier.supplierSuburb.Trim() + "','" + supplier.supplierPostalCode.Trim() + "')";
             cmd.ExecuteNonQuery();
             con.Close();
-        }
-        catch (Exception e)
-        {
-        }
-        finally
-        {
-            con.Close();
-        }
+        //}
+        //catch (Exception e)
+        //{
+        //}
+        //finally
+        //{
+        //    con.Close();
+        //}
     }
 
     public Supplier makeSupplierDTO(SqlDataReader myDR)
     {
        Supplier supplier = new Supplier();
         supplier.supplierNumber = myDR.GetInt32(0);
+        supplier.supplierName = myDR.GetString(1);
+        supplier.supplierSurname = myDR.GetString(2);
+        supplier.supplierCellNumber = myDR.GetString(3);
+        supplier.supplierStreetName = myDR.GetString(4);
+        supplier.supplierSuburb = myDR.GetString(5);
+        supplier.supplierPostalCode = myDR.GetString(6);
         return supplier;
     }
 
     public Supplier getSupplier(int id)
     {
         con.Open();
-        //String selectProduct = "select * from Technician where techID =" + techNumber + " ";
-        //SqlCommand myComm = new SqlCommand(selectProduct, con);
+        String selectProduct = "select * from Suppliers where SupplierID =" + id + " ";
+        SqlCommand myComm = new SqlCommand(selectProduct, con);
         SqlDataReader myDR;
-        /*myDR = myComm.ExecuteReader();
+        myDR = myComm.ExecuteReader();
         if (!myDR.Read())
             return null;
-        Products updateProduct = makeProductDTO(myDR);
+        Supplier updateSupplier = makeSupplierDTO(myDR);
         con.Close();
 
-        return updateProduct;*/
-        return null;
+        return updateSupplier;
     }
 }

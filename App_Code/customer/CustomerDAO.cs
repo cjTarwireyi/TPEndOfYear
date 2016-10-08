@@ -17,14 +17,14 @@ public class CustomerDAO
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
 	}
 
-    public void saveCustomer(Customer customer)
+    public void saveCustomer(CustomerDTO custDTO)
     {
         try
         {
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            //cmd.CommandText = "insert into Customer ([custName],[custSurname],[custContact],[custStreetName],[custSuburb],[custPostalCode]) values('" + custDTO.name + "','" + custDTO.surname + "','" + custDTO.cellNumber + "','" + custDTO.StreetName + "','" + custDTO.Suburb + "','" + custDTO.postalCode + "')";
+            cmd.CommandText = "insert into Customers ([CustomerName],[CustomerSurname],[CustomerCellNumber],[CustomerStreetName],[CustomerSuburb],[CustomerPostalCode]) values('" + custDTO.name + "','" + custDTO.surname + "','" + custDTO.cellNumber + "','" + custDTO.StreetName + "','" + custDTO.Suburb + "','" + custDTO.postalCode + "')";
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -34,22 +34,23 @@ public class CustomerDAO
         }
         finally
         {
-            con.Close();
+           con.Close();
         }
-    }
 
+    }
     public Customer makeCustDTO(SqlDataReader myDR)
     {
         Customer customer = new Customer();
         customer.customerNumber = myDR.GetInt32(0);
         customer.name = myDR.GetString(1) + " " + myDR.GetString(2);
         customer.cellNumber = myDR.GetString(3);
-        //customer.address = myDR.GetValues;
-        /*customer.postalCode = myDR.GetString(4);
+        customer.postalCode = myDR.GetString(4);
         customer.StreetName = myDR.GetString(5);
-        customer.Suburb = myDR.GetString(6)*/;
+        customer.Suburb = myDR.GetString(6);
 
+        //booking.Hours = myDR.GetInt32(8);
         return customer;
+
     }
 
     public Customer getCustomer(int number)
@@ -65,7 +66,4 @@ public class CustomerDAO
         con.Close();
         return updateCustomer;
     }
-
-
-
 }

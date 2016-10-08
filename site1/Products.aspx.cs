@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class site1_customer_Customers : System.Web.UI.Page
+public partial class site1_Products : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -13,8 +13,10 @@ public partial class site1_customer_Customers : System.Web.UI.Page
     }
     protected void Register_Click(object sender, EventArgs e)
     {
-        //GridView1.Columns[0].Visible = false;
-        Response.Redirect("AddCustomer.aspx");
-    }
 
+    }
+    protected void InactiveRecords(object sender, EventArgs e)
+    {
+
+    }
 }

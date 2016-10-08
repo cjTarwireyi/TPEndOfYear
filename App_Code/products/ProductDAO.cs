@@ -19,22 +19,22 @@ public class ProductDAO
 
     public void saveProduct(Products product)
     {
-        try
-        {
+        //try
+        //{
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            // cmd.CommandText = "insert into Technician([techName], [techSurname], [techContact], [techEmail],[StreetName],[Suburb],[PostalCode],[password],[username])values('" + emp.name + "','" + emp.surname + "','" + emp.cellNumber + "','" + emp.email + "','" + emp.streetName + "','" + emp.suburb + "','" + emp.postalCode + "','" + emp.password + "','" + emp.username + "')";
+            cmd.CommandText = "insert into Products([ProductName], [ProductDescription], [Quantity],[Price], [Active],[DateArrived],[SupplierID])values('" + product.productName + "','" + product.productDescription + "','" + product.productQuantity + "','"+product.price+"','" +product.productStatus+ "','" +product.dateArrived+ "','"+product.productSupplierID+"')";
             cmd.ExecuteNonQuery();
             con.Close();
-        }
-        catch (Exception e)
-        {
-        }
-        finally
-        {
-            con.Close();
-        }
+        //}
+        //catch (Exception e)
+        //{
+        //}
+        //finally
+        //{
+        //    con.Close();
+        //}
     }
 
 
@@ -42,21 +42,33 @@ public class ProductDAO
     {
         Products product = new Products();
         product.productNumber = myDR.GetInt32(0);
+        product.productName = myDR.GetString(1);
+        product.productDescription = myDR.GetString(2);
+        product.productQuantity = myDR.GetInt32(3);
+        product.productStatus = myDR.GetBoolean(4);
+        product.dateArrived = myDR.GetDateTime(2);
+        product.productSupplierID = myDR.GetInt32(6);
         return product;
     }
 
     public Products getProduct(int id)
     {
         con.Open();
-        //String selectProduct = "select * from Technician where techID =" + techNumber + " ";
-        //SqlCommand myComm = new SqlCommand(selectProduct, con);
+        String selectProduct = "select * from Products where Id =" + id + " ";
+        SqlCommand myComm = new SqlCommand(selectProduct, con);
         SqlDataReader myDR;
-        /*myDR = myComm.ExecuteReader();
+        myDR = myComm.ExecuteReader();
         if (!myDR.Read())
             return null;
         Products updateProduct = makeProductDTO(myDR);
         con.Close();
-        return updateProduct;*/
-        return null;
+        return updateProduct;
+    }
+
+    
+    public SqlConnection connection()
+    {
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
+        return con;
     }
 }
