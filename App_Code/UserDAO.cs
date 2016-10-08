@@ -41,11 +41,11 @@ public class UserDAO
             found = makeDTO(reader);
              
         }
-        else
-        {
-            found = null; 
+        //else
+        //{
+          //  found =makeDTO(re null; 
             
-        }
+        //}
          con.Close();
          return found;
        
@@ -95,14 +95,17 @@ public class UserDAO
         UserTypeDTO usertypeDto = new UserTypeDTO();
         UserDAO userDao = new UserDAO();
        // SqlDataReader reader = userDao.getUser(name, username);
+        if (reader.HasRows == true)
+        {
+            user.Id = reader.GetInt32(0);
+            user.username = reader.GetString(1);
+            user.password = reader.GetString(2);
+            //
+            usertypeDto.Id = reader.GetInt32(3);
+            usertypeDto.name = reader.GetString(5);
+            user.userTypeDto = usertypeDto;
+        }
 
-        user.Id = reader.GetInt32(0);
-        user.username = reader.GetString(1);
-        user.password = reader.GetString(2);
-        //
-        usertypeDto.Id = reader.GetInt32(3);
-        usertypeDto.name = reader.GetString(5);
-        user.userTypeDto = usertypeDto;
         return user;
     }
     
