@@ -7,14 +7,17 @@ using System.Web.UI.WebControls;
 
 public partial class Home : System.Web.UI.Page
 {
-    protected void Page_Load(object sender, EventArgs e)
-    {
+  private  UserDTO userDto = new UserDTO();
+    protected void Page_Load(object sender, EventArgs e)   {
+       
+        
+        
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)        
+        Response.Redirect("LoginPage.aspx");
         Control control = Master.FindControl("sideNav");
         Label loginControl = (Label)Master.FindControl("loginLable");
         Label regUser = (Label)Master.FindControl("regUser");
-        
-        UserDTO userDto = new UserDTO();
-        userDto = (UserDTO)Session["userDto"];
         
         control.Visible = false;
         regUser.Visible = false;
@@ -44,7 +47,9 @@ public partial class Home : System.Web.UI.Page
     protected void Submit_Click(object sender, EventArgs e)
     {
         
-        Session.RemoveAll();
+        Session.Abandon();
+        Session.Clear();
+       // userDto.
         Response.Redirect("LoginPage.aspx");
     } 
 }
