@@ -48,19 +48,33 @@
             <asp:Parameter Name="original_CustomerPostalCode" Type="String" />
         </UpdateParameters>
     </asp:SqlDataSource>
-    <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource2" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="107px" Width="703px" AllowSorting="True">
+    <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource2" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="63px" Width="724px" AllowSorting="True">
         <Columns>
             <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-            <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" InsertVisible="False" ReadOnly="True" SortExpression="CustomerID" />
-            <asp:BoundField DataField="CustomerName" HeaderText="CustomerName" SortExpression="CustomerName" />
-            <asp:BoundField DataField="CustomerSurname" HeaderText="CustomerSurname" SortExpression="CustomerSurname" />
-            <asp:BoundField DataField="CustomerCellNumber" HeaderText="CustomerCellNumber" SortExpression="CustomerCellNumber" />
-            <asp:BoundField DataField="CustomerStreetName" HeaderText="CustomerStreetName" SortExpression="CustomerStreetName" />
-            <asp:BoundField DataField="CustomerSuburb" HeaderText="CustomerSuburb" SortExpression="CustomerSuburb" />
-            <asp:BoundField DataField="CustomerPostalCode" HeaderText="CustomerPostalCode" SortExpression="CustomerPostalCode" />
+            <asp:BoundField DataField="CustomerID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="CustomerID" />
+            <asp:BoundField DataField="CustomerName" HeaderText="Name" SortExpression="CustomerName" />
+            <asp:BoundField DataField="CustomerSurname" HeaderText="Surname" SortExpression="CustomerSurname" />
+            <asp:BoundField DataField="CustomerCellNumber" HeaderText="CellNumber" SortExpression="CustomerCellNumber" />
+            <asp:BoundField DataField="CustomerStreetName" HeaderText="StreetName" SortExpression="CustomerStreetName" />
+            <asp:BoundField DataField="CustomerSuburb" HeaderText="Suburb" SortExpression="CustomerSuburb" />
+            <asp:BoundField DataField="CustomerPostalCode" HeaderText="PostalCode" SortExpression="CustomerPostalCode" />
         </Columns>
-        </asp:GridView>
-            </div>
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+       </asp:GridView><br />
+       <asp:Button ID="Register" runat="server" Height="32px" Text="Register New" 
+            Width="126px" class="btn btn-success" 
+            data-toggle="tooltip" data-placement="left" 
+            title="Insert new tecnician to database" onclick="Register_Click"/>
+   </div>
    </form>
 </asp:Content>
 

@@ -24,12 +24,13 @@ public class EmployeeDAO
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-           // cmd.CommandText = "insert into Technician([techName], [techSurname], [techContact], [techEmail],[StreetName],[Suburb],[PostalCode],[password],[username])values('" + emp.name + "','" + emp.surname + "','" + emp.cellNumber + "','" + emp.email + "','" + emp.streetName + "','" + emp.suburb + "','" + emp.postalCode + "','" + emp.password + "','" + emp.username + "')";
+            cmd.CommandText = "insert into Employees([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName],[EmployeeSuburb],[EmployeePostalCode])values('" + emp.employeeName + "','" + emp.employeeSurname + "','" + emp.employeeCellNumber + "','" + emp.employeeStreetName + "','" + emp.employeeSuburb + "','" + emp.employeePostalCode + "')";
             cmd.ExecuteNonQuery();
             con.Close();
         }
         catch (Exception e)
         {
+
         }
         finally
         {
@@ -41,21 +42,26 @@ public class EmployeeDAO
     {
         Employee employee = new Employee();
         employee.employeeNumber = myDR.GetInt32(0);
+        employee.employeeName = myDR.GetString(1);
+        employee.employeeSurname = myDR.GetString(2);
+        employee.employeeCellNumber = myDR.GetString(3);
+        employee.employeeStreetName = myDR.GetString(4);
+        employee.employeeSuburb = myDR.GetString(5);
+        employee.employeePostalCode = myDR.GetString(6);
         return employee;
     }
 
-    public Employee getEmployee(int techNumber)
+    public Employee getEmployee(int id)
     {
         con.Open();
-       // String selectEmployee = "select * from Technician where techID =" + techNumber + " ";
-        //SqlCommand myComm = new SqlCommand(selectEmployee, con);
+        String selectEmployee = "select * from Employees where employeeNumber= =" + id + " ";
+        SqlCommand myComm = new SqlCommand(selectEmployee, con);
         SqlDataReader myDR;
-        /*myDR = myComm.ExecuteReader();
+        myDR = myComm.ExecuteReader();
         if (!myDR.Read())
             return null;
-        Employee updateEmployee = makeTechDTO(myDR);*/
+        Employee updateEmployee = makeTechDTO(myDR);
         con.Close();
-        //return updateEmployee;
-        return null;
+        return updateEmployee;
     }
 }

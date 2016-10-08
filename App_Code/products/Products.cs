@@ -16,5 +16,11 @@ public class Products
     public int productNumber { set; get; }
     public String productName { set; get; }
     public String productDescription { set; get; }
-    public String productQuantity { set; get; }
+    public int productQuantity { set; get; }
+    public int price { set; get; }
+    public int productSupplierID { set; get; }
+
+    public Boolean productStatus { set; get; }
+    public DateTime dateArrived { set; get; }
+
 }

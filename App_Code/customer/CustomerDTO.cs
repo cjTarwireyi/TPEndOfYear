@@ -4,13 +4,15 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for Customer
+/// Summary description for CustomerDTO
 /// </summary>
-public class Customer
+public class CustomerDTO
 {
-	public Customer()
+	public CustomerDTO()
 	{
-		
+		//
+		// TODO: Add constructor logic here
+		//
 	}
 
     public int customerNumber { set; get; }

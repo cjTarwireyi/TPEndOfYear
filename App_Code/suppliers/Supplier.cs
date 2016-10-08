@@ -16,5 +16,7 @@ public class Supplier
     public String supplierName { set; get; }
     public String supplierSurname { set; get; }
     public String supplierCellNumber { set; get; }
-    public Address address { set; get; }
+    public String supplierStreetName { set; get; }
+    public String supplierSuburb { set; get; }
+    public String supplierPostalCode { set; get; }
 }
