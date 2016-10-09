@@ -39,4 +39,8 @@ public partial class site1_Products : System.Web.UI.Page
             //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('"+id+"');", true);
         }
     }
+    protected void InactiveRecords(object sender, EventArgs e)
+    {
+
+    }
 }

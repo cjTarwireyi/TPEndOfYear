@@ -13,28 +13,7 @@ public partial class RegistrationPage : System.Web.UI.Page {
 
     protected void Page_Load(object sender, EventArgs e) {
 
-        //if (IsPostBack){
-        //    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
-        //    con.Open();
-
-        //    string checkTechnician = "SELECT COUNT(*) FROM Technician WHERE username='" + Username.Text + "'";
-        //    SqlCommand cmd = new SqlCommand(checkTechnician,con);
-
-        //    int rows = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-        //    if (rows == 1) {
-        //        string message = "The username already eists..";
-        //        string content = "window.onload=function(){ alert('";
-        //        content += message;
-
-        //        content += "');";
-        //        content += "window.location='";
-        //        content += Request.Url.AbsoluteUri;
-        //        content += "';}";
-        //        ClientScript.RegisterStartupScript(this.GetType(), "SuccessMessage", content, true);
-        //    }
-
-        //    con.Close();
-        //}
+        
         Control control = Master.FindControl("sideNav");
         Label loginControl = (Label)Master.FindControl("loginLable");
         Label regUser = (Label)Master.FindControl("regUser");
