@@ -49,7 +49,8 @@
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Id" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Width="799px" AllowSorting="True">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" InsertVisible="False" />
+                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
+                    <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" InsertVisible="False" />
                     <asp:BoundField DataField="ProductName" HeaderText="ProductName" SortExpression="ProductName" />
                     <asp:BoundField DataField="ProductDescription" HeaderText="ProductDescription" SortExpression="ProductDescription" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
@@ -72,10 +73,14 @@
             Width="126px" class="btn btn-success" 
             data-toggle="tooltip" data-placement="left" 
             title="Insert new tecnician to database" onclick="Register_Click"/>&nbsp;&nbsp;
-             <asp:Button ID="btnInactive" runat="server" Height="32px" Text="Inactive Records" 
-            Width="130px" class="btn btn-danger" 
+             <asp:Button ID="btnInactive" runat="server" Height="32px" Text="Inactive Products" 
+            Width="145px" class="btn btn-danger" 
             data-toggle="tooltip" data-placement="left" 
-            title="Insert new tecnician to database" onclick="InactiveRecords"/>
+            title="Insert new tecnician to database" onclick="InactiveRecords"/>&nbsp;&nbsp;
+             <asp:Button ID="btnDeactivate" runat="server" Height="32px" Text="Deactivate Product" 
+            Width="155px" class="btn btn-danger" 
+            data-toggle="tooltip" data-placement="left" 
+            title="Insert new tecnician to database" OnClick="btnDeactivate_Click" />
         </div>
     </form>
 </asp:Content>
