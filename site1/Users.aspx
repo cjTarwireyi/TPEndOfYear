@@ -5,13 +5,23 @@
     <div class=" col-md-offset-2 main">
     <form runat="server">
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT a.userId, a.userName, a.pass, a.userTypeId, b.userTypeId AS Expr1, b.userTypeName, b.userTypeDescription FROM Users AS a INNER JOIN UserType AS b ON a.userTypeId = b.userTypeId"></asp:SqlDataSource>
-<asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" Height="231px" Width="1003px" AutoGenerateColumns="False" DataKeyNames="userId,Expr1" DataSourceID="SqlDataSource1">
-    <AlternatingRowStyle BackColor="White" />
+<asp:GridView ID="GridView1" runat="server"  CellPadding="4" ForeColor="#333333" GridLines="None" Height="231px" Width="1003px" AutoGenerateColumns="False" DataKeyNames="userId,Expr1" DataSourceID="SqlDataSource1">
+    <AlternatingRowStyle BackColor="White"  />
     <Columns>
         <asp:CommandField ShowSelectButton="True" />
-        <asp:BoundField DataField="userName" HeaderText="User Name" SortExpression="userName" />
-        <asp:BoundField DataField="userTypeName" HeaderText="User Type " SortExpression="userTypeName" />
-        <asp:BoundField DataField="userTypeDescription" HeaderText="Description" SortExpression="userTypeDescription" />
+        <asp:BoundField DataField="userId" HeaderText="userId" SortExpression="userId" InsertVisible="False" ReadOnly="True" Visible="False" />
+        <asp:BoundField DataField="userName" HeaderText="userName" SortExpression="userName" />
+        <asp:BoundField DataField="pass" HeaderText="pass" SortExpression="pass" />
+        <asp:BoundField DataField="userTypeId" HeaderText="userTypeId" SortExpression="userTypeId" Visible="False" />
+        <asp:BoundField DataField="Expr1" HeaderText="Expr1" ReadOnly="True" SortExpression="Expr1" Visible="False" />
+        <asp:BoundField DataField="userTypeName" HeaderText="userTypeName" SortExpression="userTypeName" />
+        <asp:BoundField DataField="userTypeDescription" HeaderText="userTypeDescription" SortExpression="userTypeDescription" />
+        <asp:TemplateField Visible="false">
+            <ItemTemplate>
+                <asp:Label ID="lblUserId" runat="server" Text='<%#Eval("userId") %>'></asp:Label>
+                
+            </ItemTemplate>
+        </asp:TemplateField>
     </Columns>
     <EditRowStyle BackColor="#2461BF" />
     <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -25,14 +35,26 @@
     <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
 
-       <asp:Button ID="Register" runat="server" Height="32px" Text="Register user" 
+     <div class="row " >  
+         <div class="col-lg-3">
+         <asp:Button ID="Register" runat="server" Height="32px" Text="Register user" 
             Width="126px" class="btn btn-success" 
             data-toggle="tooltip" data-placement="left" 
             title="Insert new tecnician to database" onclick="Register_Click"/>&nbsp;&nbsp;
+             </div>
+         <div class="col-lg-3">
              <asp:Button ID="btnInactive" runat="server" Height="32px" Text="Update" 
             Width="130px" class="btn btn-info" 
             data-toggle="tooltip" data-placement="left" 
-            title="Insert new tecnician to database" onclick="InactiveRecords"/>
+            title="Insert new tecnician to database" onclick="Update"/>
+        </div>
+         <div class="col-lg-3">
+             <asp:Button ID="Button1" runat="server" Height="32px" Text="Remove User" 
+            Width="145px" class="btn btn-danger" 
+            data-toggle="tooltip" data-placement="left" 
+            title="Insert new tecnician to database" onclick="RemoveUser"/>
+             </div>
+        </div>
         </form>
         </div>
  </asp:Content>

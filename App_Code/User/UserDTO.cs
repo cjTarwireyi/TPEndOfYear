@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public class UserDTO
 {
-    
+     
     public int Id { get; set; }
     public string username { get; set; }
     public string name { get; set; }
@@ -18,7 +18,7 @@ public class UserDTO
     public string password { get; set; }   
     
     public int userType { get; set; }
-    public UserTypeDTO userTypeDto { get; set; }
+    public  UserTypeDTO userTypeDto  { get ; set; }
      
 
 }
