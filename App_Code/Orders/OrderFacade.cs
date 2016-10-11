@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for Orders
+/// Summary description for OrderFacade
 /// </summary>
-public class Orders
+public class OrderFacade
 {
-	public Orders()
+	public OrderFacade()
 	{
 		//
 		// TODO: Add constructor logic here
