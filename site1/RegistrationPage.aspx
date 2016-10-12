@@ -3,14 +3,36 @@
 <%--<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>--%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
-    Registration
+    
 </asp:Content>
  
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-    <div class=" col-md-offset-2 main">
+    
+            
+
+        
+    <div class=" col-md-offset-4 main">
         <form runat="server">
-        <div class="page-header">
-            <h3><strong>User</strong>   Registration</h3>
+        <div class="page-header" style="background-color:azure">
+            <h3><asp:Label ID="lblTitle"  runat="server" ForeColor="Red" Text="User   Registration</"></asp:Label>
+           </h3>
+
+        </div>
+            <div class="row">
+
+            <div class="form-group  col-xs-6">
+                <div class="input-group" id="Div1">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                    
+                    <asp:DropDownList ID="userType" runat="server"  Height="35px" Width="290px"
+                        class="form-control" placeholder="User Type"></asp:DropDownList>
+                </div>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                    ErrorMessage="UserType Required !" ControlToValidate="userType" ForeColor="Red"></asp:RequiredFieldValidator>
+                <br />
+            </div>
+            
+
 
         </div>
         <div class="row">
@@ -18,23 +40,15 @@
             <div class="form-group  col-xs-6">
                 <div class="input-group" id="Div4">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <asp:TextBox ID="Username" runat="server" Height="35px" Width="290px"
-                        class="form-control" placeholder="Username"></asp:TextBox>
+                    <asp:TextBox ID="empNo" runat="server" Height="35px" Width="290px"
+                        class="form-control" placeholder="Employee Number"></asp:TextBox>
                 </div>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
-                    ErrorMessage="Username Required!" ControlToValidate="Username" ForeColor="Red"></asp:RequiredFieldValidator>
+                    ErrorMessage="Employee Number Required!" ControlToValidate="empNo" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
+                <asp:Label ID="lblErrorEmp" Visible="false" runat="server" ForeColor="Red" Text="invalid employee number"></asp:Label>
             </div>
-            <div class="form-group    col-xs-6">
-                <div class="input-group" id="Name">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <asp:TextBox ID="FullName" runat="server" Height="35px" Width="290px"
-                        class="form-control" placeholder="Name"></asp:TextBox>
-                </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                    ErrorMessage="Name Required!" ControlToValidate="FullName" ForeColor="Red"></asp:RequiredFieldValidator>
-                <br />
-            </div>
+            
 
 
         </div>
@@ -43,60 +57,51 @@
             <div class="form-group col-xs-6">
                 <div class="input-group" id="Div2">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
-                    <asp:TextBox ID="Surname" runat="server" Height="35px" Width="290px"
-                        class="form-control" placeholder="Surname"></asp:TextBox>
+                    <asp:TextBox ID="Username" runat="server" Height="35px" Width="290px"
+                        class="form-control" placeholder="User Name"></asp:TextBox>
                 </div>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
-                    ErrorMessage="Surname Required!" ControlToValidate="Surname" ForeColor="Red"></asp:RequiredFieldValidator>
+                    ErrorMessage="User Name Required!" ControlToValidate="Username" ForeColor="Red"></asp:RequiredFieldValidator>
+                
                 <br />
-            </div>
-            <div class="form-group col-xs-6">
-                <div class="input-group" id="Div3">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
-                    <asp:TextBox ID="Phone" runat="server" Height="35px" Width="290px"
-                        class="form-control" placeholder="Phone Number e.g (072)111-2223"></asp:TextBox>
-                </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server"
-                    ErrorMessage="Phone Number Required!" ControlToValidate="Phone" ForeColor="Red"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
-                    ControlToValidate="Phone" ErrorMessage="Invalid Phone Number e.g (072)111-2223" ForeColor="Red"
-                    ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
-                <br />
-                </div>
+                <asp:Label ID="usernameError" Visible="false" runat="server" ForeColor="Red" Text="Username in use by another user"></asp:Label>
+            </div>            
                  <!--           <div class="form-group">-->
             </div>
-            <!--------------------new row--->
-            <div class="row">
+            <!----------------------------new row-->
+             <div class="row" >
                 <div class="form-group col-xs-6">
-                <div class="input-group" id="Div1">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                    <asp:TextBox ID="Email" runat="server" Height="35px" Width="290px"
-                        class="form-control" placeholder="Email"></asp:TextBox>
+                    <div class="input-group" id="Div11" >
+                        <span class="input-group-addon"><span Hidden class="glyphicon glyphicon-star"></span></span>
+                        <asp:TextBox ID="oldPass" Enabled="false" runat="server" Height="35px" Width="290px"
+                            class="form-control" TextMode="Password" placeholder="Old Password"></asp:TextBox>
+                    </div>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                        ErrorMessage="Password Required!" ControlToValidate="oldPass" ForeColor="Red"></asp:RequiredFieldValidator>
+                     <asp:Label ID="oldPasWrong" Visible="false" runat="server" ForeColor="Red" Text="Your Old Password is wrong"></asp:Label>
+            
+                </div>
 
-                </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                    ErrorMessage="Email Required!" ControlToValidate="Email" ForeColor="Red"></asp:RequiredFieldValidator>
-                <br />
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
-                    ControlToValidate="Email" ErrorMessage="Please enter valid email address"
-                    ForeColor="Red"
-                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                
             </div>
-                </div>
-            <!-----------------------------new row>-->
+            <!--------------------new row--->
+             
             <div class="row">
                 <div class="form-group col-xs-6">
-                    <div class="input-group">
+                    <div class="input-group" id="Div10">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
-                        <asp:TextBox ID="password" runat="server" Height="35px" Width="290px"
+                        <asp:TextBox ID="pword" runat="server" Height="35px" Width="290px"
                             class="form-control" TextMode="Password" placeholder="Password"></asp:TextBox>
                     </div>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                        ErrorMessage="Password Required!" ControlToValidate="password" ForeColor="Red"></asp:RequiredFieldValidator>
+                        ErrorMessage="Password Required!" ControlToValidate="pword" ForeColor="Red"></asp:RequiredFieldValidator>
                 </div>
 
-                <div class="form-group col-xs-6">
-                    <div class="input-group">
+                
+            </div>
+             <div class="row">
+            <div class="form-group col-xs-6">
+                    <div class="input-group"id ="Div">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></span>
                         <asp:TextBox ID="Rpassword" runat="server" Height="35px" Width="290px"
                             class="form-control" TextMode="Password" placeholder="Confirm Password"></asp:TextBox>
@@ -105,11 +110,10 @@
                         ErrorMessage="Retype Password Required!" ControlToValidate="Rpassword" ForeColor="Red"></asp:RequiredFieldValidator>
                     <br />
                     <asp:CompareValidator ID="CompareValidator1" runat="server"
-                        ControlToCompare="password" ControlToValidate="Rpassword"
+                        ControlToCompare="pword" ControlToValidate="Rpassword"
                         ErrorMessage="Both Passwords Must Match" ForeColor="Red"></asp:CompareValidator>
                 </div>
-            </div>
-        
+        </div>
         <!-------------------------------new row-->
         <hr />
         <div class="row">
@@ -120,10 +124,9 @@
             <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Must Agree to terms"
                 ClientValidationFunction="ValidateCheckBox" ForeColor="Red"></asp:CustomValidator>-->
             <div class="form-group col-xs-6">
-            <asp:Button ID="Register" runat="server" Height="32px" Text="Register"
+            <asp:Button ID="Register" runat="server" Height="32px" Text="Save"
                 Width="126px" class="btn btn-success" OnClick="Register_Click" />
-            </div>
-            <div class="form-group col-xs-6">
+             
                                 <input id="Reset1" type="reset" value="Cancel" class="btn btn-primary" />
                                 <!--<asp:SqlDataSource
                                     ID="SqlDataSource1" runat="server"
@@ -145,5 +148,5 @@
             }
         }
     </script>-->
-
+        
 </asp:Content>

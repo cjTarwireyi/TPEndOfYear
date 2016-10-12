@@ -8,9 +8,13 @@ using System.Web;
 /// </summary>
 public class UserTypeDTO
 {
+    public UserTypeDTO()
+    {
+        
+    }
      
-    public int Id { get; set;}
-    public int roleId { get; set; }
+   public int Id { get; set;}
+   public int roleId { get; set; }
    public string name { get; set; }
    public string description { get; set; }
 }

@@ -11,7 +11,7 @@ public partial class site1_Products : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
     protected void Register_Click(object sender, EventArgs e)
     {
@@ -21,7 +21,7 @@ public partial class site1_Products : System.Web.UI.Page
     {
         Response.Redirect("InactiveProducts.aspx");
     }
-
+    
     protected void btnDeactivate_Click(object sender, EventArgs e)
     {
         if (GridView1.SelectedIndex >= 0)
@@ -35,9 +35,12 @@ public partial class site1_Products : System.Web.UI.Page
             SqlCommand cmd = new SqlCommand(activeProduct, con);
             cmd.ExecuteNonQuery();
             GridView1.DataBind();
-
+            
             //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('"+id+"');", true);
         }
     }
+    //protected void InactiveRecords(object sender, EventArgs e)
+    //{
+
+    //}
 }
-   

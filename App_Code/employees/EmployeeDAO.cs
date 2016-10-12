@@ -54,7 +54,7 @@ public class EmployeeDAO
     public Employee getEmployee(int id)
     {
         con.Open();
-        String selectEmployee = "select * from Employees where employeeNumber= =" + id + " ";
+        String selectEmployee = "select * from Employees where EmployeeID =" + id + " ";
         SqlCommand myComm = new SqlCommand(selectEmployee, con);
         SqlDataReader myDR;
         myDR = myComm.ExecuteReader();
