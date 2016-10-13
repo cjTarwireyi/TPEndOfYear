@@ -8,15 +8,15 @@ using System.Web;
 /// </summary>
 public class OrderLineDAO:InterfaceOrderLine
 {
-    public bool AddOderLine(OrderLineDTO model)
+   public bool AddOderLine(OrderLineDTO model)
     {
         return true;
     }
-    public bool RemoveProduct(OrderLineDTO model)
+   public bool RemoveProduct(OrderLineDTO model)
     {
         return true;
     }
-    public bool UpdateOrderLine(OrderLineDTO model)
+   public bool UpdateOrderLine(OrderLineDTO model)
     {
         return true;
     }
