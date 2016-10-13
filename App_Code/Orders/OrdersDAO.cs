@@ -18,11 +18,11 @@ public class Orders: InterfaceOder
     {
         return true;
     }
-    bool UpdateOrder(OrderDTO model)
+    public bool UpdateOrder(OrderDTO model)
     {
-        return true
+        return true;
     }
-    bool DeleteOrder(int orderId)
+   public  bool DeleteOrder(int orderId)
     {
         return true;
     }
