@@ -8,7 +8,6 @@ using System.Web;
 /// </summary>
 public class OrderDTO
 {
-
     public int orderId { set; get; }
     public int customerId { set; get; }
     public int employeeId { set; get; }
@@ -18,4 +17,4 @@ public class OrderDTO
     public float amount { set; get; }
     public List<Products> orderItems { set; get; }
 
-     }
+ }

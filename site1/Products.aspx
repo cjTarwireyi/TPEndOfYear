@@ -53,7 +53,7 @@
                     <asp:Parameter Name="original_SupplierID" Type="Int32" />
                 </UpdateParameters>
              </asp:SqlDataSource>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Id" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None" Width="799px" AllowSorting="True">
+            <asp:GridView ID="gridView1" runat="server" AutoGenerateColumns="False"  CellPadding="4" DataKeyNames="Id" DataSourceID="SqlDataSource1" Align="Center" ForeColor="#333333" Width="785px" AllowSorting="True" Height="72px" HorizontalAlign="Justify">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
