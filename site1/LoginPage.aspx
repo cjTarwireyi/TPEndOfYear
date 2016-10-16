@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
       <div class="container m_top">
-    <form id="form" runat="server">
+     
     <div class="   form-signin">
            <h2 class="form-signin-heading">Please sign in</h2>
         <div class="form-group">
@@ -40,6 +40,6 @@
         <a href="#">I forgot my password</a><br />
         <a href="RegistrationPage.aspx" class="text-center">Register a new membership</a>
     </div>
-       </form> 
+        
           </div>
 </asp:Content>

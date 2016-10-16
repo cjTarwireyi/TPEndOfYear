@@ -3,10 +3,17 @@
 <%-- Add content controls here --%>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
 </asp:Content>
-
+<asp:Content ID="Content5" ContentPlaceHolderID="details" Runat="Server">
+     <div class="loginDisplay">
+        <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label> 
+            <asp:Button ID="Submit" runat="server" class="btn btn-danger " 
+            Height="35px" Text="Sign Out" 
+                                Width="90px" onclick="Submit_Click"/>  
+         </div>
+</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-    <form runat="server">
-        <div class=" col-md-offset-2 main">
+    
+        <div class="  main">
              <h1><strong>Products</strong></h1>
             <br />
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Products] WHERE [Id] = @original_Id AND (([ProductName] = @original_ProductName) OR ([ProductName] IS NULL AND @original_ProductName IS NULL)) AND (([ProductDescription] = @original_ProductDescription) OR ([ProductDescription] IS NULL AND @original_ProductDescription IS NULL)) AND (([Price] = @original_Price) OR ([Price] IS NULL AND @original_Price IS NULL)) AND (([Quantity] = @original_Quantity) OR ([Quantity] IS NULL AND @original_Quantity IS NULL)) AND (([DateArrived] = @original_DateArrived) OR ([DateArrived] IS NULL AND @original_DateArrived IS NULL)) AND (([SupplierID] = @original_SupplierID) OR ([SupplierID] IS NULL AND @original_SupplierID IS NULL))" InsertCommand="INSERT INTO [Products] ([ProductName], [ProductDescription], [Price], [Quantity], [DateArrived], [SupplierID]) VALUES (@ProductName, @ProductDescription, @Price, @Quantity, @DateArrived, @SupplierID)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [Id], [ProductName], [ProductDescription], [Price], [Quantity], [DateArrived], [SupplierID] FROM [Products] WHERE ([Active] &lt;&gt; @Active)" UpdateCommand="UPDATE [Products] SET [ProductName] = @ProductName, [ProductDescription] = @ProductDescription, [Price] = @Price, [Quantity] = @Quantity, [DateArrived] = @DateArrived, [SupplierID] = @SupplierID WHERE [Id] = @original_Id AND (([ProductName] = @original_ProductName) OR ([ProductName] IS NULL AND @original_ProductName IS NULL)) AND (([ProductDescription] = @original_ProductDescription) OR ([ProductDescription] IS NULL AND @original_ProductDescription IS NULL)) AND (([Price] = @original_Price) OR ([Price] IS NULL AND @original_Price IS NULL)) AND (([Quantity] = @original_Quantity) OR ([Quantity] IS NULL AND @original_Quantity IS NULL)) AND (([DateArrived] = @original_DateArrived) OR ([DateArrived] IS NULL AND @original_DateArrived IS NULL)) AND (([SupplierID] = @original_SupplierID) OR ([SupplierID] IS NULL AND @original_SupplierID IS NULL))">
@@ -82,5 +89,21 @@
             data-toggle="tooltip" data-placement="left" 
             title="Insert new tecnician to database" OnClick="btnDeactivate_Click" />
         </div>
-    </form>
+    </asp:Content>
+ <asp:Content ID="Content4" ContentPlaceHolderID="sideBarNav" runat="server">
+   <div id="sidebar-wrapper">
+       <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+           <li ><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+           <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+           <li><a href="Customers.aspx"><i class="glyphicon glyphicon-cog"></i>&nbsp;Customers</a></li>
+           <li><a href="Employee.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Employees</a></li>
+           <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-list "></i>&nbsp;Register User</a></li>
+           <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
+           <li><a href="AddOrder.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Order</a></li>
+           <li class="active"><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+           <li><a href="#"><i class="glyphicon glyphicon-time"></i>&nbsp;Real-time</a></li>
+           <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
+        </ul>
+    </div>
+
 </asp:Content>

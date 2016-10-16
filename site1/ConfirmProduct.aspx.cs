@@ -9,6 +9,9 @@ public partial class site1_ConfirmProduct : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        UserDTO userDtoUpdate = new UserDTO();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
         Products product = (Products)Session["ProductsDTO"];
         lblName.Text ="Name: "+ product.productName;
         lblDescription.Text = "Discription: "+product.productDescription;

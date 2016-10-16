@@ -9,40 +9,65 @@ using System.Web;
 /// <summary>
 /// Summary description for Orders
 /// </summary>
-public class Orders: InterfaceOder
+public class OrdersDAO: InterfaceOder
 {
     private SqlConnection con;
-	public Orders()
+    DataClassesDataContext db = new DataClassesDataContext();
+    public OrdersDAO()
 	{
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
 	}
-
-    public bool AddOrder(OrderDTO order)
+    public int AddOrder(OrderDTO model)
     {
-        int created = 0;
         try
         {
-            con.Open();
-            SqlCommand cmd = con.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert into Orders ([custId],[employeeId],[payed],[amount],[orderDate]) values('"+order.customerId +"','"+ order.employeeId +"','"+order.amount+"','"+order.paid+"','"+order.orderDate+"')";
-            created = cmd.ExecuteNonQuery();
-            con.Close();
+            Order order = new Order();
+            var time = DateTime.Now;
+            var orderCode = model.customerId + "-" + time;
+            order.custId = model.customerId;
+            order.employeeId = model.employeeId;
+            order.amount = model.amount;
+            order.payed = model.payed;
+            order.orderDate = time;
+            order.orderCode = orderCode;
+            db.Orders.InsertOnSubmit(order);
+            Order orderfound = db.Orders.Where(t => t.orderCode == orderCode).Single();
+            return orderfound.orderId;
         }
         catch (Exception e)
         {
+            e.GetBaseException();
+            return new Int32();
 
         }
-        finally
-        {
-            con.Close();
-        }
-
-        if (created == 1)
-            return true;
-        else
-            return false;
     }
+
+    //public int AddOrder(OrderDTO order)
+    //{
+    //    int created = 0;
+    //    try
+    //    {
+    //        con.Open();
+    //        SqlCommand cmd = con.CreateCommand();
+    //        cmd.CommandType = CommandType.Text;
+    //        cmd.CommandText = "insert into Orders ([custId],[employeeId],[payed],[amount],[orderDate]) values('"+order.customerId +"','"+ order.employeeId +"','"+order.amount+"','"+order.payed+"','"+order.orderDate+"')";
+    //        created = cmd.ExecuteNonQuery();
+    //        con.Close();
+    //    }
+    //    catch (Exception e)
+    //    {
+
+    //    }
+    //    finally
+    //    {
+    //        con.Close();
+    //    }
+
+    //    if (created == 1)
+    //        return true;
+    //    else
+    //        return false;
+    //}
   public  bool UpdateOrder(OrderDTO model)
     {
         return true;

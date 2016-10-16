@@ -10,6 +10,9 @@ public partial class site1_AddProduct : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        UserDTO userDtoUpdate = new UserDTO();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
         ProductDAO prodConnnection = new ProductDAO();
         SqlConnection con = prodConnnection.connection();
         con.Open();

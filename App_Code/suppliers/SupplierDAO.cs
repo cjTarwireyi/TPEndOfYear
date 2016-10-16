@@ -17,7 +17,7 @@ public class SupplierDAO
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
 	}
 
-    public void save(Supplier supplier)
+    public void save(SupplierDTO supplier)
     {
         //try
         //{
@@ -37,9 +37,9 @@ public class SupplierDAO
         //}
     }
 
-    public Supplier makeSupplierDTO(SqlDataReader myDR)
+    public SupplierDTO makeSupplierDTO(SqlDataReader myDR)
     {
-       Supplier supplier = new Supplier();
+       SupplierDTO supplier = new SupplierDTO();
         supplier.supplierNumber = myDR.GetInt32(0);
         supplier.supplierName = myDR.GetString(1);
         supplier.supplierSurname = myDR.GetString(2);
@@ -50,7 +50,7 @@ public class SupplierDAO
         return supplier;
     }
 
-    public Supplier getSupplier(int id)
+    public SupplierDTO getSupplier(int id)
     {
         con.Open();
         String selectProduct = "select * from Suppliers where SupplierID =" + id + " ";
@@ -59,7 +59,7 @@ public class SupplierDAO
         myDR = myComm.ExecuteReader();
         if (!myDR.Read())
             return null;
-        Supplier updateSupplier = makeSupplierDTO(myDR);
+        SupplierDTO updateSupplier = makeSupplierDTO(myDR);
         con.Close();
 
         return updateSupplier;

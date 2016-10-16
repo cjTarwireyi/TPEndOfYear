@@ -9,7 +9,10 @@ public partial class site1_EmployeeConfirm : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Employee employee = (Employee)Session["EmployeeDTO"];
+        UserDTO userDtoUpdate = new UserDTO();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        EmployeeDTO employee = (EmployeeDTO)Session["EmployeeDTO"];
         lblName.Text = employee.employeeName;
         lblSurname.Text = employee.employeeSurname;
         lblCellNumber.Text = employee.employeeCellNumber;
@@ -19,7 +22,7 @@ public partial class site1_EmployeeConfirm : System.Web.UI.Page
     }
     protected void btnConfirm_Click(object sender, EventArgs e)
     {
-        Employee empDTO = (Employee)Session["EmployeeDTO"];
+        EmployeeDTO empDTO = (EmployeeDTO)Session["EmployeeDTO"];
         EmployeeDAO employee = new EmployeeDAO();
         employee.saveEmployee(empDTO);
         Response.Redirect("Employee.aspx");

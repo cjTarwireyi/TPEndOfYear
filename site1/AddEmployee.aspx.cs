@@ -9,7 +9,9 @@ public partial class site1_AddEmployee : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        UserDTO userDtoUpdate = new UserDTO();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
     }
     protected void Register_Click(object sender, EventArgs e)
     {
@@ -25,7 +27,7 @@ public partial class site1_AddEmployee : System.Web.UI.Page
           
 
 
-            Employee employee = new Employee();
+            EmployeeDTO employee = new EmployeeDTO();
             employee.employeeName = name;
             employee.employeeSurname = surname;
             employee.employeeCellNumber = cellNumber;

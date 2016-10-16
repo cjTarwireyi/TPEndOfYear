@@ -1,11 +1,36 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site1/MasterPage.master" AutoEventWireup="true" CodeFile="Users.aspx.cs" Inherits="site1_Users" %>
 
 <%-- Add content controls here --%>
+ <asp:Content ID="Content5" ContentPlaceHolderID="details" Runat="Server">
+     <div class="loginDisplay">
+        <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label> 
+            <asp:Button ID="Submit" runat="server" class="btn btn-danger " 
+            Height="35px" Text="Sign Out" 
+                                Width="90px" onclick="Submit_Click"/>  
+         </div>
+</asp:Content>
+  <asp:Content ID="Content1" ContentPlaceHolderID="sideBarNav" runat="server">
+   <div id="sidebar-wrapper">
+       <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+           <li ><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+           <li class="active"><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+           <li><a href="Customers.aspx"><i class="glyphicon glyphicon-cog"></i>&nbsp;Customers</a></li>
+           <li><a href="Employee.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Employees</a></li>
+           <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-list "></i>&nbsp;Register User</a></li>
+           <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
+           <li><a href="AddOrder.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Order</a></li>
+           <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+           <li><a href="#"><i class="glyphicon glyphicon-time"></i>&nbsp;Real-time</a></li>
+           <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
+        </ul>
+    </div>
+
+</asp:Content> 
 <asp:Content ID="Content3" ContentPlaceHolderID="content" Runat="Server">
-    <div class=" col-md-offset-2 main">
-    <form runat="server">
+    <div class=" main" style="height:inherit">
+    
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT a.userId, a.userName, a.pass, a.userTypeId, b.userTypeId AS Expr1, b.userTypeName, b.userTypeDescription FROM Users AS a INNER JOIN UserType AS b ON a.userTypeId = b.userTypeId"></asp:SqlDataSource>
-<asp:GridView ID="GridView1" runat="server"  CellPadding="4" ForeColor="#333333" GridLines="None" Height="231px" Width="1003px" AutoGenerateColumns="False" DataKeyNames="userId,Expr1" DataSourceID="SqlDataSource1">
+    <asp:GridView ID="GridView1" runat="server"  CellPadding="4" ForeColor="#333333" GridLines="None" Height="231px" Width="1003px" AutoGenerateColumns="False" DataKeyNames="userId,Expr1" DataSourceID="SqlDataSource1">
     <AlternatingRowStyle BackColor="White"  />
     <Columns>
         <asp:CommandField ShowSelectButton="True" />
@@ -34,7 +59,7 @@
     <SortedDescendingCellStyle BackColor="#E9EBEF" />
     <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
-
+        
      <div class="row " >  
          <div class="col-lg-3">
          <asp:Button ID="Register" runat="server" Height="32px" Text="Register user" 
@@ -55,6 +80,6 @@
             title="Insert new tecnician to database" onclick="RemoveUser"/>
              </div>
         </div>
-        </form>
+        
         </div>
  </asp:Content>

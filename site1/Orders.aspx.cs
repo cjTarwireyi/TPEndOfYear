@@ -9,6 +9,9 @@ public partial class site1_Orders : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        UserDTO userDtoUpdate = new UserDTO();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
         if (!Page.IsPostBack)
         {
             string currentYear = DateTime.Now.Year.ToString();

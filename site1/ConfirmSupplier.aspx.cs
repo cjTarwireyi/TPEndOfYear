@@ -9,7 +9,10 @@ public partial class site1_ConfirmSupplier : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Supplier supplier = (Supplier)Session["SupplierDTO"];
+        UserDTO userDtoUpdate = new UserDTO();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        SupplierDTO supplier = (SupplierDTO)Session["SupplierDTO"];
         lblSupplierName.Text = supplier.supplierName;
         lblSupplierSurname.Text = supplier.supplierSurname;
         lblCellNumber.Text = supplier.supplierCellNumber;
@@ -19,7 +22,7 @@ public partial class site1_ConfirmSupplier : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        Supplier dto = (Supplier)Session["SupplierDTO"];
+        SupplierDTO dto = (SupplierDTO)Session["SupplierDTO"];
         SupplierDAO supplier = new SupplierDAO();
         supplier.save(dto);
         Response.Redirect("Suppliers.aspx");

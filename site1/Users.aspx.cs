@@ -10,17 +10,22 @@ public partial class site1_Users : System.Web.UI.Page
     UserDTO userDto = new UserDTO();
     protected void Page_Load(object sender, EventArgs e)
     {
+        UserDTO userDtoUpdate = new UserDTO();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
-        Control control = Master.FindControl("sideNav");
-        Label loginControl = (Label)Master.FindControl("loginLable");
-        Label regUser = (Label)Master.FindControl("regUser");
+        lblUser.Text = userDto.username;
+        
+      //  Control control = Master.FindControl("sideNav");
+        //Label loginControl = (Label)Master.FindControl("loginLable");
+        //Label regUser = (Label)Master.FindControl("regUser");
 
-        control.Visible = false;
-        regUser.Visible = false;
+       // control.Visible = false;
+       // regUser.Visible = false;
         // loginControl.Visible = false;
-        loginControl.Text = "Logged in as " + userDto.username + "Logout";
+       // loginControl.Text = "Logged in as " + userDto.username + "Logout";
 
         //  if (Session["Username"] != null)
         // {
@@ -34,8 +39,8 @@ public partial class site1_Users : System.Web.UI.Page
 
         if (userDto.userTypeDto.name.Trim() == "Admin")
         {
-            control.Visible = true;
-            regUser.Visible = true;
+            //control.Visible = true;
+            //regUser.Visible = true;
         }
     }
 
@@ -104,5 +109,13 @@ public partial class site1_Users : System.Web.UI.Page
         Response.Redirect("Users.aspx");
        
     }
+    protected void Submit_Click(object sender, EventArgs e)
+    {
+
+        Session.Abandon();
+        Session.Clear();
+
+        Response.Redirect("LoginPage.aspx");
+    } 
    
 }
