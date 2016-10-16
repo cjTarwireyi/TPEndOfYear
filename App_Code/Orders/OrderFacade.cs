@@ -14,7 +14,8 @@ public class OrderFacade
 	public OrderFacade()
 	{
         orderLineDTO = new OrderLineDTO();
-        
+        orderLineservice = new OrderLineDAO();
+        orderService = new OrdersDAO();
 	}
     public OrderDTO makeOrder(OrderDTO order)
     {
