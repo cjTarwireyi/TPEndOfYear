@@ -44,6 +44,22 @@
         </div>
         <div class="form-group">
             <div class="input-group" id="Div1">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+                <asp:TextBox ID="Email" runat="server" Height="35px" Width="290px"
+                    class="form-control" placeholder="Email"></asp:TextBox>
+
+            </div>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                ErrorMessage="Email Required!" ControlToValidate="Email" ForeColor="Red"></asp:RequiredFieldValidator>
+            <br />
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                ControlToValidate="Email" ErrorMessage="Please enter valid email address"
+                ForeColor="Red"
+                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+        </div>
+
+        <div class="form-group">
+            <div class="input-group" id="Div1">
                 <span class="input-group-addon"><span class="fa fa-road"></span></span>
                 <asp:TextBox ID="txtStreetName" runat="server" Height="35px" Width="290px"
                     class="form-control" placeholder="Street Name"></asp:TextBox>

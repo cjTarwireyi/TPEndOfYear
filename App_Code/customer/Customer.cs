@@ -20,4 +20,6 @@ public class Customer
     public String StreetName { set; get; }
     public String Suburb { set; get; }
     public String postalCode { set; get; }
+
+    public String email { set; get; }
 }
