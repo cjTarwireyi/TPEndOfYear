@@ -38,9 +38,9 @@ public class CustomerDAO
         }
 
     }
-    public Customer makeCustDTO(SqlDataReader myDR)
+    public CustomerDTO makeCustDTO(SqlDataReader myDR)
     {
-        Customer customer = new Customer();
+        CustomerDTO customer = new CustomerDTO();
         customer.customerNumber = myDR.GetInt32(0);
         customer.name = myDR.GetString(1) + " " + myDR.GetString(2);
         customer.cellNumber = myDR.GetString(3);
@@ -53,7 +53,7 @@ public class CustomerDAO
 
     }
 
-    public Customer getCustomer(int number)
+    public CustomerDTO getCustomer(int number)
     {
         con.Open();
         String selectCustomer = "select * from Customer where custID =" + number + " ";
@@ -62,7 +62,7 @@ public class CustomerDAO
         myDR = myComm.ExecuteReader();
         if (!myDR.Read())
             return null;
-        Customer updateCustomer = makeCustDTO(myDR);
+        CustomerDTO updateCustomer = makeCustDTO(myDR);
         con.Close();
         return updateCustomer;
     }

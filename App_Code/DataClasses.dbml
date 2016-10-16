@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TestDatabase" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\TestDatabase.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Customers" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="CustomerSurname" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="CustomerCellNumber" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="CustomerStreetName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="CustomerSuburb" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="CustomerPostalCode" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="Customer_Oder" Member="Oders" ThisKey="CustomerID" OtherKey="custId" Type="Oder" />
+      <Association Name="Customer_Order" Member="Orders" ThisKey="CustomerID" OtherKey="custId" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employees" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmployeeName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="EmployeeSurname" Type="System.String" DbType="NChar(40)" CanBeNull="true" />
+      <Column Name="EmployeeCellNumber" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="EmployeeStreetName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="EmployeeSuburb" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="EmployeePostalCode" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="DateHired" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="Employee_Oder" Member="Oders" ThisKey="EmployeeID" OtherKey="employeeId" Type="Oder" />
+      <Association Name="Employee_Order" Member="Orders" ThisKey="EmployeeID" OtherKey="employeeId" Type="Order" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Oders" Member="Oders">
+    <Type Name="Oder">
+      <Column Name="orderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="custId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="payed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="orderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="employeeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Customer_Oder" Member="Customer" ThisKey="custId" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
+      <Association Name="Employee_Oder" Member="Employee" ThisKey="employeeId" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderLine" Member="OrderLines">
+    <Type Name="OrderLine">
+      <Column Name="OrderLineID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Order_OrderLine" Member="Order" ThisKey="OrderID" OtherKey="orderId" Type="Order" IsForeignKey="true" />
+      <Association Name="Product_OrderLine" Member="Product" ThisKey="ProductID" OtherKey="Id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Order">
+      <Column Name="orderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="custId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="payed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="orderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="employeeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Member="orderCode" Type="System.String" CanBeNull="false" />
+      <Association Name="Order_OrderLine" Member="OrderLines" ThisKey="orderId" OtherKey="OrderID" Type="OrderLine" />
+      <Association Name="Customer_Order" Member="Customer" ThisKey="custId" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
+      <Association Name="Employee_Order" Member="Employee" ThisKey="employeeId" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Products" Member="Products">
+    <Type Name="Product">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="ProductDescription" Type="System.String" DbType="NChar(60)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DateArrived" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SupplierID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Product_OrderLine" Member="OrderLines" ThisKey="Id" OtherKey="ProductID" Type="OrderLine" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Suppliers" Member="Suppliers">
+    <Type Name="Supplier">
+      <Column Name="SupplierID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SupplierName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="SupplierSurname" Type="System.String" DbType="NChar(40)" CanBeNull="true" />
+      <Column Name="SupplierCellNumber" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="SupplierStreetName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="SupplierSuburb" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="SupplierPostalCode" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="pass" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="userTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="UserType_User" Member="UserType" ThisKey="userTypeId" OtherKey="userTypeId" Type="UserType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserType" Member="UserTypes">
+    <Type Name="UserType">
+      <Column Name="userTypeId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="userTypeName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="userTypeDescription" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="UserType_User" Member="Users" ThisKey="userTypeId" OtherKey="userTypeId" Type="User" />
+    </Type>
+  </Table>
+</Database>

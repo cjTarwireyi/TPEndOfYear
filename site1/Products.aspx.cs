@@ -11,6 +11,22 @@ public partial class site1_Products : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        UserDTO userDtoUpdate = new UserDTO();
+        
+
+ 
+        UserDTO userDto= new UserDTO();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        lblUser.Text = userDto.username;
+       
+
         
     }
     protected void Register_Click(object sender, EventArgs e)
@@ -39,6 +55,14 @@ public partial class site1_Products : System.Web.UI.Page
             //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('"+id+"');", true);
         }
     }
+    protected void Submit_Click(object sender, EventArgs e)
+    {
+
+        Session.Abandon();
+        Session.Clear();
+
+        Response.Redirect("LoginPage.aspx");
+    } 
     //protected void InactiveRecords(object sender, EventArgs e)
     //{
 

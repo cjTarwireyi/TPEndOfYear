@@ -9,6 +9,9 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        UserDTO userDtoUpdate = new UserDTO();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
         CustomerDTO customer = (CustomerDTO)Session["CustomerDTO"];
         lblName.Text = customer.name;
         lblSurname.Text = customer.surname;

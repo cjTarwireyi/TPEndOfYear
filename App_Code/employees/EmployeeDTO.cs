@@ -6,9 +6,9 @@ using System.Web;
 /// <summary>
 /// Summary description for Employee
 /// </summary>
-public class Employee
+public class EmployeeDTO
 {
-	public Employee()
+	public EmployeeDTO()
 	{
 		
 	}

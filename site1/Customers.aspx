@@ -1,10 +1,35 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site1/MasterPage.master" AutoEventWireup="true" CodeFile="Customers.aspx.cs" Inherits="site1_customer_Customers" %>
 
 <%-- Add content controls here --%>
+<asp:Content ID="Content5" ContentPlaceHolderID="details" Runat="Server">
+     <div class="loginDisplay">
+        <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label> 
+            <asp:Button ID="Submit" runat="server" class="btn btn-danger " 
+            Height="35px" Text="Sign Out" 
+                                Width="90px" onclick="Submit_Click"/>  
+         </div>
+</asp:Content>
 
+<asp:Content ID="Content4" ContentPlaceHolderID="sideBarNav" runat="server">
+   <div id="sidebar-wrapper">
+       <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+           <li ><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+           <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+           <li class="active"><a href="Customers.aspx"><i class="glyphicon glyphicon-cog"></i>&nbsp;Customers</a></li>
+           <li><a href="Employee.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Employees</a></li>
+           <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-list "></i>&nbsp;Register User</a></li>
+           <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
+           <li><a href="AddOrder.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Order</a></li>
+           <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+           <li><a href="#"><i class="glyphicon glyphicon-time"></i>&nbsp;Real-time</a></li>
+           <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
+        </ul>
+    </div>
+
+</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" Runat="Server">
-    <form runat="server">
-        <div class=" col-md-offset-2 main">
+    
+        <div class="  main">
     <h1><strong>Customers</strong></h1>
 <br />
     <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
@@ -75,7 +100,7 @@
             data-toggle="tooltip" data-placement="left" 
             title="Insert new tecnician to database" onclick="Register_Click"/>
    </div>
-   </form>
+   
 </asp:Content>
 
 

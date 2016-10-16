@@ -6,9 +6,9 @@ using System.Web;
 /// <summary>
 /// Summary description for Supplier
 /// </summary>
-public class Supplier
+public class SupplierDTO
 {
-	public Supplier()
+	public SupplierDTO()
 	{
 
 	}

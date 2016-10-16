@@ -17,7 +17,7 @@ public class EmployeeDAO
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
 	}
 
-    public void saveEmployee(Employee emp)
+    public void saveEmployee(EmployeeDTO emp)
     {
         try
         {
@@ -38,9 +38,9 @@ public class EmployeeDAO
         }
     }
 
-    public Employee makeTechDTO(SqlDataReader myDR)
+    public EmployeeDTO makeTechDTO(SqlDataReader myDR)
     {
-        Employee employee = new Employee();
+        EmployeeDTO employee = new EmployeeDTO();
         employee.employeeNumber = myDR.GetInt32(0);
         employee.employeeName = myDR.GetString(1);
         employee.employeeSurname = myDR.GetString(2);
@@ -51,7 +51,7 @@ public class EmployeeDAO
         return employee;
     }
 
-    public Employee getEmployee(int id)
+    public EmployeeDTO getEmployee(int id)
     {
         con.Open();
         String selectEmployee = "select * from Employees where EmployeeID =" + id + " ";
@@ -60,7 +60,7 @@ public class EmployeeDAO
         myDR = myComm.ExecuteReader();
         if (!myDR.Read())
             return null;
-        Employee updateEmployee = makeTechDTO(myDR);
+        EmployeeDTO updateEmployee = makeTechDTO(myDR);
         con.Close();
         return updateEmployee;
     }

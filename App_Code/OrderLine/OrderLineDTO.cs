@@ -11,6 +11,7 @@ public class OrderLineDTO
     public int orderLineID { set; get; }
     public int orderId { set; get; }
     public int productID { set; get; }
+    public int quantity { set; get; }
     
      
      

@@ -8,7 +8,7 @@ using System.Web;
 /// </summary>
 public interface InterfaceOrderLine
 {
-    bool AddOderLine(OrderLineDTO model);
+    bool AddOderLine(List<OrderLine> model);
     bool RemoveProduct(OrderLineDTO model);
     bool UpdateOrderLine(OrderLineDTO model);
 }
