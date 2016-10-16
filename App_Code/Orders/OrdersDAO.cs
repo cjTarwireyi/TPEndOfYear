@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -8,15 +11,37 @@ using System.Web;
 /// </summary>
 public class Orders: InterfaceOder
 {
+    private SqlConnection con;
 	public Orders()
 	{
-		//
-		// TODO: Add constructor logic here
-		//
+        con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
 	}
-    public bool AddOrder(OrderDTO model)
+
+    public bool AddOrder(OrderDTO order)
     {
-        return true;
+        int created = 0;
+        try
+        {
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "insert into Orders ([custId],[employeeId],[payed],[amount],[orderDate]) values('"+order.customerId +"','"+ order.employeeId +"','"+order.amount+"','"+order.paid+"','"+order.orderDate+"')";
+            created = cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        catch (Exception e)
+        {
+
+        }
+        finally
+        {
+            con.Close();
+        }
+
+        if (created == 1)
+            return true;
+        else
+            return false;
     }
   public  bool UpdateOrder(OrderDTO model)
     {
@@ -24,6 +49,34 @@ public class Orders: InterfaceOder
     }
    public bool DeleteOrder(int orderId)
     {
-        return true;
+
+        int created = 0;
+        try
+        {
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            //delete from OrderLine
+            cmd.CommandText = "delete from OrderLine where OrderID = '"+orderId+"'";
+            cmd.ExecuteNonQuery();
+
+            //delete from Orders
+            cmd.CommandText = "delete from Orders where OrderID = '"+orderId+"'";
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        catch (Exception e)
+        {
+
+        }
+        finally
+        {
+            con.Close();
+        }
+
+        if (created == 1)
+            return true;
+        else
+            return false;
     }
 }

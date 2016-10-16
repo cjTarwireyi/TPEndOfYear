@@ -32,9 +32,9 @@
                 <asp:ListItem Value="12">December</asp:ListItem>
             </asp:DropDownList><br /><br />
             <asp:Panel ID="Panel1" runat="server" Width="807px">
-                   <asp:RadioButton ID="RadioButton1" runat="server" Value="True" Text="Paid" AutoPostBack="True" GroupName="status" Checked="True" /><br />
-                   <asp:RadioButton ID="RadioButton2" runat="server"  Value="False" Text="Outstanding" AutoPostBack="True" GroupName="status" />
-                <asp:GridView ID="GridView1" runat="server" Width="797px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None">
+                   <asp:RadioButton ID="RadioButton1" runat="server" Value="True" Text="Paid" AutoPostBack="True" GroupName="status" /><br />
+                   <asp:RadioButton ID="RadioButton2" runat="server"  Value="False" Text="Outstanding" AutoPostBack="True" GroupName="status" Checked="True" />
+                <asp:GridView ID="GridView1" runat="server" Width="797px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId" DataSourceID="SqlDataSource1" ForeColor="#333333">
                     <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="orderId" HeaderText="OrderNumber" InsertVisible="False" ReadOnly="True" SortExpression="orderId" />
