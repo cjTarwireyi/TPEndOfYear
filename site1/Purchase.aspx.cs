@@ -55,28 +55,54 @@ public partial class site1_Purchase : System.Web.UI.Page
 
     private void AddToDataTable()
     {
+        
         string  productCode = txtProductID.Text;
         string quantity= txtQuantiy.Text;
         string custId = txtCustomerID.Text;
-        DataRow dr = table.NewRow();
-        dr["ProductCode"] = productCode;
-        dr["Quantity"] = quantity;
-        table.Rows.Add(dr);
+        string productName="";
+        string price = "";
 
-        product.productNumber = Convert.ToInt32(productCode);
-        product.productQuantity = Convert.ToInt32(quantity);
-        order.orderItems = new List<Products>();
-        
-        if (order.orderItems.Contains(product))
+        if (facade.findProduct(Convert.ToInt32(productCode)) == null)
         {
-            Products foundproduct;
-            foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
-            foundproduct.productQuantity += product.productQuantity;
+            
+            lblErrorProd.Visible = true;
         }
-        else
+        else if(facade.findCustomer(Convert.ToInt32(custId))=="401"){
+            custError.Visible = true;
+        }
+       if(lblErrorProd.Visible==false && custError.Visible==false)
         {
-            order.orderItems.Add(product);
-            Session["order"] = order;
+            string ogAmount = grandTotal.Text;
+            
+            productName = facade.findProduct(Convert.ToInt32(productCode)).productName;
+            price = facade.findProduct(Convert.ToInt32(productCode)).price.ToString();
+            string amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity))+ogAmount).ToString();
+            grandTotal.Text = amt;
+            lblErrorProd.Visible = false;
+            custError.Visible = false;
+            DataRow dr = table.NewRow();
+            dr["ProductCode"] = productCode;
+            dr["Product"] = productName;
+            dr["Price"] = price;
+            dr["Quantity"] = quantity;
+            
+            table.Rows.Add(dr);
+            
+            product.productNumber = Convert.ToInt32(productCode);
+            product.productQuantity = Convert.ToInt32(quantity);
+            order.orderItems = new List<Products>();
+            
+            if (order.orderItems.Contains(product))
+            {
+                Products foundproduct;
+                foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
+                foundproduct.productQuantity += product.productQuantity;
+            }
+            else
+            {
+
+
+            }
         }
     }
 
@@ -95,7 +121,25 @@ public partial class site1_Purchase : System.Web.UI.Page
     //}
     protected void Submit_Click(object sender, EventArgs e)
     {
-        order = (OrderDTO)Session["order"];
+         
+        decimal amt = 0;
+        order.orderItems = new List<Products>();
+        lblErrorProd.Visible = false;
+        custError.Visible = false;
+        foreach (GridViewRow row in GridView1.Rows)
+        {
+           
+          product.productNumber = Convert.ToInt32(row.Cells[0].Text);
+          product.productQuantity = Convert.ToInt32(row.Cells[3].Text);
+          amt += facade.findProduct(product.productNumber).price*product.productQuantity;
+          order.orderItems.Add(product);
+        }
+        order.employeeId = 1;
+        order.amount = amt;
+        order.payed = true;
+        order.customerId = 1;
+        
+       
         facade.makeOrder(order);
          
     } 

@@ -24,28 +24,30 @@ public class OrderLineDAO:InterfaceOrderLine
     {
         try
         {
-            con.Open();
-            //string insertQuery = "INSERT INTO OrderLine (ProductID,OrderID,Quantity) VALUES (@ProductID,@OrderID,@Quantity)";
-            //SqlCommand cmd = new SqlCommand(insertQuery, con);
-            //cmd.Parameters.AddWithValue("@ProductID", model.productID);
-            ////cmd.Parameters.AddWithValue("@name",FullName.Text);
-            //cmd.Parameters.AddWithValue("@OrderID", model.orderId);
-            //cmd.Parameters.AddWithValue("@Quantity", model.quantity);
-            
-            db.OrderLines.InsertAllOnSubmit(model);
 
-            //int n = cmd.ExecuteNonQuery();
-            //if (n > 0)
-            //{
-            //    con.Close();
-            //    return true;
-            //}
-            //else
-            //{
-            //    con.Close();
-            //    return false;
-            //}
-            return true;
+            //int n;
+            con.Open();
+            foreach (var rec in model)
+            {
+                string insertQuery = "INSERT INTO OrderLine (ProductID,OrderID,Quantity) VALUES (@ProductID,@OrderID,@Quantity)";
+
+
+                SqlCommand cmd = new SqlCommand(insertQuery, con);
+                cmd.Parameters.Add("@ProductID",rec.ProductID);
+                //cmd.Parameters.AddWithValue("@name",FullName.Text);
+                cmd.Parameters.AddWithValue("@OrderID", rec.OrderID);
+                cmd.Parameters.AddWithValue("@Quantity", rec.Quantity);
+
+
+             cmd.ExecuteNonQuery();
+            }
+             
+                con.Close();
+                return true;
+ 
+                 
+             
+            
 
         }
         catch (SqlException ex)

@@ -44,6 +44,8 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                     ErrorMessage="CustomerID Required!" ControlToValidate="txtCustomerID" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
+                <asp:Label ID="custError" Visible="false" runat="server" ForeColor="Red" Text="invalid Customer Code"></asp:Label>
+           
             </div>
 
             <div class="form-group">
@@ -55,6 +57,8 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                     ErrorMessage="ProductID Required!" ControlToValidate="txtProductID" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
+                <asp:Label ID="lblErrorProd" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
+           
             </div>
 
                 <div class="form-group">
@@ -69,6 +73,8 @@
             </div>
                 <asp:Button ID="btnAdd" runat="server" Height="32px" Text="Add"
                         Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
+                <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Submit"
+                        Width="126px" class="btn btn-success" OnClick="Submit_Click" />
                 </div>
                   <div class="col-lg-6">
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -95,10 +101,11 @@
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
                     </div>
-                     <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Submit"
-                        Width="126px" class="btn btn-success" OnClick="Submit_Click" />
+                     <asp:Label ID="Total" runat="server" Text="Total:R "></asp:Label><asp:Label ID="grandTotal" runat="server" Text="0.0"></asp:Label>
                 </ContentTemplate>
             </asp:UpdatePanel>
                       </div>
  </div>
+     
+     
 </asp:Content>

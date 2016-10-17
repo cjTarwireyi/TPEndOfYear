@@ -10,7 +10,7 @@
       <Column Name="CustomerSuburb" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
       <Column Name="CustomerPostalCode" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Association Name="Customer_Oder" Member="Oders" ThisKey="CustomerID" OtherKey="custId" Type="Oder" />
-      <Association Name="Customer_Order" Member="Orders" ThisKey="CustomerID" OtherKey="custId" Type="Order" />
+      <Association Name="Customer_Oder1" Member="Oder1s" ThisKey="CustomerID" OtherKey="custId" Type="Oder1" />
     </Type>
   </Table>
   <Table Name="dbo.Employees" Member="Employees">
@@ -24,7 +24,7 @@
       <Column Name="EmployeePostalCode" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="DateHired" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Association Name="Employee_Oder" Member="Oders" ThisKey="EmployeeID" OtherKey="employeeId" Type="Oder" />
-      <Association Name="Employee_Order" Member="Orders" ThisKey="EmployeeID" OtherKey="employeeId" Type="Order" />
+      <Association Name="Employee_Oder1" Member="Oder1s" ThisKey="EmployeeID" OtherKey="employeeId" Type="Oder1" />
     </Type>
   </Table>
   <Table Name="dbo.Oders" Member="Oders">
@@ -45,22 +45,8 @@
       <Column Name="ProductID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="OrderID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Order_OrderLine" Member="Order" ThisKey="OrderID" OtherKey="orderId" Type="Order" IsForeignKey="true" />
       <Association Name="Product_OrderLine" Member="Product" ThisKey="ProductID" OtherKey="Id" Type="Product" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Orders" Member="Orders">
-    <Type Name="Order">
-      <Column Name="orderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="custId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="payed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="amount" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="orderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="employeeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Member="orderCode" Type="System.String" CanBeNull="false" />
-      <Association Name="Order_OrderLine" Member="OrderLines" ThisKey="orderId" OtherKey="OrderID" Type="OrderLine" />
-      <Association Name="Customer_Order" Member="Customer" ThisKey="custId" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
-      <Association Name="Employee_Order" Member="Employee" ThisKey="employeeId" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Oder1_OrderLine" Member="Oder1" ThisKey="OrderID" OtherKey="orderId" Type="Oder1" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Products" Member="Products">
@@ -102,6 +88,20 @@
       <Column Name="userTypeName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="userTypeDescription" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Association Name="UserType_User" Member="Users" ThisKey="userTypeId" OtherKey="userTypeId" Type="User" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Oders" Member="Oder1s">
+    <Type Name="Oder1">
+      <Column Name="orderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="custId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="payed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="amount" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="orderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="employeeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="orderCode" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="Oder1_OrderLine" Member="OrderLines" ThisKey="orderId" OtherKey="OrderID" Type="OrderLine" />
+      <Association Name="Customer_Oder1" Member="Customer" ThisKey="custId" OtherKey="CustomerID" Type="Customer" IsForeignKey="true" />
+      <Association Name="Employee_Oder1" Member="Employee" ThisKey="employeeId" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

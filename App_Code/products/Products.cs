@@ -17,7 +17,7 @@ public class Products
     public String productName { set; get; }
     public String productDescription { set; get; }
     public int productQuantity { set; get; }
-    public int price { set; get; }
+    public decimal price { set; get; }
     public int productSupplierID { set; get; }
 
     public Boolean productStatus { set; get; }
