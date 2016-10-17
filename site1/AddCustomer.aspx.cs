@@ -23,11 +23,13 @@ public partial class site1_AddCustomer : System.Web.UI.Page
             String streetName = txtStreetName.Text;
             String suburb = txtSuburb.Text;
             String postal = txtPostalCode.Text;
+            String email = Email.Text;
 
             CustomerDTO customer = new CustomerDTO();
             customer.name = name;
             customer.surname = surname;
             customer.cellNumber = cellNumber;
+            customer.email = email;
             customer.StreetName = streetName;
             customer.Suburb = suburb;
             customer.postalCode = postal;
@@ -44,4 +46,7 @@ public partial class site1_AddCustomer : System.Web.UI.Page
 
 
     }
+
+    
+
 }

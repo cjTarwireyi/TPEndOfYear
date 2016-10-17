@@ -12,6 +12,7 @@
         <asp:Label ID="lblName" runat="server" Text="Label"></asp:Label><br />
         <asp:Label ID="lblSurname" runat="server" Text="Label"></asp:Label><br />
         <asp:Label ID="lblCellNumber" runat="server" Text="Label"></asp:Label><br />
+        <asp:Label ID="lblEmail" runat="server" Text="Label"></asp:Label><br />
         <asp:Label ID="lblSurbub" runat="server" Text="Label"></asp:Label><br />
         <asp:Label ID="lblStreet" runat="server" Text="Label"></asp:Label><br />
         <asp:Label ID="lblPostalCode" runat="server" Text="Label"></asp:Label><br />
