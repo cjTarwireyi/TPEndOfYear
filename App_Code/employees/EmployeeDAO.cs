@@ -19,23 +19,23 @@ public class EmployeeDAO
 
     public void saveEmployee(EmployeeDTO emp)
     {
-        try
-        {
+        //try
+        //{
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert into Employees([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName],[EmployeeSuburb],[EmployeePostalCode])values('" + emp.employeeName + "','" + emp.employeeSurname + "','" + emp.employeeCellNumber + "','" + emp.employeeStreetName + "','" + emp.employeeSuburb + "','" + emp.employeePostalCode + "')";
+            cmd.CommandText = "insert into Employees([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName],[EmployeeSuburb],[EmployeePostalCode],[DateHired])values('" + emp.employeeName + "','" + emp.employeeSurname + "','" + emp.employeeCellNumber + "','" + emp.employeeStreetName + "','" + emp.employeeSuburb + "','" + emp.employeePostalCode + "','"+DateTime.Now+""+"')";
             cmd.ExecuteNonQuery();
             con.Close();
-        }
-        catch (Exception e)
-        {
+       // }
+        //catch (Exception e)
+        //{
 
-        }
-        finally
-        {
-            con.Close();
-        }
+        //}
+        //finally
+        //{
+        //    con.Close();
+        //}
     }
 
     public EmployeeDTO makeTechDTO(SqlDataReader myDR)

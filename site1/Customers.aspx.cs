@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -35,7 +36,18 @@ public partial class site1_customer_Customers : System.Web.UI.Page
         Session.Clear();
 
         Response.Redirect("LoginPage.aspx");
-    } 
-   
+    }
 
+
+    protected void btnPrint_Click(object sender, EventArgs e)
+    {
+        if (GridView1.SelectedIndex >= 0)
+        {
+            GridViewRow row = GridView1.SelectedRow;
+            string id = row.Cells[1].Text;
+            //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('"+id+"');", true);
+            Response.Redirect("PaymentSlip.aspx?Id=" + id, false);
+        }
+            
+    }
 }

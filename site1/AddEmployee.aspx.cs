@@ -39,7 +39,7 @@ public partial class site1_AddEmployee : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            Response.Write("Error: " + ex.ToString());
+            //Response.Write("Error: " + ex.ToString());
         }
     }
 }

@@ -8,12 +8,12 @@ using System.Web;
 /// </summary>
 public class CustomerDTO
 {
-	public CustomerDTO()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+    public CustomerDTO()
+    {
+        //
+        // TODO: Add constructor logic here
+        //
+    }
 
     public int customerNumber { set; get; }
     public String name { set; get; }
@@ -22,6 +22,6 @@ public class CustomerDTO
     public String StreetName { set; get; }
     public String Suburb { set; get; }
     public String postalCode { set; get; }
-
+    public string dateAccountCreated { set; get; }
     public String email { set; get; }
 }

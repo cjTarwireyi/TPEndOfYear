@@ -40,7 +40,7 @@
         </p>
         <asp:ContentPlaceHolder id="details" runat="server">
            
-    </asp:ContentPlaceHolder>
+     </asp:ContentPlaceHolder>
         
     </div>
     <div id="wrapper">
