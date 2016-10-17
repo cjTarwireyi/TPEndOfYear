@@ -14,7 +14,7 @@ public class OrderDTO
     public int productId { set; get; }
     public DateTime orderDate { set; get; }
     public bool payed { set; get; }
-    public float amount { set; get; }
+    public decimal amount { set; get; }
     public List<Products> orderItems { set; get; }
 
  }

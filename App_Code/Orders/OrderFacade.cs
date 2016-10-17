@@ -11,12 +11,34 @@ public class OrderFacade
     InterfaceOrderLine orderLineservice;
     InterfaceOder orderService;
     OrderLineDTO orderLineDTO;
+    ProductDAO product;
+    CustomerDAO cust;
 	public OrderFacade()
 	{
         orderLineDTO = new OrderLineDTO();
         orderLineservice = new OrderLineDAO();
         orderService = new OrdersDAO();
+        product = new ProductDAO();
+        cust = new CustomerDAO();
 	}
+    public string findCustomer(int id)
+    {
+      var found = cust.getCustomer(id);
+        if(found == null){
+            return "401";
+
+        }
+        else { return "200"; }
+    }
+    public Products findProduct(int id)
+    {
+      Products found = product.getProduct(id);
+        if(found == null){
+            return null;
+
+        }
+        else { return found; }
+    }
     public OrderDTO makeOrder(OrderDTO order)
     {
        // makeOrderLine(order);
@@ -32,7 +54,7 @@ public class OrderFacade
         {
             ol.OrderID = orderId; 
             ol.ProductID = product.productNumber;
-            ol.ProductID = product.productQuantity;
+            ol.Quantity = product.productQuantity;
             range.Add(ol);
         }
         orderLineservice.AddOderLine(range);

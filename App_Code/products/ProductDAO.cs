@@ -40,15 +40,23 @@ public class ProductDAO
 
     public Products makeProductDTO(SqlDataReader myDR)
     {
-        Products product = new Products();
-        product.productNumber = myDR.GetInt32(0);
-        product.productName = myDR.GetString(1);
-        product.productDescription = myDR.GetString(2);
-        product.productQuantity = myDR.GetInt32(3);
-        product.productStatus = myDR.GetBoolean(4);
-        product.dateArrived = myDR.GetDateTime(2);
-        product.productSupplierID = myDR.GetInt32(6);
-        return product;
+        try
+        {
+            Products product = new Products();
+            product.productNumber = myDR.GetInt32(0);
+            product.productName = myDR.GetString(1);
+            product.productDescription = myDR.GetString(2);
+            product.price = myDR.GetDecimal(3);
+            product.productQuantity = myDR.GetInt32(4);
+            product.productStatus = myDR.GetBoolean(5);
+            product.dateArrived = myDR.GetDateTime(6);
+            product.productSupplierID = myDR.GetInt32(7);
+            return product;
+        }
+        catch(Exception e)
+        { 
+            return null;
+        }
     }
 
     public Products getProduct(int id)

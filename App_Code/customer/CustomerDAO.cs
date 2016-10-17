@@ -57,7 +57,7 @@ public class CustomerDAO
     public CustomerDTO getCustomer(int number)
     {
         con.Open();
-        String selectCustomer = "select * from Customer where custID =" + number + " ";
+        String selectCustomer = "select * from Customers where CustomerID =" + number + " ";
         SqlCommand myComm = new SqlCommand(selectCustomer, con);
         SqlDataReader myDR;
         myDR = myComm.ExecuteReader();
