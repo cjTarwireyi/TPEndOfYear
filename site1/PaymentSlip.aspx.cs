@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
+
 public partial class site1_PaymentSlip : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
@@ -77,6 +78,7 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 Response.AddHeader("Content-Type", "application/pdf");
                 Response.OutputStream.Write(memoryStream.GetBuffer(), 0, memoryStream.GetBuffer().Length);
                 Response.OutputStream.Flush();
+                
             }
         }catch(Exception ex){
             Response.Write("Error: " + ex.ToString());
