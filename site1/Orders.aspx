@@ -3,23 +3,32 @@
 <%-- Add content controls here --%>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
 </asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="sideBarNav" runat="server">
+<asp:Content ID="Content5" ContentPlaceHolderID="details" runat="Server">
+    <div class="loginDisplay">
+        <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label>
+        <asp:Button ID="Submit" runat="server" class="btn btn-danger "
+            Height="35px" Text="Sign Out"
+            Width="90px" OnClick="Submit_Click" />
+    </div>
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="sideBarNav" runat="server">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
-            <li class="active"><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+            <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
             <li><a href="Customers.aspx"><i class="glyphicon glyphicon-cog"></i>&nbsp;Customers</a></li>
             <li><a href="Employee.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Employees</a></li>
             <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-list "></i>&nbsp;Register User</a></li>
             <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
-            <li><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Order</a></li>
+            <li class="active"><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Order</a></li>
             <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-time"></i>&nbsp;Real-time</a></li>
+            <li ><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
         </ul>
     </div>
+
 </asp:Content>
+ 
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
