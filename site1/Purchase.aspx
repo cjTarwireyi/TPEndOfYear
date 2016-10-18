@@ -4,37 +4,37 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
 </asp:Content>
 
- <asp:Content ID="Content5" ContentPlaceHolderID="details" Runat="Server">
-     <div class="loginDisplay">
-        <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label> 
-            <asp:Button ID="Submit" runat="server" class="btn btn-danger " 
-            Height="35px" Text="Sign Out" 
-                                Width="90px" onclick="Submit_Click"/>  
-         </div>
+<asp:Content ID="Content5" ContentPlaceHolderID="details" runat="Server">
+    <div class="loginDisplay">
+        <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label>
+        <asp:Button ID="Submit" runat="server" class="btn btn-danger "
+            Height="35px" Text="Sign Out"
+            Width="90px" OnClick="Submit_Click" />
+    </div>
 </asp:Content>
- <asp:Content ID="Content2" ContentPlaceHolderID="sideBarNav" runat="server">
-   <div id="sidebar-wrapper">
-       <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-           <li ><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
-           <li ><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
-           <li><a href="Customers.aspx"><i class="glyphicon glyphicon-cog"></i>&nbsp;Customers</a></li>
-           <li><a href="Employee.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Employees</a></li>
-           <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-list "></i>&nbsp;Register User</a></li>
-           <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
-           <li><a href="AddOrder.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Order</a></li>
-           <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
-           <li class="active"><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
-           <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
+<asp:Content ID="Content2" ContentPlaceHolderID="sideBarNav" runat="server">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+            <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+            <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+            <li><a href="Customers.aspx"><i class="glyphicon glyphicon-cog"></i>&nbsp;Customers</a></li>
+            <li><a href="Employee.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Employees</a></li>
+            <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-list "></i>&nbsp;Register User</a></li>
+            <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
+            <li><a href="AddOrder.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Order</a></li>
+            <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+            <li class="active"><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
+            <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
         </ul>
     </div>
 
-</asp:Content> 
+</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
- 
-        <div class="main row">
-            <h1><strong>Purchase</strong>Order</h1>
-            <br />
-            <div class="col-lg-6">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <div class="main row">
+        <h1><strong>Purchase</strong>Order</h1>
+        <br />
+        <div class="col-lg-6">
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
@@ -45,7 +45,7 @@
                     ErrorMessage="CustomerID Required!" ControlToValidate="txtCustomerID" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
                 <asp:Label ID="custError" Visible="false" runat="server" ForeColor="Red" Text="invalid Customer Code"></asp:Label>
-           
+
             </div>
 
             <div class="form-group">
@@ -58,10 +58,10 @@
                     ErrorMessage="ProductID Required!" ControlToValidate="txtProductID" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
                 <asp:Label ID="lblErrorProd" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
-           
+
             </div>
 
-                <div class="form-group">
+            <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
                     <asp:TextBox ID="txtQuantiy" runat="server" Height="35px" Width="290px"
@@ -71,41 +71,43 @@
                     ErrorMessage="Quantity Required!" ControlToValidate="txtQuantiy" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
             </div>
-                <asp:Button ID="btnAdd" runat="server" Height="32px" Text="Add"
-                        Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
-                <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Submit"
-                        Width="126px" class="btn btn-success" OnClick="Submit_Click" />
-                </div>
-                  <div class="col-lg-6">
-            <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
-                    
-                    <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False">
-                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                        <Columns>
-                            <asp:BoundField HeaderText="ProductCode" DataField="ProductCode" />
-                            <asp:BoundField HeaderText="Product" DataField="Product" />
-                            <asp:BoundField HeaderText="Price" DataField="Price" />
-                            <asp:BoundField HeaderText="Quantity" DataField="Quantity" />
-                        </Columns>
-                        <EditRowStyle BackColor="#999999" />
-                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                    </asp:GridView>
+                    <asp:Button ID="btnAdd" runat="server" Height="32px" Text="Add"
+                        Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
+                    <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Submit"
+                        Width="126px" class="btn btn-success" OnClick="Submit_Click" />
                     </div>
-                     <asp:Label ID="Total" runat="server" Text="Total:R "></asp:Label><asp:Label ID="grandTotal" runat="server" Text="0.0"></asp:Label>
                 </ContentTemplate>
             </asp:UpdatePanel>
-                      </div>
- </div>
-     
-     
+            <div class="col-lg-6">
+
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+
+                        <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False">
+                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <Columns>
+                                <asp:BoundField HeaderText="ProductCode" DataField="ProductCode" />
+                                <asp:BoundField HeaderText="Product" DataField="Product" />
+                                <asp:BoundField HeaderText="Price" DataField="Price" />
+                                <asp:BoundField HeaderText="Quantity" DataField="Quantity" />
+                            </Columns>
+                            <EditRowStyle BackColor="#999999" />
+                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                        </asp:GridView>
+                        </div>
+                     <asp:Label ID="Total" runat="server" Text="Total:R "></asp:Label><asp:Label ID="grandTotal" runat="server" Text="0.0"></asp:Label>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
 </asp:Content>
