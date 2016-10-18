@@ -24,6 +24,7 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 customer = accessCustomer.getCustomer(Id);
 
 
+
                 Response.Buffer = true;
                 Response.Clear();
                 Response.ClearContent();

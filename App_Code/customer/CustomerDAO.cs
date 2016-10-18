@@ -24,7 +24,7 @@ public class CustomerDAO
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert into Customers ([CustomerName],[CustomerSurname],[CustomerCellNumber],[CustomerEmail],[CustomerStreetName],[CustomerSuburb],[CustomerPostalCode]) values('" + custDTO.name + "','" + custDTO.surname + "','" + custDTO.cellNumber + "','"+custDTO.email+"','" + custDTO.StreetName + "','" + custDTO.Suburb + "','" + custDTO.postalCode + "')";
+            cmd.CommandText = "insert into Customers ([CustomerName],[CustomerSurname],[CustomerCellNumber],[CustomerEmail],[CustomerStreetName],[CustomerSuburb],[CustomerPostalCode],[DateAccountCreated]) values('" + custDTO.name + "','" + custDTO.surname + "','" + custDTO.cellNumber + "','"+custDTO.email+"','" + custDTO.StreetName + "','" + custDTO.Suburb + "','" + custDTO.postalCode + "','"+DateTime.Now+""+"')";
             cmd.ExecuteNonQuery();
             con.Close();
         }
@@ -42,14 +42,25 @@ public class CustomerDAO
     public CustomerDTO makeCustDTO(SqlDataReader myDR)
     {
         CustomerDTO customer = new CustomerDTO();
-        customer.customerNumber = myDR.GetInt32(0);
-        customer.name = myDR.GetString(1) + " " + myDR.GetString(2);
-        customer.cellNumber = myDR.GetString(3);
-        customer.email = myDR.GetString(4);
-        customer.postalCode = myDR.GetString(5);
-        customer.StreetName = myDR.GetString(6);
-        customer.Suburb = myDR.GetString(7);
+        try
+        {
+            customer.customerNumber = myDR.GetInt32(0);
+            customer.name = myDR.GetString(1);
+            customer.surname = myDR.GetString(2);
+            customer.cellNumber = myDR.GetString(3);
+            customer.email = myDR.GetString(4);
+            customer.postalCode = myDR.GetString(5);
+            customer.StreetName = myDR.GetString(6);
+            customer.Suburb = myDR.GetString(7);
+            customer.dateAccountCreated = myDR.GetString(8);
+        }
+        catch(Exception ex){
 
+        }
+        finally
+        {
+            con.Close();
+        }
         //booking.Hours = myDR.GetInt32(8);
         return customer;
 
@@ -68,4 +79,31 @@ public class CustomerDAO
         con.Close();
         return updateCustomer;
     }
+
+    public CustomerDTO getCustomerID()
+    {
+        CustomerDTO customer = new CustomerDTO();
+        try
+        {
+            con.Open();
+            String selectCustomer = "SELECT TOP 1 * FROM  Customers BY CustomerID DESC ";
+            SqlCommand myComm = new SqlCommand(selectCustomer, con);
+            SqlDataReader myDR;
+            myDR = myComm.ExecuteReader();
+            if (myDR.Read())
+                customer = makeCustDTO(myDR);
+            con.Close();
+        }
+        catch(Exception ex)
+        { 
+
+        }
+        finally
+        {
+            con.Close();
+        }
+        return customer;
+    }
+
+    
 }
