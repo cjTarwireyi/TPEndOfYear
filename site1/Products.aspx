@@ -62,7 +62,7 @@
                     <asp:BoundField DataField="ProductDescription" HeaderText="ProductDescription" SortExpression="ProductDescription" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
                     <asp:BoundField DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
-                    <asp:BoundField DataField="DateArrived" HeaderText="DateArrived" SortExpression="DateArrived" />
+                    <asp:BoundField DataField="DateArrived" HeaderText="DateArrived" SortExpression="DateArrived" ReadOnly="True" />
                     <asp:BoundField DataField="SupplierID" HeaderText="SupplierID" SortExpression="SupplierID" />
                 </Columns>
                 <EditRowStyle BackColor="#2461BF" />

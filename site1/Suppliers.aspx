@@ -7,7 +7,7 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-    <form runat="server">
+    
         <div class=" col-md-offset-2 main">
             <h1><strong>Suppliers</strong></h1><br />
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Suppliers] WHERE [SupplierID] = @original_SupplierID AND (([SupplierName] = @original_SupplierName) OR ([SupplierName] IS NULL AND @original_SupplierName IS NULL)) AND (([SupplierSurname] = @original_SupplierSurname) OR ([SupplierSurname] IS NULL AND @original_SupplierSurname IS NULL)) AND (([SupplierCellNumber] = @original_SupplierCellNumber) OR ([SupplierCellNumber] IS NULL AND @original_SupplierCellNumber IS NULL)) AND (([SupplierStreetName] = @original_SupplierStreetName) OR ([SupplierStreetName] IS NULL AND @original_SupplierStreetName IS NULL)) AND (([SupplierSuburb] = @original_SupplierSuburb) OR ([SupplierSuburb] IS NULL AND @original_SupplierSuburb IS NULL)) AND (([SupplierPostalCode] = @original_SupplierPostalCode) OR ([SupplierPostalCode] IS NULL AND @original_SupplierPostalCode IS NULL))" InsertCommand="INSERT INTO [Suppliers] ([SupplierName], [SupplierSurname], [SupplierCellNumber], [SupplierStreetName], [SupplierSuburb], [SupplierPostalCode]) VALUES (@SupplierName, @SupplierSurname, @SupplierCellNumber, @SupplierStreetName, @SupplierSuburb, @SupplierPostalCode)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [Suppliers]" UpdateCommand="UPDATE [Suppliers] SET [SupplierName] = @SupplierName, [SupplierSurname] = @SupplierSurname, [SupplierCellNumber] = @SupplierCellNumber, [SupplierStreetName] = @SupplierStreetName, [SupplierSuburb] = @SupplierSuburb, [SupplierPostalCode] = @SupplierPostalCode WHERE [SupplierID] = @original_SupplierID AND (([SupplierName] = @original_SupplierName) OR ([SupplierName] IS NULL AND @original_SupplierName IS NULL)) AND (([SupplierSurname] = @original_SupplierSurname) OR ([SupplierSurname] IS NULL AND @original_SupplierSurname IS NULL)) AND (([SupplierCellNumber] = @original_SupplierCellNumber) OR ([SupplierCellNumber] IS NULL AND @original_SupplierCellNumber IS NULL)) AND (([SupplierStreetName] = @original_SupplierStreetName) OR ([SupplierStreetName] IS NULL AND @original_SupplierStreetName IS NULL)) AND (([SupplierSuburb] = @original_SupplierSuburb) OR ([SupplierSuburb] IS NULL AND @original_SupplierSuburb IS NULL)) AND (([SupplierPostalCode] = @original_SupplierPostalCode) OR ([SupplierPostalCode] IS NULL AND @original_SupplierPostalCode IS NULL))">
@@ -72,6 +72,5 @@
             data-toggle="tooltip" data-placement="left" 
             title="Insert new tecnician to database" onclick="Register_Click"/>
         </div>
-    </form>
-
+   
 </asp:Content>
