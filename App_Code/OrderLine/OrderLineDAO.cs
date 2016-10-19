@@ -24,8 +24,8 @@ public class OrderLineDAO : InterfaceOrderLine
     }
     public bool AddOderLine(List<OrderLine> model)
     {
-        try
-        {
+        //try
+        //{
 
             //int n;
             con.Open();
@@ -42,12 +42,12 @@ public class OrderLineDAO : InterfaceOrderLine
 
             con.Close();
             return true;
-        }
-        catch (SqlException ex)
-        {
-            ex.GetBaseException();
-            return false;
-        }
+        //}
+        //catch (SqlException ex)
+        //{
+        //    ex.GetBaseException();
+        //    return false;
+        //}
     }
     public bool RemoveProduct(OrderLineDTO model)
     {
