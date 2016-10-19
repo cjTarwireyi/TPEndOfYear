@@ -23,7 +23,7 @@ public class OrderFacade
 	}
     public string findCustomer(int id)
     {
-      var found = cust.getCustomer(id);
+      var found = cust.getCustomerID(id);
         if(found == null){
             return "401";
 
@@ -42,8 +42,11 @@ public class OrderFacade
     public OrderDTO makeOrder(OrderDTO order)
     {
        // makeOrderLine(order);
-      int orderId =  orderService.AddOrder(order);
-      makeOrderLine(order.orderItems, orderId);
+     orderService.AddOrder(order);
+     OrdersDAO accessOrder = new OrdersDAO();
+     OrderDTO lastOrder = new OrderDTO();
+     lastOrder = accessOrder.getLastReocrd();
+     makeOrderLine(order.orderItems, lastOrder.orderId);
         return order;
     }
     private bool makeOrderLine(List< Products> products, int orderId)
@@ -58,10 +61,6 @@ public class OrderFacade
             range.Add(ol);
         }
         orderLineservice.AddOderLine(range);
-        
-        
-
-
         return true;
     }
 }

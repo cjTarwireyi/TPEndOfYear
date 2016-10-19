@@ -73,6 +73,9 @@
             </div>
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
+
+
+
                     <asp:Button ID="btnAdd" runat="server" Height="32px" Text="Add"
                         Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
                     <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Submit"
@@ -84,7 +87,6 @@
 
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-
                         <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>

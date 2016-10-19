@@ -13,6 +13,12 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        print();
+    }
+
+
+    private void print()
+    {
         try
         {
             if (Request.QueryString["id"] != null)
@@ -22,9 +28,7 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 Id = Convert.ToInt32(Request.QueryString["id"].ToString().Trim());
                 CustomerDAO accessCustomer = new CustomerDAO();
                 CustomerDTO customer = new CustomerDTO();
-                customer = accessCustomer.getCustomer(Id);
-
-
+                customer = accessCustomer.getCustomerID(Id);
 
                 Response.Buffer = true;
                 Response.Clear();
@@ -39,13 +43,13 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 doc.Open();
 
                 string filename = HttpContext.Current.Server.MapPath("../site1/images/images.png");
-                 System.IO.Stream ImageStream = new System.IO.FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
-                 iTextSharp.text.Image gif = iTextSharp.text.Image.GetInstance(ImageStream);
-                 gif.Alignment = iTextSharp.text.Image.MIDDLE_ALIGN;
-                 gif.ScalePercent(50f);
-                 doc.Add(gif);
+                System.IO.Stream ImageStream = new System.IO.FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
+                iTextSharp.text.Image gif = iTextSharp.text.Image.GetInstance(ImageStream);
+                gif.Alignment = iTextSharp.text.Image.MIDDLE_ALIGN;
+                gif.ScalePercent(50f);
+                doc.Add(gif);
 
-                Font heading = FontFactory.GetFont("Arial",26 , Font.BOLD, BaseColor.BLACK);
+                Font heading = FontFactory.GetFont("Arial", 26, Font.BOLD, BaseColor.BLACK);
                 Font heading2 = FontFactory.GetFont("Arial", 15, Font.BOLD, BaseColor.BLACK);
                 Font font = FontFactory.GetFont("Arial", 10, Font.NORMAL, BaseColor.BLACK);
                 Font arialB = FontFactory.GetFont("Arial", 10, Font.BOLD, BaseColor.BLACK);
@@ -57,13 +61,13 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 p.Alignment = Element.ALIGN_CENTER;
                 doc.Add(p);
 
-                
 
-                p = new Paragraph("Customer Name: "+customer.name+"\nCustomer Surname:"+customer.surname+"\nCell Number: "+customer.cellNumber+"\nEmail Address: "+customer.email+"\nAddress\n"+customer.StreetName+"\n"+customer.Suburb+"\n"+customer.postalCode ,heading2);
+
+                p = new Paragraph("Customer Name: " + customer.name + "\nCustomer Surname:" + customer.surname + "\nCell Number: " + customer.cellNumber + "\nEmail Address: " + customer.email + "\nAddress\n" + customer.StreetName + "\n" + customer.Suburb + "\n" + customer.postalCode, heading2);
                 p.Alignment = Element.ALIGN_LEFT;
                 doc.Add(p);
 
-                p = new Paragraph("\n\nAccount created on:"+customer.dateAccountCreated, heading2);
+                p = new Paragraph("\n\nAccount created on:" + customer.dateAccountCreated, heading2);
                 p.Alignment = Element.ALIGN_CENTER;
                 doc.Add(p);
 
@@ -79,11 +83,12 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 Response.AddHeader("Content-Type", "application/pdf");
                 Response.OutputStream.Write(memoryStream.GetBuffer(), 0, memoryStream.GetBuffer().Length);
                 Response.OutputStream.Flush();
-                
+
             }
-        }catch(Exception ex){
+        }
+        catch (Exception ex)
+        {
             Response.Write("Error: " + ex.ToString());
         }
-
     }
 }

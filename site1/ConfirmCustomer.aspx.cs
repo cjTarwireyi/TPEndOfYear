@@ -48,7 +48,7 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
         string toAddress = customer.email.ToString();
         const string fromPassword = "wilkonson1995";
         string subject = "Customer Number Keep Safe";
-        string body = "Your customer number is:"+"'"+accessCustomer.getCustomerID()+"'"+"Please keep it safe as it would be required from you everytime you purchase items";
+        string body = "Hi "+customer.name+" "+customer.surname+"\nYour customer number is:"+"'"+accessCustomer.getLastReocrd()+"'"+"Please keep it safe as it would be required from you everytime you purchase items";
 
         // smtp settings
         var smtp = new System.Net.Mail.SmtpClient();
