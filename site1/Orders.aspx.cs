@@ -27,4 +27,12 @@ public partial class site1_Orders : System.Web.UI.Page
     {
         GridView1.DataBind();
     }
+    protected void Submit_Click(object sender, EventArgs e)
+    {
+
+        Session.Abandon();
+        Session.Clear();
+
+        Response.Redirect("LoginPage.aspx");
+    } 
 }
