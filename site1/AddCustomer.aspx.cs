@@ -41,6 +41,7 @@ public partial class site1_AddCustomer : System.Web.UI.Page
         }
         finally
         {
+            //Response.Redirect("../site1/ConfirmCustomer.aspx");
             Server.Transfer("ConfirmCustomer.aspx", true);
         }
 

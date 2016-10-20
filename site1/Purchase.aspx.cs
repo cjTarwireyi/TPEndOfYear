@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -121,32 +122,44 @@ public partial class site1_Purchase : System.Web.UI.Page
     //}
     protected void Submit_Click(object sender, EventArgs e)
     {
-         
-        decimal amt = 0;
-        order.orderItems = new List<Products>();
-        lblErrorProd.Visible = false;
-        custError.Visible = false;
-        foreach (GridViewRow row in GridView1.Rows)
-        {
-           
-          product.productNumber = Convert.ToInt32(row.Cells[0].Text);
-          product.productQuantity = Convert.ToInt32(row.Cells[3].Text);
-          amt += facade.findProduct(product.productNumber).price*product.productQuantity;
-          order.orderItems.Add(product);
-        }
-        order.employeeId = 1;
-        order.amount = amt;
-        order.payed = true;
-        order.customerId = 1;
         
-       
-        facade.makeOrder(order);
-         
+        generateOrder();
+        OrdersDAO accessOrders = new OrdersDAO();
+        OrderDTO order = new OrderDTO();
+        order = accessOrders.getLastReocrd();
+        Response.Redirect("Receipt.aspx?Id=" + order.orderId, false);
     } 
 
     protected void txtProductID_TextChanged(object sender, EventArgs e)
     {
         /*AddToDataTable();
         BindGrid();*/
+    }
+
+    private void generateOrder()
+    {
+        OrdersDAO accessOrders = new OrdersDAO();
+        OrderDTO lastRecord  = new OrderDTO();
+        CustomerDTO customer = new CustomerDTO();
+        CustomerDAO accessCustomer = new CustomerDAO();
+        decimal amt = 0;
+        order.orderItems = new List<Products>();
+        lblErrorProd.Visible = false;
+        custError.Visible = false;
+        foreach (GridViewRow row in GridView1.Rows)
+        {
+
+            product.productNumber = Convert.ToInt32(row.Cells[0].Text);
+            product.productQuantity = Convert.ToInt32(row.Cells[3].Text);
+            amt += facade.findProduct(product.productNumber).price * product.productQuantity;
+            order.orderItems.Add(product);
+        }
+        //lastRecord = accessOrders.getLastReocrd();
+        //customer = accessCustomer.getCustomerID(lastRecord.customerId);
+        order.employeeId =3;
+        order.amount = amt;
+        order.payed = false;
+        order.customerId = Convert.ToInt32(txtCustomerID.Text);
+        facade.makeOrder(order); 
     }
 }
