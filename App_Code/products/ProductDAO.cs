@@ -79,4 +79,5 @@ public class ProductDAO
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
         return con;
     }
+
 }

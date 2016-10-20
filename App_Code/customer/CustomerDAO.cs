@@ -66,7 +66,7 @@ public class CustomerDAO
 
     }
 
-    public CustomerDTO getCustomer(int number)
+    public CustomerDTO getCustomerID(int number)
     {
         con.Open();
         String selectCustomer = "select * from Customers where CustomerID =" + number + " ";
@@ -80,13 +80,13 @@ public class CustomerDAO
         return updateCustomer;
     }
 
-    public CustomerDTO getCustomerID()
+    public CustomerDTO getLastReocrd()//last customer
     {
         CustomerDTO customer = new CustomerDTO();
         try
         {
             con.Open();
-            String selectCustomer = "SELECT TOP 1 * FROM  Customers BY CustomerID DESC ";
+            String selectCustomer = "SELECT TOP 1 * FROM  Customers Order by CustomerID DESC ";
             SqlCommand myComm = new SqlCommand(selectCustomer, con);
             SqlDataReader myDR;
             myDR = myComm.ExecuteReader();
