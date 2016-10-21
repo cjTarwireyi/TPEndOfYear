@@ -61,16 +61,25 @@ public class ProductDAO
 
     public Products getProduct(int id)
     {
-        con.Open();
-        String selectProduct = "select * from Products where Id =" + id + " ";
-        SqlCommand myComm = new SqlCommand(selectProduct, con);
-        SqlDataReader myDR;
-        myDR = myComm.ExecuteReader();
-        if (!myDR.Read())
+        try
+        {
+            con.Open();
+            String selectProduct = "select * from Products where Id =" + id + " ";
+            SqlCommand myComm = new SqlCommand(selectProduct, con);
+            SqlDataReader myDR;
+            myDR = myComm.ExecuteReader();
+            if (!myDR.Read())
+                return null;
+            Products updateProduct = makeProductDTO(myDR);
+            con.Close();
+            return updateProduct;
+        }
+        catch (Exception e)
+        {
             return null;
-        Products updateProduct = makeProductDTO(myDR);
-        con.Close();
-        return updateProduct;
+        }
+        finally { con.Close(); }
+       
     }
 
     

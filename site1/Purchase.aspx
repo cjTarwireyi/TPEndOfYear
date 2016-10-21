@@ -57,7 +57,7 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                     ErrorMessage="ProductID Required!" ControlToValidate="txtProductID" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
-                <asp:Label ID="lblErrorProd" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
+                <asp:Label ID="lblErrorProd" Visible="false"  runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
 
             </div>
 

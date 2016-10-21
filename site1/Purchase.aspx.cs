@@ -66,7 +66,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         if (facade.findProduct(Convert.ToInt32(productCode)) == null)
         {
             
-            lblErrorProd.Visible = true;
+            lblErrorProd.Visible = false;
         }
         else if(facade.findCustomer(Convert.ToInt32(custId))=="401"){
             custError.Visible = true;
