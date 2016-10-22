@@ -12,7 +12,7 @@ public partial class LoginPage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        username.Focus();
        // Label regUser = (Label)Master.FindControl("regUser");
         //Control control = Master.FindControl("sideNav");
         //regUser.Visible = false;

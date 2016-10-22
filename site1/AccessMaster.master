@@ -18,24 +18,33 @@
         .bg {
         position: relative;
         width: 100%;
+        align-content:center;
         background-image: url(pexels-photo-39716.jpeg);
         background-position: center;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
     }
+        .customrow{
+position: absolute;
+    right: 0px;
+    width: 100%;
+     
+    padding: 1px;
+        }
     </style>
 
 </head>
 <body class = "bg">
-    <div class="container">
+    <div class="contain customrow col-md-12">
     		<p><br/></p><p><br/></p>
-  		<div class="row">
-  			<div class="col-md-4">
-  				<div class="panel panel-default">
+        <div >
+  		<div class="row col-lg-offset-4">
+  			<div class="col-md-4" style="width:39%;">
+  				<div class="">
   					<div class="panel-body">
 
-                            <div>
+                            <div style="align-content:center">
                                 <asp:ContentPlaceHolder id="content" runat="server">
         
                                  </asp:ContentPlaceHolder>
@@ -44,6 +53,7 @@
   			    </div>
 		    </div>
         </div>
+       </div>
     </div>
     
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
