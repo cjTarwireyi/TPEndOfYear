@@ -10,8 +10,15 @@ using System.Web.UI.WebControls;
 
 public partial class site1_Receipt : System.Web.UI.Page
 {
+    private UserDTO userDto = new UserDTO();
+    private UserDTO userDtoUpdate = new UserDTO();
     protected void Page_Load(object sender, EventArgs e)
     {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
         print();
         //OrderLineDAO accesssOrder = new OrderLineDAO();
         //List<OrderLineDTO> items = accesssOrder.getOrderItems(25);
