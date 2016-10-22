@@ -24,13 +24,13 @@ public partial class RegistrationPage : System.Web.UI.Page
         UserDTO userDtoUpdate = new UserDTO();
  
         userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
+       // Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        lblUser.Text = userDto.username;
+        //Session.Remove("userUpdate");
+         lblUser.Text = userDto.username;
         
         
 
@@ -53,7 +53,7 @@ public partial class RegistrationPage : System.Web.UI.Page
         if (lblTitle.Text == "User Update")
         {
             empno = (int)Session["empNo"];
-            empNo.Text = "Default";
+            empNo.Text = empno.ToString();
         }
 
          
@@ -69,6 +69,8 @@ public partial class RegistrationPage : System.Web.UI.Page
     {
         UserDTO userDto = new UserDTO();
         UserFacade userFacade = new UserFacade();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+
         
         int uId = 0;
 
