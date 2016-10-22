@@ -8,11 +8,16 @@ using System.Web.UI.WebControls;
 
 public partial class site1_AddProduct : System.Web.UI.Page
 {
+    private UserDTO userDto = new UserDTO();
     protected void Page_Load(object sender, EventArgs e)
     {
         UserDTO userDtoUpdate = new UserDTO();
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+
         ProductDAO prodConnnection = new ProductDAO();
         SqlConnection con = prodConnnection.connection();
         con.Open();
