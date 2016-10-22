@@ -71,6 +71,11 @@ public partial class site1_Purchase : System.Web.UI.Page
         else if(facade.findCustomer(Convert.ToInt32(custId))=="401"){
             custError.Visible = true;
         }
+        else
+        {
+            custError.Visible = false;
+            lblErrorProd.Visible = false;
+        }
        if(lblErrorProd.Visible==false && custError.Visible==false)
         {
             string ogAmount = grandTotal.Text;
@@ -104,7 +109,13 @@ public partial class site1_Purchase : System.Web.UI.Page
 
 
             }
-        }
+
+           // Response.Redirect(Request.RawUrl);
+            txtProductID.Text = string.Empty;
+            txtQuantiy.Text = string.Empty;
+            txtCustomerID.Text = string.Empty;
+            custError.Visible = false;
+       }
     }
 
     private void BindGrid()
