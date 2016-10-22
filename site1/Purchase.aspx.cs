@@ -173,4 +173,9 @@ public partial class site1_Purchase : System.Web.UI.Page
         order.customerId = Convert.ToInt32(txtCustomerID.Text);
         facade.makeOrder(order); 
     }
+
+    protected void Cancel_Click(object sender, EventArgs e)
+    {
+        
+    }
 }

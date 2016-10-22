@@ -84,7 +84,7 @@
                         Width="126px" class="btn btn-success" OnClick="Submit_Click" />
 
                     <asp:Button ID="btnCancel" runat="server" Height="32px" Text="Cancel Order"
-                        Width="126px" class="btn btn-danger" OnClick="Submit_Click" />
+                        Width="126px" class="btn btn-danger" OnClick="Cancel_Click" />
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
