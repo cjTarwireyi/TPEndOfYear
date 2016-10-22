@@ -16,13 +16,13 @@ using System;
 public class OrderLineDAO : InterfaceOrderLine
 {
     SqlConnection con;
-    DataClassesDataContext db = new DataClassesDataContext();
+     
     public OrderLineDAO()
     {
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
 
     }
-    public bool AddOderLine(List<OrderLine> model)
+    public bool AddOderLine(List<OrderLineDTO> model)
     {
         //try
         //{
@@ -31,7 +31,7 @@ public class OrderLineDAO : InterfaceOrderLine
             con.Open();
             foreach (var rec in model)
             {
-                string insertQuery = "INSERT INTO OrderLine (ProductID,OrderID,Quantity) VALUES ('" + rec.ProductID + "','" + rec.OrderID + "','" + rec.Quantity + "')";
+                string insertQuery = "INSERT INTO OrderLine (ProductID,OrderID,Quantity) VALUES ('" + rec.productID + "','" + rec.orderId + "','" + rec.quantity + "')";
                 SqlCommand cmd = new SqlCommand(insertQuery, con);
                 /*cmd.Parameters.Add("@ProductID",rec.ProductID);
                 //cmd.Parameters.AddWithValue("@name",FullName.Text);
