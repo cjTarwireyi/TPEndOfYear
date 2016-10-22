@@ -45,7 +45,7 @@
                         class="form-control" placeholder="CustomerID" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </div>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                    ErrorMessage="CustomerID Required!" ControlToValidate="txtCustomerID" ForeColor="Red"></asp:RequiredFieldValidator>
+                    ErrorMessage="CustomerID Required!" ValidationGroup="Group1" ControlToValidate="txtCustomerID" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
                 <asp:Label ID="custError" Visible="false" runat="server" ForeColor="Red" Text="invalid Customer Code"></asp:Label>
 
@@ -57,7 +57,7 @@
                     <asp:TextBox ID="txtProductID" runat="server" Width="290px"
                         class="form-control" placeholder="Product Code " OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
                 </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                <asp:RequiredFieldValidator  ValidationGroup="Group1" ID="RequiredFieldValidator1" runat="server"
                     ErrorMessage="ProductID Required!" ControlToValidate="txtProductID" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
                 <asp:Label ID="lblErrorProd" Visible="false"  runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
@@ -71,17 +71,20 @@
                         class="form-control" placeholder="Quantity" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                 </div>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                    ErrorMessage="Quantity Required!" ControlToValidate="txtQuantiy" ForeColor="Red"></asp:RequiredFieldValidator>
+                    ErrorMessage="Quantity Required!" ValidationGroup="Group1"  ControlToValidate="txtQuantiy" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
             </div>
            
 
 
 
-                    <asp:Button ID="btnAdd" runat="server" Height="32px" Text="Add"
+                    <asp:Button ID="btnAdd" ValidationGroup="Group1" runat="server" Height="32px" Text="Add"
                         Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
                     <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Submit"
                         Width="126px" class="btn btn-success" OnClick="Submit_Click" />
+
+                    <asp:Button ID="btnCancel" runat="server" Height="32px" Text="Cancel Order"
+                        Width="126px" class="btn btn-danger" OnClick="Submit_Click" />
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
