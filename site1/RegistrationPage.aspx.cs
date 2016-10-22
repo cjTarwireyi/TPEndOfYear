@@ -100,6 +100,9 @@ public partial class RegistrationPage : System.Web.UI.Page
                             Session.Remove("userUpdate");
                             Session.Remove("userTypeUpdate");
                             Session.Remove("userId");
+                            Username.Text = string.Empty;
+                            Rpassword.Text = string.Empty;
+                            empNo.Text = string.Empty;
                         }
                         else
                         {
@@ -141,7 +144,9 @@ public partial class RegistrationPage : System.Web.UI.Page
             //Response.Write("Error: "+ ex.ToString());
             //}
         }
-        Username.Text = "";
+        Username.Text = string.Empty;
+        Rpassword.Text = string.Empty;
+        empNo.Text = string.Empty;
         userType.SelectedIndex = -1;
 
 
