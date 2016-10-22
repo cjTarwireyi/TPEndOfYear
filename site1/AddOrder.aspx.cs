@@ -7,13 +7,17 @@ using System.Web.UI.WebControls;
 
 public partial class site1_AddOrder : System.Web.UI.Page
 {
-    OrderDTO order = new OrderDTO();
-    Products product = new Products();
+   private OrderDTO order = new OrderDTO();
+   private Products product = new Products();
+   private UserDTO userDto = new UserDTO();
     protected void Page_Load(object sender, EventArgs e)
     {
         UserDTO userDtoUpdate = new UserDTO();
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
     }
     protected void Register_Click(object sender, EventArgs e)
     {
