@@ -12,7 +12,7 @@ using System.Web;
 public class OrdersDAO : InterfaceOder
 {
     private SqlConnection con;
-    DataClassesDataContext db = new DataClassesDataContext();
+ 
     public OrdersDAO()
     {
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
