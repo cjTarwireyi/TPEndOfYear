@@ -8,10 +8,15 @@ using System.Web.UI.WebControls;
 
 public partial class site1_InactiveProducts : System.Web.UI.Page
 {
-  
+    private UserDTO userDto = new UserDTO();
+    private UserDTO userDtoUpdate = new UserDTO();
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
         
     }
     protected void Active_Click(object sender, EventArgs e)
