@@ -113,9 +113,9 @@ public partial class site1_Purchase : System.Web.UI.Page
             }
 
            // Response.Redirect(Request.RawUrl);
-            txtProductID.Text = string.Empty;
+           /* txtProductID.Text = string.Empty;
             txtQuantiy.Text = string.Empty;
-            txtCustomerID.Text = string.Empty;
+            txtCustomerID.Text = string.Empty;*/
             custError.Visible = false;
        }
     }
