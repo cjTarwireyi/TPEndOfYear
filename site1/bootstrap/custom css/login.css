@@ -6,6 +6,11 @@
  .Pagefooter{
      clear:left;
  }
+ .myContainer{
+    display:flexbox;
+    justify-content: center;
+    align-items: center;
+}
  #footer{
      font-weight:bold;
      font-style:italic;

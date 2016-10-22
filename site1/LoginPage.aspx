@@ -2,9 +2,9 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-      <div class="container m_top">
+      <div class="myContainer col-lg-offset-3  " style="background-image:url(pexels-photo-39716.jpeg)">
      
-    <div class="   form-signin">
+    <div class="   form-signin ">
            <h2 class="form-signin-heading">Please sign in</h2>
         <div class="form-group">
 
