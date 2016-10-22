@@ -35,6 +35,9 @@
         <h1><strong>Purchase</strong>Order</h1>
         <br />
         <div class="col-lg-6">
+             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                 
+                <ContentTemplate>
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
@@ -52,7 +55,7 @@
                 <div class="input-group">
                     <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
                     <asp:TextBox ID="txtProductID" runat="server" Width="290px"
-                        class="form-control" placeholder="Product Code" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);" OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
+                        class="form-control" placeholder="Product Code " OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
                 </div>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
                     ErrorMessage="ProductID Required!" ControlToValidate="txtProductID" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -71,8 +74,7 @@
                     ErrorMessage="Quantity Required!" ControlToValidate="txtQuantiy" ForeColor="Red"></asp:RequiredFieldValidator>
                 <br />
             </div>
-            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                <ContentTemplate>
+           
 
 
 
