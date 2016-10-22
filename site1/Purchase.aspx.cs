@@ -176,6 +176,13 @@ public partial class site1_Purchase : System.Web.UI.Page
 
     protected void Cancel_Click(object sender, EventArgs e)
     {
-        
+       // GridView1.Rows.();
+
+        table = new DataTable();
+       
+        GridView1.DataSource = "";
+        GridView1.DataBind();
+        MakeTable();
+        ViewState["DataTable"] = table;
     }
 }
