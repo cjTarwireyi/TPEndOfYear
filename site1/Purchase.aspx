@@ -35,56 +35,53 @@
         <h1><strong>Purchase</strong>Order</h1>
         <br />
         <div class="col-lg-6">
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
-                    <asp:TextBox ID="txtCustomerID" runat="server" Height="35px" Width="290px"
-                        class="form-control" placeholder="CustomerID" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
-                </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                    ErrorMessage="CustomerID Required!" ControlToValidate="txtCustomerID" ForeColor="Red"></asp:RequiredFieldValidator>
-                <br />
-                <asp:Label ID="custError" Visible="false" runat="server" ForeColor="Red" Text="invalid Customer Code"></asp:Label>
 
-            </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
-                    <asp:TextBox ID="txtProductID" runat="server" Width="290px"
-                        class="form-control" placeholder="Product Code" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);" OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
-                </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                    ErrorMessage="ProductID Required!" ControlToValidate="txtProductID" ForeColor="Red"></asp:RequiredFieldValidator>
-                <br />
-                <asp:Label ID="lblErrorProd" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
-
-            </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
-                    <asp:TextBox ID="txtQuantiy" runat="server" Height="35px" Width="290px"
-                        class="form-control" placeholder="Quantity" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
-                </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                    ErrorMessage="Quantity Required!" ControlToValidate="txtQuantiy" ForeColor="Red"></asp:RequiredFieldValidator>
-                <br />
-            </div>
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
-
-
-
-                    <asp:Button ID="btnAdd" runat="server" Height="32px" Text="Add"
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
+                            <asp:TextBox ID="txtCustomerID" runat="server" Height="35px" Width="290px"
+                                class="form-control" placeholder="CustomerID" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                            ErrorMessage="CustomerID Required!" ValidationGroup="Group1" ControlToValidate="txtCustomerID" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <br />
+                        <asp:Label ID="custError" Visible="false" runat="server" ForeColor="Red" Text="invalid Customer Code"></asp:Label>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
+                            <asp:TextBox ID="txtProductID" runat="server" Width="290px"
+                                class="form-control" placeholder="Product Code " OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ValidationGroup="Group1" ID="RequiredFieldValidator1" runat="server"
+                            ErrorMessage="ProductID Required!" ControlToValidate="txtProductID" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <br />
+                        <asp:Label ID="lblErrorProd" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
+                            <asp:TextBox ID="txtQuantiy" runat="server" Height="35px" Width="290px"
+                                class="form-control" placeholder="Quantity" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                            ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtQuantiy" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <br />
+                    </div>
+                    <asp:Button ID="btnAdd" ValidationGroup="Group1" runat="server" Height="32px" Text="Add"
                         Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
                     <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Submit"
                         Width="126px" class="btn btn-success" OnClick="Submit_Click" />
+
+                    <asp:Button ID="btnCancel" runat="server" Height="32px" Text="Cancel Order"
+                        Width="126px" class="btn btn-danger" OnClick="Cancel_Click" />
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
-            <div class="col-lg-6">
 
+            <div class="col-lg-6">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False">
@@ -106,11 +103,12 @@
                             <SortedDescendingCellStyle BackColor="#FFFDF8" />
                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                         </asp:GridView>
+
                         </div>
                      <asp:Label ID="Total" runat="server" Text="Total:R "></asp:Label><asp:Label ID="grandTotal" runat="server" Text="0.0"></asp:Label>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
         </div>
-        </div>
+    </div>
 </asp:Content>

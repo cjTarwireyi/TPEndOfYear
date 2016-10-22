@@ -7,11 +7,15 @@ using System.Web.UI.WebControls;
 
 public partial class site1_Suppliers : System.Web.UI.Page
 {
+    private UserDTO userDto = new UserDTO();
+    private UserDTO userDtoUpdate = new UserDTO();
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserDTO userDtoUpdate = new UserDTO();
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
     }
     protected void Register_Click(object sender, EventArgs e)
     {

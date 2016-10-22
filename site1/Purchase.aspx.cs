@@ -6,6 +6,8 @@ using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Drawing;
 
 public partial class site1_Purchase : System.Web.UI.Page
 {
@@ -66,10 +68,15 @@ public partial class site1_Purchase : System.Web.UI.Page
         if (facade.findProduct(Convert.ToInt32(productCode)) == null)
         {
             
-            lblErrorProd.Visible = true;
+            lblErrorProd.Visible = false;
         }
         else if(facade.findCustomer(Convert.ToInt32(custId))=="401"){
             custError.Visible = true;
+        }
+        else
+        {
+            custError.Visible = false;
+            lblErrorProd.Visible = false;
         }
        if(lblErrorProd.Visible==false && custError.Visible==false)
         {
@@ -104,7 +111,13 @@ public partial class site1_Purchase : System.Web.UI.Page
 
 
             }
-        }
+
+           // Response.Redirect(Request.RawUrl);
+           /* txtProductID.Text = string.Empty;
+            txtQuantiy.Text = string.Empty;
+            txtCustomerID.Text = string.Empty;*/
+            custError.Visible = false;
+       }
     }
 
     private void BindGrid()
@@ -162,4 +175,17 @@ public partial class site1_Purchase : System.Web.UI.Page
         order.customerId = Convert.ToInt32(txtCustomerID.Text);
         facade.makeOrder(order); 
     }
+
+    protected void Cancel_Click(object sender, EventArgs e)
+    {
+       // GridView1.Rows.();
+
+        table = new DataTable();
+       
+        GridView1.DataSource = "";
+        GridView1.DataBind();
+        MakeTable();
+        ViewState["DataTable"] = table;
+    }
+     
 }

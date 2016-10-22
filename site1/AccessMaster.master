@@ -18,7 +18,7 @@
         .bg {
         position: relative;
         width: 100%;
-        background-image: url(header.jpg);
+        background-image: url(pexels-photo-39716.jpeg);
         background-position: center;
         -webkit-background-size: cover;
         -moz-background-size: cover;

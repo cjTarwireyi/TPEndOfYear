@@ -51,13 +51,13 @@ public class OrderFacade
     }
     private bool makeOrderLine(List< Products> products, int orderId)
     {
-        List<OrderLine> range = new List<OrderLine>();
-        OrderLine ol = new OrderLine();
+        List<OrderLineDTO> range = new List<OrderLineDTO>();
+        OrderLineDTO ol = new OrderLineDTO();
         foreach (var product in products)
         {
-            ol.OrderID = orderId; 
-            ol.ProductID = product.productNumber;
-            ol.Quantity = product.productQuantity;
+            ol.orderId = orderId; 
+            ol.productID = product.productNumber;
+            ol.quantity = product.productQuantity;
             range.Add(ol);
         }
         orderLineservice.AddOderLine(range);
