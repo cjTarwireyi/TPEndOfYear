@@ -92,7 +92,7 @@
 
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                        <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False">
+                        <asp:GridView runat="server" ID="GridView1"  ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
                                 <asp:BoundField HeaderText="ProductCode" DataField="ProductCode" />
@@ -111,6 +111,7 @@
                             <SortedDescendingCellStyle BackColor="#FFFDF8" />
                             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                         </asp:GridView>
+                        
                         </div>
                      <asp:Label ID="Total" runat="server" Text="Total:R "></asp:Label><asp:Label ID="grandTotal" runat="server" Text="0.0"></asp:Label>
                     </ContentTemplate>

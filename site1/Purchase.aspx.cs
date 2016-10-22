@@ -6,6 +6,8 @@ using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Drawing;
 
 public partial class site1_Purchase : System.Web.UI.Page
 {
@@ -185,4 +187,5 @@ public partial class site1_Purchase : System.Web.UI.Page
         MakeTable();
         ViewState["DataTable"] = table;
     }
+     
 }
