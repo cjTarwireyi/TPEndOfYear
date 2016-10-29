@@ -3,6 +3,12 @@
 <%-- Add content controls here --%>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
+    <script type="text/javascript" src="/Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
+
+    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+</asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="details" runat="Server">
     <div class="loginDisplay">
         <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label>
@@ -22,25 +28,27 @@
             <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
             <li class="active"><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Order</a></li>
             <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
-            <li ><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
+            <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
         </ul>
     </div>
-
 </asp:Content>
- 
+
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="Procedure" SelectCommandType="StoredProcedure">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="DropDownList1" Name="date" PropertyName="SelectedValue" Type="String" />
-                    <asp:ControlParameter ControlID="TextBox1" Name="year" PropertyName="Text" Type="String" />
-                    <asp:ControlParameter ControlID="RadioButton1" Name="status" PropertyName="Checked" Type="Boolean" />
-                </SelectParameters>
-            </asp:SqlDataSource>
-            <div class=" col-md-offset-2 main">
+
+
+    <div class="  main">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="Procedure" SelectCommandType="StoredProcedure">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="DropDownList1" Name="date" PropertyName="SelectedValue" Type="String" />
+                        <asp:ControlParameter ControlID="TextBox1" Name="year" PropertyName="Text" Type="String" />
+                        <asp:ControlParameter ControlID="RadioButton1" Name="status" PropertyName="Checked" Type="Boolean" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+
                 <h1><strong>Monthly</strong>Orders</h1>
                 Year<br />
                 <asp:TextBox ID="TextBox1" runat="server" Height="18px" Width="83px" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged"></asp:TextBox><br />
@@ -83,10 +91,50 @@
                         <SortedDescendingCellStyle BackColor="#E9EBEF" />
                         <SortedDescendingHeaderStyle BackColor="#4870BE" />
                     </asp:GridView>
+                    <br />
+                    <asp:Button ID="btnAdd" ValidationGroup="Group1" runat="server" Height="32px" Text="Update Order"
+                        Width="126px" class="btn btn-primary" OnClick="btnAdd_Click" />
+                    &nbsp;&nbsp;<asp:Button ID="btnViewOrder" ValidationGroup="Group1" runat="server" Height="32px" Text="View Orders"
+                        Width="126px" class="btn btn-primary" OnClick="btnViewOrder_Click" data-toggle="modal" data-target="#myModal" />
+                    <div class="modal-dialog">
                 </asp:Panel>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+
+                <div class="modal-body">
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <asp:GridView ID="GridView2" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                                <AlternatingRowStyle BackColor="White" />
+                                <EditRowStyle BackColor="#2461BF" />
+                                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#EFF3FB" />
+                                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                            </asp:GridView>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+        </div>
+    </div>
 </asp:Content>
-
-
