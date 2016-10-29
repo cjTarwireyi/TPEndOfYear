@@ -29,6 +29,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
 
+         
         lblUser.Text = userDto.username;
         if (!this.IsPostBack)
         {
@@ -68,6 +69,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         string custId = txtCustomerID.Text;
         string productName="";
         string price = "";
+        totalAmt.Text = string.Empty;
 
         if (facade.findProduct(Convert.ToInt32(productCode)) == null)
         {
@@ -91,12 +93,12 @@ public partial class site1_Purchase : System.Web.UI.Page
             }else{
                 ogAmount = grandTotal.Text;
             }
-
+            totalAmt.Text = "Grand Total: R";
             grandTotal.Text = "";
             productName = facade.findProduct(Convert.ToInt32(productCode)).productName;
             price = facade.findProduct(Convert.ToInt32(productCode)).price.ToString();
             amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity))+Convert.ToDecimal(ogAmount)).ToString();
-            grandTotal.Text = "";
+            
             grandTotal.Text = amt;
             lblErrorProd.Visible = false;
             custError.Visible = false;
