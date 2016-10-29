@@ -90,4 +90,27 @@ public class OrderLineDAO : InterfaceOrderLine
         //}
         return items;
     }
+
+    public void updateInsertOrder(string orderID,string productID,string quantity)
+    {
+        //try
+        ////{
+            con.Open();
+
+            string insertQuery = "insert into orderline (ProductID,OrderID,Quantity) values ('" + productID + "','" + orderID + "','" + quantity + "')";
+            SqlCommand cmd = new SqlCommand(insertQuery, con);
+            cmd.ExecuteNonQuery();
+
+            con.Close();
+        //}
+        //catch(Exception ex)
+        //{
+
+        //}
+        //finally
+        //{
+        //    con.Close();
+        //}
+ 
+    }
 }
