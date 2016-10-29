@@ -32,25 +32,33 @@ public partial class LoginPage : System.Web.UI.Page
     protected void Submit_Click(object sender, EventArgs e)
     {
 
+
         UserFacade userFacade = new UserFacade();
         UserDTO userDto = new UserDTO();
-
-        userDto = userFacade.login(username.Text, password.Text);
-        if (userDto.username != null || userDto.password != null)
+        try
         {
-            if ((userDto.username.Trim() == username.Text.Trim()) || (userDto.password.Trim() == password.Text.Trim()))
+            userDto = userFacade.login(username.Text, password.Text);
+            if (userDto.username != null || userDto.password != null)
             {
-                Session["userDto"] = userDto;
-                Response.Redirect("../site1/Home.aspx");
+                if ((userDto.username.Trim() == username.Text.Trim()) || (userDto.password.Trim() == password.Text.Trim()))
+                {
+                    Session["userDto"] = userDto;
+                    Response.Redirect("../site1/Home.aspx");
+                }
+                else
+                {
+                    Label1.Text = "Wrong Log in credentials";
+                }
             }
             else
             {
                 Label1.Text = "Wrong Log in credentials";
             }
         }
-        else
+        catch(Exception ex)
         {
-            Label1.Text = "Wrong Log in credentials";
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + ex.Message.ToString() + "');", true);
+
         }
     }
 }
