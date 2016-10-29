@@ -46,7 +46,6 @@ public class OrdersDAO : InterfaceOder
 
         con.Open();
         int userId = 0;
-
         string select = "SELECT orderId  FROM Orders WHERE orderCode ='" + orderCode.Trim() + "'";
         //string checkTechnician = "SELECT * FROM user_types";
         SqlCommand cmd = new SqlCommand(select, con);
@@ -198,5 +197,23 @@ public class OrdersDAO : InterfaceOder
         order = makeOrderDTO(myDR);
         con.Close();
         return order;
+    }
+
+    public DataTable getOrdersDetails(DataTable productsOrdered,int orderID)
+    {
+
+        string query = @"select orders.orderId,Products.id,Products.productName
+                        from orders
+                        inner join OrderLine on orders.orderId = orderline.OrderID
+                        inner join Products on  orderline.ProductID = Products.id 
+                        where orderline.OrderID = '"+orderID+"'order by orders.orderId ";
+
+        SqlCommand cmd = new SqlCommand(query, con);
+        con.Open();
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(productsOrdered);
+        da.Dispose();
+        con.Close();
+        return productsOrdered;
     }
 }
