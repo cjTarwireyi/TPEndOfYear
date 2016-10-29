@@ -21,8 +21,6 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
-
-
         print();
     }
 
@@ -64,6 +62,7 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 Font font = FontFactory.GetFont("Arial", 10, Font.NORMAL, BaseColor.BLACK);
                 Font arialB = FontFactory.GetFont("Arial", 10, Font.BOLD, BaseColor.BLACK);
                 Font unserline = FontFactory.GetFont("Arial", 10, Font.BOLD | Font.ITALIC);
+                Font heading2underline = FontFactory.GetFont("Arial", 15, Font.NORMAL + Font.UNDERLINE + Font.BOLD, BaseColor.BLACK);
                 Paragraph p = new Paragraph("\n");
 
 
@@ -73,7 +72,16 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
 
 
 
-                p = new Paragraph("Customer Name: " + customer.name + "\nCustomer Surname:" + customer.surname + "\nCell Number: " + customer.cellNumber + "\nEmail Address: " + customer.email + "\nAddress\n" + customer.StreetName + "\n" + customer.Suburb + "\n" + customer.postalCode, heading2);
+                p = new Paragraph("Customer NO: "+customer.customerNumber+"\nCustomer Name: " + customer.name + "\nCustomer Surname:" + customer.surname + "\nCell Number: " + customer.cellNumber+"\nEmail Address: " + customer.email+"\n\n", heading2);
+                p.Alignment = Element.ALIGN_LEFT;
+                doc.Add(p);
+
+                p = new Paragraph("Address\n",heading2underline);
+                p.Alignment = Element.ALIGN_LEFT;
+                doc.Add(p);
+
+
+                p = new Paragraph(customer.StreetName + "\n" + customer.Suburb + "\n" + customer.postalCode, heading2);
                 p.Alignment = Element.ALIGN_LEFT;
                 doc.Add(p);
 
@@ -93,7 +101,6 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 Response.AddHeader("Content-Type", "application/pdf");
                 Response.OutputStream.Write(memoryStream.GetBuffer(), 0, memoryStream.GetBuffer().Length);
                 Response.OutputStream.Flush();
-
             }
         }
         catch (Exception ex)
