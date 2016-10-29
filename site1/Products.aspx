@@ -81,7 +81,7 @@
             data-toggle="tooltip" data-placement="left" 
             title="Insert new tecnician to database" onclick="Register_Click"/>&nbsp;&nbsp;
              <asp:Button ID="btnInactive" runat="server" Height="32px" Text="Inactive Products" 
-            Width="145px" class="btn btn-danger" 
+            Width="145px" class="btn btn-warning" 
             data-toggle="tooltip" data-placement="left" 
             title="Insert new tecnician to database" onclick="InactiveRecords"/>&nbsp;&nbsp;
              <asp:Button ID="btnDeactivate" runat="server" Height="32px" Text="Deactivate Product" 
