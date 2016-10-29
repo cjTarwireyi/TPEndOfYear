@@ -104,7 +104,7 @@
                         </asp:GridView>
 
                         </div>
-                     <asp:Label ID="Total" runat="server" Text="Total:R "></asp:Label><asp:Label ID="grandTotal" runat="server" Text="0.0"></asp:Label>
+                      <asp:Label ID="grandTotal" runat="server" Text=""></asp:Label>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

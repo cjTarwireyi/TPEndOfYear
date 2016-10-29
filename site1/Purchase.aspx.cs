@@ -84,8 +84,15 @@ public partial class site1_Purchase : System.Web.UI.Page
         }
        if(lblErrorProd.Visible==false && custError.Visible==false)
         {
-            string ogAmount = grandTotal.Text;
-            
+            string ogAmount;
+            if (grandTotal.Text == "") 
+            {
+                ogAmount = "0.0";
+            }else{
+                ogAmount = grandTotal.Text;
+            }
+
+            grandTotal.Text = "";
             productName = facade.findProduct(Convert.ToInt32(productCode)).productName;
             price = facade.findProduct(Convert.ToInt32(productCode)).price.ToString();
             amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity))+Convert.ToDecimal(ogAmount)).ToString();
