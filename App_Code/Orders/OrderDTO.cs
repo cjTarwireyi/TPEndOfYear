@@ -8,6 +8,7 @@ using System.Web;
 /// </summary>
 public class OrderDTO
 {
+    //methods
     public int orderId { set; get; }
     public int customerId { set; get; }
     public int employeeId { set; get; }
