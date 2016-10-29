@@ -24,13 +24,13 @@ public partial class RegistrationPage : System.Web.UI.Page
         UserDTO userDtoUpdate = new UserDTO();
  
         userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
+       // Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        lblUser.Text = userDto.username;
+        //Session.Remove("userUpdate");
+         lblUser.Text = userDto.username;
         
         
 
@@ -53,7 +53,7 @@ public partial class RegistrationPage : System.Web.UI.Page
         if (lblTitle.Text == "User Update")
         {
             empno = (int)Session["empNo"];
-            empNo.Text = "Default";
+            empNo.Text = empno.ToString();
         }
 
          
@@ -69,6 +69,8 @@ public partial class RegistrationPage : System.Web.UI.Page
     {
         UserDTO userDto = new UserDTO();
         UserFacade userFacade = new UserFacade();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+
         
         int uId = 0;
 
@@ -100,6 +102,9 @@ public partial class RegistrationPage : System.Web.UI.Page
                             Session.Remove("userUpdate");
                             Session.Remove("userTypeUpdate");
                             Session.Remove("userId");
+                            Username.Text = string.Empty;
+                            Rpassword.Text = string.Empty;
+                            empNo.Text = string.Empty;
                         }
                         else
                         {
@@ -141,7 +146,9 @@ public partial class RegistrationPage : System.Web.UI.Page
             //Response.Write("Error: "+ ex.ToString());
             //}
         }
-        Username.Text = "";
+        Username.Text = string.Empty;
+        Rpassword.Text = string.Empty;
+        empNo.Text = string.Empty;
         userType.SelectedIndex = -1;
 
 
