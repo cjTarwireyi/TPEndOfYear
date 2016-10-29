@@ -87,7 +87,8 @@ public partial class site1_Purchase : System.Web.UI.Page
             
             productName = facade.findProduct(Convert.ToInt32(productCode)).productName;
             price = facade.findProduct(Convert.ToInt32(productCode)).price.ToString();
-            string amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity))+ogAmount).ToString();
+            string amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity))+Convert.ToDecimal(ogAmount)).ToString();
+            grandTotal.Text = "";
             grandTotal.Text = amt;
             lblErrorProd.Visible = false;
             custError.Visible = false;
