@@ -40,8 +40,6 @@ public partial class site1_Receipt : System.Web.UI.Page
                 //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('I am here');", true);
                 int Id = 0;
                 Id = Convert.ToInt32(Request.QueryString["id"].ToString().Trim());
-
-
                 Response.Buffer = true;
                 Response.Clear();
                 Response.ClearContent();
@@ -58,8 +56,9 @@ public partial class site1_Receipt : System.Web.UI.Page
                 OrderLineDTO orderline = new OrderLineDTO();
                 OrderDTO order = new OrderDTO();
                 OrdersDAO accessOrder = new OrdersDAO();
-                doc.Open();
 
+
+                doc.Open();
                 string filename = HttpContext.Current.Server.MapPath("../site1/images/images.png");
                 System.IO.Stream ImageStream = new System.IO.FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
                 iTextSharp.text.Image gif = iTextSharp.text.Image.GetInstance(ImageStream);
@@ -72,10 +71,10 @@ public partial class site1_Receipt : System.Web.UI.Page
                 Font heading = FontFactory.GetFont("Arial", 26, Font.BOLD, BaseColor.BLACK);
                 Font heading2 = FontFactory.GetFont("Arial", 15, Font.BOLD, BaseColor.BLACK);
                 Font heading3 = FontFactory.GetFont("Arial", 13, Font.NORMAL, BaseColor.BLACK);
+                Font heading3underline = FontFactory.GetFont("Arial", 13, Font.NORMAL+Font.UNDERLINE, BaseColor.BLACK);
                 Font font = FontFactory.GetFont("Arial", 10, Font.NORMAL, BaseColor.BLACK);
                 Font arialB = FontFactory.GetFont("Arial", 10, Font.BOLD, BaseColor.BLACK);
                 Font unserline = FontFactory.GetFont("Arial", 10, Font.BOLD | Font.ITALIC);
-
 
                 Paragraph p = new Paragraph();
 
@@ -96,14 +95,17 @@ public partial class site1_Receipt : System.Web.UI.Page
                 p = new Paragraph(null, heading3);
                 p.Add("Account Number: " + customer.customerNumber);
                 p.Add("\nCustomer Name: " + customer.name);
-                p.Add("\nCustomer Surname: "+customer.surname);
+                p.Add("\nCustomer Surname: "+customer.surname+"\n\n");
                 p.Alignment = Element.ALIGN_LEFT;
                 doc.Add(p);
 
 
                 //Items
-                p = new Paragraph("\nItems Purchased\n", heading3);
+                p = new Paragraph("Items Purchased", heading3underline);
                 p.Alignment = Element.ALIGN_CENTER;
+                doc.Add(p);
+
+                p= new Paragraph("\n",heading3);
                 List<OrderLineDTO> items = accesssOrderLine.getOrderItems(Id);
                 for (int i = 0; i < items.Count; i++)
                 {
@@ -120,7 +122,7 @@ public partial class site1_Receipt : System.Web.UI.Page
                 p.Alignment = Element.ALIGN_LEFT;
                 doc.Add(p);
                 p = new Paragraph(null, heading3);
-                p.Add("Total Amount Due:");
+                p.Add("Total Amount Due: "+order.amount);
                 p.Alignment = Element.ALIGN_LEFT;
                 doc.Add(p);
 

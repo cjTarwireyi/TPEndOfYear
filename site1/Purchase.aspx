@@ -35,7 +35,6 @@
         <h1><strong>Purchase</strong>Order</h1>
         <br />
         <div class="col-lg-6">
-
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
                     <div class="form-group">

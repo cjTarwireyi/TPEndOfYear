@@ -28,7 +28,6 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-
     <div class="  main">
         <h1><strong>Customers</strong></h1>
         <br />
