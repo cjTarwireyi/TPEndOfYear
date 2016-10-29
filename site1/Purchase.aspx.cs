@@ -15,8 +15,9 @@ public partial class site1_Purchase : System.Web.UI.Page
     private UserDTO userDto = new UserDTO();
     private UserDTO userDtoUpdate = new UserDTO();
     private OrderFacade facade = new OrderFacade();
-    OrderDTO order = new OrderDTO();
-    Products product = new Products();
+    private OrderDTO order = new OrderDTO();
+    private Products product = new Products();
+    private string amt;
     protected void Page_Load(object sender, EventArgs e)
     {
         GridView1.AutoGenerateSelectButton = true;
@@ -87,7 +88,7 @@ public partial class site1_Purchase : System.Web.UI.Page
             
             productName = facade.findProduct(Convert.ToInt32(productCode)).productName;
             price = facade.findProduct(Convert.ToInt32(productCode)).price.ToString();
-            string amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity))+Convert.ToDecimal(ogAmount)).ToString();
+            amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity))+Convert.ToDecimal(ogAmount)).ToString();
             grandTotal.Text = "";
             grandTotal.Text = amt;
             lblErrorProd.Visible = false;
@@ -190,6 +191,8 @@ public partial class site1_Purchase : System.Web.UI.Page
         GridView1.DataBind();
         MakeTable();
         ViewState["DataTable"] = table;
+        grandTotal.Text="";
+        amt="";
     }
      
 }
