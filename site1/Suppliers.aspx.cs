@@ -16,6 +16,7 @@ public partial class site1_Suppliers : System.Web.UI.Page
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
+        lblUser.Text = userDto.username;
     }
     protected void Register_Click(object sender, EventArgs e)
     {
