@@ -18,7 +18,7 @@
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
             <li  ><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-list "></i>&nbsp;Register User</a></li>
-            <li class="active"><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+            <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
             <li><a href="Customers.aspx"><i class="glyphicon glyphicon-cog"></i>&nbsp;Customers</a></li>
             <li><a href="Employee.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Employees</a></li>
             <li class="active"><a href="Suppliers.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Suppliers</a></li>
