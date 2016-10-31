@@ -21,4 +21,13 @@ public partial class site1_Suppliers : System.Web.UI.Page
     {
         Response.Redirect("AddSupplier.aspx");
     }
+    protected void Submit_Click(object sender, EventArgs e)
+    {
+
+        Session.Abandon();
+        Session.Clear();
+
+        Response.Redirect("LoginPage.aspx");
+    } 
+
 }

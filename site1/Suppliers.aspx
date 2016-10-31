@@ -4,11 +4,37 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
 </asp:Content>
 
+ <asp:Content ID="Content5" ContentPlaceHolderID="details" Runat="Server">
+     <div class="loginDisplay">
+        <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label> 
+            <asp:Button ID="Submit" runat="server" class="btn btn-danger " 
+            Height="35px" Text="Sign Out" 
+                                Width="90px" onclick="Submit_Click"/>  
+         </div>
+</asp:Content>
+
+ <asp:Content ID="Content2" ContentPlaceHolderID="sideBarNav" runat="server">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+            <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+            <li  ><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-list "></i>&nbsp;Register User</a></li>
+            <li class="active"><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+            <li><a href="Customers.aspx"><i class="glyphicon glyphicon-cog"></i>&nbsp;Customers</a></li>
+            <li><a href="Employee.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Employees</a></li>
+            <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
+            <li><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
+            <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+            <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
+            <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
+        </ul>
+    </div>
+
+</asp:Content>
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
     
-        <div class=" col-md-offset-2 main">
+            <div class=" main" style="height:inherit">
             <h1><strong>Suppliers</strong></h1><br />
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Suppliers] WHERE [SupplierID] = @original_SupplierID AND (([SupplierName] = @original_SupplierName) OR ([SupplierName] IS NULL AND @original_SupplierName IS NULL)) AND (([SupplierSurname] = @original_SupplierSurname) OR ([SupplierSurname] IS NULL AND @original_SupplierSurname IS NULL)) AND (([SupplierCellNumber] = @original_SupplierCellNumber) OR ([SupplierCellNumber] IS NULL AND @original_SupplierCellNumber IS NULL)) AND (([SupplierStreetName] = @original_SupplierStreetName) OR ([SupplierStreetName] IS NULL AND @original_SupplierStreetName IS NULL)) AND (([SupplierSuburb] = @original_SupplierSuburb) OR ([SupplierSuburb] IS NULL AND @original_SupplierSuburb IS NULL)) AND (([SupplierPostalCode] = @original_SupplierPostalCode) OR ([SupplierPostalCode] IS NULL AND @original_SupplierPostalCode IS NULL))" InsertCommand="INSERT INTO [Suppliers] ([SupplierName], [SupplierSurname], [SupplierCellNumber], [SupplierStreetName], [SupplierSuburb], [SupplierPostalCode]) VALUES (@SupplierName, @SupplierSurname, @SupplierCellNumber, @SupplierStreetName, @SupplierSuburb, @SupplierPostalCode)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [Suppliers]" UpdateCommand="UPDATE [Suppliers] SET [SupplierName] = @SupplierName, [SupplierSurname] = @SupplierSurname, [SupplierCellNumber] = @SupplierCellNumber, [SupplierStreetName] = @SupplierStreetName, [SupplierSuburb] = @SupplierSuburb, [SupplierPostalCode] = @SupplierPostalCode WHERE [SupplierID] = @original_SupplierID AND (([SupplierName] = @original_SupplierName) OR ([SupplierName] IS NULL AND @original_SupplierName IS NULL)) AND (([SupplierSurname] = @original_SupplierSurname) OR ([SupplierSurname] IS NULL AND @original_SupplierSurname IS NULL)) AND (([SupplierCellNumber] = @original_SupplierCellNumber) OR ([SupplierCellNumber] IS NULL AND @original_SupplierCellNumber IS NULL)) AND (([SupplierStreetName] = @original_SupplierStreetName) OR ([SupplierStreetName] IS NULL AND @original_SupplierStreetName IS NULL)) AND (([SupplierSuburb] = @original_SupplierSuburb) OR ([SupplierSuburb] IS NULL AND @original_SupplierSuburb IS NULL)) AND (([SupplierPostalCode] = @original_SupplierPostalCode) OR ([SupplierPostalCode] IS NULL AND @original_SupplierPostalCode IS NULL))">
                 <DeleteParameters>
