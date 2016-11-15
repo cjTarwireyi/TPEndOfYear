@@ -8,6 +8,13 @@
     <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
 
     <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+    <title></title>
+    <style type="text/css">
+        .cssPager td {
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="details" runat="Server">
     <div class="loginDisplay">
@@ -40,7 +47,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div class="topCorner">
-                    <asp:TextBox ID="txtSearch"  AutoPostBack="true" runat="server" placeholder="Enter OrderID" Width="131px" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" />
+                    <asp:TextBox ID="txtSearch" AutoPostBack="true" runat="server" placeholder="Enter OrderID" Width="131px" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" />
                 </div>
                 <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="Procedure" SelectCommandType="StoredProcedure">
                     <SelectParameters>
@@ -70,7 +77,8 @@
                 <asp:Panel ID="Panel1" runat="server" Width="807px">
                     <asp:RadioButton ID="RadioButton1" runat="server" Value="True" Text="Paid" AutoPostBack="True" GroupName="status" OnCheckedChanged="RadioButton1_CheckedChanged" /><br />
                     <asp:RadioButton ID="RadioButton2" runat="server" Value="False" Text="Outstanding" AutoPostBack="True" GroupName="status" Checked="True" OnCheckedChanged="RadioButton2_CheckedChanged" />
-                    <asp:GridView ID="GridView1" runat="server" Width="797px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId"  ForeColor="#333333">
+                    <asp:GridView ID="GridView1" runat="server" Width="797px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId" ForeColor="#333333" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging1">
+                         <PagerStyle CssClass="cssPager" />
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="orderId" HeaderText="orderId" InsertVisible="False" ReadOnly="True" SortExpression="orderId" />

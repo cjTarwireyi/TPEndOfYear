@@ -125,4 +125,10 @@ public partial class site1_Orders : System.Web.UI.Page
     {
         populateGrid();
     }
+    
+    protected void GridView1_PageIndexChanging1(object sender, GridViewPageEventArgs e)
+    {
+        GridView1.PageIndex = e.NewPageIndex;
+        populateGrid();
+    }
 }
