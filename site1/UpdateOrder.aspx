@@ -71,8 +71,8 @@ order by orderline.OrderID" DeleteCommand="DELETE FROM OrderLine WHERE (OrderLin
                         </div>
                         <asp:Button ID="btnAdd" ValidationGroup="Group1" runat="server" Height="32px" Text="Add"
                             Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
-                        <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Submit"
-                            Width="126px" class="btn btn-danger" OnClick="Submit_Click" />
+                        <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Orders"
+                            Width="126px" class="btn btn-primary" OnClick="Submit_Click" />
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
