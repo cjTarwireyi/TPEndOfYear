@@ -70,3 +70,19 @@ position: absolute;
 bottom: 15px;
 right: 20px;
 }
+
+.topCorner
+{
+   
+position: absolute;
+top: 15px;
+right: 20px;
+
+}
+
+.Corner
+{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
