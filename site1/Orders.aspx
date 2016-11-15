@@ -33,26 +33,25 @@
         </ul>
     </div>
 </asp:Content>
-
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-
-
     <div class="  main">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="Procedure" SelectCommandType="StoredProcedure">
+                <div class="topCorner">
+                    <asp:TextBox ID="txtSearch"  AutoPostBack="true" runat="server" placeholder="Enter OrderID" Width="131px" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" />
+                </div>
+                <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="Procedure" SelectCommandType="StoredProcedure">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="DropDownList1" Name="date" PropertyName="SelectedValue" Type="String" />
-                        <asp:ControlParameter ControlID="TextBox1" Name="year" PropertyName="Text" Type="String" />
+                        <asp:ControlParameter ControlID="txtYear" Name="year" PropertyName="Text" Type="String" />
                         <asp:ControlParameter ControlID="RadioButton1" Name="status" PropertyName="Checked" Type="Boolean" />
                     </SelectParameters>
-                </asp:SqlDataSource>
-
+                </asp:SqlDataSource>--%>
                 <h1><strong>Monthly</strong>Orders</h1>
                 Year<br />
-                <asp:TextBox ID="TextBox1" runat="server" Height="18px" Width="83px" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged"></asp:TextBox><br />
-                <asp:DropDownList ID="DropDownList1" runat="server" Height="20px" Width="128px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="True">
+                <asp:TextBox ID="txtYear" runat="server" Height="18px" Width="83px" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged"></asp:TextBox><br />
+                <asp:DropDownList ID="DropDownList1" runat="server" Height="20px" Width="128px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="True" OnTextChanged="DropDownList1_TextChanged">
                     <asp:ListItem Value="01">January</asp:ListItem>
                     <asp:ListItem Value="02">February</asp:ListItem>
                     <asp:ListItem Value="03">March</asp:ListItem>
@@ -68,17 +67,18 @@
                 </asp:DropDownList><br />
                 <br />
                 <asp:Panel ID="Panel1" runat="server" Width="807px">
-                    <asp:RadioButton ID="RadioButton1" runat="server" Value="True" Text="Paid" AutoPostBack="True" GroupName="status" /><br />
-                    <asp:RadioButton ID="RadioButton2" runat="server" Value="False" Text="Outstanding" AutoPostBack="True" GroupName="status" Checked="True" />
-                    <asp:GridView ID="GridView1" runat="server" Width="797px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId" DataSourceID="SqlDataSource1" ForeColor="#333333">
+                    <asp:RadioButton ID="RadioButton1" runat="server" Value="True" Text="Paid" AutoPostBack="True" GroupName="status" OnCheckedChanged="RadioButton1_CheckedChanged" /><br />
+                    <asp:RadioButton ID="RadioButton2" runat="server" Value="False" Text="Outstanding" AutoPostBack="True" GroupName="status" Checked="True" OnCheckedChanged="RadioButton2_CheckedChanged" />
+                    <asp:GridView ID="GridView1" runat="server" Width="797px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId"  ForeColor="#333333">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="orderId" HeaderText="OrderNumber" InsertVisible="False" ReadOnly="True" SortExpression="orderId" />
-                            <asp:BoundField DataField="custId" HeaderText="Customer" SortExpression="custId" />
-                            <asp:CheckBoxField DataField="payed" HeaderText="Status" SortExpression="payed" />
-                            <asp:BoundField DataField="amount" HeaderText="Amount" SortExpression="amount" />
-                            <asp:BoundField DataField="orderDate" HeaderText="Date" SortExpression="orderDate" />
-                            <asp:BoundField DataField="employeeId" HeaderText="Employee" SortExpression="employeeId" />
+                            <asp:BoundField DataField="orderId" HeaderText="orderId" InsertVisible="False" ReadOnly="True" SortExpression="orderId" />
+                            <asp:BoundField DataField="custId" HeaderText="custId" SortExpression="custId" />
+                            <asp:CheckBoxField DataField="payed" HeaderText="payed" SortExpression="payed" />
+                            <asp:BoundField DataField="amount" HeaderText="amount" SortExpression="amount" />
+                            <asp:BoundField DataField="orderDate" HeaderText="orderDate" SortExpression="orderDate" />
+                            <asp:BoundField DataField="employeeId" HeaderText="employeeId" SortExpression="employeeId" />
+                            <asp:BoundField DataField="orderCode" HeaderText="orderCode" SortExpression="orderCode" />
                         </Columns>
                         <EditRowStyle BackColor="#2461BF" />
                         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
@@ -101,7 +101,6 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
-
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -111,11 +110,10 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Modal Header</h4>
                 </div>
-
                 <div class="modal-body">
                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                         <ContentTemplate>
-                            <asp:GridView ID="GridView2" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                            <asp:GridView ID="GridView2" runat="server" CellPadding="4" ForeColor="#333333" GridLines="Both" Width="450px">
                                 <AlternatingRowStyle BackColor="White" />
                                 <EditRowStyle BackColor="#2461BF" />
                                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
