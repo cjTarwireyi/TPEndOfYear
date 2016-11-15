@@ -15,8 +15,9 @@ public partial class site1_Purchase : System.Web.UI.Page
     private UserDTO userDto = new UserDTO();
     private UserDTO userDtoUpdate = new UserDTO();
     private OrderFacade facade = new OrderFacade();
-    OrderDTO order = new OrderDTO();
-    Products product = new Products();
+    private OrderDTO order = new OrderDTO();
+    private Products product = new Products();
+    private string amt;
     protected void Page_Load(object sender, EventArgs e)
     {
         GridView1.AutoGenerateSelectButton = true;
@@ -28,6 +29,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
 
+         
         lblUser.Text = userDto.username;
         if (!this.IsPostBack)
         {
@@ -67,6 +69,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         string custId = txtCustomerID.Text;
         string productName="";
         string price = "";
+        totalAmt.Text = string.Empty;
 
         if (facade.findProduct(Convert.ToInt32(productCode)) == null)
         {
@@ -83,12 +86,19 @@ public partial class site1_Purchase : System.Web.UI.Page
         }
        if(lblErrorProd.Visible==false && custError.Visible==false)
         {
-            string ogAmount = grandTotal.Text;
-            
+            string ogAmount;
+            if (grandTotal.Text == "") 
+            {
+                ogAmount = "0.0";
+            }else{
+                ogAmount = grandTotal.Text;
+            }
+            totalAmt.Text = "Grand Total: R";
+            grandTotal.Text = "";
             productName = facade.findProduct(Convert.ToInt32(productCode)).productName;
             price = facade.findProduct(Convert.ToInt32(productCode)).price.ToString();
-            string amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity))+Convert.ToDecimal(ogAmount)).ToString();
-            grandTotal.Text = "";
+            amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity))+Convert.ToDecimal(ogAmount)).ToString();
+            
             grandTotal.Text = amt;
             lblErrorProd.Visible = false;
             custError.Visible = false;
@@ -117,9 +127,9 @@ public partial class site1_Purchase : System.Web.UI.Page
             }
 
            // Response.Redirect(Request.RawUrl);
-           /* txtProductID.Text = string.Empty;
+            txtProductID.Text = string.Empty;
             txtQuantiy.Text = string.Empty;
-            txtCustomerID.Text = string.Empty;*/
+            /*txtCustomerID.Text = string.Empty;*/
             custError.Visible = false;
        }
     }
@@ -190,6 +200,8 @@ public partial class site1_Purchase : System.Web.UI.Page
         GridView1.DataBind();
         MakeTable();
         ViewState["DataTable"] = table;
+        grandTotal.Text="";
+        amt="";
     }
      
 }
