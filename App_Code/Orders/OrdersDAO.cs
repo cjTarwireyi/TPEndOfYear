@@ -216,4 +216,45 @@ public class OrdersDAO : InterfaceOder
         con.Close();
         return productsOrdered;
     }
+
+    public DataTable searchOrder(DataTable orderRecord, string id, bool status)
+    {
+
+        string query = @"select orderid,custid,payed,amount,orderDate,employeeid,orderCode from Orders where orderid = '" + id + "' and payed = '" + status + "' ";
+        SqlCommand cmd = new SqlCommand(query, con);
+        con.Open();
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(orderRecord);
+        da.Dispose();
+        con.Close();
+        return orderRecord;
+    }
+    public DataTable searchGrid(DataTable orders, string date,bool payed)
+    {
+        string year = date.Substring(0, 4);
+        string month = date.Substring(5,1);
+        string query = "select * from Orders where SUBSTRING (CONVERT(nvarchar(10),orderDate,112),6,2) = '"+month+"' and SUBSTRING (CONVERT(nvarchar(10),orderDate,112),1,4) = '"+year+"' and payed = '"+payed+"'";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(orders);
+        da.Dispose();
+        con.Close();
+        return orders;
+    }
+
+
+    public DataTable populateGrid(string month, string year, bool status)
+    {
+        DataTable orders = new DataTable();
+        string query = "select * from Orders where SUBSTRING (CONVERT(nvarchar(10),orderDate,112),6,2) = '"+month+"' and SUBSTRING (CONVERT(nvarchar(10),orderDate,112),1,4) = '"+year+"' and payed ='"+status+"'";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(orders);
+        da.Dispose();
+        con.Close();
+        return orders;
+    }
+
 }
