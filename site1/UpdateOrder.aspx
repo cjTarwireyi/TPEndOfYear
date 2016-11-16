@@ -33,7 +33,8 @@ from products
 inner join orderline
 on products.Id = orderline.ProductID
 where orderline.OrderID = @id
-order by orderline.OrderID" DeleteCommand="DELETE FROM OrderLine WHERE (OrderLineID = @OrderLineID)">
+order by orderline.OrderID"
+            DeleteCommand="DELETE FROM OrderLine WHERE (OrderLineID = @OrderLineID)">
             <DeleteParameters>
                 <asp:Parameter Name="OrderLineID" />
             </DeleteParameters>
@@ -79,7 +80,7 @@ order by orderline.OrderID" DeleteCommand="DELETE FROM OrderLine WHERE (OrderLin
                 <div class="col-lg-6">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False" DataKeyNames="OrderLineID,Id" DataSourceID="SqlDataSource1">
+                            <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False" DataKeyNames="OrderLineID,Id" DataSourceID="SqlDataSource1" OnRowDeleting="GridView1_RowDeleting">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" />
@@ -103,7 +104,7 @@ order by orderline.OrderID" DeleteCommand="DELETE FROM OrderLine WHERE (OrderLin
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                   
+
                 </div>
             </div>
         </div>
