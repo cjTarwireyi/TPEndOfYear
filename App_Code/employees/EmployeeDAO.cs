@@ -12,30 +12,19 @@ using System.Web;
 public class EmployeeDAO
 {
     private SqlConnection con;
-	public EmployeeDAO()
-	{
+    public EmployeeDAO()
+    {
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
-	}
+    }
 
     public void saveEmployee(EmployeeDTO emp)
     {
-        //try
-        //{
-            con.Open();
-            SqlCommand cmd = con.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert into Employees([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName],[EmployeeSuburb],[EmployeePostalCode],[DateHired])values('" + emp.employeeName + "','" + emp.employeeSurname + "','" + emp.employeeCellNumber + "','" + emp.employeeStreetName + "','" + emp.employeeSuburb + "','" + emp.employeePostalCode + "','"+DateTime.Now+""+"')";
-            cmd.ExecuteNonQuery();
-            con.Close();
-       // }
-        //catch (Exception e)
-        //{
-
-        //}
-        //finally
-        //{
-        //    con.Close();
-        //}
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "insert into Employees([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName],[EmployeeSuburb],[EmployeePostalCode],[DateHired])values('" + emp.employeeName + "','" + emp.employeeSurname + "','" + emp.employeeCellNumber + "','" + emp.employeeStreetName + "','" + emp.employeeSuburb + "','" + emp.employeePostalCode + "','" + DateTime.Now + "" + "')";
+        cmd.ExecuteNonQuery();
+        con.Close();
     }
 
     public EmployeeDTO makeTechDTO(SqlDataReader myDR)
