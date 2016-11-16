@@ -12,34 +12,25 @@ using System.Web;
 public class SupplierDAO
 {
     private SqlConnection con;
-	public SupplierDAO()
-	{
+    public SupplierDAO()
+    {
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
-	}
+    }
 
     public void save(SupplierDTO supplier)
     {
-        //try
-        //{
-            con.Open();
-            SqlCommand cmd = con.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-             cmd.CommandText = "insert into Suppliers([SupplierName], [SupplierSurname], [SupplierCellNumber], [SupplierStreetName],[SupplierSuburb],[SupplierPostalCode])values('" + supplier.supplierName.Trim() + "','" + supplier.supplierSurname.Trim() + "','" + supplier.supplierCellNumber.Trim() + "','" + supplier.supplierStreetName.Trim() + "','" + supplier.supplierSuburb.Trim() + "','" + supplier.supplierPostalCode.Trim() + "')";
-            cmd.ExecuteNonQuery();
-            con.Close();
-        //}
-        //catch (Exception e)
-        //{
-        //}
-        //finally
-        //{
-        //    con.Close();
-        //}
+
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "insert into Suppliers([SupplierName], [SupplierSurname], [SupplierCellNumber], [SupplierStreetName],[SupplierSuburb],[SupplierPostalCode])values('" + supplier.supplierName.Trim() + "','" + supplier.supplierSurname.Trim() + "','" + supplier.supplierCellNumber.Trim() + "','" + supplier.supplierStreetName.Trim() + "','" + supplier.supplierSuburb.Trim() + "','" + supplier.supplierPostalCode.Trim() + "')";
+        cmd.ExecuteNonQuery();
+        con.Close();
     }
 
     public SupplierDTO makeSupplierDTO(SqlDataReader myDR)
     {
-       SupplierDTO supplier = new SupplierDTO();
+        SupplierDTO supplier = new SupplierDTO();
         supplier.supplierNumber = myDR.GetInt32(0);
         supplier.supplierName = myDR.GetString(1);
         supplier.supplierSurname = myDR.GetString(2);
