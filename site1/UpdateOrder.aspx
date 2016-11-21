@@ -54,6 +54,7 @@ order by orderline.OrderID"
                                 <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
                                 <asp:TextBox ID="txtProductID" runat="server" Width="290px"
                                     class="form-control" placeholder="Product Code " OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
+                                <asp:Label ID="lblQuantity" runat="server"></asp:Label>
                             </div>
                             <asp:RequiredFieldValidator ValidationGroup="Group1" ID="RequiredFieldValidator1" runat="server"
                                 ErrorMessage="ProductID Required!" ControlToValidate="txtProductID" ForeColor="Red"></asp:RequiredFieldValidator>
