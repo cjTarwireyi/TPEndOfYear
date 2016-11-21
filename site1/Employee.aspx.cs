@@ -7,23 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class site1_Employee : System.Web.UI.Page
 {
+    private EmployeeDAO employee = new EmployeeDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        UserDTO userDtoUpdate = new UserDTO();
-        UserDTO userDto = new UserDTO();
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
-
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        lblUser.Text = userDto.username;
-        
-        
-
+        loadSession();
+        loadEmployees();
     }
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -39,11 +27,29 @@ public partial class site1_Employee : System.Web.UI.Page
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
-
         Session.Abandon();
         Session.Clear();
-
         Response.Redirect("LoginPage.aspx");
-    } 
-   
+    }
+
+    private void loadEmployees()
+    {
+        GridView1.DataSource = employee.populateGrid();
+        GridView1.DataBind();
+    }
+
+    private void loadSession()
+    {
+        UserDTO userDtoUpdate = new UserDTO();
+        UserDTO userDto = new UserDTO();
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        lblUser.Text = userDto.username;
+    }
 }
