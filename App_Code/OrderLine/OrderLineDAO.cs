@@ -16,7 +16,7 @@ using System;
 public class OrderLineDAO : InterfaceOrderLine
 {
     SqlConnection con;
-     
+
     public OrderLineDAO()
     {
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
@@ -24,30 +24,21 @@ public class OrderLineDAO : InterfaceOrderLine
     }
     public bool AddOderLine(List<OrderLineDTO> model)
     {
-        //try
-        //{
+        //int n;
+        con.Open();
+        foreach (var rec in model)
+        {
+            string insertQuery = "INSERT INTO OrderLine (ProductID,OrderID,Quantity) VALUES ('" + rec.productID + "','" + rec.orderId + "','" + rec.quantity + "')";
+            SqlCommand cmd = new SqlCommand(insertQuery, con);
+            /*cmd.Parameters.Add("@ProductID",rec.ProductID);
+            //cmd.Parameters.AddWithValue("@name",FullName.Text);
+            cmd.Parameters.AddWithValue("@OrderID", rec.OrderID);
+            cmd.Parameters.AddWithValue("@Quantity", rec.Quantity);*/
+            cmd.ExecuteNonQuery();
+        }
 
-            //int n;
-            con.Open();
-            foreach (var rec in model)
-            {
-                string insertQuery = "INSERT INTO OrderLine (ProductID,OrderID,Quantity) VALUES ('" + rec.productID + "','" + rec.orderId + "','" + rec.quantity + "')";
-                SqlCommand cmd = new SqlCommand(insertQuery, con);
-                /*cmd.Parameters.Add("@ProductID",rec.ProductID);
-                //cmd.Parameters.AddWithValue("@name",FullName.Text);
-                cmd.Parameters.AddWithValue("@OrderID", rec.OrderID);
-                cmd.Parameters.AddWithValue("@Quantity", rec.Quantity);*/
-                cmd.ExecuteNonQuery();
-            }
-
-            con.Close();
-            return true;
-        //}
-        //catch (SqlException ex)
-        //{
-        //    ex.GetBaseException();
-        //    return false;
-        //}
+        con.Close();
+        return true;
     }
     public bool RemoveProduct(OrderLineDTO model)
     {
@@ -61,8 +52,6 @@ public class OrderLineDAO : InterfaceOrderLine
     public List<OrderLineDTO> getOrderItems(int orderID)
     {
         var items = new List<OrderLineDTO>();
-        //try
-        //{
         con.Open();
         string selectItems = "select * from OrderLine where OrderID=" + orderID + "";
         SqlCommand myComm = new SqlCommand(selectItems, con);
@@ -79,38 +68,64 @@ public class OrderLineDAO : InterfaceOrderLine
             items.Add(order);
         }
         con.Close();
-        //}
-        //catch (Exception ex)
-        //{
-
-        //}
-        //finally
-        //{
-        //    con.Close();
-        //}
         return items;
     }
 
-    public void updateInsertOrder(string orderID,string productID,string quantity)
+    public void updateInsertOrder(string orderID, string productID, string quantity)
     {
-        //try
-        ////{
-            con.Open();
 
-            string insertQuery = "insert into orderline (ProductID,OrderID,Quantity) values ('" + productID + "','" + orderID + "','" + quantity + "')";
-            SqlCommand cmd = new SqlCommand(insertQuery, con);
-            cmd.ExecuteNonQuery();
+        con.Open();
+        string insertQuery = "insert into orderline (ProductID,OrderID,Quantity) values ('" + productID + "','" + orderID + "','" + quantity + "')";
+        SqlCommand cmd = new SqlCommand(insertQuery, con);
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
 
-            con.Close();
-        //}
-        //catch(Exception ex)
-        //{
+    public void removeItem(string id, string orderline)
+    {
+        updateQuantity(id, orderline);
 
-        //}
-        //finally
-        //{
-        //    con.Close();
-        //}
- 
+        con.Open();
+        string query = "delete from OrderLine where OrderLineID ='" + id + "' ";
+        SqlCommand cmd = new SqlCommand(query, con);
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
+    public void updateQuantity(string productID, string orderlineID)
+    {
+        string productQuantity = "";
+        int newQuantity;
+        string returnQuantity = "";
+        DataTable orders = new DataTable();
+        DataTable orderline = new DataTable();
+
+        con.Open();
+        string getQuantity = "select quantity from products where id ='" + productID + "' ";
+        SqlCommand cmd = new SqlCommand(getQuantity, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(orders);
+        da.Dispose();
+        foreach (DataRow row in orders.Rows)
+        {
+            productQuantity = row["Quantity"].ToString();
+        }
+        //cmd.ExecuteNonQuery();
+
+        string returnQuery = "select quantity from orderline where OrderlineID = '" + orderlineID + "'";
+        cmd = new SqlCommand(returnQuery, con);
+        da = new SqlDataAdapter(cmd);
+        da.Fill(orderline);
+        da.Dispose();
+        foreach (DataRow row in orderline.Rows)
+        {
+            returnQuantity = row["Quantity"].ToString();
+        }
+        //cmd.ExecuteNonQuery();
+        newQuantity = Convert.ToInt32(productQuantity) + Convert.ToInt32(returnQuantity);
+
+        string query = "update products set Quantity ='" + newQuantity + "' where id = '" + productID + "' ";
+        cmd = new SqlCommand(query, con);
+        cmd.ExecuteNonQuery();
+        con.Close();
     }
 }

@@ -1,47 +1,49 @@
-﻿ body
-        {
-            font-family: Arial;
-            font-size: 10pt;
-        }
- .Pagefooter{
-     clear:left;
- }
- .myContainer{
-    display:flexbox;
+﻿body {
+    font-family: Arial;
+    font-size: 10pt;
+}
+
+.Pagefooter {
+    clear: left;
+}
+
+.myContainer {
+    display: flexbox;
     justify-content: center;
     align-items: center;
 }
- #footer{
-     font-weight:bold;
-     font-style:italic;
-     color:#000080;
-     background-color:#C0C0C0;
-     text-align:center;
-     font-size:smaller;
- }
-        #scrollToTop
-        {
-             cursor:pointer;
-             background-color:#0090CB;
-             display:inline-block;
-             height:40px;
-             width:40px;
-             color:#fff;
-             font-size:16pt;
-             text-align:center;
-             text-decoration:none;
-             line-height:40px;
-        }
-        #sideNavigation{
-            float: left;
-            height:400px;
-            width:14%;
-            color:white;
-            background-color:rgb(0,0,150)
-        }
-        
-.loginDisplay
-{
+
+#footer {
+    font-weight: bold;
+    font-style: italic;
+    color: #000080;
+    background-color: #C0C0C0;
+    text-align: center;
+    font-size: smaller;
+}
+
+#scrollToTop {
+    cursor: pointer;
+    background-color: #0090CB;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    color: #fff;
+    font-size: 16pt;
+    text-align: center;
+    text-decoration: none;
+    line-height: 40px;
+}
+
+#sideNavigation {
+    float: left;
+    height: 400px;
+    width: 14%;
+    color: white;
+    background-color: rgb(0,0,150);
+}
+
+.loginDisplay {
     font-size: 1.1em;
     display: block;
     text-align: right;
@@ -49,24 +51,37 @@
     color: Gray;
 }
 
-.loginDisplay a:link
-{
-    color: #666666;
+    .loginDisplay a:link {
+        color: #666666;
+    }
+
+    .loginDisplay a:visited {
+        color: white;
+    }
+
+    .loginDisplay a:hover {
+        color: Red;
+    }
+
+.bottomCorner {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
 }
 
-.loginDisplay a:visited
-{
-    color: white;
+.topCorner {
+    position: absolute;
+    top: 15px;
+    right: 20px;
 }
 
-.loginDisplay a:hover
-{
-    color: Red;
+.Corner {
+    position: absolute;
+    top: 15px;
+    right: 10px;
 }
 
-.bottomCorner 
-{
-position: absolute;
-bottom: 15px;
-right: 20px;
+.gvwCasesPager a{
+    margin-left: 10px;
+    margin-right: 10px;
 }

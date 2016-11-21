@@ -12,7 +12,7 @@ using System.Web;
 public class OrdersDAO : InterfaceOder
 {
     private SqlConnection con;
- 
+
     public OrdersDAO()
     {
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
@@ -66,34 +66,21 @@ public class OrdersDAO : InterfaceOder
         var Datetime = DateTime.Now;
         var orderCode = order.customerId + "-" + Datetime.Ticks.ToString();
 
-        //try
-        //{
-            con.Open();
+        
+        con.Open();
+        string insertQuery = "INSERT INTO Orders (custId,payed,amount,orderDate,employeeId,orderCode) VALUES ('" + order.customerId + "','" + order.payed + "','" + order.amount + "','" + DateTime.Now.ToString() + "','" + order.employeeId + "','" + orderCode.Trim() + "')";
+        SqlCommand cmd = new SqlCommand(insertQuery, con);
+        //  cmd.Parameters.AddWithValue("@custId", order.customerId);
+        //cmd.Parameters.AddWithValue("@payed", order.payed);
+        //cmd.Parameters.AddWithValue("@amount", order.amount);
+        //cmd.Parameters.AddWithValue("@orderDate", Datetime);
+        //cmd.Parameters.AddWithValue("@employeeId", order.employeeId);
+        //cmd.Parameters.AddWithValue("@orderCode", orderCode.Trim());
+        cmd.ExecuteNonQuery();
 
-            string insertQuery = "INSERT INTO Orders (custId,payed,amount,orderDate,employeeId,orderCode) VALUES ('" + order.customerId + "','" + order.payed + "','" + order.amount + "','" + DateTime.Now.ToString() + "','" + order.employeeId + "','"+orderCode.Trim()+"')";
-            SqlCommand cmd = new SqlCommand(insertQuery, con);
-          //  cmd.Parameters.AddWithValue("@custId", order.customerId);
-            //cmd.Parameters.AddWithValue("@payed", order.payed);
-            //cmd.Parameters.AddWithValue("@amount", order.amount);
-            //cmd.Parameters.AddWithValue("@orderDate", Datetime);
-            //cmd.Parameters.AddWithValue("@employeeId", order.employeeId);
-            //cmd.Parameters.AddWithValue("@orderCode", orderCode.Trim());
-            cmd.ExecuteNonQuery();
-
-            con.Close();
-            int orderId = getOrder(orderCode);
-            return orderId;
-
-        /*}
-        catch (Exception e)
-        {
-            return 0;
-        }
-        finally
-        {
-            con.Close();
-
-        }*/
+        con.Close();
+        int orderId = getOrder(orderCode);
+        return orderId;
     }
     public bool UpdateOrder(OrderDTO model)
     {
@@ -135,24 +122,14 @@ public class OrdersDAO : InterfaceOder
     public OrderDTO makeOrderDTO(SqlDataReader myDR)
     {
         OrderDTO order = new OrderDTO();
-        try
-        {
-            order.orderId = myDR.GetInt32(0);
-            order.customerId = myDR.GetInt32(1);
-            order.payed = myDR.GetBoolean(2);
-            order.amount = myDR.GetInt32(3);
-            order.orderDate = myDR.GetDateTime(4);
-            order.employeeId = myDR.GetInt32(5);
-            //ordercode missing 
-        }
-        catch (Exception ex)
-        {
+        order.orderId = myDR.GetInt32(0);
+        order.customerId = myDR.GetInt32(1);
+        order.payed = myDR.GetBoolean(2);
+        order.amount = myDR.GetInt32(3);
+        order.orderDate = myDR.GetDateTime(4);
+        order.employeeId = myDR.GetInt32(5);
+        //ordercode missing 
 
-        }
-        finally
-        {
-            con.Close();
-        }
         //booking.Hours = myDR.GetInt32(8);
         return order;
 
@@ -161,25 +138,14 @@ public class OrdersDAO : InterfaceOder
     public OrderDTO getLastReocrd()//last customer
     {
         OrderDTO order = new OrderDTO();
-        try
-        {
-            con.Open();
-            String selectCustomer = "SELECT TOP 1 * FROM  Orders Order by orderid DESC ";
-            SqlCommand myComm = new SqlCommand(selectCustomer, con);
-            SqlDataReader myDR;
-            myDR = myComm.ExecuteReader();
-            if (myDR.Read())
-                order = makeOrderDTO(myDR);
-            con.Close();
-        }
-        catch (Exception ex)
-        {
-
-        }
-        finally
-        {
-            con.Close();
-        }
+        con.Open();
+        String selectCustomer = "SELECT TOP 1 * FROM  Orders Order by orderid DESC ";
+        SqlCommand myComm = new SqlCommand(selectCustomer, con);
+        SqlDataReader myDR;
+        myDR = myComm.ExecuteReader();
+        if (myDR.Read())
+            order = makeOrderDTO(myDR);
+        con.Close();
         return order;
     }
 
@@ -199,14 +165,14 @@ public class OrdersDAO : InterfaceOder
         return order;
     }
 
-    public DataTable getOrdersDetails(DataTable productsOrdered,int orderID)
+    public DataTable getOrdersDetails(DataTable productsOrdered, int orderID)
     {
 
         string query = @"select orders.orderId,Products.id,Products.productName
                         from orders
                         inner join OrderLine on orders.orderId = orderline.OrderID
                         inner join Products on  orderline.ProductID = Products.id 
-                        where orderline.OrderID = '"+orderID+"'order by orders.orderId ";
+                        where orderline.OrderID = '" + orderID + "'order by orders.orderId ";
 
         SqlCommand cmd = new SqlCommand(query, con);
         con.Open();
@@ -216,4 +182,45 @@ public class OrdersDAO : InterfaceOder
         con.Close();
         return productsOrdered;
     }
+
+    public DataTable searchOrder(DataTable orderRecord, string id, bool status)
+    {
+
+        string query = @"select orderid,custid,payed,amount,orderDate,employeeid,orderCode from Orders where orderid = '" + id + "' and payed = '" + status + "' ";
+        SqlCommand cmd = new SqlCommand(query, con);
+        con.Open();
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(orderRecord);
+        da.Dispose();
+        con.Close();
+        return orderRecord;
+    }
+    public DataTable searchGrid(DataTable orders, string date, bool payed)
+    {
+        string year = date.Substring(0, 4);
+        string month = date.Substring(5, 1);
+        string query = "select * from Orders where SUBSTRING (CONVERT(nvarchar(10),orderDate,112),6,2) = '" + month + "' and SUBSTRING (CONVERT(nvarchar(10),orderDate,112),1,4) = '" + year + "' and payed = '" + payed + "'";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(orders);
+        da.Dispose();
+        con.Close();
+        return orders;
+    }
+
+
+    public DataTable populateGrid(string month, string year, bool status)
+    {
+        DataTable orders = new DataTable();
+        string query = "select * from Orders where SUBSTRING (CONVERT(nvarchar(10),orderDate,112),6,2) = '" + month + "' and SUBSTRING (CONVERT(nvarchar(10),orderDate,112),1,4) = '" + year + "' and payed ='" + status + "'";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(orders);
+        da.Dispose();
+        con.Close();
+        return orders;
+    }
+
 }

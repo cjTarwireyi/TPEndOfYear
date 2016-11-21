@@ -6,12 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
+using Microsoft.Win32;
 
 
 public partial class LoginPage : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         username.Focus();
        // Label regUser = (Label)Master.FindControl("regUser");
         //Control control = Master.FindControl("sideNav");
@@ -28,6 +30,14 @@ public partial class LoginPage : System.Web.UI.Page
             Session.Abandon();
             Session.Clear();
         }
+        /*if (!Page.IsPostBack)
+        {
+            RegistryKey rkey = Registry.CurrentUser.OpenSubKey(@"Control Panel\International", true);
+            rkey.SetValue("sShortDate", "yyyy-MM-dd");
+           
+
+ 
+        }*/
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
