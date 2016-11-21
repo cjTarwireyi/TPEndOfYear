@@ -53,4 +53,17 @@ public class EmployeeDAO
         con.Close();
         return updateEmployee;
     }
+
+    public DataTable populateGrid()
+    {
+        DataTable employees = new DataTable();
+        string query = "select * from employees";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(employees);
+        da.Dispose();
+        con.Close();
+        return employees;
+    }
 }
