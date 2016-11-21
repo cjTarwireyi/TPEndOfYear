@@ -9,14 +9,11 @@ public partial class site1_Suppliers : System.Web.UI.Page
 {
     private UserDTO userDto = new UserDTO();
     private UserDTO userDtoUpdate = new UserDTO();
+    private SupplierDAO supplier = new SupplierDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
-        lblUser.Text = userDto.username;
+        loadSession();
+        loadSupplies();
     }
     protected void Register_Click(object sender, EventArgs e)
     {
@@ -24,11 +21,23 @@ public partial class site1_Suppliers : System.Web.UI.Page
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
-
         Session.Abandon();
         Session.Clear();
-
         Response.Redirect("LoginPage.aspx");
     } 
+    private void loadSession(){
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        lblUser.Text = userDto.username;
+    }
+
+    private void loadSupplies()
+    {
+        GridView1.DataSource = supplier.populateGrid();
+        GridView1.DataBind();
+    }
 
 }
