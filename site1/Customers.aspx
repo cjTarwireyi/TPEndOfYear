@@ -35,11 +35,11 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server"
+                <%--<asp:SqlDataSource ID="SqlDataSource2" runat="server"
                     ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
                     OldValuesParameterFormatString="original_{0}"
-                    SelectCommand="SELECT * FROM [Customers]"></asp:SqlDataSource>
-                <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource2" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="63px" Width="724px" AllowSorting="True">
+                    SelectCommand="SELECT * FROM [Customers]"></asp:SqlDataSource>--%>
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="63px" Width="724px" AllowSorting="True">
                     <Columns>
                         <asp:CommandField ShowSelectButton="True" />
                         <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" InsertVisible="False" ReadOnly="True" SortExpression="CustomerID" />
