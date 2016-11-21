@@ -65,10 +65,10 @@ public class ProductDAO
         return con;
     }
 
-    public void itemBought(string productID,string quantity)
+    public void itemBought(string productID, string quantity)
     {
-        string oriQuantity="";
-        int newQuantity =0;
+        string oriQuantity = "";
+        int newQuantity = 0;
         DataTable productQuantity = new DataTable();
         con.Open();
 
@@ -97,7 +97,7 @@ public class ProductDAO
         DataTable prodQuantity = new DataTable();
         con.Open();
 
-        string query = "select quantity from products where id = '"+id+"' ";
+        string query = "select quantity from products where id = '" + id + "' ";
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
         da.Fill(prodQuantity);
@@ -110,5 +110,33 @@ public class ProductDAO
 
         con.Close();
         return quantity;
+    }
+
+    public DataTable populateGrid()
+    {
+        DataTable products = new DataTable();
+        bool status = true;
+        string query = "select * from products where active ='" + status + "' ";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(products);
+        da.Dispose();
+        con.Close();
+        return products;
+    }
+
+    public DataTable populateInactiveProducts()
+    {
+        DataTable products = new DataTable();
+        bool status = false;
+        string query = "select * from products where active ='" + status + "' ";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(products);
+        da.Dispose();
+        con.Close();
+        return products;
     }
 }
