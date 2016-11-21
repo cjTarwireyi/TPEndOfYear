@@ -90,4 +90,26 @@ public class ProductDAO
 
         con.Close();
     }
+
+
+    public int getItemQuantity(string id)
+    {
+        int quantity = 0;
+        DataTable prodQuantity = new DataTable();
+        con.Open();
+
+        string query = "select quantity from products where id = '"+id+"' ";
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(prodQuantity);
+        da.Dispose();
+        foreach (DataRow row in prodQuantity.Rows)
+        {
+            quantity = Convert.ToInt32(row["Quantity"].ToString());
+        }
+        cmd.ExecuteNonQuery();
+
+        con.Close();
+        return quantity;
+    }
 }
