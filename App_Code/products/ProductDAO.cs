@@ -83,7 +83,6 @@ public class ProductDAO
         }
 
         newQuantity = Convert.ToInt32(oriQuantity) - Convert.ToInt32(quantity);
-
         string updateQuery = "update products set quantity = '" + newQuantity + "' where id ='" + productID + "' ";
         cmd = new SqlCommand(updateQuery, con);
         cmd.ExecuteNonQuery();
