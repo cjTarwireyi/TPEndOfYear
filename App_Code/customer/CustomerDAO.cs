@@ -72,5 +72,16 @@ public class CustomerDAO
         return customer;
     }
 
-
+    public DataTable populateGrid()
+    {
+        DataTable customers = new DataTable();
+        string query = "select * from customers";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(customers);
+        da.Dispose();
+        con.Close();
+        return customers;
+    }
 }
