@@ -10,14 +10,11 @@ public partial class site1_InactiveProducts : System.Web.UI.Page
 {
     private UserDTO userDto = new UserDTO();
     private UserDTO userDtoUpdate = new UserDTO();
+    private ProductDAO products = new ProductDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
-        
+        loadSession();
+        loadInactiveProducts();
     }
     protected void Active_Click(object sender, EventArgs e)
     {
@@ -31,12 +28,32 @@ public partial class site1_InactiveProducts : System.Web.UI.Page
             String activeProduct = "update Products set Active ='True' where Id ='"+Convert.ToInt32(id)+"'";
             SqlCommand cmd = new SqlCommand(activeProduct, con);
             cmd.ExecuteNonQuery();
-            GridView1.DataBind();
+
+            loadInactiveProducts();
             //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('"+id+"');", true);
         }
     }
     protected void btnProducts_Click(object sender, EventArgs e)
     {
         Response.Redirect("Products.aspx");
+    }
+
+    private void loadSession()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        //lblUser.Text = userDto.username;
+
+    }
+
+    private void loadInactiveProducts()
+    {
+        GridView1.DataSource = products.populateInactiveProducts();
+        GridView1.DataBind();
     }
 }
