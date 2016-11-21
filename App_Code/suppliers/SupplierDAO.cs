@@ -55,4 +55,17 @@ public class SupplierDAO
 
         return updateSupplier;
     }
+
+    public DataTable populateGrid()
+    {
+        DataTable supplier = new DataTable();
+        string query = "select * from suppliers";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(supplier);
+        da.Dispose();
+        con.Close();
+        return supplier;
+    }
 }
