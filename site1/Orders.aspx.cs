@@ -39,7 +39,7 @@ public partial class site1_Orders : System.Web.UI.Page
     }
     protected void TextBox1_TextChanged(object sender, EventArgs e)
     {
-        GridView1.DataBind();
+        populateGrid();
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
