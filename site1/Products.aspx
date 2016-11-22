@@ -55,7 +55,6 @@
             <asp:GridView ID="gridView1" runat="server" AutoGenerateColumns="False"  CellPadding="4" DataKeyNames="Id" Align="Center" ForeColor="#333333" Width="785px" AllowSorting="True" Height="72px" HorizontalAlign="Justify">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
                     <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" InsertVisible="False" />
                     <asp:BoundField DataField="ProductName" HeaderText="ProductName" SortExpression="ProductName" />
                     <asp:BoundField DataField="ProductDescription" HeaderText="ProductDescription" SortExpression="ProductDescription" />
