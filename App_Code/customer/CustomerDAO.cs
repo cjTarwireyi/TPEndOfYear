@@ -19,7 +19,6 @@ public class CustomerDAO
 
     public void saveCustomer(CustomerDTO custDTO)
     {
-
         con.Open();
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandType = CommandType.Text;
@@ -83,5 +82,15 @@ public class CustomerDAO
         da.Dispose();
         con.Close();
         return customers;
+    }
+
+    public void deleteCustomer(string id)
+    {
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "delete * from customers where customerID = '"+id+"' ";
+        cmd.ExecuteNonQuery();
+        con.Close();
     }
 }
