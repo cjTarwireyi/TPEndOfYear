@@ -39,9 +39,8 @@
                     ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
                     OldValuesParameterFormatString="original_{0}"
                     SelectCommand="SELECT * FROM [Customers]"></asp:SqlDataSource>--%>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="63px" Width="724px" AllowSorting="True">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="144px" Width="1021px" AllowSorting="True" GridLines="Vertical">
                     <Columns>
-                        <asp:CommandField ShowSelectButton="True" />
                         <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" InsertVisible="False" ReadOnly="True" SortExpression="CustomerID" />
                         <asp:BoundField DataField="CustomerName" HeaderText="CustomerName" SortExpression="CustomerName" />
                         <asp:BoundField DataField="CustomerSurname" HeaderText="CustomerSurname" SortExpression="CustomerSurname" />
