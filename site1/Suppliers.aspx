@@ -75,7 +75,7 @@
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="SupplierID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="797px">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+                    
                     <asp:BoundField DataField="SupplierID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="SupplierID" />
                     <asp:BoundField DataField="SupplierName" HeaderText="Name" SortExpression="SupplierName" />
                     <asp:BoundField DataField="SupplierSurname" HeaderText="Surname" SortExpression="SupplierSurname" />
