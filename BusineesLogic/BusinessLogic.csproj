@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1BD12CE1-391A-4294-8BD7-61389165291D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BusineesLogic</RootNamespace>
+    <AssemblyName>BusineesLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="domain\accounts\AccountDTO.cs" />
+    <Compile Include="domain\address\Address.cs" />
+    <Compile Include="domain\brand\BrandDTO.cs" />
+    <Compile Include="domain\category\CategoryDTO.cs" />
+    <Compile Include="domain\customer\CustomerDAO.cs" />
+    <Compile Include="domain\customer\CustomerDTO.cs" />
+    <Compile Include="domain\employees\EmployeeDAO.cs" />
+    <Compile Include="domain\employees\EmployeeDTO.cs" />
+    <Compile Include="domain\formular\FormularDTO.cs" />
+    <Compile Include="domain\LoginCredentials.cs" />
+    <Compile Include="domain\OrderLine\InterfaceOrderLine.cs" />
+    <Compile Include="domain\OrderLine\OrderLineDAO.cs" />
+    <Compile Include="domain\OrderLine\OrderLineDTO.cs" />
+    <Compile Include="domain\Orders\InterfaceOder.cs" />
+    <Compile Include="domain\Orders\OrderDTO.cs" />
+    <Compile Include="domain\Orders\OrderFacade.cs" />
+    <Compile Include="domain\Orders\OrdersDAO.cs" />
+    <Compile Include="domain\payRole\PayRoleDTO.cs" />
+    <Compile Include="domain\products\ProductDAO.cs" />
+    <Compile Include="domain\products\Products.cs" />
+    <Compile Include="domain\suppliers\SupplierDAO.cs" />
+    <Compile Include="domain\suppliers\SupplierDTO.cs" />
+    <Compile Include="domain\User\RoleDTO.cs" />
+    <Compile Include="domain\User\UserDAO.cs" />
+    <Compile Include="domain\User\UserDTO.cs" />
+    <Compile Include="domain\User\UserFacade.cs" />
+    <Compile Include="domain\User\UserTypeDAO.cs" />
+    <Compile Include="domain\User\UserTypeDTO.cs" />
+    <Compile Include="domain\User\UserTypeFacade.cs" />
+    <Compile Include="factories\customer\CustomerFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
