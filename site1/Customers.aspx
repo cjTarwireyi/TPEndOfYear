@@ -39,7 +39,7 @@
                     ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
                     OldValuesParameterFormatString="original_{0}"
                     SelectCommand="SELECT * FROM [Customers]"></asp:SqlDataSource>--%>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="144px" Width="1021px" AllowSorting="True" GridLines="Vertical">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="144px" Width="1021px" AllowSorting="True" GridLines="Vertical" OnRowDeleting="GridView1_RowDeleting">
                     <Columns>
                         <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" InsertVisible="False" ReadOnly="True" SortExpression="CustomerID" />
                         <asp:BoundField DataField="CustomerName" HeaderText="CustomerName" SortExpression="CustomerName" />

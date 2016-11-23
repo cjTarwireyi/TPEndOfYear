@@ -89,8 +89,10 @@ public class CustomerDAO
         con.Open();
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandType = CommandType.Text;
-        cmd.CommandText = "delete * from customers where customerID = '"+id+"' ";
+        cmd.CommandText = "delete from customers where customerID = '"+id+"' ";
         cmd.ExecuteNonQuery();
         con.Close();
     }
+
+    
 }
