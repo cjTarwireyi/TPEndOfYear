@@ -10,6 +10,17 @@ namespace UnitTesting
         [TestMethod]
         public void TestMethod1()
         {
+            CustomerDTO customer = new CustomerDTO.CustomerBuilder()
+           .custNumber(1)
+           .custName("Shireen")
+           .custSurname("Wilkinson")
+           .custCellNumber("")
+           .custEmail("")
+           .custAddress("","","")
+           .accountCreatedDate("")
+           .build();
+
+            Assert.AreEqual(customer.name, "Shireen");
         }
     }
 }
