@@ -17,7 +17,8 @@ public partial class site1_customer_Customers : System.Web.UI.Page
        // GridView1.Columns[1].Visible = false;
         session();
         accessRights();
-        loadCustomers();
+        if(!IsPostBack)
+            loadCustomers();
         
     }
     protected void Register_Click(object sender, EventArgs e)
@@ -43,7 +44,7 @@ public partial class site1_customer_Customers : System.Web.UI.Page
     }
 
     private void loadCustomers()
-    {
+    { 
         GridView1.DataSource = customer.populateGrid();
         GridView1.DataBind();
     }
@@ -82,5 +83,45 @@ public partial class site1_customer_Customers : System.Web.UI.Page
     private void ExceptionRedirect(Exception ex)
     {
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
+    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {  
+        try
+        {
+            List<string> customerDetails = new List<string>();
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
+            customerDetails.Add(((TextBox)row.Cells[2].Controls[0]).Text); //name
+            customerDetails.Add(((TextBox)row.Cells[3].Controls[0]).Text); //surname
+            customerDetails.Add(((TextBox)row.Cells[4].Controls[0]).Text); //cell number
+            customerDetails.Add(((TextBox)row.Cells[5].Controls[0]).Text); //email
+            customerDetails.Add(((TextBox)row.Cells[6].Controls[0]).Text); //streetname
+            customerDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //suburb
+            customerDetails.Add(((TextBox)row.Cells[8].Controls[0]).Text); //postal code
+            customer.updateCustomer(id,customerDetails);
+
+            GridView1.EditIndex = -1;
+            loadCustomers();
+        }
+        catch (Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
+    }
+
+
+    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        GridView1.EditIndex = e.NewEditIndex;
+        loadCustomers();
+    }
+    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        GridView1.EditIndex = -1;
+        loadCustomers();
+    }
+    protected void GridView1_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    {
+       
     }
 }
