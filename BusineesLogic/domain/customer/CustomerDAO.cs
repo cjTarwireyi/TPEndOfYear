@@ -28,18 +28,15 @@ public class CustomerDAO
     }
     public CustomerDTO makeCustDTO(SqlDataReader myDR)
     {
-        CustomerDTO customer = new CustomerDTO();
-        customer.customerNumber = myDR.GetInt32(0);
-        customer.name = myDR.GetString(1);
-        customer.surname = myDR.GetString(2);
-        customer.cellNumber = myDR.GetString(3);
-        customer.email = myDR.GetString(4);
-        customer.postalCode = myDR.GetString(5);
-        customer.StreetName = myDR.GetString(6);
-        customer.Suburb = myDR.GetString(7);
-        customer.dateAccountCreated = myDR.GetString(8);
-
-        //booking.Hours = myDR.GetInt32(8);
+        CustomerDTO customer = new CustomerDTO.CustomerBuilder()
+            .custNumber(myDR.GetInt32(0))
+            .custName(myDR.GetString(1))
+            .custSurname(myDR.GetString(2))
+            .custCellNumber(myDR.GetString(3))
+            .custEmail(myDR.GetString(4))
+            .custAddress(myDR.GetString(5), myDR.GetString(6), myDR.GetString(7))
+            .accountCreatedDate(myDR.GetString(8))
+            .build();
         return customer;
     }
 
@@ -99,7 +96,7 @@ public class CustomerDAO
         con.Open();
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandType = CommandType.Text;
-        cmd.CommandText = "update customers set CustomerName ='" + customer[0] + "', CustomerSurname='" + customer[1] + "',CustomerCellNumber='" + customer[2] + "',CustomerEmail='" + customer[3] + "', CustomerStreetName ='" + customer[4] + "',CustomerSuburb='" + customer[5] + "',CustomerPostalCode='" + customer[7] +"' where CustomerID = '"+id+"' ";
+        cmd.CommandText = "update customers set CustomerName ='" + customer[0] + "', CustomerSurname='" + customer[1] + "',CustomerCellNumber='" + customer[2] + "',CustomerEmail='" + customer[3] + "', CustomerStreetName ='" + customer[4] + "',CustomerSuburb='" + customer[5] + "',CustomerPostalCode='" + customer[6] +"' where CustomerID = '"+id+"' ";
         cmd.ExecuteNonQuery();
         con.Close();
     }
