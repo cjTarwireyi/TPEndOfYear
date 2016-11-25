@@ -12,7 +12,9 @@ using System;
 /// </summary>
 public class UserDAO
 {
-    SqlConnection con;
+    private SqlConnection con;
+    private UserDTO user = new UserDTO();
+    private UserTypeDTO usertypeDto = new UserTypeDTO();
     public UserDAO()
     {
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
@@ -29,35 +31,19 @@ public class UserDAO
     public UserDTO getUser(string username, string password)
     {
         var found = new UserDTO();
-        try
+        con.Open();
+        UserFacade userFacade = new UserFacade();
+        string checkTechnician = "SELECT * FROM Users a INNER JOIN UserType b ON a.userTypeId = b.userTypeId where userName='" + username + "' AND pass ='" + password + "'";
+        SqlCommand cmd = new SqlCommand(checkTechnician, con);
+        SqlDataReader reader = cmd.ExecuteReader();
+        if (reader.Read())
         {
-            con.Open();
-            UserFacade userFacade = new UserFacade();
-            string checkTechnician = "SELECT * FROM Users a INNER JOIN UserType b ON a.userTypeId = b.userTypeId where userName='" + username + "' AND pass ='" + password + "'";
-            //string checkTechnician = "SELECT * FROM user_types";
-            SqlCommand cmd = new SqlCommand(checkTechnician, con);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
-            {
 
-                found = makeDTO(reader);
-
-            }
-            //else
-            //{
-            //  found =makeDTO(re null; 
-
-            //}
-            con.Close();
-        }catch(Exception ex){
+            found = makeDTO(reader);
 
         }
-        finally{
-            con.Close();
-        }
-         return found;
-       
-        
+        con.Close();
+        return found;
     }
 
     public bool ifUserExist(string username)
@@ -65,7 +51,6 @@ public class UserDAO
         con.Open();
         bool found;
         UserFacade userFacade = new UserFacade();
-
         string checkTechnician = "SELECT * FROM Users  where userName = '" + username + "' ";
         SqlCommand cmd = new SqlCommand(checkTechnician, con);
         SqlDataReader reader = cmd.ExecuteReader();
@@ -105,8 +90,6 @@ public class UserDAO
     }
     public bool addUser(UserDTO model)
     {
-
-
         con.Open();
         string insertQuery = "INSERT INTO Users (userName,pass,userTypeId) VALUES (@username,@pass,@userTypeId)";
         SqlCommand cmd = new SqlCommand(insertQuery, con);
@@ -114,7 +97,6 @@ public class UserDAO
         //cmd.Parameters.AddWithValue("@name",FullName.Text);
         cmd.Parameters.AddWithValue("@pass", model.password);
         cmd.Parameters.AddWithValue("@userTypeId", model.userType);
-
 
         int n = cmd.ExecuteNonQuery();
         if (n > 0)
@@ -179,9 +161,7 @@ public class UserDAO
     }
     public UserDTO makeDTO(SqlDataReader reader)
     {
-        UserDTO user = new UserDTO();
-        UserTypeDTO usertypeDto = new UserTypeDTO();
-        UserDAO userDao = new UserDAO();
+       
         // SqlDataReader reader = userDao.getUser(name, username);
         if (reader.HasRows == true)
         {
