@@ -6,8 +6,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-//using iTextSharp.text;
-//using iTextSharp.text.pdf;
+using iTextSharp.text;
+using  iTextSharp.text.pdf;
+
 
 
 public partial class site1_PaymentSlip : System.Web.UI.Page
