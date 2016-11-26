@@ -107,7 +107,6 @@ public class CustomerDTO
             return this;
         }
 
-
         public CustomerDTO build()
         {
             return new CustomerDTO(this);
