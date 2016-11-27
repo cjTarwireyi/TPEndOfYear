@@ -10,6 +10,7 @@ public class UserDTO
 {
      public UserDTO(UserBuilder userBuilder)
      {
+         this.Id = userBuilder.id;
          this.username = userBuilder.userName;
          this.password = userBuilder.password;
          this.userTypeId = userBuilder.usertypeId;
@@ -39,6 +40,13 @@ public class UserDTO
         public string password;
         public int usertypeId;
         public string userTypeName;
+        public int id;
+
+        public UserBuilder buildId(int id)
+        {
+            this.id = id;
+            return this;
+        }
         public UserBuilder buildUsername(string userName)
         {
             this.userName = userName;
@@ -61,6 +69,7 @@ public class UserDTO
         }
         public UserBuilder copy(UserDTO user)
         {
+            this.id = user.Id;
             this.userName=user.username;
             this.password = user.password;
             this.usertypeId = user.userTypeId;
