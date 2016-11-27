@@ -6,11 +6,11 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System;
-
+using BusineesLogic.Interface;
 /// <summary>
 /// Summary description for Service
 /// </summary>
-public class UserDAO
+public class UserDAO:IUser
 {
     private SqlConnection con;
     private UserDTO user = new UserDTO();
@@ -18,11 +18,7 @@ public class UserDAO
     public UserDAO()
     {
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
-        //<<<<<<< HEAD
-        // con.Open();
-        //=======
-
-        //>>>>>>> eeb918ba7fff5df47653ba169177ee8bbfa9e088
+         
     }
     public List<UserDTO> getUsers()
     {
@@ -110,14 +106,7 @@ public class UserDAO
             return false;
         }
 
-        ;
-
-
-
-
-
-
-    }
+       }
     public bool UpdateUser(UserDTO model)
     {
         con.Open();
