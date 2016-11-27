@@ -58,7 +58,7 @@
     <Compile Include="domain\orderLine\InterfaceOrderLine.cs" />
     <Compile Include="domain\orderLine\OrderLineDAO.cs" />
     <Compile Include="domain\orderLine\OrderLineDTO.cs" />
-    <Compile Include="domain\orders\InterfaceOder.cs" />
+    <Compile Include="Interface\IOder.cs" />
     <Compile Include="domain\orders\OrderDTO.cs" />
     <Compile Include="domain\orders\OrderFacade.cs" />
     <Compile Include="domain\orders\OrdersDAO.cs" />
@@ -75,6 +75,7 @@
     <Compile Include="domain\User\UserTypeDTO.cs" />
     <Compile Include="domain\User\UserTypeFacade.cs" />
     <Compile Include="factories\customer\CustomerFactory.cs" />
+    <Compile Include="Interface\IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

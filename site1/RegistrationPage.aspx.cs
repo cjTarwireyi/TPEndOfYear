@@ -112,7 +112,7 @@ public partial class RegistrationPage : System.Web.UI.Page
                         }
                     }
                     else
-                    {
+                    {//ADDING USER
                         if (userFacade.userExist(Username.Text) == false && lblTitle.Text != "User Update")
                         {
 
