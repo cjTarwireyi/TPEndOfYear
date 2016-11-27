@@ -59,7 +59,7 @@ public partial class RegistrationPage : System.Web.UI.Page
          
         //control.Visible = false;
         //loginControl.Text = "Logged in as " + userDto.username + "Logout";
-        if (userDto.userTypeDto.name.Trim() == "Admin")
+        if (userDto.userTypeName.Trim() == "Admin")
         {
           //  control.Visible = true;
         }

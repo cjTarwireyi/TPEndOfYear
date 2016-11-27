@@ -37,7 +37,7 @@ public partial class site1_Users : System.Web.UI.Page
         //}
 
 
-        if (userDto.userTypeDto.name.Trim() == "Admin")
+        if (userDto.userTypeName.Trim() == "Admin")
         {
             //control.Visible = true;
             //regUser.Visible = true;

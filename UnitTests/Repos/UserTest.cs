@@ -22,7 +22,7 @@ namespace UnitTests.Repos
             //Initalising new user
             userDto.username=username;
             userDto.password = password;
-            userDto.userType =1;
+            userDto.userTypeId =1;
             user.addUser(userDto);
             //Searching for Added User
             addeUser =   user.getUser(username, password);
@@ -33,12 +33,12 @@ namespace UnitTests.Repos
             updateUser.Id = addeUser.Id;
             updateUser.username = "cj";
             updateUser.password = addeUser.password;
-            updateUser.userType = 2;
+            updateUser.userTypeId = 2;
             user.UpdateUser(updateUser);
             modifiedUser = user.getUser("cj", addeUser.password);
             Assert.AreEqual("cj", modifiedUser.username.Trim());
             Assert.AreEqual(password, modifiedUser.password.Trim());
-            Assert.AreEqual(2, modifiedUser.userTypeDto.Id);
+            Assert.AreEqual(2, modifiedUser.userTypeId);
 
             //TESTING DELETE
             existingUser = user.getUser("cj", password);
