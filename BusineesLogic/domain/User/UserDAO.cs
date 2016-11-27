@@ -93,7 +93,7 @@ public class UserDAO:IUser
         cmd.Parameters.AddWithValue("@username", model.username);
         //cmd.Parameters.AddWithValue("@name",FullName.Text);
         cmd.Parameters.AddWithValue("@pass", model.password);
-        cmd.Parameters.AddWithValue("@userTypeId", model.userType);
+        cmd.Parameters.AddWithValue("@userTypeId", model.userTypeId);
 
         int n = cmd.ExecuteNonQuery();
         if (n > 0)
@@ -117,7 +117,7 @@ public class UserDAO:IUser
         cmd.Parameters.AddWithValue("@username", model.username);
 
         cmd.Parameters.AddWithValue("@pass", model.password);
-        cmd.Parameters.AddWithValue("@userTypeId", model.userType);
+        cmd.Parameters.AddWithValue("@userTypeId", model.userTypeId);
         int n = cmd.ExecuteNonQuery();
         if (n > 0)
         {
@@ -161,7 +161,7 @@ public class UserDAO:IUser
             //
             usertypeDto.Id = reader.GetInt32(3);
             usertypeDto.name = reader.GetString(5);
-            user.userTypeDto = usertypeDto;
+            user.userTypeId = usertypeDto.Id;
         }
 
         return user;

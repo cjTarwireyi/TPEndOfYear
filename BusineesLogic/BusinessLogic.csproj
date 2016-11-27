@@ -58,6 +58,7 @@
     <Compile Include="domain\orderLine\InterfaceOrderLine.cs" />
     <Compile Include="domain\orderLine\OrderLineDAO.cs" />
     <Compile Include="domain\orderLine\OrderLineDTO.cs" />
+    <Compile Include="factories\UserFactory.cs" />
     <Compile Include="Interface\IOder.cs" />
     <Compile Include="domain\orders\OrderDTO.cs" />
     <Compile Include="domain\orders\OrderFacade.cs" />

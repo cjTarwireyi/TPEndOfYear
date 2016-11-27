@@ -12,7 +12,12 @@ public class UserDTO
      {
          this.username = userBuilder.userName;
          this.password = userBuilder.password;
-         this.userTypeDto = userBuilder.userTypeDto;
+         this.userTypeId = userBuilder.usertypeId;
+         this.userTypeName = userBuilder.userTypeName;
+     }
+     public UserDTO()
+     {
+
      }
     public int Id { get; set; }
     public string username { get; set; }
@@ -22,8 +27,9 @@ public class UserDTO
     public string email { get; set; }
     public string password { get; set; }   
     
-    public int userType { get; set; }
-    public  UserTypeDTO userTypeDto  { get ; set; }
+    public int userTypeId { get; set; }
+     
+    public  string userTypeName  { get ; set; }
 
     public class UserBuilder
     {
@@ -31,7 +37,8 @@ public class UserDTO
         public string contact;
         public string email;
         public string password;
-        public UserTypeDTO userTypeDto;
+        public int usertypeId;
+        public string userTypeName;
         public UserBuilder buildUsername(string userName)
         {
             this.userName = userName;
@@ -42,16 +49,22 @@ public class UserDTO
             this.password = pass;
             return this;
         }
-        public UserBuilder builduserType(UserTypeDTO userType)
+        public UserBuilder buldUsertypeId(int usertypeId)
         {
-            this.userTypeDto = userType;
+            this.usertypeId = usertypeId;
+            return this;
+        }
+        public UserBuilder builduserType(string userTypeName)
+        {
+            this.userTypeName = userTypeName;
             return this;
         }
         public UserBuilder copy(UserDTO user)
         {
             this.userName=user.username;
             this.password = user.password;
-            this.userTypeDto = user.userTypeDto;
+            this.usertypeId = user.userTypeId;
+            this.userTypeName = user.userTypeName;
             return this;
                 
         }

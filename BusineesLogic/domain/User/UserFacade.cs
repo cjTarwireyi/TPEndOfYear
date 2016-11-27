@@ -41,7 +41,7 @@ public class UserFacade
         userDto.username =  username; 
         userDto.password = pass ;
         //
-        userDto.userType = userTypeId;
+        userDto.userTypeId = userTypeId;
         bool flag = userDao.addUser(userDto);
         if (flag==true){
             return "successfully Added";
@@ -63,7 +63,7 @@ public class UserFacade
         }
         userDto.username = username;
         
-        userDto.userType = userTypeId;
+        userDto.userTypeId = userTypeId;
         userDto.Id = id;
         bool flag = userDao.UpdateUser(userDto);
         if (flag == true)
