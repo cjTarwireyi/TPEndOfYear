@@ -14,4 +14,4 @@ public interface IOder
       OrderDTO getLastReocrd();
       OrderDTO getOrder(int id);
        
-}
+} 

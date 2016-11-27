@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusineesLogic.Interface;
+using BusineesLogic.factories;
 namespace UnitTests.Repos
 {
     [TestClass]
@@ -11,18 +12,13 @@ namespace UnitTests.Repos
         {
             
             IUser user = new UserDAO() ;
-            UserDTO deletedUser,userDto = new UserDTO();
-            UserDTO updateUser = new UserDTO();
-            UserDTO addeUser,existingUser,modifiedUser = new UserDTO();
+            UserDTO deletedUser,  addeUser = new UserDTO();
+
+            UserDTO existingUser,modifiedUser = new UserDTO();
             string username = "test";
             string password ="pass";
+            UserDTO userDto = UserFactory.createUser(username, password, 1);       
 
-           
-
-            //Initalising new user
-            userDto.username=username;
-            userDto.password = password;
-            userDto.userTypeId =1;
             user.addUser(userDto);
             //Searching for Added User
             addeUser =   user.getUser(username, password);
@@ -30,11 +26,14 @@ namespace UnitTests.Repos
             Assert.AreEqual(password,addeUser.password.Trim() );
 
             //TESTING UPDATE
-            updateUser.Id = addeUser.Id;
-            updateUser.username = "cj";
-            updateUser.password = addeUser.password;
-            updateUser.userTypeId = 2;
+            UserDTO updateUser = new UserDTO.UserBuilder()
+            .copy(addeUser)
+            .buildUsername("cj")
+            .buldUsertypeId(2)
+            .build();
+            
             user.UpdateUser(updateUser);
+
             modifiedUser = user.getUser("cj", addeUser.password);
             Assert.AreEqual("cj", modifiedUser.username.Trim());
             Assert.AreEqual(password, modifiedUser.password.Trim());
