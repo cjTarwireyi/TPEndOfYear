@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.factories
 {
-    class UserFactory
+    public class UserFactory
     {
-        public static UserDTO getUser(string username,string pass, int usertypeId)
+        public static UserDTO createUser(string username,string pass, int usertypeId)
         {
             return new UserDTO.UserBuilder()
             .buildUsername(username)
