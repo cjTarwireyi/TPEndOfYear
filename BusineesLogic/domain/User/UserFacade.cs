@@ -36,12 +36,12 @@ public class UserFacade
     public string makeUser(string username, string pass, int userTypeId)
 
     {
-      
-        //userDto.Id =  
-        userDto.username =  username; 
-        userDto.password = pass ;
-        //
-        userDto.userTypeId = userTypeId;
+        userDto = new UserDTO.UserBuilder()
+        .buildUsername(username)
+        .buildPassword(pass)
+        .buldUsertypeId(userTypeId)
+        .build();
+        
         bool flag = userDao.addUser(userDto);
         if (flag==true){
             return "successfully Added";
