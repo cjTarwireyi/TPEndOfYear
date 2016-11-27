@@ -6,7 +6,7 @@ using System.Web;
 /// <summary>
 /// Summary description for InterfaceOder
 /// </summary>
-public interface InterfaceOder
+public interface IOder
 {
       int AddOrder(OrderDTO model);
       bool UpdateOrder(OrderDTO model);
