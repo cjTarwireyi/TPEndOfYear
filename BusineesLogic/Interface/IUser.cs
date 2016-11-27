@@ -13,6 +13,7 @@ namespace BusineesLogic.Interface
        int getUserId(string username);
        bool addUser(UserDTO model);
        bool UpdateUser(UserDTO model);
+       bool Delete(int id);
     }
  
 }
