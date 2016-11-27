@@ -11,15 +11,13 @@ namespace UnitTests.Repos
         {
             
             IUser user = new UserDAO() ;
-            UserDTO userDto = new UserDTO();
+            UserDTO deletedUser,userDto = new UserDTO();
             UserDTO updateUser = new UserDTO();
             UserDTO addeUser,existingUser,modifiedUser = new UserDTO();
             string username = "test";
             string password ="pass";
 
-            //Deleting test Data
-            existingUser = user.getUser(username, password);
-            user.Delete(existingUser.Id);
+           
 
             //Initalising new user
             userDto.username=username;
@@ -41,6 +39,15 @@ namespace UnitTests.Repos
             Assert.AreEqual("cj", modifiedUser.username.Trim());
             Assert.AreEqual(password, modifiedUser.password.Trim());
             Assert.AreEqual(2, modifiedUser.userTypeDto.Id);
+
+            //TESTING DELETE
+            existingUser = user.getUser("cj", password);
+            user.Delete(existingUser.Id);
+            deletedUser = user.getUser("cj", password);
+            Assert.IsNull(deletedUser.username);
+            Assert.IsNull(deletedUser.password);
+
+
         }
  
       

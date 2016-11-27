@@ -38,6 +38,7 @@ public class UserDAO:IUser
             found = makeDTO(reader);
 
         }
+
         con.Close();
         return found;
     }
