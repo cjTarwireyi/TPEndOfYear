@@ -19,39 +19,55 @@ public class CustomerDAO
 
     public void saveCustomer(CustomerDTO custDTO)
     {
-        con.Open();
-        SqlCommand cmd = con.CreateCommand();
-        cmd.CommandType = CommandType.Text;
-        cmd.CommandText = "insert into Customers ([CustomerName],[CustomerSurname],[CustomerCellNumber],[CustomerEmail],[CustomerStreetName],[CustomerSuburb],[CustomerPostalCode],[DateAccountCreated]) values('" + custDTO.name + "','" + custDTO.surname + "','" + custDTO.cellNumber + "','" + custDTO.email + "','" + custDTO.StreetName + "','" + custDTO.Suburb + "','" + custDTO.postalCode + "','" + DateTime.Now + "" + "')";
-        cmd.ExecuteNonQuery();
-        con.Close();
+        try
+        {
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "insert into Customers ([CustomerName],[CustomerSurname],[CustomerCellNumber],[CustomerEmail],[CustomerStreetName],[CustomerSuburb],[CustomerPostalCode],[DateAccountCreated]) values('" + custDTO.name + "','" + custDTO.surname + "','" + custDTO.cellNumber + "','" + custDTO.email + "','" + custDTO.StreetName + "','" + custDTO.Suburb + "','" + custDTO.postalCode + "','" + DateTime.Now + "" + "')";
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        catch (Exception e)
+        {
+
+        }
+        
     }
     public CustomerDTO makeCustDTO(SqlDataReader myDR)
     {
         CustomerDTO customer = new CustomerDTO.CustomerBuilder()
             .custNumber(myDR.GetInt32(0))
-            .custName(myDR.GetString(1))
-            .custSurname(myDR.GetString(2))
-            .custCellNumber(myDR.GetString(3))
-            .custEmail(myDR.GetString(4))
-            .custAddress(myDR.GetString(5), myDR.GetString(6), myDR.GetString(7))
-            .accountCreatedDate(myDR.GetString(8))
+           .custName(myDR.GetString(1))
+           // .custSurname(myDR.GetString(2))
+           // .custCellNumber(myDR.GetString(3))
+            //.custEmail(myDR.GetString(4))
+            //.custAddress(myDR.GetString(5), myDR.GetString(6), myDR.GetString(7))
+            //.accountCreatedDate(myDR.GetString(8))
             .build();
         return customer;
     }
 
     public CustomerDTO getCustomerID(int number)
     {
-        con.Open();
-        String selectCustomer = "select * from Customers where CustomerID =" + number + " ";
-        SqlCommand myComm = new SqlCommand(selectCustomer, con);
-        SqlDataReader myDR;
-        myDR = myComm.ExecuteReader();
-        if (!myDR.Read())
+        try
+        {
+            con.Open();
+            String selectCustomer = "select * from Customers where CustomerID =" + number + " ";
+            SqlCommand myComm = new SqlCommand(selectCustomer, con);
+            SqlDataReader myDR;
+            myDR = myComm.ExecuteReader();
+            if (!myDR.Read())
+                return null;
+            CustomerDTO updateCustomer = makeCustDTO(myDR);
+            con.Close();
+            return updateCustomer;
+        }
+        catch (Exception e)
+        {
             return null;
-        CustomerDTO updateCustomer = makeCustDTO(myDR);
-        con.Close();
-        return updateCustomer;
+        }
+        
     }
 
     public CustomerDTO getLastReocrd()//last customer
