@@ -29,8 +29,8 @@ public class UserDAO:IUser
         var found = new UserDTO();
         con.Open();
         UserFacade userFacade = new UserFacade();
-        string checkTechnician = "SELECT * FROM Users a INNER JOIN UserType b ON a.userTypeId = b.userTypeId where userName='" + username + "' AND pass ='" + password + "'";
-        SqlCommand cmd = new SqlCommand(checkTechnician, con);
+        string userQuerry = "SELECT * FROM Users a INNER JOIN UserType b ON a.userTypeId = b.userTypeId where userName='" + username + "' AND pass ='" + password + "'";
+        SqlCommand cmd = new SqlCommand(userQuerry, con);
         SqlDataReader reader = cmd.ExecuteReader();
         if (reader.Read())
         {
