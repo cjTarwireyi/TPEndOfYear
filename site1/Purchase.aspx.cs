@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Drawing;
+using BusineesLogic.Interface;
 
 public partial class site1_Purchase : System.Web.UI.Page
 {
@@ -181,9 +182,11 @@ public partial class site1_Purchase : System.Web.UI.Page
             amt += facade.findProduct(product.productNumber).price * product.productQuantity;
             order.orderItems.Add(product);
         }
-        //lastRecord = accessOrders.getLastReocrd();
+        //lastRecord= accessOrders.getLastReocrd();
         //customer = accessCustomer.getCustomerID(lastRecord.customerId);
-        order.employeeId =3;
+        userDto = (UserDTO)Session["userDto"];
+ 
+        order.employeeId =userDto.Id;
         order.amount = amt;
         order.payed = false;
         order.customerId = Convert.ToInt32(txtCustomerID.Text);

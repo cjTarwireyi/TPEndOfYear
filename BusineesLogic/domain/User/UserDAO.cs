@@ -66,7 +66,7 @@ public class UserDAO:IUser
         return found;
 
     }
-    public int getUserId(string username)
+    public int getUserTypeId(string username)
     {
         con.Open();
 
