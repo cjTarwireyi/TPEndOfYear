@@ -55,13 +55,13 @@
     <Compile Include="domain\employees\EmployeeDTO.cs" />
     <Compile Include="domain\formular\FormularDTO.cs" />
     <Compile Include="domain\LoginCredentials.cs" />
-    <Compile Include="domain\OrderLine\InterfaceOrderLine.cs" />
-    <Compile Include="domain\OrderLine\OrderLineDAO.cs" />
-    <Compile Include="domain\OrderLine\OrderLineDTO.cs" />
-    <Compile Include="domain\Orders\InterfaceOder.cs" />
-    <Compile Include="domain\Orders\OrderDTO.cs" />
-    <Compile Include="domain\Orders\OrderFacade.cs" />
-    <Compile Include="domain\Orders\OrdersDAO.cs" />
+    <Compile Include="domain\orderLine\InterfaceOrderLine.cs" />
+    <Compile Include="domain\orderLine\OrderLineDAO.cs" />
+    <Compile Include="domain\orderLine\OrderLineDTO.cs" />
+    <Compile Include="domain\orders\InterfaceOder.cs" />
+    <Compile Include="domain\orders\OrderDTO.cs" />
+    <Compile Include="domain\orders\OrderFacade.cs" />
+    <Compile Include="domain\orders\OrdersDAO.cs" />
     <Compile Include="domain\payRole\PayRoleDTO.cs" />
     <Compile Include="domain\products\ProductDAO.cs" />
     <Compile Include="domain\products\Products.cs" />
@@ -79,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="domain\department\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
