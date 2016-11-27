@@ -14,6 +14,7 @@ namespace BusineesLogic.factories
         {
             return new OrderDTO.OrderBuilder()
             .buildEmpId(empId)
+            .buildCustId(custId)
             .buildAmount(amount)
             .buildPayed(payed)
             .buildProducts(products)

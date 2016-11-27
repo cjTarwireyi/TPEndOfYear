@@ -112,7 +112,7 @@ public class OrdersDAO : IOder
 
     }
 
-    public OrderDTO getLastReocrd()//last customer
+    public OrderDTO getLastReocrd()
     {
         OrderDTO order = new OrderDTO();
         con.Open();

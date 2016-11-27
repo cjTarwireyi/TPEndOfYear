@@ -54,6 +54,7 @@
     <Compile Include="factories\TestUser.cs" />
     <Compile Include="factories\TestOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos\OrderTest.cs" />
     <Compile Include="Repos\UserTest.cs" />
     <Compile Include="UnitTest1.cs" />
   </ItemGroup>
