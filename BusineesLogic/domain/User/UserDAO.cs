@@ -162,6 +162,7 @@ public class UserDAO:IUser
             usertypeDto.Id = reader.GetInt32(3);
             usertypeDto.name = reader.GetString(5);
             user.userTypeId = usertypeDto.Id;
+            user.userTypeName = usertypeDto.name;
         }
 
         return user;
