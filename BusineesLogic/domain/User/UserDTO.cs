@@ -8,7 +8,12 @@ using System.Web;
 /// </summary>
 public class UserDTO
 {
-     
+     public UserDTO(UserBuilder userBuilder)
+     {
+         this.username = userBuilder.userName;
+         this.password = userBuilder.password;
+         this.userTypeDto = userBuilder.userTypeDto;
+     }
     public int Id { get; set; }
     public string username { get; set; }
     public string name { get; set; }
@@ -22,11 +27,11 @@ public class UserDTO
 
     public class UserBuilder
     {
-        string userName;
-        string contact;
-        string email;
-        string password;
-        UserTypeDTO userTypeDto;
+        public string userName;
+        public string contact;
+        public string email;
+        public string password;
+        public UserTypeDTO userTypeDto;
         public UserBuilder buildUsername(string userName)
         {
             this.userName = userName;
@@ -42,7 +47,22 @@ public class UserDTO
             this.userTypeDto = userType;
             return this;
         }
+        public UserBuilder copy(UserDTO user)
+        {
+            this.userName=user.username;
+            this.password = user.password;
+            this.userTypeDto = user.userTypeDto;
+            return this;
+                
+        }
+        public UserDTO build()
+        {
+            return new UserDTO(this);
+        }
     }
 
 
-}
+        
+    }
+
+
