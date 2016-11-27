@@ -9,7 +9,7 @@ using System.Web;
 /// <summary>
 /// Summary description for Orders
 /// </summary>
-public class OrdersDAO : InterfaceOder
+public class OrdersDAO : IOder
 {
     private SqlConnection con;
 

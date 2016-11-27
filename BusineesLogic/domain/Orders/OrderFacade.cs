@@ -9,7 +9,8 @@ using System.Web;
 public class OrderFacade
 {
     InterfaceOrderLine orderLineservice;
-    InterfaceOder orderService;
+    IOder orderService;
+    
     OrderLineDTO orderLineDTO;
     ProductDAO product;
     CustomerDAO cust;
