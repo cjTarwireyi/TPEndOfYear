@@ -125,7 +125,7 @@ public class OrdersDAO : InterfaceOder
         order.orderId = myDR.GetInt32(0);
         order.customerId = myDR.GetInt32(1);
         order.payed = myDR.GetBoolean(2);
-        order.amount = myDR.GetInt32(3);
+        order.amount = myDR.GetDecimal(3);
         order.orderDate = myDR.GetDateTime(4);
         order.employeeId = myDR.GetInt32(5);
         //ordercode missing 
