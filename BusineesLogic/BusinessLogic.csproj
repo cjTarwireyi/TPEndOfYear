@@ -55,7 +55,7 @@
     <Compile Include="domain\employees\EmployeeDTO.cs" />
     <Compile Include="domain\formular\FormularDTO.cs" />
     <Compile Include="domain\LoginCredentials.cs" />
-    <Compile Include="Interface\InterfaceOrderLine.cs" />
+    <Compile Include="Interface\IOrderLine.cs" />
     <Compile Include="domain\orderLine\OrderLineDAO.cs" />
     <Compile Include="domain\orderLine\OrderLineDTO.cs" />
     <Compile Include="factories\OrderFactory.cs" />
