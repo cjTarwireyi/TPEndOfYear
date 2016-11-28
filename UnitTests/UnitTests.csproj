@@ -50,9 +50,12 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="factories\TestCustomer.cs" />
+    <Compile Include="factories\customers\TestCustomer.cs" />
+    <Compile Include="factories\employee\TestEmployee.cs" />
+    <Compile Include="factories\supplier\TestSupplier.cs" />
     <Compile Include="factories\TestUser.cs" />
     <Compile Include="factories\TestOrder.cs" />
+    <Compile Include="factories\products\TestProducts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\OrderTest.cs" />
     <Compile Include="Repos\UserTest.cs" />
