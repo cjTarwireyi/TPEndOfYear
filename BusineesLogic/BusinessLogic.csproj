@@ -45,14 +45,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="domain\accounts\AccountDTO.cs" />
+    <Compile Include="domain\AccountDTO.cs" />
     <Compile Include="domain\address\Address.cs" />
-    <Compile Include="domain\brand\BrandDTO.cs" />
-    <Compile Include="domain\category\CategoryDTO.cs" />
+    <Compile Include="domain\BrandDTO.cs" />
+    <Compile Include="domain\CategoryDTO.cs" />
     <Compile Include="domain\customer\CustomerDAO.cs" />
     <Compile Include="domain\customer\CustomerDTO.cs" />
+    <Compile Include="domain\DepartmentDTO.cs" />
     <Compile Include="domain\employees\EmployeeDAO.cs" />
     <Compile Include="domain\employees\EmployeeDTO.cs" />
+    <Compile Include="domain\FormulaDTO.cs" />
     <Compile Include="domain\formular\FormularDTO.cs" />
     <Compile Include="domain\LoginCredentials.cs" />
     <Compile Include="Interface\IOrderLine.cs" />
@@ -63,10 +65,10 @@
     <Compile Include="factories\UserFactory.cs" />
     <Compile Include="Interface\IEmployee.cs" />
     <Compile Include="Interface\IOder.cs" />
-    <Compile Include="domain\orders\OrderDTO.cs" />
-    <Compile Include="domain\orders\OrderFacade.cs" />
-    <Compile Include="domain\orders\OrdersDAO.cs" />
-    <Compile Include="domain\payRole\PayRoleDTO.cs" />
+    <Compile Include="domain\OrderDTO.cs" />
+    <Compile Include="logic\OrderFacade.cs" />
+    <Compile Include="Services\OrdersDAO.cs" />
+    <Compile Include="domain\PayRoleDTO.cs" />
     <Compile Include="domain\products\ProductDAO.cs" />
     <Compile Include="domain\products\Products.cs" />
     <Compile Include="domain\suppliers\SupplierDAO.cs" />
@@ -74,10 +76,10 @@
     <Compile Include="domain\RoleDTO.cs" />
     <Compile Include="Services\UserDAO.cs" />
     <Compile Include="domain\UserDTO.cs" />
-    <Compile Include="domain\User\UserFacade.cs" />
+    <Compile Include="logic\UserFacade.cs" />
     <Compile Include="Services\UserTypeDAO.cs" />
     <Compile Include="domain\UserTypeDTO.cs" />
-    <Compile Include="domain\User\UserTypeFacade.cs" />
+    <Compile Include="logic\UserTypeFacade.cs" />
     <Compile Include="factories\CustomerFactory.cs" />
     <Compile Include="Interface\IProduct.cs" />
     <Compile Include="Interface\IUser.cs" />
@@ -87,11 +89,7 @@
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="domain\department\" />
-    <Folder Include="domain\orderLine\" />
-    <Folder Include="logic\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="bin\Debug\BusineesLogic.dll" />
     <Content Include="bin\Debug\BusineesLogic.pdb" />
