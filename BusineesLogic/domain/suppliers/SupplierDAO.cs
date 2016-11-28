@@ -30,14 +30,13 @@ public class SupplierDAO
 
     public SupplierDTO makeSupplierDTO(SqlDataReader myDR)
     {
-        SupplierDTO supplier = new SupplierDTO();
-        supplier.supplierNumber = myDR.GetInt32(0);
-        supplier.supplierName = myDR.GetString(1);
-        supplier.supplierSurname = myDR.GetString(2);
-        supplier.supplierCellNumber = myDR.GetString(3);
-        supplier.supplierStreetName = myDR.GetString(4);
-        supplier.supplierSuburb = myDR.GetString(5);
-        supplier.supplierPostalCode = myDR.GetString(6);
+        SupplierDTO supplier = new SupplierDTO.SupplierBuilder()
+        .supNumber(myDR.GetInt32(0))
+        .supName(myDR.GetString(1))
+        .supSurname(myDR.GetString(2))
+        .supCellNumber(myDR.GetString(3))
+        .supAddress(myDR.GetString(4), myDR.GetString(5), myDR.GetString(6))
+        .build();
         return supplier;
     }
 
