@@ -6,11 +6,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using BusineesLogic.Interface;
 
 /// <summary>
 /// Summary description for ProductDAO
 /// </summary>
-public class ProductDAO
+public class ProductDAO:IProduct
 {
     private SqlConnection con;
     public ProductDAO()
