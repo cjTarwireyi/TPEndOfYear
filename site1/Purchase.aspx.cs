@@ -174,7 +174,10 @@ public partial class site1_Purchase : System.Web.UI.Page
         CustomerDTO customer = new CustomerDTO();
         CustomerDAO accessCustomer = new CustomerDAO();
         decimal amt = 0;
+
         order.orderItems = new List<Products>();
+        List<Products> list = new List<Products>();
+        
         lblErrorProd.Visible = false;
         custError.Visible = false;
         foreach (GridViewRow row in GridView1.Rows)
@@ -184,17 +187,25 @@ public partial class site1_Purchase : System.Web.UI.Page
             product.productQuantity = Convert.ToInt32(row.Cells[4].Text);
             amt += facade.findProduct(product.productNumber).price * product.productQuantity;
             order.orderItems.Add(product);
+            list.Add(product);
             productService.updateQuantity(product.productNumber, product.productQuantity);
 
         }
-
         userDto = (UserDTO)Session["userDto"];
+        OrderDTO buliOrder = new OrderDTO.OrderBuilder()
+            .buildProducts(list)
+            .buildEmpId(userDto.Id)
+            .buildAmount(amt)
+            .buildPayed(false)
+            .buildCustId(Convert.ToInt32(txtCustomerID.Text))
+            .build();
+       
 
         order.employeeId = userDto.Id;
         order.amount = amt;
         order.payed = false;
         order.customerId = Convert.ToInt32(txtCustomerID.Text);
-        facade.makeOrder(order);
+        facade.makeOrder(buliOrder);
     }
 
     protected void Cancel_Click(object sender, EventArgs e)
