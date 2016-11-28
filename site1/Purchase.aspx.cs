@@ -6,7 +6,7 @@ using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
+using BusineesLogic.Interface;
 using System.Drawing;
 using BusineesLogic.Interface;
 
@@ -64,7 +64,7 @@ public partial class site1_Purchase : System.Web.UI.Page
 
     private void AddToDataTable()
     {
-        
+        IProduct productService = new ProductDAO();
         string  productCode = txtProductID.Text;
         string quantity= txtQuantiy.Text;
         string custId = txtCustomerID.Text;
@@ -108,7 +108,7 @@ public partial class site1_Purchase : System.Web.UI.Page
             dr["Product"] = productName;
             dr["Price"] = price;
             dr["Quantity"] = quantity;
-            
+            productService.updateQuantity(Convert.ToInt32(productCode),Convert.ToInt32(quantity),"-");
             table.Rows.Add(dr);
             
             product.productNumber = Convert.ToInt32(productCode);
