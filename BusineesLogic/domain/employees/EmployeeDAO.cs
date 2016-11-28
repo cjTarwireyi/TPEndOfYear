@@ -5,11 +5,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using BusineesLogic.Interface;
+ 
 
 /// <summary>
 /// Summary description for EmployeeDAO
 /// </summary>
-public class EmployeeDAO
+public class EmployeeDAO:IEmployee
 {
     private SqlConnection con;
     public EmployeeDAO()

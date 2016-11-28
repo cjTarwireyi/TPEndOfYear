@@ -10,7 +10,7 @@ namespace BusineesLogic.Interface
     {
        UserDTO getUser(string username, string password);
        bool ifUserExist(string username);
-       int getUserId(string username);
+       int getUserTypeId(string username);
        bool addUser(UserDTO model);
        bool UpdateUser(UserDTO model);
        bool Delete(int id);

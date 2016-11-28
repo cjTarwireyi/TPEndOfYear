@@ -25,9 +25,9 @@ public class UserFacade
        
         return userDao.getUser(username, pass);
     }
-    public int getUserId(string username)
+    public int getUserTypeId(string username)
     {
-        return userDao.getUserId(username);
+        return userDao.getUserTypeId(username);
     }
     public bool userExist(string userName){
     return    userDao.ifUserExist(userName);

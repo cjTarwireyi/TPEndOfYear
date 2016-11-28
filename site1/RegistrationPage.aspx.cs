@@ -98,7 +98,7 @@ public partial class RegistrationPage : System.Web.UI.Page
                         if (userDtoUpdate.password.Trim() == oldPass.Text.Trim())
                         {
                             uId = (int)Session["userId"];
-                            userFacade.updateUser(Username.Text, Rpassword.Text, Convert.ToInt32(userFacade.getUserId(userType.Text)), uId);
+                            userFacade.updateUser(Username.Text, Rpassword.Text, Convert.ToInt32(userFacade.getUserTypeId(userType.Text)), uId);
                             Session.Remove("userUpdate");
                             Session.Remove("userTypeUpdate");
                             Session.Remove("userId");
@@ -116,7 +116,7 @@ public partial class RegistrationPage : System.Web.UI.Page
                         if (userFacade.userExist(Username.Text) == false && lblTitle.Text != "User Update")
                         {
 
-                            userFacade.makeUser(Username.Text, Rpassword.Text, Convert.ToInt32(userFacade.getUserId(userType.Text)));
+                            userFacade.makeUser(Username.Text, Rpassword.Text, Convert.ToInt32(userFacade.getUserTypeId(userType.Text)));
                         }
 
                         else
