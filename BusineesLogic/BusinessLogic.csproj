@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="domain\department\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\BusineesLogic.dll" />
