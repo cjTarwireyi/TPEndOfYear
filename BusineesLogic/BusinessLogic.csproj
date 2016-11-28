@@ -55,7 +55,7 @@
     <Compile Include="domain\employees\EmployeeDTO.cs" />
     <Compile Include="domain\formular\FormularDTO.cs" />
     <Compile Include="domain\LoginCredentials.cs" />
-    <Compile Include="domain\orderLine\InterfaceOrderLine.cs" />
+    <Compile Include="Interface\InterfaceOrderLine.cs" />
     <Compile Include="domain\orderLine\OrderLineDAO.cs" />
     <Compile Include="domain\orderLine\OrderLineDTO.cs" />
     <Compile Include="factories\OrderFactory.cs" />
@@ -79,7 +79,6 @@
     <Compile Include="domain\User\UserTypeDTO.cs" />
     <Compile Include="domain\User\UserTypeFacade.cs" />
     <Compile Include="factories\CustomerFactory.cs" />
-    <Compile Include="Interface\IOrderLine.cs" />
     <Compile Include="Interface\IProduct.cs" />
     <Compile Include="Interface\IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
