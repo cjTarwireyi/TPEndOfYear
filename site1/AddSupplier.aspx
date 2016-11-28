@@ -20,7 +20,7 @@
                 ErrorMessage="SupplierName Required!" ControlToValidate="txtName" ForeColor="Red"></asp:RequiredFieldValidator>
             <br />
         </div> <div class="form-group">
-            <div class="input-group" id="Name">
+            <div class="input-group" id="Surname">
                 <span class="input-group-addon"><span class="fa fa-truck "></span></span>
                 <asp:TextBox ID="txtSurname" runat="server" Height="35px" Width="290px"
                     class="form-control" placeholder="SupplierSurname"></asp:TextBox>

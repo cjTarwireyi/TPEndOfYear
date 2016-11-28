@@ -27,8 +27,8 @@ public partial class site1_AddOrder : System.Web.UI.Page
         product.productQuantity = 2;
         if (order.orderItems.Contains(product))
         {
-            Products foundproduct;
-            foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
+           Products foundproduct;
+           foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
            foundproduct.productQuantity += product.productQuantity;
         }
         else
@@ -43,7 +43,6 @@ public partial class site1_AddOrder : System.Web.UI.Page
     }
     protected void removeItem(object sender, EventArgs e)
     {
-         
         Products foundproduct;
         foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
         order.orderItems.Remove(foundproduct);

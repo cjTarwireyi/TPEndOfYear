@@ -27,4 +27,11 @@ public partial class site1_ConfirmSupplier : System.Web.UI.Page
         supplier.save(dto);
         Response.Redirect("Suppliers.aspx");
     }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
+
+
 }

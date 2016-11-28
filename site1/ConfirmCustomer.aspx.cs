@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class site1_ConfirmCustomer : System.Web.UI.Page
 {
+    private CustomerDAO customer = new CustomerDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
         UserDTO userDtoUpdate = new UserDTO();
@@ -22,23 +23,32 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
             Response.Redirect("LoginPage.aspx");
         else
             lblName.Text = customer.name;
-            lblSurname.Text = customer.surname;
-            lblCellNumber.Text = customer.cellNumber;
-            lblEmail.Text = customer.email;
-            lblStreet.Text = customer.StreetName;
-            lblSurbub.Text = customer.Suburb;
-            lblPostalCode.Text = customer.postalCode;
+        lblSurname.Text = customer.surname;
+        lblCellNumber.Text = customer.cellNumber;
+        lblEmail.Text = customer.email;
+        lblStreet.Text = customer.StreetName;
+        lblSurbub.Text = customer.Suburb;
+        lblPostalCode.Text = customer.postalCode;
     }
     protected void Register_Click(object sender, EventArgs e)
     {
         CustomerDTO customerDTO = (CustomerDTO)Session["CustomerDTO"];
-        CustomerDAO customer = new CustomerDAO();
-        customer.saveCustomer(customerDTO);
-        SendMail();
-        Response.Redirect("Customers.aspx");
-
+        try
+        {
+            customer.saveCustomer(customerDTO);
+            SendMail();
+            Response.Redirect("Customers.aspx");
+        }
+        catch (Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
 
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
 
     private void SendMail()
     {
@@ -48,7 +58,7 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
         string toAddress = customer.email.ToString();
         const string fromPassword = "wilkonson1995";
         string subject = "Customer Number Keep Safe";
-        string body = "Hi "+customer.name+" "+customer.surname+"\nYour customer number is:"+"'"+accessCustomer.getLastReocrd()+"'"+"Please keep it safe as it would be required from you everytime you purchase items";
+        string body = "Hi " + customer.name + " " + customer.surname + "\nYour customer number is:" + "'" + accessCustomer.getLastReocrd() + "'" + "Please keep it safe as it would be required from you everytime you purchase items";
 
         // smtp settings
         var smtp = new System.Net.Mail.SmtpClient();
@@ -60,7 +70,6 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
             smtp.Credentials = new NetworkCredential(fromAddress, fromPassword);
             smtp.Timeout = 20000;
         }
-
         // Passing values to smtp object
         smtp.Send(fromAddress, toAddress, subject, body);
     }

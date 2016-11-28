@@ -13,6 +13,7 @@ public partial class site1_EmployeeConfirm : System.Web.UI.Page
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         EmployeeDTO employee = (EmployeeDTO)Session["EmployeeDTO"];
+
         lblName.Text = employee.employeeName;
         lblSurname.Text = employee.employeeSurname;
         lblCellNumber.Text = employee.employeeCellNumber;
@@ -26,5 +27,10 @@ public partial class site1_EmployeeConfirm : System.Web.UI.Page
         EmployeeDAO employee = new EmployeeDAO();
         employee.saveEmployee(empDTO);
         Response.Redirect("Employee.aspx");
+    }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
 }
