@@ -79,6 +79,7 @@
     <Compile Include="domain\User\UserTypeDTO.cs" />
     <Compile Include="domain\User\UserTypeFacade.cs" />
     <Compile Include="factories\customer\CustomerFactory.cs" />
+    <Compile Include="Interface\IProduct.cs" />
     <Compile Include="Interface\IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
