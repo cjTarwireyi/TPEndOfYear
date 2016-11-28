@@ -99,40 +99,50 @@ public partial class site1_Purchase : System.Web.UI.Page
             grandTotal.Text = "";
             productName = facade.findProduct(Convert.ToInt32(productCode)).productName;
             price = facade.findProduct(Convert.ToInt32(productCode)).price.ToString();
-            amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity)) + Convert.ToDecimal(ogAmount)).ToString();
-
-            grandTotal.Text = amt;
-            lblErrorProd.Visible = false;
-            custError.Visible = false;
-            DataRow dr = table.NewRow();
-            dr["ProductCode"] = productCode;
-            dr["Product"] = productName;
-            dr["Price"] = price;
-            dr["Quantity"] = quantity;
-            table.Rows.Add(dr);
-
-            product.productNumber = Convert.ToInt32(productCode);
-            product.productQuantity = Convert.ToInt32(quantity);
-            order.orderItems = new List<Products>();
-
-            if (order.orderItems.Contains(product))
+            if (facade.findProduct(Convert.ToInt32(productCode)).productQuantity < Convert.ToInt32(quantity))
             {
-                Products foundproduct;
-                foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
-                foundproduct.productQuantity += product.productQuantity;
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + "The quantity entered is more that the one in stock " + "');", true);
+                txtQuantiy.Text = string.Empty;
             }
             else
             {
+                amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity)) + Convert.ToDecimal(ogAmount)).ToString();
+
+                grandTotal.Text = amt;
+                lblErrorProd.Visible = false;
+                custError.Visible = false;
+                DataRow dr = table.NewRow();
+                dr["ProductCode"] = productCode;
+                dr["Product"] = productName;
+                dr["Price"] = price;
+                dr["Quantity"] = quantity;
+                table.Rows.Add(dr);
+
+                product.productNumber = Convert.ToInt32(productCode);
+                product.productQuantity = Convert.ToInt32(quantity);
+                order.orderItems = new List<Products>();
+
+                if (order.orderItems.Contains(product))
+                {
+                    Products foundproduct;
+                    foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
+                    foundproduct.productQuantity += product.productQuantity;
+                }
+                else
+                {
 
 
+                }
+
+
+                txtProductID.Text = string.Empty;
+                txtQuantiy.Text = string.Empty;
+
+                custError.Visible = false;
+ 
             }
-
-
-            txtProductID.Text = string.Empty;
-            txtQuantiy.Text = string.Empty;
-
-            custError.Visible = false;
-        }
+          
+         }
     }
 
     private void BindGrid()
