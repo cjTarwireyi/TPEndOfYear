@@ -43,7 +43,6 @@ public class CustomerDAO
            // .custCellNumber(myDR.GetString(3))
             //.custEmail(myDR.GetString(4))
             //.custAddress(myDR.GetString(5), myDR.GetString(6), myDR.GetString(7))
-            //.accountCreatedDate(myDR.GetString(8))
             .build();
         return customer;
     }
