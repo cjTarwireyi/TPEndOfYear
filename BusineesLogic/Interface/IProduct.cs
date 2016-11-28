@@ -10,7 +10,7 @@ namespace BusineesLogic.Interface
     public interface IProduct
     {
         void saveProduct(Products product);
-        public Products makeProductDTO(SqlDataReader myDR);
+         Products makeProductDTO(SqlDataReader myDR);
         void updateQuantity(int prodId, int qty, string opr);
     }
 }
