@@ -95,7 +95,6 @@ public class CustomerDTO
 
         public CustomerBuilder copy(CustomerDTO customer)
         {
-            this.customerNumber = customer.customerNumber;
             this.name = customer.name;
             this.surname = customer.surname;
             this.cellNumber = customer.cellNumber;
