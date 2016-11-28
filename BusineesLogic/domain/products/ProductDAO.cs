@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 
 /// <summary>
 /// Summary description for ProductDAO
@@ -31,15 +32,16 @@ public class ProductDAO
 
     public Products makeProductDTO(SqlDataReader myDR)
     {
-        Products product = new Products();
-        product.productNumber = myDR.GetInt32(0);
-        product.productName = myDR.GetString(1);
-        product.productDescription = myDR.GetString(2);
-        product.price = myDR.GetDecimal(3);
-        product.productQuantity = myDR.GetInt32(4);
-        product.productStatus = myDR.GetBoolean(5);
-        product.dateArrived = myDR.GetDateTime(6);
-        product.productSupplierID = myDR.GetInt32(7);
+        Products product = new Products.ProductsBuilder()
+        .prodNumber(myDR.GetInt32(0))
+        .prodName(myDR.GetString(1))
+        .prodDescription(myDR.GetString(2))
+        .prodPrice(myDR.GetDecimal(3))
+        .prodQuantity(myDR.GetInt32(4))
+        .prodStatus(myDR.GetBoolean(5))
+        .prodDateArrived(myDR.GetString(6))
+        .prodSupplierID(myDR.GetInt32(7))
+        .build();
         return product;
 
     }
@@ -135,8 +137,25 @@ public class ProductDAO
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
         da.Fill(products);
+        
         da.Dispose();
         con.Close();
         return products;
+    }
+
+    public SqlDataReader loadSuppliers()
+    {
+        
+        con.Open();
+        String strCustomers = "Select supplierID from Suppliers";
+        SqlCommand cmd = new SqlCommand(strCustomers, con);
+        SqlDataReader reader = cmd.ExecuteReader();
+        
+        return reader;
+    }
+
+    public void sleeping()
+    {
+
     }
 }
