@@ -87,7 +87,6 @@ public class OrderDTO
 
         public OrderBuilder copy(OrderDTO order)
         {
-            this.orderId = order.orderId;
             this.custId = order.customerId;
             this.productId = order.productId;
             this.employeeId = order.employeeId;
