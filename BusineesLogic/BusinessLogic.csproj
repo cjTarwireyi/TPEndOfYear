@@ -83,10 +83,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="domain\department\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\BusineesLogic.dll" />
+    <Content Include="bin\Debug\BusineesLogic.pdb" />
+    <Content Include="obj\Debug\BusineesLogic.dll" />
+    <Content Include="obj\Debug\BusineesLogic.pdb" />
+    <Content Include="obj\Debug\BusinessLogic.csproj.FileListAbsolute.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
