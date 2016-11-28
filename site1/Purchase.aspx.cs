@@ -175,7 +175,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         CustomerDAO accessCustomer = new CustomerDAO();
         decimal amt = 0;
 
-        order.orderItems = new List<Products>();
+        
         List<Products> list = new List<Products>();
         
         lblErrorProd.Visible = false;
@@ -186,7 +186,7 @@ public partial class site1_Purchase : System.Web.UI.Page
             product.productNumber = Convert.ToInt32(row.Cells[1].Text);
             product.productQuantity = Convert.ToInt32(row.Cells[4].Text);
             amt += facade.findProduct(product.productNumber).price * product.productQuantity;
-            order.orderItems.Add(product);
+             
             list.Add(product);
             productService.updateQuantity(product.productNumber, product.productQuantity);
 
@@ -198,13 +198,8 @@ public partial class site1_Purchase : System.Web.UI.Page
             .buildAmount(amt)
             .buildPayed(false)
             .buildCustId(Convert.ToInt32(txtCustomerID.Text))
-            .build();
-       
-
-        order.employeeId = userDto.Id;
-        order.amount = amt;
-        order.payed = false;
-        order.customerId = Convert.ToInt32(txtCustomerID.Text);
+            .build();   
+                 
         facade.makeOrder(buliOrder);
     }
 
