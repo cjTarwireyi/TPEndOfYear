@@ -57,7 +57,7 @@
     <Compile Include="domain\LoginCredentials.cs" />
     <Compile Include="Interface\IOrderLine.cs" />
     <Compile Include="Services\OrderLineDAO.cs" />
-    <Compile Include="domain\orderLine\OrderLineDTO.cs" />
+    <Compile Include="domain\OrderLineDTO.cs" />
     <Compile Include="factories\OrderFactory.cs" />
     <Compile Include="factories\OrderLineFactory.cs" />
     <Compile Include="factories\UserFactory.cs" />
@@ -71,12 +71,12 @@
     <Compile Include="domain\products\Products.cs" />
     <Compile Include="domain\suppliers\SupplierDAO.cs" />
     <Compile Include="domain\suppliers\SupplierDTO.cs" />
-    <Compile Include="domain\User\RoleDTO.cs" />
+    <Compile Include="domain\RoleDTO.cs" />
     <Compile Include="Services\UserDAO.cs" />
-    <Compile Include="domain\User\UserDTO.cs" />
+    <Compile Include="domain\UserDTO.cs" />
     <Compile Include="domain\User\UserFacade.cs" />
     <Compile Include="Services\UserTypeDAO.cs" />
-    <Compile Include="domain\User\UserTypeDTO.cs" />
+    <Compile Include="domain\UserTypeDTO.cs" />
     <Compile Include="domain\User\UserTypeFacade.cs" />
     <Compile Include="factories\CustomerFactory.cs" />
     <Compile Include="Interface\IProduct.cs" />
@@ -89,6 +89,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="domain\department\" />
+    <Folder Include="domain\orderLine\" />
+    <Folder Include="logic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\BusineesLogic.dll" />
