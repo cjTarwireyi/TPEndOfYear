@@ -31,7 +31,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
 
-         
+
         lblUser.Text = userDto.username;
         if (!this.IsPostBack)
         {
@@ -48,7 +48,7 @@ public partial class site1_Purchase : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-       AddToDataTable();
+        AddToDataTable();
         BindGrid();
     }
 
@@ -58,27 +58,25 @@ public partial class site1_Purchase : System.Web.UI.Page
         table.Columns.Add("Product");
         table.Columns.Add("Price");
         table.Columns.Add("Quantity");
-
-       
-        
     }
 
     private void AddToDataTable()
     {
-        
-        string  productCode = txtProductID.Text;
-        string quantity= txtQuantiy.Text;
+
+        string productCode = txtProductID.Text;
+        string quantity = txtQuantiy.Text;
         string custId = txtCustomerID.Text;
-        string productName="";
+        string productName = "";
         string price = "";
         totalAmt.Text = string.Empty;
 
         if (facade.findProduct(Convert.ToInt32(productCode)) == null)
         {
-            
+
             lblErrorProd.Visible = false;
         }
-        else if(facade.findCustomer(Convert.ToInt32(custId))=="401"){
+        else if (facade.findCustomer(Convert.ToInt32(custId)) == "401")
+        {
             custError.Visible = true;
         }
         else
@@ -86,21 +84,23 @@ public partial class site1_Purchase : System.Web.UI.Page
             custError.Visible = false;
             lblErrorProd.Visible = false;
         }
-       if(lblErrorProd.Visible==false && custError.Visible==false)
+        if (lblErrorProd.Visible == false && custError.Visible == false)
         {
             string ogAmount;
-            if (grandTotal.Text == "") 
+            if (grandTotal.Text == "")
             {
                 ogAmount = "0.0";
-            }else{
+            }
+            else
+            {
                 ogAmount = grandTotal.Text;
             }
             totalAmt.Text = "Grand Total: R";
             grandTotal.Text = "";
             productName = facade.findProduct(Convert.ToInt32(productCode)).productName;
             price = facade.findProduct(Convert.ToInt32(productCode)).price.ToString();
-            amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity))+Convert.ToDecimal(ogAmount)).ToString();
-            
+            amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity)) + Convert.ToDecimal(ogAmount)).ToString();
+
             grandTotal.Text = amt;
             lblErrorProd.Visible = false;
             custError.Visible = false;
@@ -109,12 +109,12 @@ public partial class site1_Purchase : System.Web.UI.Page
             dr["Product"] = productName;
             dr["Price"] = price;
             dr["Quantity"] = quantity;
-                      table.Rows.Add(dr);
-            
+            table.Rows.Add(dr);
+
             product.productNumber = Convert.ToInt32(productCode);
             product.productQuantity = Convert.ToInt32(quantity);
             order.orderItems = new List<Products>();
-            
+
             if (order.orderItems.Contains(product))
             {
                 Products foundproduct;
@@ -127,12 +127,12 @@ public partial class site1_Purchase : System.Web.UI.Page
 
             }
 
-           // Response.Redirect(Request.RawUrl);
+
             txtProductID.Text = string.Empty;
             txtQuantiy.Text = string.Empty;
-            /*txtCustomerID.Text = string.Empty;*/
+
             custError.Visible = false;
-       }
+        }
     }
 
     private void BindGrid()
@@ -140,34 +140,27 @@ public partial class site1_Purchase : System.Web.UI.Page
         GridView1.DataSource = table;
         GridView1.DataBind();
     }
-    //protected void Submit_Click(object sender, EventArgs e)
-    //{
 
-    //    Session.Abandon();
-    //    Session.Clear();
 
-    //    Response.Redirect("LoginPage.aspx");
-    //}
     protected void Submit_Click(object sender, EventArgs e)
     {
-        
+
         generateOrder();
         OrdersDAO accessOrders = new OrdersDAO();
         OrderDTO order = new OrderDTO();
         order = accessOrders.getLastReocrd();
         Response.Redirect("Receipt.aspx?Id=" + order.orderId, false);
-    } 
+    }
 
     protected void txtProductID_TextChanged(object sender, EventArgs e)
     {
-        /*AddToDataTable();
-        BindGrid();*/
+         
     }
 
     private void generateOrder()
     {
         OrdersDAO accessOrders = new OrdersDAO();
-        OrderDTO lastRecord  = new OrderDTO();
+        OrderDTO lastRecord = new OrderDTO();
         CustomerDTO customer = new CustomerDTO();
         CustomerDAO accessCustomer = new CustomerDAO();
         decimal amt = 0;
@@ -184,29 +177,26 @@ public partial class site1_Purchase : System.Web.UI.Page
             productService.updateQuantity(product.productNumber, product.productQuantity);
 
         }
-        //lastRecord= accessOrders.getLastReocrd();
-        //customer = accessCustomer.getCustomerID(lastRecord.customerId);
+
         userDto = (UserDTO)Session["userDto"];
- 
-        order.employeeId =userDto.Id;
+
+        order.employeeId = userDto.Id;
         order.amount = amt;
         order.payed = false;
         order.customerId = Convert.ToInt32(txtCustomerID.Text);
-        facade.makeOrder(order); 
+        facade.makeOrder(order);
     }
 
     protected void Cancel_Click(object sender, EventArgs e)
     {
-       // GridView1.Rows.();
-
         table = new DataTable();
-       
+
         GridView1.DataSource = "";
         GridView1.DataBind();
         MakeTable();
         ViewState["DataTable"] = table;
-        grandTotal.Text="";
-        amt="";
+        grandTotal.Text = "";
+        amt = "";
     }
-     
+
 }
