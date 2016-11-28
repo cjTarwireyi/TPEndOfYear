@@ -39,7 +39,6 @@ public class ProductDAO
         .prodPrice(myDR.GetDecimal(3))
         .prodQuantity(myDR.GetInt32(4))
         .prodStatus(myDR.GetBoolean(5))
-        .prodDateArrived(myDR.GetString(6))
         .prodSupplierID(myDR.GetInt32(7))
         .build();
         return product;
