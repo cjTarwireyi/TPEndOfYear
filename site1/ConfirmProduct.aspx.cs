@@ -27,4 +27,9 @@ public partial class site1_ConfirmProduct : System.Web.UI.Page
         product.saveProduct(item);
         Response.Redirect("Products.aspx");
     }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
 }

@@ -11,7 +11,7 @@ using BusineesLogic.Interface;
 /// <summary>
 /// Summary description for EmployeeDAO
 /// </summary>
-public class EmployeeDAO:IEmployee
+public class EmployeeDAO
 {
     private SqlConnection con;
     public EmployeeDAO()
@@ -29,16 +29,15 @@ public class EmployeeDAO:IEmployee
         con.Close();
     }
 
-    public EmployeeDTO makeTechDTO(SqlDataReader myDR)
+    public EmployeeDTO makeEmployeeDTO(SqlDataReader myDR)
     {
-        EmployeeDTO employee = new EmployeeDTO();
-        employee.employeeNumber = myDR.GetInt32(0);
-        employee.employeeName = myDR.GetString(1);
-        employee.employeeSurname = myDR.GetString(2);
-        employee.employeeCellNumber = myDR.GetString(3);
-        employee.employeeStreetName = myDR.GetString(4);
-        employee.employeeSuburb = myDR.GetString(5);
-        employee.employeePostalCode = myDR.GetString(6);
+         EmployeeDTO employee = new EmployeeDTO.EmployeeBuilder()
+        .empNumber(myDR.GetInt32(0))
+        .empName(myDR.GetString(1))
+        .empSurname(myDR.GetString(2))
+        .empCellNumber(myDR.GetString(3))
+        .empAddress(myDR.GetString(4), myDR.GetString(5), myDR.GetString(6))
+        .build();
         return employee;
     }
 
@@ -51,7 +50,7 @@ public class EmployeeDAO:IEmployee
         myDR = myComm.ExecuteReader();
         if (!myDR.Read())
             return null;
-        EmployeeDTO updateEmployee = makeTechDTO(myDR);
+        EmployeeDTO updateEmployee = makeEmployeeDTO(myDR);
         con.Close();
         return updateEmployee;
     }

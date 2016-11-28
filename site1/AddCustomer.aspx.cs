@@ -22,22 +22,21 @@ public partial class site1_AddCustomer : System.Web.UI.Page
     {
         try
         {
-            String name = txtName.Text;
-            String surname = txtSurname.Text;
-            String cellNumber = txtCellNumber.Text;
-            String streetName = txtStreetName.Text;
-            String suburb = txtSuburb.Text;
-            String postal = txtPostalCode.Text;
-            String email = Email.Text;
+            string name = txtName.Text;
+            string surname = txtSurname.Text;
+            string cellNumber = txtCellNumber.Text;
+            string streetName = txtStreetName.Text;
+            string suburb = txtSuburb.Text;
+            string postal = txtPostalCode.Text;
+            string email = Email.Text;
 
-            CustomerDTO customer = new CustomerDTO();
-            customer.name = name;
-            customer.surname = surname;
-            customer.cellNumber = cellNumber;
-            customer.email = email;
-            customer.StreetName = streetName;
-            customer.Suburb = suburb;
-            customer.postalCode = postal;
+            CustomerDTO customer = new CustomerDTO.CustomerBuilder()
+                .custName(name)
+                .custSurname(surname)
+                .custCellNumber(cellNumber)
+                .custEmail(email)
+                .custAddress(streetName, suburb, postal)
+                .build();
             Session["CustomerDTO"] = customer;
         }
         catch (Exception ex)

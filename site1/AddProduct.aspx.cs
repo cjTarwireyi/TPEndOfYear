@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 public partial class site1_AddProduct : System.Web.UI.Page
 {
     private UserDTO userDto = new UserDTO();
+    private ProductDAO product = new ProductDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
         UserDTO userDtoUpdate = new UserDTO();
@@ -17,14 +18,27 @@ public partial class site1_AddProduct : System.Web.UI.Page
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
+        loadSuppliers();
 
-        ProductDAO prodConnnection = new ProductDAO();
-        SqlConnection con = prodConnnection.connection();
-        con.Open();
-        String strCustomers = "Select supplierID from Suppliers";
-        SqlCommand cmd = new SqlCommand(strCustomers, con);
-        SqlDataReader reader = cmd.ExecuteReader();
-   
+    }
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        Products products = new Products.ProductsBuilder()
+        .prodName(txtName.Text)
+        .prodDescription(txtDescription.Text)
+        .prodQuantity(Int32.Parse(txtQuantity.Text))
+        .prodPrice(Int32.Parse(txtPrice.Text))
+        .prodStatus(true)
+        .prodDateArrived(DateTime.Now.ToString())
+        .prodSupplierID(Int32.Parse(txtSupplierID.Text))
+        .build();
+        Session["ProductsDTO"] = products;
+        Server.Transfer("ConfirmProduct.aspx", true);
+    }
+
+    private void loadSuppliers()
+    {
+        SqlDataReader reader = product.loadSuppliers();
         if (reader.HasRows)
         {
             while (reader.Read())
@@ -39,18 +53,5 @@ public partial class site1_AddProduct : System.Web.UI.Page
                 }
             }
         }
-    }
-    protected void btnAdd_Click(object sender, EventArgs e)
-    {
-        Products products = new Products();
-        products.productName = txtName.Text;
-        products.productDescription = txtDescription.Text;
-        products.productQuantity = Int32.Parse(txtQuantity.Text);
-        products.price = Int32.Parse(txtPrice.Text);
-        products.productStatus = true;
-        products.dateArrived = DateTime.Now;
-        products.productSupplierID = Int32.Parse(txtSupplierID.Text);
-        Session["ProductsDTO"] = products;
-        Server.Transfer("ConfirmProduct.aspx", true);
     }
 }

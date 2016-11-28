@@ -20,15 +20,18 @@ public partial class site1_AddSupplier : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        SupplierDTO supplierDTO = new SupplierDTO();
-        supplierDTO.supplierName = txtName.Text;
-        supplierDTO.supplierSurname = txtSurname.Text;
-        supplierDTO.supplierCellNumber = txtCellNumber.Text;
-        supplierDTO.supplierStreetName = txtStreetName.Text;
-        supplierDTO.supplierSuburb = txtSuburb.Text;
-        supplierDTO.supplierPostalCode = txtPostalCode.Text;
+        SupplierDTO supplierDTO = new SupplierDTO.SupplierBuilder()
+        .supName(txtName.Text)
+        .supSurname(txtSurname.Text)
+        .supCellNumber(txtCellNumber.Text)
+        .supAddress(txtStreetName.Text, txtSuburb.Text, txtPostalCode.Text)
+        .build();
         Session["SupplierDTO"] = supplierDTO;
-
         Response.Redirect("ConfirmSupplier.aspx");
+    }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
 }

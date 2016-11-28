@@ -8,9 +8,10 @@ using System.Web.UI.WebControls;
 public partial class site1_AddEmployee : System.Web.UI.Page
 {
     private UserDTO userDto = new UserDTO();
+    private UserDTO userDtoUpdate = new UserDTO();
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserDTO userDtoUpdate = new UserDTO();
+        
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
@@ -21,30 +22,30 @@ public partial class site1_AddEmployee : System.Web.UI.Page
     {
         try
         {
+            string name = FullName.Text;
+            string surname = Surname.Text;
+            string cellNumber = Phone.Text;
+            string streetName = txtStreet.Text;
+            string postalCode = txtPostalCode.Text;
+            string suburb = txtSuburb.Text;
 
-            String name = FullName.Text;
-            String surname = Surname.Text;
-            String cellNumber = Phone.Text;
-            String streetName = txtStreet.Text;
-            String postalCode = txtPostalCode.Text;
-            String suburb = txtSuburb.Text;
-          
-
-
-            EmployeeDTO employee = new EmployeeDTO();
-            employee.employeeName = name;
-            employee.employeeSurname = surname;
-            employee.employeeCellNumber = cellNumber;
-            employee.employeeStreetName = streetName;
-            employee.employeePostalCode = postalCode;
-            employee.employeeSuburb = suburb;
+            EmployeeDTO employee = new EmployeeDTO.EmployeeBuilder()
+            .empName(name)
+            .empSurname(surname)
+            .empCellNumber(cellNumber)
+            .empAddress(streetName, suburb, postalCode)
+            .build();
             Session["EmployeeDTO"] = employee;
             Server.Transfer("EmployeeConfirm.aspx", true);
         }
         catch (Exception ex)
         {
            Response.Write("Error: " + ex.ToString());
-
         }
+    }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
 }
