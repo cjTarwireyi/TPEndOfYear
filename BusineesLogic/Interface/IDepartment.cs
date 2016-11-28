@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.Interface
 {
-    class IDepartment
+    interface IDepartment
     {
     }
 }
