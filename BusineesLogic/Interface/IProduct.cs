@@ -11,6 +11,6 @@ namespace BusineesLogic.Interface
     {
         void saveProduct(Products product);
          Products makeProductDTO(SqlDataReader myDR);
-        void updateQuantity(int prodId, int qty, string opr);
+        void updateQuantity(int prodId, int qty);
     }
 }

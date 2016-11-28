@@ -59,20 +59,12 @@ public class ProductDAO:IProduct
         con.Close();
         return updateProduct;
     }
-
-    public void updateQuantity(int prodId, int qty, string opr)
+    //decreases quantint when Item is purchased
+    public void updateQuantity(int prodId, int qty)
     {
         int dbQty = getItemQuantity(prodId.ToString());
-        if (opr == "+")
-        {
-            dbQty += qty;
-        }
-        else
-        {
-            dbQty -= qty;
-        }
+        dbQty -= qty;      
         qutyUpdaeHelper(dbQty, prodId);
-
     }
     public SqlConnection connection()
     {

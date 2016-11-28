@@ -18,6 +18,7 @@ public partial class site1_Purchase : System.Web.UI.Page
     private OrderFacade facade = new OrderFacade();
     private OrderDTO order = new OrderDTO();
     private Products product = new Products();
+    private IProduct productService = new ProductDAO();
     private string amt;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -64,7 +65,7 @@ public partial class site1_Purchase : System.Web.UI.Page
 
     private void AddToDataTable()
     {
-        IProduct productService = new ProductDAO();
+        
         string  productCode = txtProductID.Text;
         string quantity= txtQuantiy.Text;
         string custId = txtCustomerID.Text;
@@ -108,8 +109,7 @@ public partial class site1_Purchase : System.Web.UI.Page
             dr["Product"] = productName;
             dr["Price"] = price;
             dr["Quantity"] = quantity;
-            productService.updateQuantity(Convert.ToInt32(productCode),Convert.ToInt32(quantity),"-");
-            table.Rows.Add(dr);
+                      table.Rows.Add(dr);
             
             product.productNumber = Convert.ToInt32(productCode);
             product.productQuantity = Convert.ToInt32(quantity);
@@ -181,6 +181,8 @@ public partial class site1_Purchase : System.Web.UI.Page
             product.productQuantity = Convert.ToInt32(row.Cells[4].Text);
             amt += facade.findProduct(product.productNumber).price * product.productQuantity;
             order.orderItems.Add(product);
+            productService.updateQuantity(product.productNumber, product.productQuantity);
+
         }
         //lastRecord= accessOrders.getLastReocrd();
         //customer = accessCustomer.getCustomerID(lastRecord.customerId);
