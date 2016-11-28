@@ -76,7 +76,7 @@ public class EmployeeDTO
         public EmployeeBuilder empAddress(string employeeStreetName,string employeeSuburb,string employeePostalCode)
         {
             this.employeeStreetName = employeeStreetName;
-            this.employeeSuburb = employeeStreetName;
+            this.employeeSuburb = employeeSuburb;
             this.employeePostalCode = employeePostalCode;
             return this;
         }
@@ -89,7 +89,6 @@ public class EmployeeDTO
 
         public EmployeeBuilder copy(EmployeeDTO employee)
         {
-            this.employeeNumber = employee.employeeNumber;
             this.employeeName = employee.employeeName;
             this.employeeSurname = employee.employeeSurname;
             this.employeeCellNumber = employee.employeeCellNumber;
