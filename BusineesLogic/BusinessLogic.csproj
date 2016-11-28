@@ -57,7 +57,10 @@
     <Compile Include="domain\FormulaDTO.cs" />
     <Compile Include="domain\PaymentDTO.cs" />
     <Compile Include="domain\PeriodDTO.cs" />
+    <Compile Include="Interface\IBrand.cs" />
+    <Compile Include="Interface\ICategory.cs" />
     <Compile Include="Interface\IDepartment.cs" />
+    <Compile Include="Interface\IFormula.cs" />
     <Compile Include="Interface\IOrderLine.cs" />
     <Compile Include="Interface\IPayment.cs" />
     <Compile Include="Services\DepartmentDAO.cs" />
