@@ -11,7 +11,7 @@ using BusineesLogic.Interface;
 /// <summary>
 /// Summary description for EmployeeDAO
 /// </summary>
-public class EmployeeDAO:IEmployee
+public class EmployeeDAO
 {
     private SqlConnection con;
     public EmployeeDAO()
