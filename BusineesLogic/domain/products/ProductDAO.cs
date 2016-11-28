@@ -59,7 +59,20 @@ public class ProductDAO
         return updateProduct;
     }
 
+    public void updateQuantity(int prodId, int qty, string opr)
+    {
+        int dbQty = getItemQuantity(prodId.ToString());
+        if (opr == "+")
+        {
+            dbQty += qty;
+        }
+        else
+        {
+            dbQty -= qty;
+        }
+        qutyUpdaeHelper(dbQty, prodId);
 
+    }
     public SqlConnection connection()
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
@@ -84,14 +97,18 @@ public class ProductDAO
         }
 
         newQuantity = Convert.ToInt32(oriQuantity) - Convert.ToInt32(quantity);
-        string updateQuery = "update products set quantity = '" + newQuantity + "' where id ='" + productID + "' ";
-        cmd = new SqlCommand(updateQuery, con);
-        cmd.ExecuteNonQuery();
 
+        qutyUpdaeHelper(newQuantity, Convert.ToInt32(productID));
         con.Close();
     }
 
-
+    private void qutyUpdaeHelper(int newQuantity,int productID){
+       con.Open();
+      string updateQuery = "update products set quantity = '" + newQuantity + "' where id ='" + productID + "' ";
+      SqlCommand  cmd = new SqlCommand(updateQuery, con);
+      cmd.ExecuteNonQuery();
+      con.Close();
+    }
     public int getItemQuantity(string id)
     {
         int quantity = 0;
