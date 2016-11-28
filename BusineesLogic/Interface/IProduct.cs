@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace BusineesLogic.Interface
 {
-    interface IProduct
+    public interface IProduct
     {
+        void saveProduct(Products product);
+        public Products makeProductDTO(SqlDataReader myDR);
+        void updateQuantity(int prodId, int qty, string opr);
     }
 }
