@@ -82,6 +82,6 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         orderID = (Request.QueryString["id"].ToString().Trim());
         order.updateInsertOrder(orderID, txtProductID.Text.ToString(), txtQuantiy.Text.ToString());
         GridView1.DataBind();
-        product.itemBought(productID, quantity);
+        product.itemBought(productID, quantity ,"+");
     }
 }

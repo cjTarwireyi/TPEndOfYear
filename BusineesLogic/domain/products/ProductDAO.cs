@@ -66,7 +66,7 @@ public class ProductDAO
         return con;
     }
 
-    public void itemBought(string productID, string quantity)
+    public void itemBought(string productID, string quantity,  string opr)
     {
         string oriQuantity = "";
         int newQuantity = 0;
