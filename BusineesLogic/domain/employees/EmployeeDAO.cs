@@ -19,7 +19,7 @@ public class EmployeeDAO
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
     }
 
-    public void saveEmployee(EmployeeDTO emp)
+    public void save(EmployeeDTO emp)
     {
         con.Open();
         SqlCommand cmd = con.CreateCommand();
@@ -66,5 +66,25 @@ public class EmployeeDAO
         da.Dispose();
         con.Close();
         return employees;
-    }   
+    }
+
+    public void delete(string id)
+    {
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "delete from employees where employeeID = '" + id + "' ";
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
+
+    public void update(string id, List<string> employee)
+    {
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "update employees set employeeName ='" + employee[0] + "', employeeSurname='" + employee[1] + "',employeeCellNumber='" + employee[2] + "',employeeStreetName='" + employee[3] + "', employeeSuburb ='" + employee[4] + "',employeePostalCode='" + employee[5] + "' where employeeID = '" + id + "' ";
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
 }
