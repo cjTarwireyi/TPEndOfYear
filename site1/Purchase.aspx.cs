@@ -19,6 +19,7 @@ public partial class site1_Purchase : System.Web.UI.Page
     private OrderDTO order = new OrderDTO();
     private Products product = new Products();
     private IProduct productService = new ProductDAO();
+    private ICustomers customerService = new CustomerDAO();
     private string amt;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -30,7 +31,10 @@ public partial class site1_Purchase : System.Web.UI.Page
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
-
+        var data = customerService.getAllCustomers();
+        List<ListItem> items = new List<ListItem>();
+        items.Add("");
+        customer.Items.AddRange(new ListItem(data.Select(t=> t.name).ToArray()));
 
         lblUser.Text = userDto.username;
         if (!this.IsPostBack)
@@ -62,84 +66,92 @@ public partial class site1_Purchase : System.Web.UI.Page
 
     private void AddToDataTable()
     {
-
-        string productCode = txtProductID.Text;
-        string quantity = txtQuantiy.Text;
-        string custId = txtCustomerID.Text;
-        string productName = "";
-        string price = "";
-        totalAmt.Text = string.Empty;
-
-        if (facade.findProduct(Convert.ToInt32(productCode)) == null)
+        try
         {
+            string productCode = txtProductID.Text;
+            string quantity = txtQuantiy.Text;
+            string custId = txtCustomerID.Text;
+            string productName = "";
+            string price = "";
+            totalAmt.Text = string.Empty;
 
-            lblErrorProd.Visible = false;
-        }
-        else if (facade.findCustomer(Convert.ToInt32(custId)) == "401")
-        {
-            custError.Visible = true;
-        }
-        else
-        {
-            custError.Visible = false;
-            lblErrorProd.Visible = false;
-        }
-        if (lblErrorProd.Visible == false && custError.Visible == false)
-        {
-            string ogAmount;
-            if (grandTotal.Text == "")
+            if (facade.findProduct(Convert.ToInt32(productCode)) == null)
             {
-                ogAmount = "0";
-            }
-            else
-            {
-                ogAmount = grandTotal.Text;
-            }
-            totalAmt.Text = "Grand Total: R";
-            grandTotal.Text = "";
-            productName = facade.findProduct(Convert.ToInt32(productCode)).productName;
-            price = facade.findProduct(Convert.ToInt32(productCode)).price.ToString();
-            if (facade.findProduct(Convert.ToInt32(productCode)).productQuantity < Convert.ToInt32(quantity))
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + "The quantity entered is more that the one in stock " + "');", true);
-                txtQuantiy.Text = string.Empty;
-            }
-            else
-            {
-                amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity)) + Convert.ToDecimal(ogAmount)).ToString();
 
-                grandTotal.Text = amt;
                 lblErrorProd.Visible = false;
+            }
+            else if (facade.findCustomer(Convert.ToInt32(custId)) == "401")
+            {
+                custError.Visible = true;
+            }
+            else
+            {
                 custError.Visible = false;
-                DataRow dr = table.NewRow();
-                dr["ProductCode"] = productCode;
-                dr["Product"] = productName;
-                dr["Price"] = price;
-                dr["Quantity"] = quantity;
-                table.Rows.Add(dr);
-
-                product.productNumber = Convert.ToInt32(productCode);
-                product.productQuantity = Convert.ToInt32(quantity);
-                order.orderItems = new List<Products>();
-
-                if (order.orderItems.Contains(product))
+                lblErrorProd.Visible = false;
+            }
+            if (lblErrorProd.Visible == false && custError.Visible == false)
+            {
+                string ogAmount;
+                if (grandTotal.Text == "")
                 {
-                    Products foundproduct;
-                    foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
-                    foundproduct.productQuantity += product.productQuantity;
+                    ogAmount = "0";
                 }
                 else
                 {
-
-
+                    ogAmount = grandTotal.Text;
                 }
+                totalAmt.Text = "Grand Total: R";
+                grandTotal.Text = "";
+                productName = facade.findProduct(Convert.ToInt32(productCode)).productName;
+                price = facade.findProduct(Convert.ToInt32(productCode)).price.ToString();
+                if (facade.findProduct(Convert.ToInt32(productCode)).productQuantity < Convert.ToInt32(quantity))
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + "The quantity entered is more that the one in stock " + "');", true);
+                    txtQuantiy.Text = string.Empty;
+                }
+                else
+                {
+                    amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity)) + Convert.ToDecimal(ogAmount)).ToString();
+
+                    grandTotal.Text = amt;
+                    lblErrorProd.Visible = false;
+                    custError.Visible = false;
+                    DataRow dr = table.NewRow();
+                    dr["ProductCode"] = productCode;
+                    dr["Product"] = productName;
+                    dr["Price"] = price;
+                    dr["Quantity"] = quantity;
+                    table.Rows.Add(dr);
+
+                    product.productNumber = Convert.ToInt32(productCode);
+                    product.productQuantity = Convert.ToInt32(quantity);
+                    order.orderItems = new List<Products>();
+
+                    if (order.orderItems.Contains(product))
+                    {
+                        Products foundproduct;
+                        foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
+                        foundproduct.productQuantity += product.productQuantity;
+                    }
+                    else
+                    {
 
 
-                txtProductID.Text = string.Empty;
-                txtQuantiy.Text = string.Empty;
-                custError.Visible = false;
+                    }
+
+
+                    txtProductID.Text = string.Empty;
+                    txtQuantiy.Text = string.Empty;
+                    custError.Visible = false;
+                }
             }
-         }
+        }
+        catch (NotFiniteNumberException ex)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + "Make sure you entered correct format " + "');", true);
+                    
+        }
+        
     }
 
     private void BindGrid()
