@@ -38,7 +38,6 @@ public partial class site1_customer_Customers : System.Web.UI.Page
         {
             GridViewRow row = GridView1.SelectedRow;
             string id = row.Cells[1].Text;
-            //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('"+id+"');", true);
             Response.Redirect("PaymentSlip.aspx?Id=" + id, false);
         }
     }
@@ -72,7 +71,7 @@ public partial class site1_customer_Customers : System.Web.UI.Page
         try
         {
             string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
-            customer.deleteCustomer(id);
+            customer.delete(id);
         }
         catch(Exception ex)
         {
@@ -98,7 +97,7 @@ public partial class site1_customer_Customers : System.Web.UI.Page
             customerDetails.Add(((TextBox)row.Cells[6].Controls[0]).Text); //streetname
             customerDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //suburb
             customerDetails.Add(((TextBox)row.Cells[8].Controls[0]).Text); //postal code
-            customer.updateCustomer(id,customerDetails);
+            customer.update(id,customerDetails);
 
             GridView1.EditIndex = -1;
             loadCustomers();
