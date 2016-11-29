@@ -59,6 +59,7 @@
     <Compile Include="factories\TestOrderLine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\OrderTest.cs" />
+    <Compile Include="Repos\OrderLineTest.cs" />
     <Compile Include="Repos\UserTest.cs" />
     <Compile Include="UnitTest1.cs" />
   </ItemGroup>
