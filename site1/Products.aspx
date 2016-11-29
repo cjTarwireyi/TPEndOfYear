@@ -15,47 +15,11 @@
         <div class="  main">
              <h1><strong>Products</strong></h1>
             <br />
-            <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Products] WHERE [Id] = @original_Id AND (([ProductName] = @original_ProductName) OR ([ProductName] IS NULL AND @original_ProductName IS NULL)) AND (([ProductDescription] = @original_ProductDescription) OR ([ProductDescription] IS NULL AND @original_ProductDescription IS NULL)) AND (([Price] = @original_Price) OR ([Price] IS NULL AND @original_Price IS NULL)) AND (([Quantity] = @original_Quantity) OR ([Quantity] IS NULL AND @original_Quantity IS NULL)) AND (([DateArrived] = @original_DateArrived) OR ([DateArrived] IS NULL AND @original_DateArrived IS NULL)) AND (([SupplierID] = @original_SupplierID) OR ([SupplierID] IS NULL AND @original_SupplierID IS NULL))" InsertCommand="INSERT INTO [Products] ([ProductName], [ProductDescription], [Price], [Quantity], [DateArrived], [SupplierID]) VALUES (@ProductName, @ProductDescription, @Price, @Quantity, @DateArrived, @SupplierID)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [Id], [ProductName], [ProductDescription], [Price], [Quantity], [DateArrived], [SupplierID] FROM [Products] WHERE ([Active] &lt;&gt; @Active)" UpdateCommand="UPDATE [Products] SET [ProductName] = @ProductName, [ProductDescription] = @ProductDescription, [Price] = @Price, [Quantity] = @Quantity, [DateArrived] = @DateArrived, [SupplierID] = @SupplierID WHERE [Id] = @original_Id AND (([ProductName] = @original_ProductName) OR ([ProductName] IS NULL AND @original_ProductName IS NULL)) AND (([ProductDescription] = @original_ProductDescription) OR ([ProductDescription] IS NULL AND @original_ProductDescription IS NULL)) AND (([Price] = @original_Price) OR ([Price] IS NULL AND @original_Price IS NULL)) AND (([Quantity] = @original_Quantity) OR ([Quantity] IS NULL AND @original_Quantity IS NULL)) AND (([DateArrived] = @original_DateArrived) OR ([DateArrived] IS NULL AND @original_DateArrived IS NULL)) AND (([SupplierID] = @original_SupplierID) OR ([SupplierID] IS NULL AND @original_SupplierID IS NULL))">
-                <DeleteParameters>
-                    <asp:Parameter Name="original_Id" Type="Int32" />
-                    <asp:Parameter Name="original_ProductName" Type="String" />
-                    <asp:Parameter Name="original_ProductDescription" Type="String" />
-                    <asp:Parameter Name="original_Price" Type="Double" />
-                    <asp:Parameter Name="original_Quantity" Type="Int32" />
-                    <asp:Parameter Name="original_DateArrived" Type="DateTime" />
-                    <asp:Parameter Name="original_SupplierID" Type="Int32" />
-                </DeleteParameters>
-                <InsertParameters>
-                    <asp:Parameter Name="ProductName" Type="String" />
-                    <asp:Parameter Name="ProductDescription" Type="String" />
-                    <asp:Parameter Name="Price" Type="Double" />
-                    <asp:Parameter Name="Quantity" Type="Int32" />
-                    <asp:Parameter Name="DateArrived" Type="DateTime" />
-                    <asp:Parameter Name="SupplierID" Type="Int32" />
-                </InsertParameters>
-                <SelectParameters>
-                    <asp:Parameter DefaultValue="False" Name="Active" Type="Boolean" />
-                </SelectParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="ProductName" Type="String" />
-                    <asp:Parameter Name="ProductDescription" Type="String" />
-                    <asp:Parameter Name="Price" Type="Double" />
-                    <asp:Parameter Name="Quantity" Type="Int32" />
-                    <asp:Parameter Name="DateArrived" Type="DateTime" />
-                    <asp:Parameter Name="SupplierID" Type="Int32" />
-                    <asp:Parameter Name="original_Id" Type="Int32" />
-                    <asp:Parameter Name="original_ProductName" Type="String" />
-                    <asp:Parameter Name="original_ProductDescription" Type="String" />
-                    <asp:Parameter Name="original_Price" Type="Double" />
-                    <asp:Parameter Name="original_Quantity" Type="Int32" />
-                    <asp:Parameter Name="original_DateArrived" Type="DateTime" />
-                    <asp:Parameter Name="original_SupplierID" Type="Int32" />
-                </UpdateParameters>
-             </asp:SqlDataSource>--%>
-            <asp:GridView ID="gridView1" runat="server" AutoGenerateColumns="False"  CellPadding="4" DataKeyNames="Id" Align="Center" ForeColor="#333333" Width="785px" AllowSorting="True" Height="72px" HorizontalAlign="Justify">
+             <%-- Add content controls here --%>
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"  CellPadding="4" DataKeyNames="Id" Align="Center" ForeColor="#333333" Width="785px" AllowSorting="True" Height="72px" HorizontalAlign="Justify" OnRowCancelingEdit="gridView1_RowCancelingEdit" OnRowDeleting="gridView1_RowDeleting" OnRowEditing="gridView1_RowEditing" OnRowUpdating="gridView1_RowUpdating">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
-                    <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" InsertVisible="False" />
+                    <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" InsertVisible="False" ReadOnly="True" />
                     <asp:BoundField DataField="ProductName" HeaderText="ProductName" SortExpression="ProductName" />
                     <asp:BoundField DataField="ProductDescription" HeaderText="ProductDescription" SortExpression="ProductDescription" />
                     <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" />
@@ -86,10 +50,10 @@
             Width="155px" class="btn btn-danger" 
             data-toggle="tooltip" data-placement="left" 
             title="Insert new tecnician to database" OnClick="btnDeactivate_Click" />
-        </div>
+             cj</div>
     </asp:Content>
  <asp:Content ID="Content2" ContentPlaceHolderID="sideBarNav" runat="server">
-    <div id="sidebar-wrapper">
+     <div id="sidebar-wrapper">
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
             <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
