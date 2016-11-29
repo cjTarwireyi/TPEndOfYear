@@ -31,10 +31,14 @@ public partial class site1_Purchase : System.Web.UI.Page
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
-        var data = customerService.getAllCustomers();
+        List<CustomerDTO> data = customerService.getAllCustomers();
         List<ListItem> items = new List<ListItem>();
        // items.Add("");
-       // customer.Items.AddRange(new ListItem(data.Select(t=> t.name).ToArray()));
+        foreach (var item in data)
+        {
+            customer.Items.Add(item.name);
+        }
+        
 
         lblUser.Text = userDto.username;
         if (!this.IsPostBack)
