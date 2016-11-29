@@ -24,7 +24,7 @@ public partial class site1_ConfirmProduct : System.Web.UI.Page
     {
         Products item = (Products)Session["ProductsDTO"];
         ProductDAO product = new ProductDAO();
-        product.saveProduct(item);
+        product.save(item);
         Response.Redirect("Products.aspx");
     }
 

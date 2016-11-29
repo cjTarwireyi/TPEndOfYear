@@ -26,8 +26,8 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         string id = txtProductID.Text;
         lblQuantity.Text = "";
         int currentQuan = product.getItemQuantity(id);
-        try
-        {
+        //try
+        //{
             if (Request.QueryString["id"] != null)
             {
                 if (currentQuan == 0)
@@ -47,8 +47,8 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
                         addToGridView(productID, quantity);
                     }
             }
-        }
-        catch (Exception ex) { ExceptionRedirect(ex); }
+        //}
+        //catch (Exception ex) { ExceptionRedirect(ex); }
     }
 
     protected void Cancel_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
 
     private void ExceptionRedirect(Exception ex)
     {
-        Response.Redirect(@"../Webpages/ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {

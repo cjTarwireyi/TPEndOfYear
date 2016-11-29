@@ -53,5 +53,6 @@ public partial class site1_AddProduct : System.Web.UI.Page
                 }
             }
         }
+        product.connectionClosed(); 
     }
 }

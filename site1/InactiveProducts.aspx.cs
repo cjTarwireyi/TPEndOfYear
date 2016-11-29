@@ -23,13 +23,7 @@ public partial class site1_InactiveProducts : System.Web.UI.Page
         {
             GridViewRow row = GridView1.SelectedRow;
             string id = row.Cells[1].Text;
-            ProductDAO prodConnnection = new ProductDAO();
-            SqlConnection con = prodConnnection.connection();
-            con.Open();
-            String activeProduct = "update Products set Active ='True' where Id ='"+Convert.ToInt32(id)+"'";
-            SqlCommand cmd = new SqlCommand(activeProduct, con);
-            cmd.ExecuteNonQuery();
-
+            products.updateProductStatus(id,true);
             loadInactiveProducts();
             //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('"+id+"');", true);
         }

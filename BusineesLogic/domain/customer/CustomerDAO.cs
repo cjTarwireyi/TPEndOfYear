@@ -17,28 +17,20 @@ public class CustomerDAO
         con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
     }
 
-    public void saveCustomer(CustomerDTO custDTO)
+    public void save(CustomerDTO custDTO)
     {
-        try
-        {
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "insert into Customers ([CustomerName],[CustomerSurname],[CustomerCellNumber],[CustomerEmail],[CustomerStreetName],[CustomerSuburb],[CustomerPostalCode],[DateAccountCreated]) values('" + custDTO.name + "','" + custDTO.surname + "','" + custDTO.cellNumber + "','" + custDTO.email + "','" + custDTO.StreetName + "','" + custDTO.Suburb + "','" + custDTO.postalCode + "','" + DateTime.Now + "" + "')";
             cmd.ExecuteNonQuery();
             con.Close();
-        }
-        catch (Exception e)
-        {
-
-        }
-        
     }
     public CustomerDTO makeCustDTO(SqlDataReader myDR)
     {
         CustomerDTO customer = new CustomerDTO.CustomerBuilder()
             .custNumber(myDR.GetInt32(0))
-           .custName(myDR.GetString(1))
+            .custName(myDR.GetString(1))
            // .custSurname(myDR.GetString(2))
            // .custCellNumber(myDR.GetString(3))
             //.custEmail(myDR.GetString(4))
@@ -49,8 +41,6 @@ public class CustomerDAO
 
     public CustomerDTO getCustomerID(int number)
     {
-        try
-        {
             con.Open();
             String selectCustomer = "select * from Customers where CustomerID =" + number + " ";
             SqlCommand myComm = new SqlCommand(selectCustomer, con);
@@ -61,11 +51,6 @@ public class CustomerDAO
             CustomerDTO updateCustomer = makeCustDTO(myDR);
             con.Close();
             return updateCustomer;
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
         
     }
 
@@ -96,7 +81,7 @@ public class CustomerDAO
         return customers;
     }
 
-    public void deleteCustomer(string id)
+    public void delete(string id)
     {
         con.Open();
         SqlCommand cmd = con.CreateCommand();
@@ -106,7 +91,7 @@ public class CustomerDAO
         con.Close();
     }
 
-    public void updateCustomer(string id,List<string> customer)
+    public void update(string id,List<string> customer)
     {
         con.Open();
         SqlCommand cmd = con.CreateCommand();

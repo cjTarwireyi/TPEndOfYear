@@ -89,7 +89,7 @@ public partial class site1_Purchase : System.Web.UI.Page
             string ogAmount;
             if (grandTotal.Text == "")
             {
-                ogAmount = "0.0";
+                ogAmount = "0";
             }
             else
             {
@@ -137,11 +137,8 @@ public partial class site1_Purchase : System.Web.UI.Page
 
                 txtProductID.Text = string.Empty;
                 txtQuantiy.Text = string.Empty;
-
                 custError.Visible = false;
- 
             }
-          
          }
     }
 
@@ -177,7 +174,6 @@ public partial class site1_Purchase : System.Web.UI.Page
 
         
         List<Products> list = new List<Products>();
-        
         lblErrorProd.Visible = false;
         custError.Visible = false;
         foreach (GridViewRow row in GridView1.Rows)

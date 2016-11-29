@@ -35,7 +35,7 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
         CustomerDTO customerDTO = (CustomerDTO)Session["CustomerDTO"];
         try
         {
-            customer.saveCustomer(customerDTO);
+            customer.save(customerDTO);
             SendMail();
             Response.Redirect("Customers.aspx");
         }

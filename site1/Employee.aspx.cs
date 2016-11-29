@@ -12,7 +12,8 @@ public partial class site1_Employee : System.Web.UI.Page
     {
         loadSession();
         accessRights();
-        loadEmployees();
+        if (!IsPostBack)
+            loadEmployees();
     }
     protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -48,7 +49,6 @@ public partial class site1_Employee : System.Web.UI.Page
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
-
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
@@ -65,5 +65,42 @@ public partial class site1_Employee : System.Web.UI.Page
     private void ExceptionRedirect(Exception ex)
     {
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
+    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        try
+        {
+            string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
+            employee.delete(id);
+        }
+        catch (Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
+    }
+    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+            GridView1.EditIndex = -1;
+            loadEmployees();
+    }
+    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+            GridView1.EditIndex = e.NewEditIndex;
+            loadEmployees();
+    }
+    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        List<string> employeeDetails = new List<string>();
+        GridViewRow row = GridView1.Rows[e.RowIndex];
+        string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
+        employeeDetails.Add(((TextBox)row.Cells[2].Controls[0]).Text); //name
+        employeeDetails.Add(((TextBox)row.Cells[3].Controls[0]).Text); //surname
+        employeeDetails.Add(((TextBox)row.Cells[4].Controls[0]).Text); //cell number
+        employeeDetails.Add(((TextBox)row.Cells[5].Controls[0]).Text); //streetname
+        employeeDetails.Add(((TextBox)row.Cells[6].Controls[0]).Text); //suburb
+        employeeDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //postalCode
+        employee.update(id, employeeDetails);
+        GridView1.EditIndex = -1;
+        loadEmployees();
     }
 }
