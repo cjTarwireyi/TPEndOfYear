@@ -7,14 +7,15 @@ using System.Web.UI.WebControls;
 
 public partial class site1_Suppliers : System.Web.UI.Page
 {
-    private UserDTO userDto = new UserDTO();
-    private UserDTO userDtoUpdate = new UserDTO();
+    private UserDTO userDto;
+    private UserDTO userDtoUpdate;
     private SupplierDAO supplier = new SupplierDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
         loadSession();
         accessRights();
-        loadSupplies();
+        if(!IsPostBack)
+            loadSuppliers();
     }
     protected void Register_Click(object sender, EventArgs e)
     {
@@ -35,7 +36,7 @@ public partial class site1_Suppliers : System.Web.UI.Page
         lblUser.Text = userDto.username;
     }
 
-    private void loadSupplies()
+    private void loadSuppliers()
     {
         GridView1.DataSource = supplier.populateGrid();
         GridView1.DataBind();
@@ -49,4 +50,49 @@ public partial class site1_Suppliers : System.Web.UI.Page
         GridView1.AutoGenerateEditButton = true;
     }
 
+    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        try
+        {
+            string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
+            supplier.delete(id);
+            loadSuppliers();
+        }
+        catch (Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
+    }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
+    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        GridView1.EditIndex = -1;
+        loadSuppliers();
+    }
+    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        GridView1.EditIndex = e.NewEditIndex;
+        loadSuppliers();
+    }
+    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        List<string> supplierDetails = new List<string>();
+        GridViewRow row = GridView1.Rows[e.RowIndex];
+        string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
+
+        supplierDetails.Add(((TextBox)row.Cells[2].Controls[0]).Text); //name
+        supplierDetails.Add(((TextBox)row.Cells[3].Controls[0]).Text); //surname
+        supplierDetails.Add(((TextBox)row.Cells[4].Controls[0]).Text); //cellnumber 
+        supplierDetails.Add(((TextBox)row.Cells[5].Controls[0]).Text); //streetName
+        supplierDetails.Add(((TextBox)row.Cells[6].Controls[0]).Text); //suburb
+        supplierDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //postal code
+        
+        supplier.update(id,supplierDetails);
+        GridView1.EditIndex = -1;
+        loadSuppliers();
+    }
 }
