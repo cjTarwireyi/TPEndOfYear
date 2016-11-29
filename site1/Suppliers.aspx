@@ -72,7 +72,7 @@
                     <asp:Parameter Name="original_SupplierPostalCode" Type="String" />
                 </UpdateParameters>
             </asp:SqlDataSource>--%>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="SupplierID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="797px">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="SupplierID" CellPadding="4" ForeColor="#333333" GridLines="None" Width="797px" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     
