@@ -26,22 +26,17 @@ public class UserTypeDAO
         List<ListItem> items = new List<ListItem>();
        // int count = 0;
 
-        string checkTechnician = "SELECT userTypeName  FROM UserType  ";
-        //string checkTechnician = "SELECT * FROM user_types";
-        SqlCommand cmd = new SqlCommand(checkTechnician, con);
+        string userTypeQuerry = "SELECT userTypeName  FROM UserType  ";
+         
+        SqlCommand cmd = new SqlCommand(userTypeQuerry, con);
         SqlDataReader reader = cmd.ExecuteReader();
         while (reader.Read())
         {
-
-         //   found = makeDTO(reader);
+ 
             items.Add(new ListItem(reader.GetString(0)));
-           // var data = reader;
+            
         }
-        //else
-        //{
-        //  found =makeDTO(re null; 
-
-        //}
+         
         con.Close();
         return items;
        

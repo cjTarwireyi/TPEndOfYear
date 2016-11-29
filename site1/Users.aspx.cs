@@ -17,25 +17,6 @@ public partial class site1_Users : System.Web.UI.Page
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
         lblUser.Text = userDto.username;
-        
-      //  Control control = Master.FindControl("sideNav");
-        //Label loginControl = (Label)Master.FindControl("loginLable");
-        //Label regUser = (Label)Master.FindControl("regUser");
-
-       // control.Visible = false;
-       // regUser.Visible = false;
-        // loginControl.Visible = false;
-       // loginControl.Text = "Logged in as " + userDto.username + "Logout";
-
-        //  if (Session["Username"] != null)
-        // {
-        //   Label1.Text = Session["Username"].ToString();
-        //  }
-        //  else {
-        //    Response.Redirect("LoginPage.aspx");
-
-        //}
-
 
         if (userDto.userTypeName.Trim() == "Admin")
         {
@@ -57,21 +38,22 @@ public partial class site1_Users : System.Web.UI.Page
     {
 
         UserTypeDTO userType = new UserTypeDTO();
-        
+
 
         if (GridView1.SelectedIndex > -1)
         {
             GridViewRow row = GridView1.SelectedRow;
             int userId;
-            int empno =2;
+            int empno = 2;
 
             Label lblId = (Label)row.FindControl("lblUserId");
             if (lblId.Text == "")
             {
-                userId =0;
+                userId = 0;
             }
-            else{
-            userId = Convert.ToInt32(lblId.Text);
+            else
+            {
+                userId = Convert.ToInt32(lblId.Text);
             }
             userDto.Id = Convert.ToInt32(userId);
 
@@ -79,7 +61,7 @@ public partial class site1_Users : System.Web.UI.Page
             userDto.password = row.Cells[3].Text;
             string type = row.Cells[6].Text;
 
-           // userDto.userTypeDto.name =  userType.name;
+            // userDto.userTypeDto.name =  userType.name;
             Session["userUpdate"] = userDto;
             Session["userTypeUpdate"] = type;
             Session["empNo"] = empno;
@@ -107,7 +89,7 @@ public partial class site1_Users : System.Web.UI.Page
 
         }
         Response.Redirect("Users.aspx");
-       
+
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
@@ -116,6 +98,6 @@ public partial class site1_Users : System.Web.UI.Page
         Session.Clear();
 
         Response.Redirect("LoginPage.aspx");
-    } 
-   
+    }
+
 }

@@ -5,11 +5,12 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using BusineesLogic.Interface;
 
 /// <summary>
 /// Summary description for CustomerDAO
 /// </summary>
-public class CustomerDAO
+public class CustomerDAO:ICustomers 
 {
     private SqlConnection con;
     public CustomerDAO()
@@ -67,7 +68,19 @@ public class CustomerDAO
         con.Close();
         return customer;
     }
-
+    public List<CustomerDTO> getAllCustomers()
+    {
+      List<CustomerDTO> customers = new List<CustomerDTO>();
+        con.Open();
+        String selectCustomer = "SELECT  * FROM  Customers Order by CustomerID DESC ";
+        SqlCommand myComm = new SqlCommand(selectCustomer, con);
+        SqlDataReader myDR;
+        myDR = myComm.ExecuteReader();
+        while (myDR.Read())
+            customers.Add( makeCustDTO(myDR));
+        con.Close();
+        return customers;
+    }
     public DataTable populateGrid()
     {
         DataTable customers = new DataTable();

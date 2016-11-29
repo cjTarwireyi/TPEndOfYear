@@ -18,26 +18,24 @@ public partial class RegistrationPage : System.Web.UI.Page
         UserDTO userDto = new UserDTO();
         string type;
         int empno = 0;
-       // Control control = Master.FindControl("sideNav");
-        //Label loginControl = (Label)Master.FindControl("loginLable");
 
         UserDTO userDtoUpdate = new UserDTO();
- 
+
         userDtoUpdate = (UserDTO)Session["userUpdate"];
-       // Session.Remove("userUpdate");
+        // Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         //Session.Remove("userUpdate");
-         lblUser.Text = userDto.username;
-        
-        
+        lblUser.Text = userDto.username;
 
-       
+
+
+
         userType.Items.Clear();
         userType.Items.AddRange(facade.getUserTypes().ToArray());
-         
+
         type = (string)Session["userTypeUpdate"];
         if (lblTitle.Text != "User Update")
         {
@@ -56,12 +54,9 @@ public partial class RegistrationPage : System.Web.UI.Page
             empNo.Text = empno.ToString();
         }
 
-         
-        //control.Visible = false;
-        //loginControl.Text = "Logged in as " + userDto.username + "Logout";
         if (userDto.userTypeName.Trim() == "Admin")
         {
-          //  control.Visible = true;
+            //  control.Visible = true;
         }
 
     }
@@ -71,10 +66,10 @@ public partial class RegistrationPage : System.Web.UI.Page
         UserFacade userFacade = new UserFacade();
         userDtoUpdate = (UserDTO)Session["userUpdate"];
 
-        
+
         int uId = 0;
 
-        
+
 
         if (oldPasWrong.Visible == true) { oldPasWrong.Visible = false; }
         if (lblErrorEmp.Visible == true) { lblErrorEmp.Visible = false; }
@@ -132,19 +127,15 @@ public partial class RegistrationPage : System.Web.UI.Page
             }
             catch (FormatException ex)
             {
-                // Session.RemoveAll();
+
                 lblErrorEmp.Visible = true;
             }
             catch (OverflowException ex)
             {
-                // Session.RemoveAll();
+
                 lblErrorEmp.Visible = true;
             }
-            // catch(Exception ex){
-            //   Session.RemoveAll();
 
-            //Response.Write("Error: "+ ex.ToString());
-            //}
         }
         Username.Text = string.Empty;
         Rpassword.Text = string.Empty;
@@ -164,5 +155,5 @@ public partial class RegistrationPage : System.Web.UI.Page
         Session.Clear();
 
         Response.Redirect("LoginPage.aspx");
-    } 
+    }
 }
