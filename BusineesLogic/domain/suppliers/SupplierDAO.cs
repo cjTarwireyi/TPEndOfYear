@@ -67,4 +67,25 @@ public class SupplierDAO
         con.Close();
         return supplier;
     }
+
+    public void delete(string id)
+    {
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "delete from suppliers where supplierID = '" + id + "' ";
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
+
+    public void update(string id, List<string> supplierDetails)
+    {
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "update suppliers set supplierName ='" + supplierDetails[0] + "', supplierSurname='" + supplierDetails[1] + "',supplierCellNumber='" + supplierDetails[2] + "',supplierStreetName='" + supplierDetails[3] + "',supplierSuburb='" + supplierDetails[4] + "',supplierPostalCode='" + supplierDetails[5] + "' where supplierID = '" + id + "' ";
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
+
 }
