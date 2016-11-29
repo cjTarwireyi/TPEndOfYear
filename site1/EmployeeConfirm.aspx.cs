@@ -25,7 +25,7 @@ public partial class site1_EmployeeConfirm : System.Web.UI.Page
     {
         EmployeeDTO empDTO = (EmployeeDTO)Session["EmployeeDTO"];
         EmployeeDAO employee = new EmployeeDAO();
-        employee.saveEmployee(empDTO);
+        employee.save(empDTO);
         Response.Redirect("Employee.aspx");
     }
 
