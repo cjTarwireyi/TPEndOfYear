@@ -1,5 +1,5 @@
 ﻿<%--<%@ Page Title="" Language="C#" MasterPageFile="~/site1/MasterPage.master" AutoEventWireup="true" CodeFile="AddOrder.aspx.cs" Inherits="site1_AddOrder" %>--%>
-
+<%@ Page Title="" Language="C#" MasterPageFile="~/site1/MasterPage.master" AutoEventWireup="true" CodeFile="AddOrder.aspx.cs" Inherits="site1_AddOrder" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
     
 </asp:Content>
