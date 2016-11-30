@@ -19,16 +19,16 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
     protected void Register_Click(object sender, EventArgs e)
     {
         customerDTO = (CustomerDTO)Session["CustomerDTO"];
-        try
-        {
+       // try
+        //{
             customer.save(customerDTO);
             SendMail();
             Response.Redirect("Customers.aspx");
-        }
-        catch (Exception ex)
-        {
-            ExceptionRedirect(ex);
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    ExceptionRedirect(ex);
+        //}
     }
 
     private void ExceptionRedirect(Exception ex)
