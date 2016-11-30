@@ -17,16 +17,16 @@ public partial class site1_ConfirmSupplier : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             supplierDTO = (SupplierDTO)Session["SupplierDTO"];
             supplier.save(supplierDTO);
             Response.Redirect("Suppliers.aspx");
-        }
-        catch(Exception ex)
-        {
-            ExceptionRedirect(ex);
-        }
+        //}
+        //catch(Exception ex)
+        //{
+          //  ExceptionRedirect(ex);
+        //}
     }
 
     private void ExceptionRedirect(Exception ex)
