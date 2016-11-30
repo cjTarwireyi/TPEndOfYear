@@ -38,8 +38,15 @@ public partial class site1_Suppliers : System.Web.UI.Page
 
     private void loadSuppliers()
     {
-        GridView1.DataSource = supplier.populateGrid();
-        GridView1.DataBind();
+        try
+        {
+            GridView1.DataSource = supplier.populateGrid();
+            GridView1.DataBind();
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
 
     private void accessRights()
@@ -75,24 +82,33 @@ public partial class site1_Suppliers : System.Web.UI.Page
     }
     protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
     {
-        GridView1.EditIndex = e.NewEditIndex;
-        loadSuppliers();
+        
+            GridView1.EditIndex = e.NewEditIndex;
+            loadSuppliers();
+        
+        
     }
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
         List<string> supplierDetails = new List<string>();
         GridViewRow row = GridView1.Rows[e.RowIndex];
         string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
+        try
+        {
+            supplierDetails.Add(((TextBox)row.Cells[2].Controls[0]).Text); //name
+            supplierDetails.Add(((TextBox)row.Cells[3].Controls[0]).Text); //surname
+            supplierDetails.Add(((TextBox)row.Cells[4].Controls[0]).Text); //cellnumber 
+            supplierDetails.Add(((TextBox)row.Cells[5].Controls[0]).Text); //streetName
+            supplierDetails.Add(((TextBox)row.Cells[6].Controls[0]).Text); //suburb
+            supplierDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //postal code
 
-        supplierDetails.Add(((TextBox)row.Cells[2].Controls[0]).Text); //name
-        supplierDetails.Add(((TextBox)row.Cells[3].Controls[0]).Text); //surname
-        supplierDetails.Add(((TextBox)row.Cells[4].Controls[0]).Text); //cellnumber 
-        supplierDetails.Add(((TextBox)row.Cells[5].Controls[0]).Text); //streetName
-        supplierDetails.Add(((TextBox)row.Cells[6].Controls[0]).Text); //suburb
-        supplierDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //postal code
-        
-        supplier.update(id,supplierDetails);
-        GridView1.EditIndex = -1;
-        loadSuppliers();
+            supplier.update(id, supplierDetails);
+            GridView1.EditIndex = -1;
+            loadSuppliers();
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
 }

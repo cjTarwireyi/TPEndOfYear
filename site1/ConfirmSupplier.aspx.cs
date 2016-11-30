@@ -7,25 +7,26 @@ using System.Web.UI.WebControls;
 
 public partial class site1_ConfirmSupplier : System.Web.UI.Page
 {
+    private UserDTO userDtoUpdate;
+    private UserDTO userDto;
+    private SupplierDTO supplierDTO;
+    private SupplierDAO supplier = new SupplierDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserDTO userDtoUpdate = new UserDTO();
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        SupplierDTO supplier = (SupplierDTO)Session["SupplierDTO"];
-        lblSupplierName.Text = supplier.supplierName;
-        lblSupplierSurname.Text = supplier.supplierSurname;
-        lblCellNumber.Text = supplier.supplierCellNumber;
-        lblSurbub.Text = supplier.supplierSuburb;
-        lblStreet.Text = supplier.supplierStreetName;
-        lblPostalCode.Text = supplier.supplierPostalCode;
+        session();
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        SupplierDTO dto = (SupplierDTO)Session["SupplierDTO"];
-        SupplierDAO supplier = new SupplierDAO();
-        supplier.save(dto);
-        Response.Redirect("Suppliers.aspx");
+        //try
+        //{
+            supplierDTO = (SupplierDTO)Session["SupplierDTO"];
+            supplier.save(supplierDTO);
+            Response.Redirect("Suppliers.aspx");
+        //}
+        //catch(Exception ex)
+        //{
+          //  ExceptionRedirect(ex);
+        //}
     }
 
     private void ExceptionRedirect(Exception ex)
@@ -33,5 +34,22 @@ public partial class site1_ConfirmSupplier : System.Web.UI.Page
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
 
-
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        supplierDTO = (SupplierDTO)Session["SupplierDTO"];
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        else
+            lblSupplierName.Text = supplierDTO.supplierName;
+            lblSupplierSurname.Text = supplierDTO.supplierSurname;
+            lblCellNumber.Text = supplierDTO.supplierCellNumber;
+            lblSurbub.Text = supplierDTO.supplierSuburb;
+            lblStreet.Text = supplierDTO.supplierStreetName;
+            lblPostalCode.Text = supplierDTO.supplierPostalCode;
+    }
 }

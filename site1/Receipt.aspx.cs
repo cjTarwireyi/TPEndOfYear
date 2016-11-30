@@ -11,25 +11,20 @@ using System.Web.UI.WebControls;
 
 public partial class site1_Receipt : System.Web.UI.Page
 {
-    private UserDTO userDto = new UserDTO();
-    private UserDTO userDtoUpdate = new UserDTO();
+    private UserDTO userDto;
+    private UserDTO userDtoUpdate;
+    private ProductDAO accessProduct = new ProductDAO();
+    private Products product;
+    private CustomerDTO customer;
+    private CustomerDAO accessCustomer = new CustomerDAO();
+    private OrderLineDAO accesssOrderLine = new OrderLineDAO();
+    private OrderLineDTO orderline;
+    private OrderDTO order;
+    private OrdersDAO accessOrder = new OrdersDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+        session();
         print();
-        OrderLineDAO accesssOrder = new OrderLineDAO();
-        List<OrderLineDTO> items = accesssOrder.getOrderItems(25);
-        OrderLineDTO order = new OrderLineDTO();
-        for (int i = 0; i < items.Count; i++)
-        {
-            order = (OrderLineDTO)items[i];
-
-            // ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + order.productID+ "');", true);
-        }
     }
 
     private void print()
@@ -49,14 +44,7 @@ public partial class site1_Receipt : System.Web.UI.Page
                 MemoryStream memoryStream = new MemoryStream();
                 Document doc = new Document();
                 PdfWriter writer = PdfWriter.GetInstance(doc, memoryStream);
-                ProductDAO accessProduct = new ProductDAO();
-                Products product = new Products();
-                CustomerDTO customer = new CustomerDTO();
-                CustomerDAO accessCustomer = new CustomerDAO();
-                OrderLineDAO accesssOrderLine = new OrderLineDAO();
-                OrderLineDTO orderline = new OrderLineDTO();
-                OrderDTO order = new OrderDTO();
-                OrdersDAO accessOrder = new OrdersDAO();
+                
 
 
                 doc.Open();
@@ -143,7 +131,25 @@ public partial class site1_Receipt : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            Response.Write("Error: " + ex.ToString());
+            ExceptionRedirect(ex);
         }
     }
+
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+    }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
+
+
 }
