@@ -9,30 +9,16 @@ using System.Web.UI.WebControls;
 public partial class site1_ConfirmCustomer : System.Web.UI.Page
 {
     private CustomerDAO customer = new CustomerDAO();
+    private UserDTO userDtoUpdate;
+    private UserDTO userDto;
+    private CustomerDTO customerDTO;
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserDTO userDtoUpdate = new UserDTO();
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        CustomerDTO customer = (CustomerDTO)Session["CustomerDTO"];
-        UserDTO userDto = new UserDTO();
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
-        else
-            lblName.Text = customer.name;
-        lblSurname.Text = customer.surname;
-        lblCellNumber.Text = customer.cellNumber;
-        lblEmail.Text = customer.email;
-        lblStreet.Text = customer.StreetName;
-        lblSurbub.Text = customer.Suburb;
-        lblPostalCode.Text = customer.postalCode;
+        session();
     }
     protected void Register_Click(object sender, EventArgs e)
     {
-        CustomerDTO customerDTO = (CustomerDTO)Session["CustomerDTO"];
+        customerDTO = (CustomerDTO)Session["CustomerDTO"];
         try
         {
             customer.save(customerDTO);
@@ -52,14 +38,12 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
 
     private void SendMail()
     {
-        CustomerDTO customer = (CustomerDTO)Session["CustomerDTO"];
-        CustomerDAO accessCustomer = new CustomerDAO();
+        customerDTO = (CustomerDTO)Session["CustomerDTO"];
         string fromAddress = "siraaj.wilkonson1995@gmail.com";
-        string toAddress = customer.email.ToString();
+        string toAddress = customerDTO.email.ToString();
         const string fromPassword = "wilkonson1995";
         string subject = "Customer Number Keep Safe";
-        string body = "Hi " + customer.name + " " + customer.surname + "\nYour customer number is:" + "'" + accessCustomer.getLastReocrd() + "'" + "Please keep it safe as it would be required from you everytime you purchase items";
-
+        string body = "Hi " + customerDTO.name + " " + customerDTO.surname + "\nYour customer number is:" + "'" + customer.getLastReocrd() + "'" + "Please keep it safe as it would be required from you everytime you purchase items";
         // smtp settings
         var smtp = new System.Net.Mail.SmtpClient();
         {
@@ -72,5 +56,25 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
         }
         // Passing values to smtp object
         smtp.Send(fromAddress, toAddress, subject, body);
+    }
+
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        customerDTO = (CustomerDTO)Session["CustomerDTO"];
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        else
+            lblName.Text = customerDTO.name;
+        lblSurname.Text = customerDTO.surname;
+        lblCellNumber.Text = customerDTO.cellNumber;
+        lblEmail.Text = customerDTO.email;
+        lblStreet.Text = customerDTO.StreetName;
+        lblSurbub.Text = customerDTO.Suburb;
+        lblPostalCode.Text = customerDTO.postalCode;
     }
 }
