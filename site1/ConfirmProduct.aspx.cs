@@ -7,29 +7,50 @@ using System.Web.UI.WebControls;
 
 public partial class site1_ConfirmProduct : System.Web.UI.Page
 {
+    private UserDTO userDtoUpdate;
+    private UserDTO userDto;
+    private Products product;
+    ProductDAO prod = new ProductDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserDTO userDtoUpdate = new UserDTO();
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        Products product = (Products)Session["ProductsDTO"];
-        lblName.Text ="Name: "+ product.productName;
-        lblDescription.Text = "Discription: "+product.productDescription;
-        lblQuantity.Text = "Quantity: "+product.productQuantity.ToString();
-        lblPrice.Text = "Price: "+product.price.ToString();
-        lblTime.Text = "Date: "+product.dateArrived.ToString();
-        lblSupplierID.Text = "SupplierID: "+product.productSupplierID.ToString();
+        session();
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        Products item = (Products)Session["ProductsDTO"];
-        ProductDAO product = new ProductDAO();
-        product.save(item);
-        Response.Redirect("Products.aspx");
+        try
+        {
+            product = (Products)Session["ProductsDTO"];
+            prod.save(product);
+            Response.Redirect("Products.aspx");
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
 
     private void ExceptionRedirect(Exception ex)
     {
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
+
+
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        product = (Products)Session["ProductsDTO"];
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        else
+        lblName.Text = "Name: " + product.productName;
+        lblDescription.Text = "Discription: " + product.productDescription;
+        lblQuantity.Text = "Quantity: " + product.productQuantity.ToString();
+        lblPrice.Text = "Price: " + product.price.ToString();
+        lblTime.Text = "Date: " + product.dateArrived.ToString();
+        lblSupplierID.Text = "SupplierID: " + product.productSupplierID.ToString();
     }
 }
