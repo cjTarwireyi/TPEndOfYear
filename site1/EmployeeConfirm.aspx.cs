@@ -19,16 +19,16 @@ public partial class site1_EmployeeConfirm : System.Web.UI.Page
         
     protected void btnConfirm_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             employeeDTO = (EmployeeDTO)Session["EmployeeDTO"];
             employee.save(employeeDTO);
             Response.Redirect("Employee.aspx");
-        }
-        catch(Exception ex)
-        {
-            ExceptionRedirect(ex);
-        }
+       // }
+        //catch(Exception ex)
+        //{
+        //    ExceptionRedirect(ex);
+        //}
 
     }
 
