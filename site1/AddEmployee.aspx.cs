@@ -7,21 +7,14 @@ using System.Web.UI.WebControls;
 
 public partial class site1_AddEmployee : System.Web.UI.Page
 {
-    private UserDTO userDto = new UserDTO();
-    private UserDTO userDtoUpdate = new UserDTO();
+    private UserDTO userDto;
+    private UserDTO userDtoUpdate;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+        session();
     }
     protected void Register_Click(object sender, EventArgs e)
     {
-        try
-        {
             string name = FullName.Text;
             string surname = Surname.Text;
             string cellNumber = Phone.Text;
@@ -37,15 +30,24 @@ public partial class site1_AddEmployee : System.Web.UI.Page
             .build();
             Session["EmployeeDTO"] = employee;
             Server.Transfer("EmployeeConfirm.aspx", true);
-        }
-        catch (Exception ex)
-        {
-           Response.Write("Error: " + ex.ToString());
-        }
     }
 
     private void ExceptionRedirect(Exception ex)
     {
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
+
+
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        
+    }
+
 }
