@@ -17,7 +17,8 @@ public partial class site1_Orders : System.Web.UI.Page
         GridView1.AutoGenerateSelectButton = true;
         session();
         if (!Page.IsPostBack)
-            generateCurrentDate();   
+            generateCurrentDate();
+        populateGrid();
     }
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -153,8 +154,8 @@ public partial class site1_Orders : System.Web.UI.Page
                 DropDownList1.SelectedValue = month;
                 txtYear.Text = currentYear;
             }
-            GridView1.DataSource = order.populateGrid(month, currentYear, false);
-            GridView1.DataBind();
+            /*GridView1.DataSource = order.populateGrid(month, currentYear, false);
+            GridView1.DataBind();*/
         }
         catch(Exception ex)
         {
