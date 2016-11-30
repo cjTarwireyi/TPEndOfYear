@@ -17,16 +17,16 @@ public partial class site1_ConfirmProduct : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        try
-        {
+        //try
+        //{
             product = (Products)Session["ProductsDTO"];
             prod.save(product);
             Response.Redirect("Products.aspx");
-        }
-        catch(Exception ex)
-        {
-            ExceptionRedirect(ex);
-        }
+       // }
+        //catch(Exception ex)
+        //{
+        //    ExceptionRedirect(ex);
+        //}
     }
 
     private void ExceptionRedirect(Exception ex)
