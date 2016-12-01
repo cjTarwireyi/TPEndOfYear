@@ -18,11 +18,8 @@ public partial class site1_Users : System.Web.UI.Page
             Response.Redirect("LoginPage.aspx");
         lblUser.Text = userDto.username;
 
-        if (userDto.userTypeName.Trim() == "Admin")
-        {
-            //control.Visible = true;
-            //regUser.Visible = true;
-        }
+        if (userDto.userTypeName.Trim() != "Admin")
+            AdminLinkPanel.Visible = false;
     }
 
     protected void Register_Click(object sender, EventArgs e)
