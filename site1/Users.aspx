@@ -67,19 +67,19 @@
          <asp:Button ID="Register" runat="server" Height="32px" Text="Register user" 
             Width="126px" class="btn btn-success" 
             data-toggle="tooltip" data-placement="left" 
-            title="Insert new tecnician to database" onclick="Register_Click"/>&nbsp;&nbsp;
+            title="Insert new User to database" onclick="Register_Click"/>&nbsp;&nbsp;
              </div>
          <div class="col-lg-3">
              <asp:Button ID="btnInactive" runat="server" Height="32px" Text="Update" 
             Width="130px" class="btn btn-info" 
             data-toggle="tooltip" data-placement="left" 
-            title="Insert new tecnician to database" onclick="Update"/>
+            title="Update new User to database" onclick="Update"/>
         </div>
          <div class="col-lg-3">
              <asp:Button ID="Button1" runat="server" Height="32px" Text="Remove User" 
             Width="145px" class="btn btn-danger" 
             data-toggle="tooltip" data-placement="left" 
-            title="Insert new tecnician to database" onclick="RemoveUser"/>
+            title="Remove user from database" onclick="RemoveUser"/>
              </div>
         </div>
         

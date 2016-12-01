@@ -9,8 +9,8 @@ using System.Web.UI.WebControls;
 public partial class site1_customer_Customers : System.Web.UI.Page
 {
     private CustomerDAO customer = new CustomerDAO();
-    private UserDTO userDtoUpdate = new UserDTO();
-    private UserDTO userDto = new UserDTO();
+    private UserDTO userDtoUpdate;
+    private UserDTO userDto;
     protected void Page_Load(object sender, EventArgs e)
     {
         
@@ -43,9 +43,16 @@ public partial class site1_customer_Customers : System.Web.UI.Page
     }
 
     private void loadCustomers()
-    { 
-        GridView1.DataSource = customer.populateGrid();
-        GridView1.DataBind();
+    {
+        try
+        {
+            GridView1.DataSource = customer.populateGrid();
+            GridView1.DataBind();
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
 
     private void session()
@@ -72,6 +79,7 @@ public partial class site1_customer_Customers : System.Web.UI.Page
         {
             string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
             customer.delete(id);
+            loadCustomers();
         }
         catch(Exception ex)
         {

@@ -9,8 +9,8 @@ using System.Web.UI.WebControls;
 
 public partial class site1_Products : System.Web.UI.Page
 {
-    private UserDTO userDtoUpdate = new UserDTO();
-    private UserDTO userDto = new UserDTO();
+    private UserDTO userDtoUpdate;
+    private UserDTO userDto;
     private ProductDAO products = new ProductDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -32,12 +32,17 @@ public partial class site1_Products : System.Web.UI.Page
     {
         if (GridView1.SelectedIndex >= 0)
         {
-            GridViewRow row = GridView1.SelectedRow;
-            string id = row.Cells[1].Text;
-            products.updateProductStatus(id, false);
-            loadProducts();
-
-            //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('"+id+"');", true);
+            try
+            {
+                GridViewRow row = GridView1.SelectedRow;
+                string id = row.Cells[1].Text;
+                products.updateProductStatus(id, false);
+                loadProducts();
+            }
+            catch(Exception ex)
+            {
+                ExceptionRedirect(ex);
+            }
         }
     }
     protected void Submit_Click(object sender, EventArgs e)
@@ -61,8 +66,15 @@ public partial class site1_Products : System.Web.UI.Page
     }
     private void loadProducts()
     {
-        GridView1.DataSource = products.populateGrid();
-        GridView1.DataBind();
+        try
+        {
+            GridView1.DataSource = products.populateGrid();
+            GridView1.DataBind();
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
 
     private void accessRights()
@@ -78,6 +90,7 @@ public partial class site1_Products : System.Web.UI.Page
         {
             string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
             products.delete(id);
+            loadProducts();
         }
         catch (Exception ex)
         {
@@ -102,18 +115,25 @@ public partial class site1_Products : System.Web.UI.Page
 
     protected void gridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
-        List<string> productsDetails = new List<string>();
-        GridViewRow row = GridView1.Rows[e.RowIndex];
-        string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
+        try
+        {
+            List<string> productsDetails = new List<string>();
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
 
-        productsDetails.Add(((TextBox)row.Cells[2].Controls[0]).Text); //name
-        productsDetails.Add(((TextBox)row.Cells[3].Controls[0]).Text); //description
-        productsDetails.Add(((TextBox)row.Cells[4].Controls[0]).Text); //price 
-        productsDetails.Add(((TextBox)row.Cells[5].Controls[0]).Text); //quantity
-        productsDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //supplierID
-        products.update(id,productsDetails);
+            productsDetails.Add(((TextBox)row.Cells[2].Controls[0]).Text); //name
+            productsDetails.Add(((TextBox)row.Cells[3].Controls[0]).Text); //description
+            productsDetails.Add(((TextBox)row.Cells[4].Controls[0]).Text); //price 
+            productsDetails.Add(((TextBox)row.Cells[5].Controls[0]).Text); //quantity
+            productsDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //supplierID
+            products.update(id, productsDetails);
 
-        GridView1.EditIndex = -1;
-        loadProducts();
+            GridView1.EditIndex = -1;
+            loadProducts();
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
 }

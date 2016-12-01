@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusineesLogic.Interface;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Web;
 /// <summary>
 /// Summary description for SupplierDAO
 /// </summary>
-public class SupplierDAO
+public class SupplierDAO : IDatabaseFunctions
 {
     private SqlConnection con;
     public SupplierDAO()

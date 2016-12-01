@@ -9,20 +9,14 @@ public partial class site1_AddOrder : System.Web.UI.Page
 {
    private OrderDTO order = new OrderDTO();
    private Products product = new Products();
-   private UserDTO userDto = new UserDTO();
+   private UserDTO userDto;
+   private UserDTO userDtoUpdate;
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserDTO userDtoUpdate = new UserDTO();
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+        session();  
     }
     protected void Register_Click(object sender, EventArgs e)
     {
-
-
         product.productNumber = 1;
         product.productQuantity = 2;
         if (order.orderItems.Contains(product))
@@ -46,6 +40,17 @@ public partial class site1_AddOrder : System.Web.UI.Page
         Products foundproduct;
         foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
         order.orderItems.Remove(foundproduct);
+    }
+
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
     }
 
 }

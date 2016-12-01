@@ -11,22 +11,22 @@
 
             <div class="input-group" id="Username">
                  
-                <asp:TextBox ID="username" class="form-control"  runat="server" Height="35px" Width="290px"
+                <asp:TextBox ID="txtUsername" class="form-control"  runat="server" Height="35px" Width="290px"
                      placeholder="Username"></asp:TextBox>
             </div>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                ErrorMessage="Username Required!" ControlToValidate="username" ForeColor="Red"></asp:RequiredFieldValidator>
+                ErrorMessage="Username Required!" ControlToValidate="txtUsername" ForeColor="Red"></asp:RequiredFieldValidator>
             <br />
         </div>
 
         <div class="form-group">
             <div class="input-group">
                   
-                <asp:TextBox ID="password" runat="server" Height="35px" Width="290px"
+                <asp:TextBox ID="txtPassword" runat="server" Height="35px" Width="290px"
                     class="form-control" TextMode="Password" placeholder="Password"></asp:TextBox>
             </div>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                ErrorMessage="Password Required!" ControlToValidate="password" ForeColor="Red"></asp:RequiredFieldValidator>
+                ErrorMessage="Password Required!" ControlToValidate="txtPassword" ForeColor="Red"></asp:RequiredFieldValidator>
          
         </div>
             <div class="col-lg-offset-4">

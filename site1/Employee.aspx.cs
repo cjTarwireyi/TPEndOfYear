@@ -8,6 +8,8 @@ using System.Web.UI.WebControls;
 public partial class site1_Employee : System.Web.UI.Page
 {
     private EmployeeDAO employee = new EmployeeDAO();
+    private UserDTO userDtoUpdate;
+    private UserDTO userDto;
     protected void Page_Load(object sender, EventArgs e)
     {
         loadSession();
@@ -36,14 +38,20 @@ public partial class site1_Employee : System.Web.UI.Page
 
     private void loadEmployees()
     {
-        GridView1.DataSource = employee.populateGrid();
-        GridView1.DataBind();
+        try
+        {
+            GridView1.DataSource = employee.populateGrid();
+            GridView1.DataBind();
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
 
     private void loadSession()
     {
-        UserDTO userDtoUpdate = new UserDTO();
-        UserDTO userDto = new UserDTO();
+        
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
@@ -72,6 +80,7 @@ public partial class site1_Employee : System.Web.UI.Page
         {
             string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
             employee.delete(id);
+            loadEmployees();
         }
         catch (Exception ex)
         {
@@ -93,14 +102,21 @@ public partial class site1_Employee : System.Web.UI.Page
         List<string> employeeDetails = new List<string>();
         GridViewRow row = GridView1.Rows[e.RowIndex];
         string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
-        employeeDetails.Add(((TextBox)row.Cells[2].Controls[0]).Text); //name
-        employeeDetails.Add(((TextBox)row.Cells[3].Controls[0]).Text); //surname
-        employeeDetails.Add(((TextBox)row.Cells[4].Controls[0]).Text); //cell number
-        employeeDetails.Add(((TextBox)row.Cells[5].Controls[0]).Text); //streetname
-        employeeDetails.Add(((TextBox)row.Cells[6].Controls[0]).Text); //suburb
-        employeeDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //postalCode
-        employee.update(id, employeeDetails);
-        GridView1.EditIndex = -1;
-        loadEmployees();
+        try
+        {
+            employeeDetails.Add(((TextBox)row.Cells[2].Controls[0]).Text); //name
+            employeeDetails.Add(((TextBox)row.Cells[3].Controls[0]).Text); //surname
+            employeeDetails.Add(((TextBox)row.Cells[4].Controls[0]).Text); //cell number
+            employeeDetails.Add(((TextBox)row.Cells[5].Controls[0]).Text); //streetname
+            employeeDetails.Add(((TextBox)row.Cells[6].Controls[0]).Text); //suburb
+            employeeDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //postalCode
+            employee.update(id, employeeDetails);
+            GridView1.EditIndex = -1;
+            loadEmployees();
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
 }

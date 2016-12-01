@@ -13,18 +13,26 @@ using  iTextSharp.text.pdf;
 
 public partial class site1_PaymentSlip : System.Web.UI.Page
 {
-    private UserDTO userDto = new UserDTO();
-    private UserDTO userDtoUpdate = new UserDTO();
+    private UserDTO userDto;
+    private UserDTO userDtoUpdate;
     protected void Page_Load(object sender, EventArgs e)
     {
+        session();
+        print();
+    }
+
+
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
-        print();
+       
     }
-
 
     private void print()
     {
@@ -106,7 +114,13 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            Response.Write("Error: " + ex.ToString());
+            ExceptionRedirect(ex);
         }
     }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
+
 }

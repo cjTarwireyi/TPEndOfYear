@@ -8,30 +8,17 @@ using System.Web.UI.WebControls;
 
 public partial class site1_Orders : System.Web.UI.Page
 {
-    private UserDTO userDto = new UserDTO();
-    private UserDTO userDtoUpdate = new UserDTO();
+    private UserDTO userDto;
+    private UserDTO userDtoUpdate;
     private OrdersDAO order = new OrdersDAO();
+    private GridViewRow row;
     protected void Page_Load(object sender, EventArgs e)
     {
         GridView1.AutoGenerateSelectButton = true;
-        string month = DateTime.Now.ToString().Substring(5,2);
-        string currentYear = DateTime.Now.Year.ToString();
-        //ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + month.Substring(5,2) + "');", true);
+        session();
         if (!Page.IsPostBack)
-        {
-            if (DropDownList1.Items.FindByValue(month) != null)
-            {
-                DropDownList1.SelectedValue = month;
-                txtYear.Text = currentYear;
-            }
-            GridView1.DataSource = order.populateGrid(month, currentYear,false);
-            GridView1.DataBind();
-        }
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            generateCurrentDate();
+        populateGrid();
     }
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -51,7 +38,7 @@ public partial class site1_Orders : System.Web.UI.Page
     {
         if (GridView1.SelectedIndex >= 0)
         {
-            GridViewRow row = GridView1.SelectedRow;
+            row = GridView1.SelectedRow;
             string id = row.Cells[1].Text;
             Response.Redirect("UpdateOrder.aspx?Id=" + id, false);
         }
@@ -60,13 +47,19 @@ public partial class site1_Orders : System.Web.UI.Page
     {
         if (GridView1.SelectedIndex >= 0)
         {
-            GridViewRow row = GridView1.SelectedRow;
+            row = GridView1.SelectedRow;
             string id = row.Cells[1].Text;
             DataTable orderTable = new DataTable();
-            
-            order.getOrdersDetails(orderTable,Convert.ToInt32(id));
-            GridView2.DataSource = orderTable;
-            GridView2.DataBind();
+            try
+            {
+                order.getOrdersDetails(orderTable, Convert.ToInt32(id));
+                GridView2.DataSource = orderTable;
+                GridView2.DataBind();
+            }
+            catch(Exception ex)
+            {
+                ExceptionRedirect(ex);
+            }
         }
     }
     protected void btnSearch_Click(object sender, EventArgs e)
@@ -76,30 +69,35 @@ public partial class site1_Orders : System.Web.UI.Page
 
     protected void dgrvData_Filter(object sender, EventArgs e)
     {
+        DataTable searchedOrder = new DataTable();
         string date = txtYear.Text + DropDownList1.SelectedValue;
         string searchID = txtSearch.Text;
         string month = DropDownList1.SelectedValue;
         string currentYear = txtYear.Text;
-        
-        DataTable searchedOrder = new DataTable();
         bool payed;
+
         if (RadioButton1.Checked == true)
             payed = true;
         else
             payed = false;
 
         if (txtSearch.Text.ToString().Trim().Length == 0)
-        {
             populateGrid();
-        }
         else
         {
-            order.searchOrder(searchedOrder, searchID,payed);
-            GridView1.DataSource = searchedOrder;
-            GridView1.DataBind();
-           
+            try
+            {
+                order.searchOrder(searchedOrder, searchID, payed);
+                GridView1.DataSource = searchedOrder;
+                GridView1.DataBind();
+            }
+            catch (Exception ex)
+            {
+                ExceptionRedirect(ex);
+            }
         }
     }
+
     protected void DropDownList1_TextChanged(object sender, EventArgs e)
     {
         populateGrid();
@@ -108,15 +106,23 @@ public partial class site1_Orders : System.Web.UI.Page
     private void populateGrid()
     {
         bool payed;
-        if (RadioButton1.Checked == true)
-            payed = true;
-        else
-            payed = false;
-        string month = DropDownList1.SelectedValue;
-        string cureentYear = txtYear.Text;
-        GridView1.DataSource = order.populateGrid(month, cureentYear, payed);
-        GridView1.DataBind();
+        try
+        {
+            if (RadioButton1.Checked == true)
+                payed = true;
+            else
+                payed = false;
+            string month = DropDownList1.SelectedValue;
+            string cureentYear = txtYear.Text;
+            GridView1.DataSource = order.populateGrid(month, cureentYear, payed);
+            GridView1.DataBind();
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
+
     protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
     {
         populateGrid();
@@ -131,4 +137,43 @@ public partial class site1_Orders : System.Web.UI.Page
         GridView1.PageIndex = e.NewPageIndex;
         populateGrid();
     }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
+
+    private void generateCurrentDate()
+    {
+        try
+        {
+            string month = DateTime.Now.ToString().Substring(5, 2);
+            string currentYear = DateTime.Now.Year.ToString();
+            if (DropDownList1.Items.FindByValue(month) != null)
+            {
+                DropDownList1.SelectedValue = month;
+                txtYear.Text = currentYear;
+            }
+            /*GridView1.DataSource = order.populateGrid(month, currentYear, false);
+            GridView1.DataBind();*/
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
+    }
+
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+    }
+
+
+
 }

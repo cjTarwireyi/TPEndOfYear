@@ -8,18 +8,13 @@ using System.Web.UI.WebControls;
 
 public partial class site1_AddProduct : System.Web.UI.Page
 {
-    private UserDTO userDto = new UserDTO();
+    private UserDTO userDto;
+    private UserDTO userDtoUpdate;
     private ProductDAO product = new ProductDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserDTO userDtoUpdate = new UserDTO();
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+        session();
         loadSuppliers();
-
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
@@ -38,21 +33,42 @@ public partial class site1_AddProduct : System.Web.UI.Page
 
     private void loadSuppliers()
     {
-        SqlDataReader reader = product.loadSuppliers();
-        if (reader.HasRows)
+        try
         {
-            while (reader.Read())
+            SqlDataReader reader = product.loadSuppliers();
+            if (reader.HasRows)
             {
-                if (reader != null)
+                while (reader.Read())
                 {
-                    txtSupplierID.Items.Add(reader["supplierID"].ToString());
-                }
-                else
-                {
-                    break;
+                    if (reader != null)
+                        txtSupplierID.Items.Add(reader["supplierID"].ToString());
+                    else
+                        break;
                 }
             }
+            product.connectionClosed();
         }
-        product.connectionClosed(); 
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
+
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+    }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+    }
+
+
 }
