@@ -33,8 +33,8 @@ public partial class site1_Purchase : System.Web.UI.Page
             Response.Redirect("LoginPage.aspx");
         var data = customerService.getAllCustomers();
         List<ListItem> items = new List<ListItem>();
-        items.Add("");
-        customer.Items.AddRange(new ListItem(data.Select(t=> t.name).ToArray()));
+      //  items.Add("");
+       // customer.Items.AddRange(new ListItem(data.Select(t=> t.name).ToArray()));
 
         lblUser.Text = userDto.username;
         if (!this.IsPostBack)
