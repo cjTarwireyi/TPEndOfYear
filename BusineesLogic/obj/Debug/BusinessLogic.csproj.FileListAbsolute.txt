@@ -15,3 +15,8 @@ C:\Users\Cornelious\Source\Repos\TPEndOfYear\BusineesLogic\bin\Debug\BusineesLog
 C:\Users\Cornelious\Source\Repos\TPEndOfYear\BusineesLogic\bin\Debug\BusineesLogic.pdb
 C:\Users\Cornelious\Source\Repos\TPEndOfYear\BusineesLogic\obj\Debug\BusineesLogic.dll
 C:\Users\Cornelious\Source\Repos\TPEndOfYear\BusineesLogic\obj\Debug\BusineesLogic.pdb
+C:\Users\User\Source\Repos\TPEndOfYear\BusineesLogic\bin\Debug\BusineesLogic.dll
+C:\Users\User\Source\Repos\TPEndOfYear\BusineesLogic\bin\Debug\BusineesLogic.pdb
+C:\Users\User\Source\Repos\TPEndOfYear\BusineesLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\User\Source\Repos\TPEndOfYear\BusineesLogic\obj\Debug\BusineesLogic.dll
+C:\Users\User\Source\Repos\TPEndOfYear\BusineesLogic\obj\Debug\BusineesLogic.pdb
