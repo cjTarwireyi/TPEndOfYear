@@ -44,9 +44,7 @@
                             <asp:TextBox ID="txtCustomerID" runat="server" Height="35px" Width="290px"
                                 class="form-control" placeholder="CustomerID" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
                         
-                            <asp:DropDownList ID="customer" runat="server"  Height="35px" Width="290px"
-                        class="form-control" placeholder="Customer"></asp:DropDownList>
-                        
+                             
                         </div>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
                             ErrorMessage="CustomerID Required!" ValidationGroup="Group1" ControlToValidate="txtCustomerID" ForeColor="Red"></asp:RequiredFieldValidator>

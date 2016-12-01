@@ -27,23 +27,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         session();
         accessRights();
         
-        List<CustomerDTO> data = customerService.getAllCustomers();
-        List<ListItem> items = new List<ListItem>();
-
-        customer.DataSource = data.;
-            customer..=data.;
-        customer.DataBind();
-        //foreach (var cust in data)
-        //{
-        //    customer.Items.Add(cust.name);
-            
-        //    customer.ID = cust.customerNumber.ToString();
-            
-        //}
-        //customer.SelectedItem.va.
-
-        //CustomerDTO cs =customer.Items.
-            
+         
         
         if (!this.IsPostBack)
         {
