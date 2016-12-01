@@ -60,6 +60,10 @@ public partial class site1_Employee : System.Web.UI.Page
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
+
+        if (userDto.userTypeName.Trim() != "Admin")
+            AdminLinkPanel.Visible = false;
+   
     }
 
     private void accessRights()
