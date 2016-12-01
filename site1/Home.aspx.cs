@@ -12,6 +12,8 @@ public partial class Home : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e) 
     {
         session();
+        
+      //  AdminLinkPanel.Visible = false;
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
@@ -30,7 +32,10 @@ public partial class Home : System.Web.UI.Page
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
+
         else
             lblUser.Text = userDto.username;
+        if(userDto.userTypeName.Trim()!="Admin")
+            AdminLinkPanel.Visible = false;
     }
 }
