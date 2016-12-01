@@ -10,7 +10,7 @@ using BusineesLogic.Interface;
 /// <summary>
 /// Summary description for CustomerDAO
 /// </summary>
-public class CustomerDAO:ICustomers 
+public class CustomerDAO:ICustomers,IDatabaseFunctions 
 {
     private SqlConnection con;
     public CustomerDAO()

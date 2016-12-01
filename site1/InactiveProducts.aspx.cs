@@ -78,4 +78,50 @@ public partial class site1_InactiveProducts : System.Web.UI.Page
     {
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
+    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        try
+        {
+            List<string> productsDetails = new List<string>();
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
+
+            productsDetails.Add(((TextBox)row.Cells[2].Controls[0]).Text); //name
+            productsDetails.Add(((TextBox)row.Cells[3].Controls[0]).Text); //description
+            productsDetails.Add(((TextBox)row.Cells[4].Controls[0]).Text); //price 
+            productsDetails.Add(((TextBox)row.Cells[5].Controls[0]).Text); //quantity
+            productsDetails.Add(((TextBox)row.Cells[7].Controls[0]).Text); //supplierID
+            products.update(id, productsDetails);
+
+            GridView1.EditIndex = -1;
+            loadInactiveProducts();
+        }
+        catch (Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
+    }
+    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        GridView1.EditIndex = -1;
+        loadInactiveProducts();
+    }
+    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        GridView1.EditIndex = e.NewEditIndex;
+        loadInactiveProducts();
+    }
+    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        try
+        {
+            string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
+            products.delete(id);
+            loadInactiveProducts();
+        }
+        catch (Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
+    }
 }
