@@ -9,7 +9,7 @@
         <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label>
         <asp:Button ID="Submit" runat="server" class="btn btn-danger "
             Height="35px" Text="Sign Out"
-            Width="90px" OnClick="Submit_Click" />
+            Width="90px" OnClick="Logout" />
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="sideBarNav" runat="server">

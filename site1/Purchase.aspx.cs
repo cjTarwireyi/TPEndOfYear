@@ -150,6 +150,13 @@ public partial class site1_Purchase : System.Web.UI.Page
         GridView1.DataBind();
     }
 
+    protected void Logout(object sender, EventArgs e)
+    {
+
+        Session.Abandon();
+        Session.Clear();
+        Response.Redirect("LoginPage.aspx");
+    }
 
     protected void Submit_Click(object sender, EventArgs e)
     {
