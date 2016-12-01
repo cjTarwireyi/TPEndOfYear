@@ -47,12 +47,6 @@ public class OrdersDAO : IOder
         con.Open();
         string insertQuery = "INSERT INTO Orders (custId,payed,amount,orderDate,employeeId,orderCode) VALUES ('" + order.customerId + "','" + order.payed + "','" + order.amount + "','" + DateTime.Now.ToString() + "','" + order.employeeId + "','" + orderCode.Trim() + "')";
         SqlCommand cmd = new SqlCommand(insertQuery, con);
-        //  cmd.Parameters.AddWithValue("@custId", order.customerId);
-        //cmd.Parameters.AddWithValue("@payed", order.payed);
-        //cmd.Parameters.AddWithValue("@amount", order.amount);
-        //cmd.Parameters.AddWithValue("@orderDate", Datetime);
-        //cmd.Parameters.AddWithValue("@employeeId", order.employeeId);
-        //cmd.Parameters.AddWithValue("@orderCode", orderCode.Trim());
         cmd.ExecuteNonQuery();
 
         con.Close();
