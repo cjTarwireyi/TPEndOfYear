@@ -63,6 +63,9 @@ public partial class site1_Products : System.Web.UI.Page
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
+
+        if (userDto.userTypeName.Trim() != "Admin")
+            AdminLinkPanel.Visible = false;
     }
     private void loadProducts()
     {
