@@ -49,13 +49,6 @@
                 <div class="topCorner">
                     <asp:TextBox ID="txtSearch" AutoPostBack="true" runat="server" placeholder="Enter OrderID" Width="131px" onkeypress="__doPostBack(this.name,'OnKeyPress');" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" />
                 </div>
-                <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="Procedure" SelectCommandType="StoredProcedure">
-                    <SelectParameters>
-                        <asp:ControlParameter ControlID="DropDownList1" Name="date" PropertyName="SelectedValue" Type="String" />
-                        <asp:ControlParameter ControlID="txtYear" Name="year" PropertyName="Text" Type="String" />
-                        <asp:ControlParameter ControlID="RadioButton1" Name="status" PropertyName="Checked" Type="Boolean" />
-                    </SelectParameters>
-                </asp:SqlDataSource>--%>
                 <h1><strong>Monthly</strong>Orders</h1>
                 Year<br />
                 <asp:TextBox ID="txtYear" runat="server" Height="18px" Width="83px" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged"></asp:TextBox><br />
@@ -77,8 +70,8 @@
                 <asp:Panel ID="Panel1" runat="server" Width="807px">
                     <asp:RadioButton ID="RadioButton1" runat="server" Value="True" Text="Paid" AutoPostBack="True" GroupName="status" OnCheckedChanged="RadioButton1_CheckedChanged" /><br />
                     <asp:RadioButton ID="RadioButton2" runat="server" Value="False" Text="Outstanding" AutoPostBack="True" GroupName="status" Checked="True" OnCheckedChanged="RadioButton2_CheckedChanged" />
-                    <asp:GridView ID="GridView1" runat="server" Width="797px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId" ForeColor="#333333" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging1">
-                         <PagerStyle CssClass="cssPager" />
+                    <asp:GridView ID="GridView1" runat="server" Width="1337px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId" ForeColor="#333333" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging1" Height="280px">
+                        <PagerStyle CssClass="cssPager" />
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
                             <asp:BoundField DataField="orderId" HeaderText="orderId" InsertVisible="False" ReadOnly="True" SortExpression="orderId" />
@@ -111,7 +104,7 @@
         </asp:UpdatePanel>
     </div>
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <%--<div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -137,11 +130,32 @@
                             </asp:GridView>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
+    </div>--%>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+    <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
+
+  </div>
+</div>
 </asp:Content>
