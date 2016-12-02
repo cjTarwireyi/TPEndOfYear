@@ -52,9 +52,9 @@ public partial class site1_Orders : System.Web.UI.Page
             DataTable orderTable = new DataTable();
             try
             {
-                order.getOrdersDetails(orderTable, Convert.ToInt32(id));
+                /*order.getOrdersDetails(orderTable, Convert.ToInt32(id));
                 GridView2.DataSource = orderTable;
-                GridView2.DataBind();
+                GridView2.DataBind();*/
             }
             catch(Exception ex)
             {
