@@ -42,6 +42,7 @@ public partial class site1_Purchase : System.Web.UI.Page
             custList.DataTextField = "custName";
            // custList.Col = "CustomerSurname" +"  CustomerName" ;
             custList.DataBind();
+            custList.SelectedIndex = -1;
             table = new DataTable();
             MakeTable();
             GridView1.DataSource = "";

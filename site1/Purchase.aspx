@@ -45,7 +45,7 @@
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
                             <%--  --%>
                             <asp:DropDownList ID="custList" runat="server"  Height="35px" Width="290px"
-                        class="form-control" placeholder="User Type"></asp:DropDownList>
+                        class="form-control"  placeholder="Customer"></asp:DropDownList>
                              
                         </div>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
