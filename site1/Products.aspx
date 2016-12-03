@@ -15,7 +15,7 @@
     <div>
         <h1><strong>Products</strong></h1>
         <br />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" Align="Center"  Height="110px" Width="1337px"  AllowPaging="True" AllowSorting="True" HorizontalAlign="Justify" OnRowCancelingEdit="gridView1_RowCancelingEdit" OnRowDeleting="gridView1_RowDeleting" OnRowEditing="gridView1_RowEditing" OnRowUpdating="gridView1_RowUpdating" GridLines="None">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" Align="Center"  Height="110px" Width="1080px"  AllowPaging="True" AllowSorting="True" HorizontalAlign="Justify" OnRowCancelingEdit="gridView1_RowCancelingEdit" OnRowDeleting="gridView1_RowDeleting" OnRowEditing="gridView1_RowEditing" OnRowUpdating="gridView1_RowUpdating" GridLines="Vertical">
             <PagerStyle CssClass="cssPager" />
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
