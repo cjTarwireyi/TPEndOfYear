@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -38,24 +39,32 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
 
     private void SendMail()
     {
+
         customerDTO = (CustomerDTO)Session["CustomerDTO"];
         string fromAddress = "siraaj.wilkonson1995@gmail.com";
         string toAddress = customerDTO.email.ToString();
         const string fromPassword = "wilkonson1995";
         string subject = "Customer Number Keep Safe";
         string body = "Hi " + customerDTO.name + " " + customerDTO.surname + "\nYour customer number is:" + "'" + customer.getLastReocrd() + "'" + "Please keep it safe as it would be required from you everytime you purchase items";
-        // smtp settings
-        var smtp = new System.Net.Mail.SmtpClient();
+        try
         {
-            smtp.Host = "smtp.gmail.com";
-            smtp.Port = 587;
-            smtp.EnableSsl = true;
-            smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-            smtp.Credentials = new NetworkCredential(fromAddress, fromPassword);
-            smtp.Timeout = 20000;
+            // smtp settings4
+            var smtp = new System.Net.Mail.SmtpClient();
+            {
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                smtp.Credentials = new NetworkCredential(fromAddress, fromPassword);
+                smtp.Timeout = 20000;
+            }
+            // Passing values to smtp object
+            smtp.Send(fromAddress, toAddress, subject, body);
         }
-        // Passing values to smtp object
-        smtp.Send(fromAddress, toAddress, subject, body);
+        catch(SmtpException ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
 
     private void session()
