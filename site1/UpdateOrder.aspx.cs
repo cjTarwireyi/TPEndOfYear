@@ -13,6 +13,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
     private UserDTO userDtoUpdate;
     private UserDTO userDto;
     private GridViewRow row;
+    private Products prodResult;
     protected void Page_Load(object sender, EventArgs e)
     {
         session();
@@ -28,9 +29,9 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         string id = txtProductID.Text;
         lblQuantity.Text = "";
         int currentQuan = product.getItemQuantity(id);
-
         if (Request.QueryString["id"] != null)
         {
+
             if (currentQuan == 0)
                 lblQuantity.Text = "No items available order new STOCK";
             else
@@ -43,7 +44,6 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
                 else
                     addToGridView(productID, quantity);
         }
-
     }
 
     protected void Cancel_Click(object sender, EventArgs e)
@@ -52,7 +52,18 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
     }
     protected void txtProductID_TextChanged(object sender, EventArgs e)
     {
-
+        int id = Convert.ToInt32(txtProductID.Text);
+        prodResult = product.getProduct(id);
+        if (prodResult == null)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Product ID does not ');", true);
+            txtProductID.Text = string.Empty;
+        }
+        else if (prodResult.productStatus == false)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Product ID does not ');", true);
+            txtProductID.Text = string.Empty;
+        }
     }
 
     private void ExceptionRedirect(Exception ex)
@@ -101,5 +112,9 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
+    }
+    protected void txtProductID_Disposed(object sender, EventArgs e)
+    {
+        
     }
 }
