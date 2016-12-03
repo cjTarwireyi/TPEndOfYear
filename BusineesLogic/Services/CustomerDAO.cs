@@ -68,18 +68,28 @@ public class CustomerDAO:ICustomers,IDatabaseFunctions
         con.Close();
         return customer;
     }
-    public List<CustomerDTO> getAllCustomers()
+    public DataTable getAllCustomers()
     {
-      List<CustomerDTO> customers = new List<CustomerDTO>();
+    //  List<CustomerDTO> customers = new List<CustomerDTO>();
         con.Open();
-        String selectCustomer = "SELECT  * FROM  Customers Order by CustomerID DESC ";
+        String selectCustomer = "SELECT  CustomerID, Concat(CustomerName,CustomerSurname) As custName  FROM  Customers Order by CustomerID DESC ";
         SqlCommand myComm = new SqlCommand(selectCustomer, con);
         SqlDataReader myDR;
-        myDR = myComm.ExecuteReader();
-        while (myDR.Read())
-            customers.Add( makeCustDTO(myDR));
+        DataTable table = new DataTable();
+        
+        SqlDataAdapter adapter = new SqlDataAdapter(myComm);
+        //DataColumn custName = new DataColumn("custName");
+        //custName.Expression = string.Format("{0}+'-'+{1}", "CustomerName", "CustomerSurname");
+
+        //table.Columns.Add(custName);
+        
+        adapter.Fill(table);
+        
+        //myDR = myComm.ExecuteReader();
+        //while (myDR.Read())
+        //    customers.Add( makeCustDTO(myDR));
         con.Close();
-        return customers;
+        return table;
     }
     public DataTable populateGrid()
     {
