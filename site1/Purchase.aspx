@@ -55,10 +55,11 @@
                         <br />
                         <asp:Label ID="custError" Visible="false" runat="server" ForeColor="Red" Text="invalid Customer Code"></asp:Label>
                     </div>
+
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
-                            <asp:TextBox ID="txtProductID" runat="server" Width="290px"
+                            <asp:TextBox ID="txtProductID"   runat="server" Width="290px"
                                 class="form-control" placeholder="Product Code " OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
                         </div>
                         <asp:RequiredFieldValidator ValidationGroup="Group1" ID="RequiredFieldValidator1" runat="server"
