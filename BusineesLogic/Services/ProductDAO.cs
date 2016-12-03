@@ -145,13 +145,11 @@ public class ProductDAO : IProduct
 
     public SqlDataReader loadSuppliers()
     {
-
         con.Open();
         String strCustomers = "Select supplierID from Suppliers";
         SqlCommand cmd = new SqlCommand(strCustomers, con);
         SqlDataReader reader = cmd.ExecuteReader();
         return reader;
-
     }
 
     public void connectionClosed()
@@ -197,5 +195,4 @@ public class ProductDAO : IProduct
         cmd.ExecuteNonQuery();
         con.Close();
     }
-
 }

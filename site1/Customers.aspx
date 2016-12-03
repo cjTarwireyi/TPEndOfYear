@@ -1,4 +1,4 @@
-﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/site1/MasterPage.master" AutoEventWireup="true" CodeFile="Customers.aspx.cs" Inherits="site1_customer_Customers" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site1/MasterPage.master" AutoEventWireup="true" CodeFile="Customers.aspx.cs" Inherits="site1_customer_Customers" %>
 
 <%-- Add content controls here --%>
 <asp:Content ID="Content5" ContentPlaceHolderID="details" runat="Server">
@@ -18,7 +18,7 @@
             <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
             <li class="active"><a href="Customers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Customers</a></li>
             <li><a href="Employee.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Employees</a></li>
-             <li><a href="Suppliers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Suppliers</a></li>
+            <li><a href="Suppliers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Suppliers</a></li>
             <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-user "></i>&nbsp;Register User</a></li>
            </asp:Panel>
                  <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
@@ -31,17 +31,13 @@
 
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-    <div class="  main">
+    <div class="main">
         <h1><strong>Customers</strong></h1>
         <br />
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <%--<asp:SqlDataSource ID="SqlDataSource2" runat="server"
-                    ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-                    OldValuesParameterFormatString="original_{0}"
-                    SelectCommand="SELECT * FROM [Customers]"></asp:SqlDataSource>--%>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="144px" Width="1021px" AllowSorting="True" GridLines="Vertical" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowUpdated="GridView1_RowUpdated">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="190px" Width="1080px" AllowSorting="True" AllowPaging="true" GridLines="Vertical" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowUpdated="GridView1_RowUpdated">
                     <Columns>
                         <asp:BoundField DataField="CustomerID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="CustomerID" />
                         <asp:BoundField DataField="CustomerName" HeaderText="Name" SortExpression="CustomerName" />
@@ -75,7 +71,7 @@
                 </div>
             </ContentTemplate>
         </asp:UpdatePanel>
-        </div>
+    </div>
 </asp:Content>
 
 

@@ -34,7 +34,7 @@ public partial class site1_Orders : System.Web.UI.Page
         Session.Clear();
         Response.Redirect("LoginPage.aspx");
     }
-   protected void btnAdd_Click(object sender, EventArgs e)
+    protected void btnAdd_Click(object sender, EventArgs e)
     {
         if (GridView1.SelectedIndex >= 0)
         {
@@ -56,7 +56,7 @@ public partial class site1_Orders : System.Web.UI.Page
                 GridView2.DataSource = orderTable;
                 GridView2.DataBind();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionRedirect(ex);
             }
@@ -64,7 +64,7 @@ public partial class site1_Orders : System.Web.UI.Page
     }
     protected void btnSearch_Click(object sender, EventArgs e)
     {
-       
+
     }
 
     protected void dgrvData_Filter(object sender, EventArgs e)
@@ -117,7 +117,7 @@ public partial class site1_Orders : System.Web.UI.Page
             GridView1.DataSource = order.populateGrid(month, cureentYear, payed);
             GridView1.DataBind();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ExceptionRedirect(ex);
         }
@@ -131,7 +131,7 @@ public partial class site1_Orders : System.Web.UI.Page
     {
         populateGrid();
     }
-    
+
     protected void GridView1_PageIndexChanging1(object sender, GridViewPageEventArgs e)
     {
         GridView1.PageIndex = e.NewPageIndex;
@@ -157,7 +157,7 @@ public partial class site1_Orders : System.Web.UI.Page
             /*GridView1.DataSource = order.populateGrid(month, currentYear, false);
             GridView1.DataBind();*/
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ExceptionRedirect(ex);
         }
@@ -173,10 +173,8 @@ public partial class site1_Orders : System.Web.UI.Page
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
 
-        if (userDto.userTypeName.Trim() != "Admin")
-            AdminLinkPanel.Visible = false;
+       /* if (userDto.userTypeName.Trim() != "Admin")
+            AdminLinkPanel.Visible = false;*/
     }
-
-
 
 }

@@ -60,6 +60,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos\OrderTest.cs" />
     <Compile Include="Repos\OrderLineTest.cs" />
+    <Compile Include="Repos\CustomerTest.cs" />
+    <Compile Include="Repos\ProductTest.cs" />
     <Compile Include="Repos\UserTest.cs" />
     <Compile Include="UnitTest1.cs" />
   </ItemGroup>
