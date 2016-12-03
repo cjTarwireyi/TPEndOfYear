@@ -73,7 +73,7 @@
                     <asp:Parameter Name="original_DateHired" Type="String" />
                 </UpdateParameters>
             </asp:SqlDataSource>--%>
-            <asp:GridView ID="GridView1" runat="server" AllowSorting="True" CellPadding="4" AutoGenerateColumns="False" DataKeyNames="EmployeeID" AllowPaging="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1"  Height="175px" Width="1337px" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" GridLines="Horizontal">
+            <asp:GridView ID="GridView1" runat="server" AllowSorting="True" CellPadding="4" AutoGenerateColumns="False" DataKeyNames="EmployeeID" AllowPaging="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1"  Height="175px" Width="1080px" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" GridLines="Horizontal">
                 <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     
