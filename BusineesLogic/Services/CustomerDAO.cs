@@ -72,7 +72,7 @@ public class CustomerDAO:ICustomers,IDatabaseFunctions
     {
     //  List<CustomerDTO> customers = new List<CustomerDTO>();
         con.Open();
-        String selectCustomer = "SELECT  CustomerID, Concat(CustomerName,CustomerSurname) As custName  FROM  Customers Order by CustomerID DESC ";
+        String selectCustomer = "SELECT  CustomerID, Concat(CustomerName,CustomerSurname) As custName  FROM  Customers Order by CustomerName Asc ";
         SqlCommand myComm = new SqlCommand(selectCustomer, con);
         SqlDataReader myDR;
         DataTable table = new DataTable();
