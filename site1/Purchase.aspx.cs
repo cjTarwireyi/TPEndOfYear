@@ -38,8 +38,8 @@ public partial class site1_Purchase : System.Web.UI.Page
             
 
             custList.DataSource = custDataTable;
-            custList.DataValueField = "custName";
-
+            custList.DataValueField = "CustomerID";
+            custList.DataTextField = "custName";
            // custList.Col = "CustomerSurname" +"  CustomerName" ;
             custList.DataBind();
             table = new DataTable();
@@ -70,11 +70,13 @@ public partial class site1_Purchase : System.Web.UI.Page
         try
         {
             string productCode = txtProductID.Text;
+              
             string quantity = txtQuantiy.Text;
-            string custId = txtCustomerID.Text;
+            string custId = custList.SelectedItem.Value;
             string productName = "";
             string price = "";
             totalAmt.Text = string.Empty;
+
 
             if (facade.findProduct(Convert.ToInt32(productCode)) == null)
             {
@@ -120,7 +122,6 @@ public partial class site1_Purchase : System.Web.UI.Page
                     DataRow dr = table.NewRow();
                     dr["ProductCode"] = productCode;
                     dr["Product"] = productName;
-                    dr["Price"] = price;
                     dr["Quantity"] = quantity;
                     table.Rows.Add(dr);
 
@@ -211,7 +212,7 @@ public partial class site1_Purchase : System.Web.UI.Page
             .buildEmpId(userDto.Id)
             .buildAmount(amt)
             .buildPayed(false)
-            .buildCustId(Convert.ToInt32(txtCustomerID.Text))
+            .buildCustId(Convert.ToInt32(custList.SelectedItem.Value))
             .build();   
                  
         facade.makeOrder(buliOrder);
