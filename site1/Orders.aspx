@@ -28,13 +28,11 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
-            <asp:Panel ID="AdminLinkPanel" runat="server">
             <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
             <li><a href="Customers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Customers</a></li>
             <li><a href="Employee.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Employees</a></li>
             <li><a href="Suppliers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Suppliers</a></li>
             <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-user "></i>&nbsp;Register User</a></li>
-                </asp:Panel>
             <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
             <li class="active"><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
             <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
@@ -44,12 +42,12 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-    <div class="  main">
+    <div class= "main">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div class="topCorner">
-                    <asp:TextBox ID="txtSearch" AutoPostBack="true" runat="server" placeholder="Enter OrderID" Width="131px" onkeypress="__doPostBack(this.name,'OnKeyPress');" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" />
+                    <asp:TextBox ID="txtSearch" AutoPostBack="true" runat="server" placeholder="Enter OrderID" Width="131px" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" />
                 </div>
                 <h1><strong>Monthly</strong>Orders</h1>
                 Year<br />
@@ -72,7 +70,7 @@
                 <asp:Panel ID="Panel1" runat="server" Width="807px">
                     <asp:RadioButton ID="RadioButton1" runat="server" Value="True" Text="Paid" AutoPostBack="True" GroupName="status" OnCheckedChanged="RadioButton1_CheckedChanged" /><br />
                     <asp:RadioButton ID="RadioButton2" runat="server" Value="False" Text="Outstanding" AutoPostBack="True" GroupName="status" Checked="True" OnCheckedChanged="RadioButton2_CheckedChanged" />
-                    <asp:GridView ID="GridView1" runat="server" Width="1337px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId" ForeColor="#333333" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging1" Height="280px">
+                    <asp:GridView ID="GridView1" runat="server" Width="1080px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId" ForeColor="#333333" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging1" Height="280px">
                         <PagerStyle CssClass="cssPager" />
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
@@ -106,7 +104,7 @@
         </asp:UpdatePanel>
     </div>
     <!-- Modal -->
-    <%--<div id="myModal" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -138,26 +136,5 @@
                 </div>
             </div>
         </div>
-    </div>--%>
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-    <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
     </div>
-
-  </div>
-</div>
 </asp:Content>
