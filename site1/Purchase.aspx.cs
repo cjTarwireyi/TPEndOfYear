@@ -13,6 +13,7 @@ using System.Drawing;
 public partial class site1_Purchase : System.Web.UI.Page
 {
     private DataTable table;
+    private DataTable custDataTable;
     private OrdersDAO accessOrders = new OrdersDAO();
     private UserDTO userDto;
     private UserDTO userDtoUpdate;
@@ -21,16 +22,26 @@ public partial class site1_Purchase : System.Web.UI.Page
     private Products product = new Products();
     private IProduct productService = new ProductDAO();
     private ICustomers customerService = new CustomerDAO();
+     
     private string amt;
     protected void Page_Load(object sender, EventArgs e)
     {
         session();
         accessRights();
         
-         
+        
         
         if (!this.IsPostBack)
         {
+            custDataTable = new DataTable();
+            custDataTable = customerService.getAllCustomers();
+            
+
+            custList.DataSource = custDataTable;
+            custList.DataValueField = "custName";
+
+           // custList.Col = "CustomerSurname" +"  CustomerName" ;
+            custList.DataBind();
             table = new DataTable();
             MakeTable();
             GridView1.DataSource = "";
