@@ -2,6 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
+  
+</asp:Content>
+
 <asp:Content ID="Content5" ContentPlaceHolderID="details" runat="Server">
     <div class="loginDisplay">
         <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label>
@@ -53,7 +57,7 @@ order by orderline.OrderID"
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
                                 <asp:TextBox ID="txtProductID" runat="server" Width="290px"
-                                    class="form-control" placeholder="Product Code " OnTextChanged="txtProductID_TextChanged"></asp:TextBox>
+                                    class="form-control" placeholder="Product Code " OnTextChanged="txtProductID_TextChanged" AutoPostBack="True"></asp:TextBox>
                                 <asp:Label ID="lblQuantity" runat="server"></asp:Label>
                             </div>
                             <asp:RequiredFieldValidator ValidationGroup="Group1" ID="RequiredFieldValidator1" runat="server"
