@@ -26,11 +26,8 @@ public partial class site1_Purchase : System.Web.UI.Page
     {
         session();
         accessRights();
-        List<CustomerDTO> data = customerService.getAllCustomers();
-        List<ListItem> items = new List<ListItem>();
-       
-        foreach (var item in data)
-            customer.Items.Add(item.name);
+        
+         
         
         if (!this.IsPostBack)
         {
@@ -153,6 +150,13 @@ public partial class site1_Purchase : System.Web.UI.Page
         GridView1.DataBind();
     }
 
+    protected void Logout(object sender, EventArgs e)
+    {
+
+        Session.Abandon();
+        Session.Clear();
+        Response.Redirect("LoginPage.aspx");
+    }
 
     protected void Submit_Click(object sender, EventArgs e)
     {
@@ -230,6 +234,9 @@ public partial class site1_Purchase : System.Web.UI.Page
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
+
+        if (userDto.userTypeName.Trim() != "Admin")
+            AdminLinkPanel.Visible = false;
     }
 
     private void accessRights()
