@@ -20,7 +20,7 @@ namespace UnitTests.services
 
           Assert.IsTrue(result);
             //TEST fINDBY ID
-            RoleDTO role = service.findRole(1);
+          RoleDTO role = service.findRole(service.getLastReocrd().roleId);
             Assert.IsNotNull(role);
 
             //TEST FINDALL            
@@ -33,6 +33,12 @@ namespace UnitTests.services
             .build();
             service.updateRole(updateRole);
             Assert.AreEqual("update description", service.getLastReocrd().roleDescription);
+
+            //TEST DELETE
+           bool deleteResult = service.deleteRole(service.getLastReocrd().roleId);
+
+           Assert.IsTrue(deleteResult);
+
 
 
         }
