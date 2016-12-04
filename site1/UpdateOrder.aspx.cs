@@ -61,7 +61,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         }
         else if (prodResult.productStatus == false)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Product ID does not ');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Product is no longer active ');", true);
             txtProductID.Text = string.Empty;
         }
     }
