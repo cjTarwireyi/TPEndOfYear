@@ -49,12 +49,15 @@
     <Compile Include="domain\Address.cs" />
     <Compile Include="domain\BrandDTO.cs" />
     <Compile Include="domain\CategoryDTO.cs" />
+    <Compile Include="domain\CompanyRulesDTO.cs" />
     <Compile Include="domain\CustomerAnalysisiDTO.cs" />
+    <Compile Include="domain\EmployeeAnalysisDTO.cs" />
     <Compile Include="domain\EmployeeCategory.cs" />
     <Compile Include="domain\EmployeeType.cs" />
     <Compile Include="domain\HolidaysDTO.cs" />
     <Compile Include="domain\LeaveDTO.cs" />
     <Compile Include="domain\ProductAnalysisDTO.cs" />
+    <Compile Include="domain\ProductTypeDTO.cs" />
     <Compile Include="domain\PromotionDTO.cs" />
     <Compile Include="domain\SalesReportDTO.cs" />
     <Compile Include="domain\SuplierAnalysisDTO.cs" />
