@@ -13,6 +13,7 @@ namespace BusineesLogic.Interface
         bool deleteRole(int roleId);
         RoleDTO findRole(int roleId);
         List<RoleDTO> getAllRoles();
+        RoleDTO getLastReocrd();
     
     }
 }
