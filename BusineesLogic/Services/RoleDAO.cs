@@ -27,7 +27,12 @@ namespace BusineesLogic.services
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
             {
-                role = RoleFactory.createRole( reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
+
+                role = new RoleDTO.RoleBuilder()
+                    .buildRoleID(reader.GetInt32(0))
+                    .buildRoleName(reader.GetString(1))
+                    .buildroleDescription(reader.GetString(2))
+                    .build();
             }
             else
             {
@@ -48,8 +53,11 @@ namespace BusineesLogic.services
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                roleList.Add(RoleFactory.createRole(reader.GetInt32(0), reader.GetString(1), reader.GetString(2)));
-                
+                roleList.Add(new RoleDTO.RoleBuilder()
+                     .buildRoleID(reader.GetInt32(0))
+                     .buildRoleName(reader.GetString(1))
+                     .buildroleDescription(reader.GetString(2))
+                     .build());
             }
              
             con.Close();
@@ -58,7 +66,24 @@ namespace BusineesLogic.services
 
         public bool addRole(RoleDTO role)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var Datetime = DateTime.Now;
+
+                con.Open();
+                string insertQuery = "INSERT INTO Role (RoleName,RoleDescription,DateAdded) VALUES ('" + role.roleName + "','" + role.roleDescription + "','" + DateTime.Now.ToString() + "')";
+                SqlCommand cmd = new SqlCommand(insertQuery, con);
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
         }
 
         public bool updateRole(RoleDTO role)
