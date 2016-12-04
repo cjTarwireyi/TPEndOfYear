@@ -11,6 +11,7 @@ namespace UnitTests.factories
         [TestMethod]
         public void createOrderTest()
         {
+            //CREATE
             Products product = new Products() ;
             Products product2 = new Products();
             decimal amt= 0;
@@ -33,6 +34,13 @@ namespace UnitTests.factories
 
             Assert.AreEqual(30, order.amount);
             Assert.AreEqual(true, order.payed);
+
+            //UPDATE
+            OrderDTO updateOrder = new OrderDTO.OrderBuilder()
+                .copy(order)
+                .buildAmount(200)
+                .build();
+            Assert.AreNotEqual(order.amount, updateOrder.amount);
 
 
         }
