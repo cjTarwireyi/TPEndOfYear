@@ -43,15 +43,13 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
-                            <asp:TextBox ID="txtCustomerID" runat="server" Height="35px" Width="290px"
-                                class="form-control" placeholder="CustomerID" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
-                        
+                            <%--  --%>
                             <asp:DropDownList ID="custList" runat="server"  Height="35px" Width="290px"
-                        class="form-control" placeholder="User Type"></asp:DropDownList>
+                        class="form-control"  placeholder="Customer"></asp:DropDownList>
                              
                         </div>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                            ErrorMessage="CustomerID Required!" ValidationGroup="Group1" ControlToValidate="txtCustomerID" ForeColor="Red"></asp:RequiredFieldValidator>
+                            ErrorMessage="Customer Required!" ValidationGroup="Group1" ControlToValidate="custList" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
                         <asp:Label ID="custError" Visible="false" runat="server" ForeColor="Red" Text="invalid Customer Code"></asp:Label>
                     </div>

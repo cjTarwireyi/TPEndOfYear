@@ -50,18 +50,20 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="factories\TestCustomer.cs" />
-    <Compile Include="factories\TestEmployee.cs" />
-    <Compile Include="factories\TestProducts.cs" />
-    <Compile Include="factories\TestSupplier.cs" />
-    <Compile Include="factories\TestUser.cs" />
-    <Compile Include="factories\TestOrder.cs" />
-    <Compile Include="factories\TestOrderLine.cs" />
+    <Compile Include="domain\TestCustomer.cs" />
+    <Compile Include="domain\TestEmployee.cs" />
+    <Compile Include="domain\TestProducts.cs" />
+    <Compile Include="domain\TestSupplier.cs" />
+    <Compile Include="domain\TestUser.cs" />
+    <Compile Include="domain\TestOrder.cs" />
+    <Compile Include="domain\TestOrderLine.cs" />
+    <Compile Include="domain\TestRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\OrderTest.cs" />
     <Compile Include="services\OrderLineTest.cs" />
     <Compile Include="services\CustomerTest.cs" />
     <Compile Include="services\ProductTest.cs" />
+    <Compile Include="services\RoleTest.cs" />
     <Compile Include="services\UserTest.cs" />
     <Compile Include="UnitTest1.cs" />
   </ItemGroup>
