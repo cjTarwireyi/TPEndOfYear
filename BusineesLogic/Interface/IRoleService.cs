@@ -8,5 +8,11 @@ namespace BusineesLogic.Interface
 {
     public interface IRoleService
     {
+        bool addRole(RoleDTO role);
+        bool updateRole(RoleDTO role);
+        bool deleteRole(int roleId);
+        RoleDTO findRole(int roleId);
+        List<RoleDTO> getAllRoles();
+    
     }
 }
