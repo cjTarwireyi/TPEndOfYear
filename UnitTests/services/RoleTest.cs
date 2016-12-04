@@ -13,6 +13,12 @@ namespace UnitTests.services
         public void TestRole()
         {
             IRoleService service = new RoleDAO();
+
+            //TEST ADD ROLE
+            RoleDTO createRole = RoleFactory.createRole( "read", "view only");
+          bool result=  service.addRole(createRole);
+
+          Assert.IsTrue(result);
             //TEST fINDBY ID
             RoleDTO role = service.findRole(1);
             Assert.IsNotNull(role);
