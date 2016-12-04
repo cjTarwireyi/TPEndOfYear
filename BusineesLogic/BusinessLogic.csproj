@@ -67,6 +67,7 @@
     <Compile Include="domain\UserAnalysisDTO.cs" />
     <Compile Include="factories\RoleFactory.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
+    <Compile Include="Interface\IRoleService.cs" />
     <Compile Include="services\CustomerDAO.cs" />
     <Compile Include="domain\CustomerDTO.cs" />
     <Compile Include="domain\DepartmentDTO.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="domain\PayRoleDTO.cs" />
     <Compile Include="services\ProductDAO.cs" />
     <Compile Include="domain\Products.cs" />
+    <Compile Include="services\RoleDAO.cs" />
     <Compile Include="services\SupplierDAO.cs" />
     <Compile Include="domain\SupplierDTO.cs" />
     <Compile Include="domain\RoleDTO.cs" />
