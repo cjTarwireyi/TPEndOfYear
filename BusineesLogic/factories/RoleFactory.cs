@@ -8,10 +8,11 @@ namespace BusineesLogic.factories
 {
    public class RoleFactory
     {
-       public static RoleDTO createRole(int roleId, string roleDesc)
+       public static RoleDTO createRole(int roleId,string roleName, string roleDesc)
        {
            return new RoleDTO.RoleBuilder()
            .buildRoleID(roleId)
+           .buildRoleName(roleName)
            .buildroleDescription(roleDesc)
            .build();
        
