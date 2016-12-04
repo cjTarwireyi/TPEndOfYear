@@ -19,7 +19,7 @@ namespace BusineesLogic.services
         }
         public RoleDTO findRole(int roleId)
         {
-           
+
             con.Open();
             RoleDTO role;
             string select = "SELECT *  FROM Role WHERE roleID ='" + roleId + "'";
@@ -58,7 +58,7 @@ namespace BusineesLogic.services
                 reader = myComm.ExecuteReader();
                 if (!reader.Read())
                 {
-                    role= null;
+                    role = null;
                 }
                 else
                 {
@@ -76,7 +76,7 @@ namespace BusineesLogic.services
             {
                 return null;
             }
-            
+
 
         }
         public List<RoleDTO> getAllRoles()
@@ -136,12 +136,25 @@ namespace BusineesLogic.services
             {
                 return false;
             }
-            
+
         }
 
         public bool deleteRole(int roleId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                con.Open();
+                string deleteQuery = "DELETE FROM Role WHERE  roleId ='" + roleId + "'";
+                SqlCommand cmd = new SqlCommand(deleteQuery, con);
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
 
