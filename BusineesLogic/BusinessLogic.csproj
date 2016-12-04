@@ -65,6 +65,7 @@
     <Compile Include="domain\TimeSheetDTO.cs" />
     <Compile Include="domain\Transaction.cs" />
     <Compile Include="domain\UserAnalysisDTO.cs" />
+    <Compile Include="factories\RoleFactory.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
     <Compile Include="services\CustomerDAO.cs" />
     <Compile Include="domain\CustomerDTO.cs" />
