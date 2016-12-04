@@ -19,10 +19,11 @@ namespace BusineesLogic.services
         }
         public RoleDTO findRole(int roleId)
         {
+           
             con.Open();
-            RoleDTO role ;
+            RoleDTO role;
             string select = "SELECT *  FROM Role WHERE roleID ='" + roleId + "'";
-             
+
             SqlCommand cmd = new SqlCommand(select, con);
             SqlDataReader reader = cmd.ExecuteReader();
             if (reader.Read())
@@ -43,6 +44,41 @@ namespace BusineesLogic.services
 
         }
 
+        public RoleDTO getLastReocrd()
+        {
+            try
+            {
+                if (con.State.ToString() == "Open")
+                    con.Close();
+                RoleDTO role;
+                con.Open();
+                String selectCustomer = "SELECT TOP 1 * FROM  Role Order by roleId DESC ";
+                SqlCommand myComm = new SqlCommand(selectCustomer, con);
+                SqlDataReader reader;
+                reader = myComm.ExecuteReader();
+                if (!reader.Read())
+                {
+                    role= null;
+                }
+                else
+                {
+                    role = new RoleDTO.RoleBuilder()
+                                       .buildRoleID(reader.GetInt32(0))
+                                       .buildRoleName(reader.GetString(1))
+                                       .buildroleDescription(reader.GetString(2))
+                                       .build();
+
+                }
+                con.Close();
+                return role;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            
+
+        }
         public List<RoleDTO> getAllRoles()
         {
             con.Open();
@@ -59,7 +95,7 @@ namespace BusineesLogic.services
                      .buildroleDescription(reader.GetString(2))
                      .build());
             }
-             
+
             con.Close();
             return roleList;
         }
@@ -83,12 +119,24 @@ namespace BusineesLogic.services
             {
                 return false;
             }
-            
+
         }
 
         public bool updateRole(RoleDTO role)
         {
-            throw new NotImplementedException();
+            try
+            {
+                con.Open();
+                string updateQuery = "Update Role Set RoleName= '" + role.roleName + "',RoleDescription='" + role.roleDescription + "',DateAdded='" + DateTime.Now + "' Where roleId ='" + role.roleId + "'";
+                SqlCommand cmd = new SqlCommand(updateQuery, con);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
         }
 
         public bool deleteRole(int roleId)
