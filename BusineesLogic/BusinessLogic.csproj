@@ -49,6 +49,17 @@
     <Compile Include="domain\Address.cs" />
     <Compile Include="domain\BrandDTO.cs" />
     <Compile Include="domain\CategoryDTO.cs" />
+    <Compile Include="domain\CustomerAnalysisiDTO.cs" />
+    <Compile Include="domain\EmployeeCategory.cs" />
+    <Compile Include="domain\EmployeeType.cs" />
+    <Compile Include="domain\HolidaysDTO.cs" />
+    <Compile Include="domain\LeaveDTO.cs" />
+    <Compile Include="domain\ProductAnalysisDTO.cs" />
+    <Compile Include="domain\PromotionDTO.cs" />
+    <Compile Include="domain\SalesReportDTO.cs" />
+    <Compile Include="domain\SuplierAnalysisDTO.cs" />
+    <Compile Include="domain\TimeSheetDTO.cs" />
+    <Compile Include="domain\Transaction.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
     <Compile Include="services\CustomerDAO.cs" />
     <Compile Include="domain\CustomerDTO.cs" />
