@@ -40,7 +40,20 @@ namespace BusineesLogic.services
 
         public List<RoleDTO> getAllRoles()
         {
-            throw new NotImplementedException();
+            con.Open();
+            List<RoleDTO> roleList = new List<RoleDTO>();
+            string select = "SELECT * FROM Role ";
+
+            SqlCommand cmd = new SqlCommand(select, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                roleList.Add(RoleFactory.createRole(reader.GetInt32(0), reader.GetString(1), reader.GetString(2)));
+                
+            }
+             
+            con.Close();
+            return roleList;
         }
 
         public bool addRole(RoleDTO role)
