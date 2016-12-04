@@ -13,9 +13,13 @@ namespace UnitTests.services
         public void TestRole()
         {
             IRoleService service = new RoleDAO();
-
+            //TEST fINDBY ID
             RoleDTO role = service.findRole(1);
             Assert.IsNotNull(role);
+
+            //TEST FINDALL
+            
+            Assert.IsNotNull(service.getAllRoles());
         }
     }
 }
