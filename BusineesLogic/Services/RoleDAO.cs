@@ -6,16 +6,42 @@ using System.Threading.Tasks;
 using BusineesLogic.Interface;
 using System.Data.SqlClient;
 using System.Configuration;
+using BusineesLogic.factories;
 
 namespace BusineesLogic.services
 {
-   public class RoleDAO:IRoleService
+    public class RoleDAO : IRoleService
     {
-       private SqlConnection con;
-       public RoleDAO()
-    {
-        con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
-    }
+        private SqlConnection con;
+        public RoleDAO()
+        {
+            con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
+        }
+        public RoleDTO findRole(int roleId)
+        {
+            con.Open();
+            RoleDTO role ;
+            string select = "SELECT *  FROM Role WHERE roleID ='" + roleId + "'";
+             
+            SqlCommand cmd = new SqlCommand(select, con);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                role = RoleFactory.createRole( reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
+            }
+            else
+            {
+                role = null;
+            }
+            con.Close();
+            return role;
+
+        }
+
+        public List<RoleDTO> getAllRoles()
+        {
+            throw new NotImplementedException();
+        }
 
         public bool addRole(RoleDTO role)
         {
@@ -32,14 +58,6 @@ namespace BusineesLogic.services
             throw new NotImplementedException();
         }
 
-        public RoleDTO findRole(int roleId)
-        {
-            throw new NotImplementedException();
-        }
 
-        public List<RoleDTO> getAllRoles()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
