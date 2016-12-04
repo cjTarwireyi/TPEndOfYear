@@ -23,9 +23,18 @@ namespace UnitTests.services
             RoleDTO role = service.findRole(1);
             Assert.IsNotNull(role);
 
-            //TEST FINDALL
-            
+            //TEST FINDALL            
             Assert.IsNotNull(service.getAllRoles());
+
+            //TestUpdate
+            RoleDTO updateRole = new RoleDTO.RoleBuilder()
+            .copy(service.getLastReocrd())
+            .buildroleDescription("update description")
+            .build();
+            service.updateRole(updateRole);
+            Assert.AreEqual("update description", service.getLastReocrd().roleDescription);
+
+
         }
     }
 }
