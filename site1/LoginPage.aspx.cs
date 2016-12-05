@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using Microsoft.Win32;
+using System.Threading;
 
 
 public partial class LoginPage : System.Web.UI.Page
@@ -35,9 +36,9 @@ public partial class LoginPage : System.Web.UI.Page
             else
                 Label1.Text = "Wrong Log in credentials";
         }
-        catch (Exception ex)
+        catch (ThreadAbortException ex)
         {
-           // ExceptionRedirect(ex);
+            //ExceptionRedirect(ex);
         }
     }
 
