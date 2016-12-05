@@ -128,4 +128,32 @@ public class OrderLineDAO : InterfaceOrderLine
         cmd.ExecuteNonQuery();
         con.Close();
     }
+
+    public void updateQty(List<string> orderline)
+    {
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "update orderline set Quantity='" + orderline[1] + "' where OrderLineID ='" +orderline[0]+"' ";
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
+
+    public DataTable getAllOrders(string id)
+    {
+        DataTable orders = new DataTable();
+        string query = @"select orderline.OrderID,orderline.OrderLineID,products.Id,products.ProductName,orderline.Quantity
+                        from products
+                        inner join orderline
+                        on products.Id = orderline.ProductID
+                        where orderline.OrderID = '" + id + "'order by orderline.OrderID";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(orders);
+        da.Dispose();
+        con.Close();
+        return orders;
+    }
+
 }
