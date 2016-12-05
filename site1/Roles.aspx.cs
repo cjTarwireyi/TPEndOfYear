@@ -7,13 +7,21 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusineesLogic.Interface;
+using BusineesLogic.services;
 using System.Drawing;
 
 public partial class site1_Roles : System.Web.UI.Page
 {
     private DataTable table;
+    private IRoleService service;
     protected void Page_Load(object sender, EventArgs e)
     {
+        service = new RoleDAO();
+       List< RoleDTO> roles;
+        roles =service.getAllRoles();
+
+       
+        
         if (!this.IsPostBack)
         {
              
@@ -21,6 +29,17 @@ public partial class site1_Roles : System.Web.UI.Page
             MakeTable();
             GridView1.DataSource = "";
             GridView1.DataBind();
+
+            foreach (RoleDTO role in roles)
+            {
+                DataRow dr = table.NewRow();
+                dr["RoleTitle"] = role.roleName;
+                dr["Description"] = role.roleDescription;
+                table.Rows.Add(dr);
+            }
+
+           // AddToDataTable();
+            BindGrid();
         }
         else
             table = (DataTable)ViewState["DataTable"];
@@ -41,10 +60,14 @@ public partial class site1_Roles : System.Web.UI.Page
     }
     private void MakeTable()
     {
-        table.Columns.Add("ProductCode");
-        table.Columns.Add("Product");
-        table.Columns.Add("Price");
-        table.Columns.Add("Quantity");
+        table.Columns.Add("RoleTitle");
+        table.Columns.Add("Description");
+       
+    }
+    private void BindGrid()
+    {
+        GridView1.DataSource = table;
+        GridView1.DataBind();
     }
 
 }

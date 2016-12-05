@@ -80,8 +80,8 @@
                         <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
-                                <asp:BoundField HeaderText="Role Title" DataField="ProductCode" />
-                                <asp:BoundField HeaderText="Description" DataField="Product" />
+                                <asp:BoundField HeaderText="Role Title" DataField="RoleTitle" />
+                                <asp:BoundField HeaderText="Description" DataField="Description" />
                             </Columns>
                             <EditRowStyle BackColor="#999999" />
                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
