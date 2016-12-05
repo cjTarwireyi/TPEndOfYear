@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -42,7 +43,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
                     addToGridView(productID, quantity);
                 }
                 else
-                    addToGridView(productID, quantity);
+                    insertUpdateItem(productID, quantity);
         }
     }
 
@@ -116,5 +117,45 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
     protected void txtProductID_Disposed(object sender, EventArgs e)
     {
         
+    }
+
+    private void insertUpdateItem(string productID, string quantity)
+    {
+        bool exist = false;
+        DataTable rowCount = order.getAllOrders(Request.QueryString["id"].ToString());
+        foreach (GridViewRow row in GridView1.Rows)
+        {
+            for (int i = 0; i < rowCount.Rows.Count; i++)
+            {
+                if (productID.Equals(GridView1.Rows[i].Cells[3].Text))
+                    exist = true;
+                if (exist == true)
+                {
+                    update(i);
+                    break;
+                }
+            }
+            if(exist == false)
+                addToGridView(productID, quantity);
+            break;
+        }
+    }
+    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+
+    }
+
+    private void update(int rowIndex)
+    {
+        GridViewRow row = GridView1.Rows[rowIndex];
+        List<string> itemDetails = new List<string>();
+        int oldQty = Convert.ToInt32(GridView1.Rows[rowIndex].Cells[5].Text);
+        string newQty = (oldQty + Convert.ToInt32(txtQuantiy.Text)).ToString();
+        
+        itemDetails.Add( GridView1.Rows[rowIndex].Cells[2].Text); //product id
+        itemDetails.Add(newQty); // qty
+        order.updateQty(itemDetails);
+
+        GridView1.DataBind();
     }
 }
