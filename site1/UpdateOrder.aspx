@@ -85,7 +85,7 @@ order by orderline.OrderID"
                 <div class="col-lg-6">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False" DataKeyNames="OrderLineID,Id" DataSourceID="SqlDataSource1" OnRowDeleting="GridView1_RowDeleting">
+                            <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False" DataKeyNames="OrderLineID,Id" DataSourceID="SqlDataSource1" OnRowDeleting="GridView1_RowDeleting" OnRowUpdating="GridView1_RowUpdating">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" />
