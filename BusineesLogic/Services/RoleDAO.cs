@@ -7,6 +7,7 @@ using BusineesLogic.Interface;
 using System.Data.SqlClient;
 using System.Configuration;
 using BusineesLogic.factories;
+using System.Data;
 
 namespace BusineesLogic.services
 {
@@ -99,7 +100,18 @@ namespace BusineesLogic.services
             con.Close();
             return roleList;
         }
-
+        public DataTable populateGrid()
+        {
+            DataTable customers = new DataTable();
+            string query = "select * from Role";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(customers);
+            da.Dispose();
+            con.Close();
+            return customers;
+        }
         public bool addRole(RoleDTO role)
         {
             try

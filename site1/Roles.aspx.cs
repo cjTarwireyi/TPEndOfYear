@@ -21,13 +21,13 @@ public partial class site1_Roles : System.Web.UI.Page
 
        
         
-        if (!this.IsPostBack)
+        if (!this.IsPostBack) 
         {
              
             table = new DataTable();
             MakeTable();
-            GridView1.DataSource = "";
-            GridView1.DataBind();
+            //GridView1.DataSource = "";
+           /// GridView1.DataBind();
 
             LoadGridHelper();
         }
@@ -46,6 +46,25 @@ public partial class site1_Roles : System.Web.UI.Page
         AppendLastRecordGrid();
         
          
+    }
+    protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    { 
+    }
+    protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        GridView1.EditIndex = e.NewEditIndex;
+        //loadCustomers();
+    }
+    protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+    {
+        GridView1.EditIndex = -1;
+        //loadCustomers();
+    }
+    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    { }
+    protected void GridView1_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    {
+
     }
     protected void Logout(object sender, EventArgs e)
     {
@@ -80,19 +99,33 @@ public partial class site1_Roles : System.Web.UI.Page
     private void LoadGridHelper()
     {
  
-        List<RoleDTO> roles;
-        roles = service.getAllRoles();
+        //List<RoleDTO> roles;
+        //roles = service.getAllRoles();
 
-        foreach (RoleDTO role in roles)
+        //foreach (RoleDTO role in roles)
+        //{
+        //    DataRow dr = table.NewRow();
+        //    dr["RoleTitle"] = role.roleName;
+        //    dr["Description"] = role.roleDescription;
+        //    table.Rows.Add(dr);
+        //}
+
+        //// AddToDataTable();
+        //BindGrid();
+
+        try
         {
-            DataRow dr = table.NewRow();
-            dr["RoleTitle"] = role.roleName;
-            dr["Description"] = role.roleDescription;
-            table.Rows.Add(dr);
+            GridView1.DataSource = service.populateGrid();
+            GridView1.DataBind();
         }
-
-        // AddToDataTable();
-        BindGrid();
+        catch (Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
+    }
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
 
 }
