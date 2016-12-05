@@ -56,8 +56,8 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
-                            <asp:Textbox ID="txtDescription" TextMode="multiline" Columns="50" Rows="5" runat="server" Height="35px" Width="290px"
-                                class="form-control" placeholder="Quantity" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:Textbox>
+                            <asp:Textbox ID="txtDescription" TextMode="multiline" Columns="50" Rows="5" runat="server" Height="100px" Width="290px"
+                                class="form-control" placeholder="Quantity" ></asp:Textbox>
                         </div>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                             ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtDescription" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -80,10 +80,8 @@
                         <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
-                                <asp:BoundField HeaderText="ProductCode" DataField="ProductCode" />
-                                <asp:BoundField HeaderText="Product" DataField="Product" />
-                                <asp:BoundField HeaderText="Price" DataField="Price" />
-                                <asp:BoundField HeaderText="Quantity" DataField="Quantity" />
+                                <asp:BoundField HeaderText="Role Title" DataField="ProductCode" />
+                                <asp:BoundField HeaderText="Description" DataField="Product" />
                             </Columns>
                             <EditRowStyle BackColor="#999999" />
                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
