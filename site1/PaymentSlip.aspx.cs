@@ -52,14 +52,17 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 Response.ClearHeaders();
                 Response.ContentType = "Application/pdf";
                 MemoryStream memoryStream = new MemoryStream();
+                Rectangle two = new Rectangle(600,700);
                 Document doc = new Document();
                 PdfWriter writer = PdfWriter.GetInstance(doc, memoryStream);
 
-
+                doc.SetPageSize(two);
                 doc.Open();
-
+                
                 string filename = HttpContext.Current.Server.MapPath("../site1/images/images.png");
+                string signature = HttpContext.Current.Server.MapPath("../site1/images/signature.jpg");
                 System.IO.Stream ImageStream = new System.IO.FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
+                
                 iTextSharp.text.Image gif = iTextSharp.text.Image.GetInstance(ImageStream);
                 gif.Alignment = iTextSharp.text.Image.MIDDLE_ALIGN;
                 gif.ScalePercent(50f);
@@ -67,6 +70,7 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
 
                 Font heading = FontFactory.GetFont("Arial", 26, Font.BOLD, BaseColor.BLACK);
                 Font heading2 = FontFactory.GetFont("Arial", 15, Font.BOLD, BaseColor.BLACK);
+                Font heading3 = FontFactory.GetFont("Arial", 15, BaseColor.BLACK);
                 Font font = FontFactory.GetFont("Arial", 10, Font.NORMAL, BaseColor.BLACK);
                 Font arialB = FontFactory.GetFont("Arial", 10, Font.BOLD, BaseColor.BLACK);
                 Font unserline = FontFactory.GetFont("Arial", 10, Font.BOLD | Font.ITALIC);
@@ -74,33 +78,46 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 Paragraph p = new Paragraph("\n");
 
 
-                p = new Paragraph("Customer Details\n\n\n", heading);
+                
+
+                //Heading
+                p = new Paragraph("Customer Details\n\n", heading);
                 p.Alignment = Element.ALIGN_CENTER;
                 doc.Add(p);
 
 
-
-                p = new Paragraph("Customer NO: " + customer.customerNumber + "\nCustomer Name: " + customer.name + "\nCustomer Surname:" + customer.surname + "\nCell Number: " + customer.cellNumber + "\nEmail Address: " + customer.email + "\n\n", heading2);
-                p.Alignment = Element.ALIGN_LEFT;
-                doc.Add(p);
-
+                //Address
                 p = new Paragraph("Address\n", heading2underline);
                 p.Alignment = Element.ALIGN_LEFT;
                 doc.Add(p);
-
-
-                p = new Paragraph(customer.StreetName + "\n" + customer.Suburb + "\n" + customer.postalCode, heading2);
+                p = new Paragraph(customer.StreetName + "\n" + customer.Suburb + "\n" + customer.postalCode + "\n", heading2);
                 p.Alignment = Element.ALIGN_LEFT;
                 doc.Add(p);
 
-                p = new Paragraph("\n\nAccount created on:" + customer.dateAccountCreated, heading2);
-                p.Alignment = Element.ALIGN_CENTER;
+                //Customer Details
+                p = new Paragraph("\nCustomer NO: " + customer.customerNumber + "\nCustomer Name: " + customer.name + "\nCustomer Surname:" + customer.surname + "\nCell Number: " + customer.cellNumber + "\nEmail Address: " + customer.email + "\n\n", heading2);
+                p.Alignment = Element.ALIGN_LEFT;
                 doc.Add(p);
 
 
+                //Adding signature
+                ImageStream = new System.IO.FileStream(signature, FileMode.Open, FileAccess.Read, FileShare.Read);
+                iTextSharp.text.Image sign = iTextSharp.text.Image.GetInstance(ImageStream);
+                sign.Alignment = iTextSharp.text.Image.RIGHT_ALIGN;
+                sign.ScalePercent(50f);
+                doc.Add(sign);
+                p = new Paragraph("Company Manger", heading2);
+                p.Add(new Chunk("\nSiraaj Wilkinson",heading3));
+                p.Alignment = Element.ALIGN_RIGHT;
+                doc.Add(p);
+
+                //Account Created 
+                p = new Paragraph("\n\nAccount created on:" + customer.dateAccountCreated , heading2);
+                p.Alignment = Element.ALIGN_CENTER;
+                doc.Add(p);
+
                 doc.Close();
                 byte[] content = memoryStream.ToArray();
-
                 Response.Buffer = true;
                 Response.Clear();
                 Response.ClearContent();
