@@ -57,7 +57,7 @@ public class CustomerDAO:ICustomers,IDatabaseFunctions
 
     public CustomerDTO getLastReocrd()//last customer
     {
-        CustomerDTO customer = new CustomerDTO();
+        CustomerDTO customer = null;
         con.Open();
         String selectCustomer = "SELECT TOP 1 * FROM  Customers Order by CustomerID DESC ";
         SqlCommand myComm = new SqlCommand(selectCustomer, con);
@@ -75,19 +75,9 @@ public class CustomerDAO:ICustomers,IDatabaseFunctions
         String selectCustomer = "SELECT  CustomerID, Concat(CustomerName,CustomerSurname) As custName  FROM  Customers Order by CustomerName Asc ";
         SqlCommand myComm = new SqlCommand(selectCustomer, con);
         SqlDataReader myDR;
-        DataTable table = new DataTable();
-        
+        DataTable table = new DataTable(); 
         SqlDataAdapter adapter = new SqlDataAdapter(myComm);
-        //DataColumn custName = new DataColumn("custName");
-        //custName.Expression = string.Format("{0}+'-'+{1}", "CustomerName", "CustomerSurname");
-
-        //table.Columns.Add(custName);
-        
         adapter.Fill(table);
-        
-        //myDR = myComm.ExecuteReader();
-        //while (myDR.Read())
-        //    customers.Add( makeCustDTO(myDR));
         con.Close();
         return table;
     }
