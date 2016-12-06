@@ -51,6 +51,7 @@
     <Compile Include="domain\CategoryDTO.cs" />
     <Compile Include="domain\CompanyRulesDTO.cs" />
     <Compile Include="domain\CustomerAnalysisiDTO.cs" />
+    <Compile Include="domain\EmailDTO.cs" />
     <Compile Include="domain\EmployeeAnalysisDTO.cs" />
     <Compile Include="domain\EmployeeCategory.cs" />
     <Compile Include="domain\EmployeeType.cs" />

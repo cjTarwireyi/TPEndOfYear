@@ -13,7 +13,7 @@ namespace BusineesLogic.services
     class ReturnDAO
     {
         private SqlConnection con;
-
+        
         public ReturnDAO()
         {
             con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
@@ -37,6 +37,7 @@ namespace BusineesLogic.services
             da.Fill(order);
             da.Dispose();
             con.Close();
+
             return order;
         }
 
