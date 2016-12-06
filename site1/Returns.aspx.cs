@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class site1_Returns : System.Web.UI.Page
 {
-    private ReturnDAO returns = new ReturnDAO();
+  
     protected void Page_Load(object sender, EventArgs e)
     {
 
