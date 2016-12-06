@@ -132,6 +132,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
                 if (exist == true)
                 {
                     update(i);
+                    product.itemBought(productID, quantity, "+");
                     break;
                 }
             }
