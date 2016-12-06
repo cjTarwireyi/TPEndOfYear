@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace BusineesLogic.Interface
         RoleDTO findRole(int roleId);
         List<RoleDTO> getAllRoles();
         RoleDTO getLastReocrd();
+        DataTable populateGrid();
     
     }
 }
