@@ -116,7 +116,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
     }
     protected void txtProductID_Disposed(object sender, EventArgs e)
     {
-        
+
     }
 
     private void insertUpdateItem(string productID, string quantity)
@@ -135,7 +135,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
                     break;
                 }
             }
-            if(exist == false)
+            if (exist == false)
                 addToGridView(productID, quantity);
             break;
         }
@@ -151,11 +151,22 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         List<string> itemDetails = new List<string>();
         int oldQty = Convert.ToInt32(GridView1.Rows[rowIndex].Cells[5].Text);
         string newQty = (oldQty + Convert.ToInt32(txtQuantiy.Text)).ToString();
-        
-        itemDetails.Add( GridView1.Rows[rowIndex].Cells[2].Text); //product id
+
+        itemDetails.Add(GridView1.Rows[rowIndex].Cells[2].Text); //product id
         itemDetails.Add(newQty); // qty
         order.updateQty(itemDetails);
 
         GridView1.DataBind();
+    }
+
+
+    private void loadOrders()
+    {
+        if (Request.QueryString["id"].ToString() != null)
+        {
+            string id = Request.QueryString["id"].ToString();
+            GridView1.DataSource = order.getAllOrders(id);
+            GridView1.DataBind();
+        }
     }
 }
