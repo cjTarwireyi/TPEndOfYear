@@ -98,6 +98,7 @@
     <Compile Include="domain\PayRoleDTO.cs" />
     <Compile Include="services\ProductDAO.cs" />
     <Compile Include="domain\Products.cs" />
+    <Compile Include="services\ReturnDAO.cs" />
     <Compile Include="services\RoleDAO.cs" />
     <Compile Include="services\SupplierDAO.cs" />
     <Compile Include="domain\SupplierDTO.cs" />
