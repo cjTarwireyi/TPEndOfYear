@@ -30,38 +30,50 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-    <div>
-        <h1 align="center"><strong>Returns</strong></h1>
-        <br />
-        <div style="width: 480px; margin: 0 auto;">
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
-                    <asp:TextBox ID="txtOrderNumber" runat="server" Width="290px"
-                        class="form-control" placeholder="Order Number"></asp:TextBox>
-                    <asp:Label ID="lblQuantity" runat="server"></asp:Label>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div>
+                <h1 style="width: 300px; margin: 0 auto;"><strong>Returns</strong></h1>
+                <div style="width: 480px; margin: 0 auto;">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
+                            <asp:TextBox ID="txtOrderNumber" runat="server" Width="290px"
+                                class="form-control" placeholder="Order Number"></asp:TextBox>
+                            <asp:Label ID="lblQuantity" runat="server"></asp:Label>
+                        </div>
+                        <asp:RequiredFieldValidator ValidationGroup="Group1" ID="RequiredFieldValidator1" runat="server"
+                            ErrorMessage="OrderNumber Required!" ControlToValidate="txtOrderNumber" ForeColor="Red"></asp:RequiredFieldValidator>
+                        <br />
+                        <asp:Label ID="lblErrorProd" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
+                            <asp:TextBox ID="txtCustomerNumber" runat="server" Height="35px" Width="290px"
+                                class="form-control" placeholder="Custoemr Number" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                        </div>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                            ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtCustomerNumber" ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div >
                 </div>
-                <asp:RequiredFieldValidator ValidationGroup="Group1" ID="RequiredFieldValidator1" runat="server"
-                    ErrorMessage="OrderNumber Required!" ControlToValidate="txtOrderNumber" ForeColor="Red"></asp:RequiredFieldValidator>
-                <br />
-                <asp:Label ID="lblErrorProd" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
-                    <asp:TextBox ID="txtCustomerNumber" runat="server" Height="35px" Width="290px"
-                        class="form-control" placeholder="Custoemr Number" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                <div style="width: 290px; margin: 0 auto;">
+                    <asp:Button ID="btnSearchOrder" ValidationGroup="Group1" runat="server" Height="32px" Text="Search"
+                        Width="126px" class="btn btn-success" OnClick="btnSearchOrder_Click" /><br />
                 </div>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                    ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtCustomerNumber" ForeColor="Red"></asp:RequiredFieldValidator>
-                <br />
             </div>
-            <asp:Button ID="btnSearchOrder" ValidationGroup="Group1" runat="server" Height="32px" Text="Add"
-                Width="126px" class="btn btn-success" />
-        </div>
-    </div>
-    <div>
-        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
-    </div>
-
+            <div style="width: 700px; margin: 0 auto;">
+                <br />
+                <asp:GridView ID="GridView1" runat="server" Width="671px">
+                    <Columns>
+                        <asp:CommandField DeleteText="RETURN" ShowDeleteButton="True" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+            <div style="width: 700px; margin: 0 auto;">
+                <br /><asp:Label ID="lblResult" runat="server" Text="Invalid ORDER or CUSTOMER NUMBER" Visible="False" Font-Bold="False" Font-Size="XX-Large"></asp:Label>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
