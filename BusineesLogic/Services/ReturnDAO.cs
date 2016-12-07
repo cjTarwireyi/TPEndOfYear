@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace BusineesLogic.services
 {
 
-    class ReturnDAO
+    public class ReturnDAO
     {
         private SqlConnection con;
         

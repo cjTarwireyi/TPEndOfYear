@@ -10,11 +10,13 @@ using BusineesLogic.Interface;
 using BusineesLogic.services;
 using BusineesLogic.factories;
 using System.Drawing;
+using BusineesLogic.domain;
 
 public partial class site1_Roles : System.Web.UI.Page
 {
     private DataTable table;
     private IRoleService service = new RoleDAO();
+    private EmailDTO email = new EmailDTO();
     protected void Page_Load(object sender, EventArgs e)
     {
        
