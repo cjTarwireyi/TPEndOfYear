@@ -71,6 +71,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         try
         {
             string productCode = txtProductID.Text;
+            bool productExist = false;
               
             string quantity = txtQuantiy.Text;
             string custId = custList.SelectedItem.Value;
@@ -120,12 +121,25 @@ public partial class site1_Purchase : System.Web.UI.Page
                     grandTotal.Text = amt;
                     lblErrorProd.Visible = false;
                     custError.Visible = false;
-                    DataRow dr = table.NewRow();
-                    dr["ProductCode"] = productCode;
-                    dr["Product"] = productName;
-                    dr["Quantity"] = quantity;
-                    table.Rows.Add(dr);
+                    foreach (GridViewRow row in GridView1.Rows)
+                    {
+                        if (row.Cells[1].Text == productCode)
+                        {
+                            productExist=true;
+                            row.Cells[1].Text = (Convert.ToInt32(row.Cells[1].Text) + quantity).ToString();
+                            break;
+                        }
+                    }
+                    if (productExist == false)
+                    {
+                        DataRow dr = table.NewRow();
+                        dr["ProductCode"] = productCode;
+                        dr["Product"] = productName;
+                        dr["Quantity"] = quantity;
+                        table.Rows.Add(dr);
 
+                   
+                    }
                     product.productNumber = Convert.ToInt32(productCode);
                     product.productQuantity = Convert.ToInt32(quantity);
                     order.orderItems = new List<Products>();
