@@ -22,7 +22,7 @@ namespace BusineesLogic.services
         public DataTable searchOrder(string orderNumber,string customerNumber)
         {
             DataTable order = new DataTable();
-            string query = @"select orders.orderId AS ORDER ID ,orderline.ProductID AS PRODUCT ID,Products.ProductName AS PRODUCT NAME,orderline.OrderLineID
+            string query = @"select orders.orderId AS ORDER_ID ,orderline.ProductID AS PRODUCT_ID,Products.ProductName AS PRODUCT_NAME,orderline.OrderLineID
                              from customers
                              inner join orders
                              on customers.CustomerID = Orders.custId
