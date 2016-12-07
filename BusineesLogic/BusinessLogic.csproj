@@ -119,10 +119,10 @@
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="bin\Debug\BusineesLogic.dll" />
-    <Content Include="bin\Debug\BusineesLogic.pdb" />
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="obj\Debug\BusineesLogic.dll" />
     <Content Include="obj\Debug\BusineesLogic.pdb" />
     <Content Include="obj\Debug\BusinessLogic.csproj.FileListAbsolute.txt" />
