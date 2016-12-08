@@ -36,9 +36,9 @@ public partial class LoginPage : System.Web.UI.Page
             else
                 Label1.Text = "Wrong Log in credentials";
         }
-        catch (ThreadAbortException ex)
+        catch (SqlException ex)
         {
-            //ExceptionRedirect(ex);
+            ExceptionRedirect(ex);
         }
     }
 
