@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using BusineesLogic.domain;
 
 /// <summary>
 /// Summary description for BrandDTO
 /// </summary>
-public class BrandDTO
+/// 
+
+namespace BusineesLogic.domain
 {
-	public BrandDTO()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+    public class BrandDTO : Brand
+    {
+
+    }
 }
