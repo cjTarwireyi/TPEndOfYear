@@ -1,4 +1,5 @@
-﻿using BusineesLogic.services;
+﻿using BusineesLogic.domain;
+using BusineesLogic.services;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,9 +12,13 @@ public partial class site1_Returns : System.Web.UI.Page
 {
 
     private ReturnDAO returns = new ReturnDAO();
+    private OrderLineDAO order = new OrderLineDAO();
     private DataTable dtOrders = new DataTable();
     private UserDTO userDto;
     private UserDTO userDtoUpdate;
+    private ReturnDTO itemReturned;
+    private GridViewRow row;
+    
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -28,24 +33,28 @@ public partial class site1_Returns : System.Web.UI.Page
     {
         string customerNumber = txtCustomerNumber.Text;
         string orderNumber = txtOrderNumber.Text;
-        dtOrders = returns.searchOrder(orderNumber, customerNumber);
-        if (dtOrders != null)
+        try
         {
-            if (dtOrders.Rows.Count > 0)
+            dtOrders = returns.searchOrder(orderNumber, customerNumber);
+            if (dtOrders != null)
             {
-                GridView1.DataSource = dtOrders;
-                GridView1.DataBind();
+                if (dtOrders.Rows.Count > 0)
+                {
+                    GridView1.DataSource = dtOrders;
+                    GridView1.DataBind();
+                }
+                else
+                {
+                    GridView1.DataSource = "";
+                    GridView1.DataBind();
+                    lblResult.Visible = true;
+                }
             }
-            else
-            {
-                GridView1.DataSource = "";
-                GridView1.DataBind();
-                lblResult.Visible = true;
-            }
-
-
         }
-       
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
     }
     private void session()
     {
@@ -56,5 +65,48 @@ public partial class site1_Returns : System.Web.UI.Page
             Response.Redirect("LoginPage.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
+    }
+    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        row = GridView1.SelectedRow;
+        int customerID = Convert.ToInt32(txtCustomerNumber.Text);
+        string productID = GridView1.Rows[e.RowIndex].Cells[2].Text;
+        string orderlineID = GridView1.Rows[e.RowIndex].Cells[4].Text;
+        string orderID = GridView1.Rows[e.RowIndex].Cells[1].Text;
+
+        itemReturned = new ReturnDTO.ReturnBuilder()
+        .customerNumber(customerID)
+        .orderNumber(Convert.ToInt32(orderID))
+        .productNumber(Convert.ToInt32(productID))
+        .build();
+        try
+        {
+            returns.save(itemReturned);
+            order.removeItem(productID, orderlineID);
+
+            searchOrders();
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);
+        }
+    }
+
+    public void reload(string orderNumber, string customerNumber)
+    {
+        dtOrders = returns.searchOrder(orderNumber, customerNumber);
+        if (dtOrders != null)
+        {
+            if (dtOrders.Rows.Count > 0)
+            {
+                GridView1.DataSource = dtOrders;
+                GridView1.DataBind();
+            }
+        }
+    }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
 }

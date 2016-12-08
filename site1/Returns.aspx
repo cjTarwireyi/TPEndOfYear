@@ -65,7 +65,7 @@
             </div>
             <div style="width: 700px; margin: 0 auto;">
                 <br />
-                <asp:GridView ID="GridView1" runat="server" Width="671px">
+                <asp:GridView ID="GridView1" runat="server" Width="671px" OnRowDeleting="GridView1_RowDeleting">
                     <Columns>
                         <asp:CommandField DeleteText="RETURN" ShowDeleteButton="True" />
                     </Columns>
