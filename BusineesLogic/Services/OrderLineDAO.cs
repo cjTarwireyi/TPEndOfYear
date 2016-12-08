@@ -86,7 +86,7 @@ public class OrderLineDAO : InterfaceOrderLine
         updateQuantity(id, orderline);
 
         con.Open();
-        string query = "delete from OrderLine where OrderLineID ='" + id + "' ";
+        string query = "delete from OrderLine where OrderLineID ='" + orderline + "' ";
         SqlCommand cmd = new SqlCommand(query, con);
         cmd.ExecuteNonQuery();
         con.Close();
