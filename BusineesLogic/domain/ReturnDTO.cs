@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.domain
 {
-    class ReturnDTO
+    public class ReturnDTO
     {
         public int productID { get; set; }
         public int orderID { get; set; }
