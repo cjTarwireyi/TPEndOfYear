@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusineesLogic.domain;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -41,5 +42,16 @@ namespace BusineesLogic.services
             return order;
         }
 
+        public void save(ReturnDTO returns)
+        {
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "insert into Returns ([OrderID],[CustomerID],[ProductID],[DateReturned]) values('" + returns.orderID + "','" + returns.customerID + "','" + returns.productID + "','" + DateTime.Now.ToString() + "')";
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        
     }
 }
