@@ -4,6 +4,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
 </asp:Content>
 
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
+    <script type="text/javascript" src="/Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
+
+    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+    <title></title>
+    <style type="text/css">
+        .cssPager td {
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+    </style>
+</asp:Content>
+
 <asp:Content ID="Content5" ContentPlaceHolderID="details" runat="Server">
     <div class="loginDisplay">
         <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label>
@@ -13,7 +27,7 @@
     </div>
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="sideBarNav" runat="server">
+<asp:Content ID="Content4" ContentPlaceHolderID="sideBarNav" runat="server">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
@@ -41,7 +55,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="SupplierID" AllowPaging="True" GridLines="Vertical" Height="100px" Width="1080px" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" AllowSorting="True" CellPadding="4" ForeColor="#333333">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="SupplierID" AllowPaging="True" GridLines="Vertical" Height="100px" Width="1080px" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" AllowSorting="True" CellPadding="4" ForeColor="#333333" OnPageIndexChanging="GridView1_PageIndexChanging">
                     <PagerStyle CssClass="cssPager" />
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
