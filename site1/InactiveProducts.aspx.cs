@@ -124,4 +124,9 @@ public partial class site1_InactiveProducts : System.Web.UI.Page
             ExceptionRedirect(ex);
         }
     }
+    protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GridView1.PageIndex = e.NewPageIndex;
+        loadInactiveProducts();
+    }
 }
