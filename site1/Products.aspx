@@ -13,7 +13,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
     <div>
-        <h1><strong>Products</strong></h1>
+        <h1 align="center"><strong>Products</strong></h1>
         <br />
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" Align="Center"  Height="110px" Width="1080px"  AllowPaging="True" AllowSorting="True" HorizontalAlign="Justify" OnRowCancelingEdit="gridView1_RowCancelingEdit" OnRowDeleting="gridView1_RowDeleting" OnRowEditing="gridView1_RowEditing" OnRowUpdating="gridView1_RowUpdating" GridLines="Vertical">
             <PagerStyle CssClass="cssPager" />
@@ -67,6 +67,7 @@
             <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
             <li><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
             <li class="active"><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+            <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>
             <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
         </ul>
