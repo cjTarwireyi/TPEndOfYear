@@ -36,6 +36,7 @@
             <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
             <li class="active"><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
             <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+            <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>
             <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
         </ul>
@@ -49,7 +50,7 @@
                 <div class="topCorner">
                     <asp:TextBox ID="txtSearch" AutoPostBack="true" runat="server" placeholder="Enter OrderID" Width="131px" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" />
                 </div>
-                <h1><strong>Monthly</strong>Orders</h1>
+                <h1 align="center"><strong>Monthly</strong>Orders</h1>
                 Year<br />
                 <asp:TextBox ID="txtYear" runat="server" Height="18px" Width="83px" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged"></asp:TextBox><br />
                 <asp:DropDownList ID="DropDownList1" runat="server" Height="20px" Width="128px" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AutoPostBack="True" OnTextChanged="DropDownList1_TextChanged">
