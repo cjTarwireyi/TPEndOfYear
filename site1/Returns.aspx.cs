@@ -12,7 +12,8 @@ public partial class site1_Returns : System.Web.UI.Page
 {
 
     private ReturnDAO returns = new ReturnDAO();
-    private OrderLineDAO order = new OrderLineDAO();
+    private OrderLineDAO orderline = new OrderLineDAO();
+    private OrdersDAO order = new OrdersDAO();
     private DataTable dtOrders = new DataTable();
     private UserDTO userDto;
     private UserDTO userDtoUpdate;
@@ -82,7 +83,8 @@ public partial class site1_Returns : System.Web.UI.Page
         try
         {
             returns.save(itemReturned);
-            order.removeItem(productID, orderlineID);
+            orderline.removeItem(productID, orderlineID);
+            order.calculateOrder(orderID);// recalculating order
 
             searchOrders();
         }
