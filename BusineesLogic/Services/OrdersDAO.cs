@@ -194,4 +194,56 @@ public class OrdersDAO : IOder
         return orders;
     }
 
+
+    public void calculateOrder(string id)
+    {
+
+        calculate(id); 
+    }
+
+
+    private  DataTable getOrderItem()
+    {
+        DataTable itemPrices = new DataTable();
+        string query = @"select orderline.Quantity,Products.Price
+                        from products
+                        inner join orderline
+                        on products.Id = orderline.ProductID
+                        inner join orders
+                        on OrderLine.OrderID = Orders.orderId
+                        inner join Customers
+                        on Orders.custId = Customers.CustomerID
+                        where orderline.OrderID = 101 and Customers.CustomerID = 12
+                        order by orderline.OrderID";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(itemPrices);
+        da.Dispose();
+        con.Close();
+        return itemPrices;
+    }
+
+
+    private void calculate(string id)
+    {
+        int total = 0;
+        DataTable dt = getOrderItem();
+        foreach(DataRow row in dt.Rows)
+        {
+            total = total + (Convert.ToInt32(row["Quantity"].ToString()) * Convert.ToInt32(row["Price"].ToString()));
+        }
+        updateAmount(id,total);
+    }
+
+
+    private void updateAmount(string id,int amount)
+    {
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "update orders set amount ='" + amount.ToString() + "' where orderid = '" + id + "' ";
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
 }
