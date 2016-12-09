@@ -3,6 +3,19 @@
 <%-- Add content controls here --%>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
 </asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
+    <script type="text/javascript" src="/Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
+
+    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+    <title></title>
+    <style type="text/css">
+        .cssPager td {
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+    </style>
+</asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="details" runat="Server">
     <div class="loginDisplay">
         <span class="glyphicon glyphicon-user"></span>&nbsp;<asp:Label ID="lblUser" runat="server" Text="Label"></asp:Label>
@@ -15,7 +28,7 @@
     <div>
         <h1 align="center"><strong>Products</strong></h1>
         <br />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" Align="Center"  Height="110px" Width="1080px"  AllowPaging="True" AllowSorting="True" HorizontalAlign="Justify" OnRowCancelingEdit="gridView1_RowCancelingEdit" OnRowDeleting="gridView1_RowDeleting" OnRowEditing="gridView1_RowEditing" OnRowUpdating="gridView1_RowUpdating" GridLines="Vertical">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" Align="Center"  Height="110px" Width="1080px"  AllowPaging="True" AllowSorting="True" HorizontalAlign="Justify" OnRowCancelingEdit="gridView1_RowCancelingEdit" OnRowDeleting="gridView1_RowDeleting" OnRowEditing="gridView1_RowEditing" OnRowUpdating="gridView1_RowUpdating" GridLines="Vertical" OnPageIndexChanging="GridView1_PageIndexChanging">
             <PagerStyle CssClass="cssPager" />
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
@@ -53,7 +66,7 @@
                  title="Insert new tecnician to database" OnClick="btnDeactivate_Click" />
     </div>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="sideBarNav" runat="server">
+<asp:Content ID="Content4" ContentPlaceHolderID="sideBarNav" runat="server">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
