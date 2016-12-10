@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.domain
 {
-    class TimeSheetDTO
+    public class TimeSheetDTO
     {
         public TimeSheetDTO(TimeSheetBuilder timeSheetBuilder)
         {
