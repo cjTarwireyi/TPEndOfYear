@@ -73,6 +73,7 @@
     <Compile Include="factories\TimeSheetFactory.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
     <Compile Include="Interface\IRoleService.cs" />
+    <Compile Include="Interface\ITimeSheet.cs" />
     <Compile Include="services\BrandDAO.cs" />
     <Compile Include="services\CustomerDAO.cs" />
     <Compile Include="domain\CustomerDTO.cs" />
