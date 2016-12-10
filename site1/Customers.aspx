@@ -43,7 +43,6 @@
             <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
         </ul>
     </div>
-
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
     <div class="main">
