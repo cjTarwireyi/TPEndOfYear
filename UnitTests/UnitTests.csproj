@@ -59,6 +59,7 @@
     <Compile Include="domain\TestOrder.cs" />
     <Compile Include="domain\TestOrderLine.cs" />
     <Compile Include="domain\TestRole.cs" />
+    <Compile Include="domain\TestTimeSheet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\OrderTest.cs" />
     <Compile Include="services\OrderLineTest.cs" />
