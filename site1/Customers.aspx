@@ -10,20 +10,35 @@
     </div>
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="sideBarNav" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
+    <script type="text/javascript" src="/Scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
+
+    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+    <title></title>
+    <style type="text/css">
+        .cssPager td {
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+    </style>
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="sideBarNav" runat="server">
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
             <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
             <asp:Panel ID="AdminLinkPanel" runat="server">
-            <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
-            <li class="active"><a href="Customers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Customers</a></li>
-            <li><a href="Employee.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Employees</a></li>
-            <li><a href="Suppliers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Suppliers</a></li>
-            <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-user "></i>&nbsp;Register User</a></li>
-           </asp:Panel>
-                 <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
+                <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+                <li class="active"><a href="Customers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Customers</a></li>
+                <li><a href="Employee.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Employees</a></li>
+                <li><a href="Suppliers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Suppliers</a></li>
+                <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-user "></i>&nbsp;Register User</a></li>
+            </asp:Panel>
+            <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
             <li><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
             <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+            <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>
             <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
         </ul>
@@ -32,12 +47,14 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
     <div class="main">
-        <h1><strong>Customers</strong></h1>
+        <h1 align="center"><strong>Customers</strong></h1>
         <br />
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="190px" Width="1080px" AllowSorting="True" AllowPaging="true" GridLines="Vertical" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowUpdated="GridView1_RowUpdated">
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="190px" Width="1080px" AllowSorting="True" AllowPaging="true" GridLines="Vertical" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowUpdated="GridView1_RowUpdated" OnPageIndexChanging="GridView1_PageIndexChanging">
+                    <PagerStyle CssClass="cssPager" />
+                    <AlternatingRowStyle BackColor="White" />
                     <Columns>
                         <asp:BoundField DataField="CustomerID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="CustomerID" />
                         <asp:BoundField DataField="CustomerName" HeaderText="Name" SortExpression="CustomerName" />

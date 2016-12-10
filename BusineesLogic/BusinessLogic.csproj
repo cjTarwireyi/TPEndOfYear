@@ -47,6 +47,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="domain\AccountDTO.cs" />
     <Compile Include="domain\Address.cs" />
+    <Compile Include="domain\Brand.cs" />
     <Compile Include="domain\BrandDTO.cs" />
     <Compile Include="domain\CategoryDTO.cs" />
     <Compile Include="domain\CompanyRulesDTO.cs" />
@@ -67,9 +68,11 @@
     <Compile Include="domain\TimeSheetDTO.cs" />
     <Compile Include="domain\Transaction.cs" />
     <Compile Include="domain\UserAnalysisDTO.cs" />
+    <Compile Include="factories\BrandFactory.cs" />
     <Compile Include="factories\RoleFactory.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
     <Compile Include="Interface\IRoleService.cs" />
+    <Compile Include="services\BrandDAO.cs" />
     <Compile Include="services\CustomerDAO.cs" />
     <Compile Include="domain\CustomerDTO.cs" />
     <Compile Include="domain\DepartmentDTO.cs" />

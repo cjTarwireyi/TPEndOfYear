@@ -3,7 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
-  
 </asp:Content>
 
 <asp:Content ID="Content5" ContentPlaceHolderID="details" runat="Server">
@@ -25,6 +24,7 @@
             <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
             <li class="active"><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Order</a></li>
             <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+            <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>
             <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
         </ul>
@@ -109,7 +109,6 @@ order by orderline.OrderID"
                             </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-
                 </div>
             </div>
         </div>

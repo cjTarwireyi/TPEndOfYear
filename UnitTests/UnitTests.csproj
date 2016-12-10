@@ -50,6 +50,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="domain\TestBrand.cs" />
     <Compile Include="domain\TestCustomer.cs" />
     <Compile Include="domain\TestEmployee.cs" />
     <Compile Include="domain\TestProducts.cs" />

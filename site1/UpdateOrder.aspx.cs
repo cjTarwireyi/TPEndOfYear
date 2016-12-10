@@ -5,11 +5,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BusineesLogic.services;
 
 
 public partial class site1_UpdateOrder : System.Web.UI.Page
 {
-    private OrderLineDAO order = new OrderLineDAO();
+    private OrderLineDAO orderline = new OrderLineDAO();
+    private OrdersDAO order = new OrdersDAO();
     private ProductDAO product = new ProductDAO();
     private UserDTO userDtoUpdate;
     private UserDTO userDto;
@@ -28,9 +30,10 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         string productID = txtProductID.Text;
         string quantity = txtQuantiy.Text;
         string id = txtProductID.Text;
+        string orderID = Request.QueryString["id"];
         lblQuantity.Text = "";
         int currentQuan = product.getItemQuantity(id);
-        if (Request.QueryString["id"] != null)
+        if (orderID != null)
         {
 
             if (currentQuan == 0)
@@ -43,7 +46,10 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
                     addToGridView(productID, quantity);
                 }
                 else
+                {
                     insertUpdateItem(productID, quantity);
+                    order.calculateOrder(orderID);
+                }
         }
     }
 
@@ -77,9 +83,12 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         row = GridView1.SelectedRow;
         string productID = GridView1.Rows[e.RowIndex].Cells[3].Text;
         string orderlineID = GridView1.Rows[e.RowIndex].Cells[2].Text;
+        string orderID = GridView1.Rows[e.RowIndex].Cells[1].Text;
         try
         {
-            order.removeItem(productID, orderlineID);
+            orderline.removeItem(productID, orderlineID);
+            order.calculateOrder(orderID);
+           
         }
         catch (Exception ex)
         {
@@ -93,7 +102,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         try
         {
             orderID = (Request.QueryString["id"].ToString().Trim());
-            order.updateInsertOrder(orderID, txtProductID.Text.ToString(), txtQuantiy.Text.ToString());
+            orderline.updateInsertOrder(orderID, txtProductID.Text.ToString(), txtQuantiy.Text.ToString());
             GridView1.DataBind();
             product.itemBought(productID, quantity, "+");
         }
@@ -122,7 +131,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
     private void insertUpdateItem(string productID, string quantity)
     {
         bool exist = false;
-        DataTable rowCount = order.getAllOrders(Request.QueryString["id"].ToString());
+        DataTable rowCount = orderline.getAllOrders(Request.QueryString["id"].ToString());
         foreach (GridViewRow row in GridView1.Rows)
         {
             for (int i = 0; i < rowCount.Rows.Count; i++)
@@ -140,6 +149,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
                 addToGridView(productID, quantity);
             break;
         }
+        
     }
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
@@ -155,7 +165,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
 
         itemDetails.Add(GridView1.Rows[rowIndex].Cells[2].Text); //product id
         itemDetails.Add(newQty); // qty
-        order.updateQty(itemDetails);
+        orderline.updateQty(itemDetails);
 
         GridView1.DataBind();
     }
@@ -166,7 +176,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         if (Request.QueryString["id"].ToString() != null)
         {
             string id = Request.QueryString["id"].ToString();
-            GridView1.DataSource = order.getAllOrders(id);
+            GridView1.DataSource = orderline.getAllOrders(id);
             GridView1.DataBind();
         }
     }
