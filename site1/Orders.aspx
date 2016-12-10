@@ -6,8 +6,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
     <script type="text/javascript" src="/Scripts/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="/Scripts/bootstrap.js"></script>
-
     <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+
+
     <title></title>
     <style type="text/css">
         .cssPager td {
@@ -43,7 +44,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-    <div class= "main">
+    <div class="main">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
@@ -66,11 +67,8 @@
                     <asp:ListItem Value="10">October</asp:ListItem>
                     <asp:ListItem Value="11">November</asp:ListItem>
                     <asp:ListItem Value="12">December</asp:ListItem>
-                </asp:DropDownList><br />
-                <br />
+                </asp:DropDownList>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:RadioButton ID="RadioButton2" runat="server" Value="False" Text="Outstanding" AutoPostBack="True" GroupName="status" Checked="True" OnCheckedChanged="RadioButton2_CheckedChanged" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:RadioButton ID="RadioButton1" runat="server" Value="True" Text="Paid" AutoPostBack="True" GroupName="status" OnCheckedChanged="RadioButton1_CheckedChanged" /><br />
                 <asp:Panel ID="Panel1" runat="server" Width="807px">
-                    <asp:RadioButton ID="RadioButton1" runat="server" Value="True" Text="Paid" AutoPostBack="True" GroupName="status" OnCheckedChanged="RadioButton1_CheckedChanged" /><br />
-                    <asp:RadioButton ID="RadioButton2" runat="server" Value="False" Text="Outstanding" AutoPostBack="True" GroupName="status" Checked="True" OnCheckedChanged="RadioButton2_CheckedChanged" />
                     <asp:GridView ID="GridView1" runat="server" Width="1080px" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="orderId" ForeColor="#333333" AllowPaging="true" OnPageIndexChanging="GridView1_PageIndexChanging1" Height="280px">
                         <PagerStyle CssClass="cssPager" />
                         <AlternatingRowStyle BackColor="White" />
@@ -99,13 +97,17 @@
                         Width="126px" class="btn btn-primary" OnClick="btnAdd_Click" />
                     &nbsp;&nbsp;<asp:Button ID="btnViewOrder" ValidationGroup="Group1" runat="server" Height="32px" Text="View Orders"
                         Width="126px" class="btn btn-primary" OnClick="btnViewOrder_Click" data-toggle="modal" data-target="#myModal" />
+                    <br />
+                    <br />
+                    <asp:Button ID="btnPay" ValidationGroup="Group1" runat="server" Height="32px" Text="Pay"
+                        Width="126px" class="btn btn-success" OnClick="btnPay_Click"  />
                     <div class="modal-dialog">
                 </asp:Panel>
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog" data-backdrop="false">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -137,5 +139,45 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div id="myPaymentModal" class="modal fade" role="dialog" data-backdrop="false">
+        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+            <ContentTemplate>
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button><br />
+                            <h4 class="modal-title" align="center">Payment</h4>
+                            <div align="right">
+                                Total: 
+                        <asp:Label ID="lblAmountDue" runat="server" Text="Label"></asp:Label>
+                            </div>
+                            <div id="Customer Details">
+                                <asp:Label ID="label" runat="server" Text="Customer: "></asp:Label>
+                                <asp:Label ID="lblCustomerName" runat="server" Text="111"></asp:Label>
+                            </div>
+                            <div id="OrderDetails">
+                                <br />
+                                <asp:Label ID="Label1" runat="server" Text="Order Number: "></asp:Label>
+                                <asp:Label ID="lblOrderNo" runat="server" Text="111"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div align="center">
+                                <asp:TextBox ID="txtAmountPayed" runat="server" placeholder="Enter amount"></asp:TextBox><br />
+                            </div>
+                            <asp:Panel ID="Panel2" runat="server" HorizontalAlign="Right" Visible="False">
+                                <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
+                       <asp:Label ID="lblChanges" runat="server" Text="Label"></asp:Label>
+                            </asp:Panel>
+                            <div align="center">
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
 </asp:Content>
