@@ -70,6 +70,7 @@
     <Compile Include="domain\UserAnalysisDTO.cs" />
     <Compile Include="factories\BrandFactory.cs" />
     <Compile Include="factories\RoleFactory.cs" />
+    <Compile Include="factories\TimeSheetFactory.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
     <Compile Include="Interface\IRoleService.cs" />
     <Compile Include="services\BrandDAO.cs" />
