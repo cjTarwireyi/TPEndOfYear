@@ -126,8 +126,7 @@ public partial class site1_Purchase : System.Web.UI.Page
                     {
                         if (row.Cells[1].Text == productCode)
                         {
-                           // productExist=true;
-                           // table.Rows.InsertAt(Convert.ToInt32(row.Cells[3].Text) + quantity).ToString(),1)= (Convert.ToInt32(row.Cells[3].Text) + quantity).ToString();
+                            
                             updateAmount = (Convert.ToDecimal(price) * Convert.ToInt32(Convert.ToInt32(row.Cells[4].Text))).ToString();
                             quantity = (Convert.ToInt32(quantity) + Convert.ToInt32(row.Cells[4].Text)).ToString();
                            
@@ -166,19 +165,6 @@ public partial class site1_Purchase : System.Web.UI.Page
                     product.productNumber = Convert.ToInt32(productCode);
                     product.productQuantity = Convert.ToInt32(quantity);
                     order.orderItems = new List<Products>();
-
-                    //if (order.orderItems.Contains(product))
-                    //{
-                    //    Products foundproduct;
-                    //    foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
-                    //    foundproduct.productQuantity += product.productQuantity;
-                    //}
-                    //else
-                    //{
-
-
-                    //}
-
 
                     txtProductID.Text = string.Empty;
                     txtQuantiy.Text = string.Empty;
