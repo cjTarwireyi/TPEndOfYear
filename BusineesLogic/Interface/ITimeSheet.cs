@@ -9,9 +9,9 @@ namespace BusineesLogic.Interface
 {
     public interface ITimeSheet
     {
-        TimeSheetDTO getTimeSheet(string username, string password);
-        bool ifTimeSheetExis(string username);
-        int getTimesheetId(string username);
+        TimeSheetDTO getTimeSheet(DateTime date);
+        bool ifTimeSheetExis(string id);
+        int getTimesheetId(DateTime date);
         bool addTimeSheet(TimeSheetDTO model);
         bool UpdateTimeSheet(TimeSheetDTO model);
         bool Delete(int id);
