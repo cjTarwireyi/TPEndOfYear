@@ -14,10 +14,11 @@ namespace UnitTests.domain
             //CREATE TEST
             DateTime date = DateTime.Parse("1/1/1900 12:00:00 AM");
 
-            TimeSheetDTO timesheetDto = TimeSheetFactory.createTimeSheet(date, 5, 12);
+            TimeSheetDTO timesheetDto = TimeSheetFactory.createTimeSheet(1,date, 5, 12);
             Assert.AreEqual(DateTime.Parse("1/1/1900 12:00:00 AM"), timesheetDto.date);
             Assert.AreEqual(5, timesheetDto.hourIn);
             Assert.AreEqual(12, timesheetDto.hourOut);
+            Assert.AreEqual(1, timesheetDto.employeeId);
 
             //UPDATE TEST
             TimeSheetDTO update = new TimeSheetDTO.TimeSheetBuilder()
@@ -27,6 +28,7 @@ namespace UnitTests.domain
             Assert.AreEqual(14, update.hourIn);
             Assert.AreEqual(update.date, timesheetDto.date);
             Assert.AreEqual(update.hourOut, timesheetDto.hourOut);
+            Assert.AreEqual(update.employeeId, timesheetDto.employeeId);
 
         }
     }

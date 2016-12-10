@@ -10,22 +10,23 @@ namespace BusineesLogic.services
 {
    public class TimeSheetDAO:ITimeSheet
     {
-        public TimeSheetDTO getTimeSheet(string username, string password)
+
+        public TimeSheetDTO getTimeSheet(DateTime date)
         {
             throw new NotImplementedException();
         }
 
-        public bool ifTimeSheetExis(string username)
+        public bool ifTimeSheetExis(string id)
         {
             throw new NotImplementedException();
         }
 
-        public int getTimesheetId(string username)
+        public int getTimesheetId(DateTime date)
         {
             throw new NotImplementedException();
         }
 
-        public bool addTimeSheet(domain.TimeSheetDTO model)
+        public bool addTimeSheet(TimeSheetDTO model)
         {
             throw new NotImplementedException();
         }
