@@ -109,6 +109,7 @@
     <Compile Include="services\SupplierDAO.cs" />
     <Compile Include="domain\SupplierDTO.cs" />
     <Compile Include="domain\RoleDTO.cs" />
+    <Compile Include="services\TimeSheetDAO.cs" />
     <Compile Include="services\UserDAO.cs" />
     <Compile Include="domain\UserDTO.cs" />
     <Compile Include="logic\UserFacade.cs" />
