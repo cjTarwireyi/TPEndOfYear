@@ -2,9 +2,10 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
-      <div class="myContainer   " style="background-image:url(pexels-photo-39716.jpeg); border: 3px solid silver;">
+      
+   <div class="myContainer" >
      
-    <div class="   form-signin ">
+    <div class="form-signin ">
            <h2 class="form-signin-heading">Please sign in</h2>
         <form runat="server" defaultfocus="username">
         <div class="form-group">
@@ -34,7 +35,7 @@
          
     </div>
 
-<div class="col-lg-offset-4">
+<div class="col-lg-offset-1">
 
         <asp:Button ID="Submit" runat="server" class="btn btn-primary " Height="35px" Text="Sign In"
             Width="101px" OnClick="Submit_Click" />
@@ -45,10 +46,44 @@
         
 
 
-        <!--<a href="#">I forgot my password</a><br />
-        <a href="RegistrationPage.aspx" class="text-center">Register a new membership</a>-->
+        
             </form>
     </div>
         
           </div>
+
+     <!--
+    <div class="myContainer   "   >
+     
+    <section id="loginform" >
+    <div >
+      <div id="box">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-6">
+        <h2 class="text-center">LOGIN.</h2>
+        <form role="form">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email"/>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"/> Remember me
+      </label>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+      </div>
+    </div>
+  </div>
+  </div></div>
+
+</section>
+</div>-->
 </asp:Content>
