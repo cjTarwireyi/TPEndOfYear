@@ -12,14 +12,27 @@
      </title>
      <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
-     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
+     <%--  --%>
+     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+ 
     <style type="text/css">
+        .b{
+    /*background:url('images/cover.jpg') center center no-repeat;*/
+    background-size:1000px 1000px;
+    background-image: url(images/cover.jpg);
+   
+    min-height: 100%;
+   background-position: center;
+   background-size: cover;
+
+}
         .bg {
         position: relative;
         width: 100%;
+        height:100%;
         align-content:center;
-        background-image: url(pexels-photo-39716.jpeg);
+         background-color:silver;
         background-position: center;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -39,10 +52,10 @@ position: absolute;
     <div class="contain customrow col-md-12">
     		<p><br/></p><p><br/></p>
         <div >
-  		<div class="row col-lg-offset-4">
-  			<div class="col-md-4" style="width:39%;">
+  		<div class="row col-lg-offset-5">
+  			<div class="col-md-4" style="width:100%;">
   				<div class="">
-  					<div class="panel-body">
+  					 
 
                             <div style="align-content:center">
                                 <asp:ContentPlaceHolder id="content" runat="server">
@@ -50,7 +63,7 @@ position: absolute;
                                  </asp:ContentPlaceHolder>
                             </div>
 				    </div>
-  			    </div>
+ 
 		    </div>
         </div>
        </div>
