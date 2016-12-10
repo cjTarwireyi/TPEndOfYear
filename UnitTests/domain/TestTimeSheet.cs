@@ -12,19 +12,21 @@ namespace UnitTests.domain
         public void TestTimeSheetDTO()
         {
             //CREATE TEST
-            TimeSheetDTO timesheetDto = TimeSheetFactory.createTimeSheet(14, 5, 12);
-            Assert.AreEqual(14, timesheetDto.day);
-            Assert.AreEqual(5, timesheetDto.hour);
-            Assert.AreEqual(12, timesheetDto.minutes);
+            DateTime date = DateTime.Parse("1/1/1900 12:00:00 AM");
+
+            TimeSheetDTO timesheetDto = TimeSheetFactory.createTimeSheet(date, 5, 12);
+            Assert.AreEqual(DateTime.Parse("1/1/1900 12:00:00 AM"), timesheetDto.date);
+            Assert.AreEqual(5, timesheetDto.hourIn);
+            Assert.AreEqual(12, timesheetDto.hourOut);
 
             //UPDATE TEST
             TimeSheetDTO update = new TimeSheetDTO.TimeSheetBuilder()
                 .copy(timesheetDto)
-                .buildDay(14)
+                .buildHourIn(14)
                 .build();
-            Assert.AreEqual(14, update.day);
-            Assert.AreEqual(timesheetDto.hour, timesheetDto.hour);
-            Assert.AreEqual(timesheetDto.minutes, timesheetDto.minutes);
+            Assert.AreEqual(14, update.hourIn);
+            Assert.AreEqual(update.date, timesheetDto.date);
+            Assert.AreEqual(update.hourOut, timesheetDto.hourOut);
 
         }
     }
