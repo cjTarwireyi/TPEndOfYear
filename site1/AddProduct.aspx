@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <div class="input-group">
-                <span class="input-group-addon"><span class="fa fa-info"></span></span>
+                <span class="input-group-addon"><span class="fa fa-info"></span></span><a href="AddProduct.aspx">AddProduct.aspx</a>
                 <asp:TextBox ID="txtName" runat="server" Height="35px" Width="290px"
                     class="form-control" placeholder="Product Name"></asp:TextBox>
             </div>
