@@ -11,49 +11,52 @@ namespace BusineesLogic.domain
         public TimeSheetDTO(TimeSheetBuilder timeSheetBuilder)
         {
             this.id = timeSheetBuilder.id;
-            this.day = timeSheetBuilder.day;
-            this.hour = timeSheetBuilder.hour;
-            this.minutes = timeSheetBuilder.minutes;
+            this.date = timeSheetBuilder.date;
+            this.hourIn = timeSheetBuilder.hourIn;
+            this.hourOut = timeSheetBuilder.hourOut;
 
         }
         public int id { get; set; }
-        public int day { get; set; }
-        public int hour { get; set; }
-        public int minutes { get; set; }
+
+        public DateTime date { get; set; }
+        public int hourIn { get; set; }
+        public int hourOut { get; set; }
+       // public int minutes { get; set; }
 
         public class TimeSheetBuilder
         {
             public int id;
-            public int day;
-            public int hour;
-            public int minutes;
+            public DateTime date;
+            public int hourIn;
+            public int hourOut;
+           // public int minutes;
 
             public TimeSheetBuilder buildId(int id)
             {
                 this.id = id;
                 return this;
             }
-            public TimeSheetBuilder buildDay(int day)
+            public TimeSheetBuilder buildDate(DateTime date)
             {
-                this.day = day;
+                this.date = date;
                 return this;
             }
-            public TimeSheetBuilder buildHour(int hour)
+            public TimeSheetBuilder buildHourIn(int hourIn)
             {
-                this.hour = hour;
+                this.hourIn = hourIn;
                 return this;
             }
-            public TimeSheetBuilder buildMinutes(int minutes)
+            public TimeSheetBuilder buildHourOut(int hourOut)
             {
-                this.minutes = minutes;
+                this.hourOut = hourOut;
                 return this;
             }
             public TimeSheetBuilder copy(TimeSheetDTO timesheetDto)
             {
                 this.id = timesheetDto.id;
-                this.day = timesheetDto.day;
-                this.hour = timesheetDto.hour;
-                this.minutes = timesheetDto.minutes;
+                this.date = timesheetDto.date;
+                this.hourIn = timesheetDto.hourIn;
+                this.hourOut = timesheetDto.hourOut;
                 return this;
             }
             public TimeSheetDTO build()
