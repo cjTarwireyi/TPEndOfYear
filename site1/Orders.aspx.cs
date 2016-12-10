@@ -11,11 +11,13 @@ public partial class site1_Orders : System.Web.UI.Page
     private UserDTO userDto;
     private UserDTO userDtoUpdate;
     private OrdersDAO order = new OrdersDAO();
+    private OrderDTO result;
     private GridViewRow row;
     protected void Page_Load(object sender, EventArgs e)
     {
+
         GridView1.AutoGenerateSelectButton = true;
-        session();
+        // session();
         if (!Page.IsPostBack)
             generateCurrentDate();
         populateGrid();
@@ -173,8 +175,54 @@ public partial class site1_Orders : System.Web.UI.Page
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
 
-       /* if (userDto.userTypeName.Trim() != "Admin")
-            AdminLinkPanel.Visible = false;*/
+        /* if (userDto.userTypeName.Trim() != "Admin")
+             AdminLinkPanel.Visible = false;*/
     }
 
+    protected void btnPay_Click(object sender, EventArgs e)
+    {
+        if (GridView1.SelectedIndex >= 0)
+        {
+            
+            btnPay.Attributes["data-toggle"] = "modal";
+            btnPay.Attributes["data-target"] = "#myPaymentModal";
+            row = GridView1.SelectedRow;
+            int id = Convert.ToInt32(row.Cells[1].Text);
+            result = order.getOrder(id);
+            lblCustomerName.Text = result.customerId.ToString();
+            lblOrderNo.Text = result.employeeId.ToString();
+            lblAmountDue.Text = result.amount.ToString();
+        }
+    }
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        if (!txtAmountPayed.Text.Equals(string.Empty))
+        {
+
+            int customerPaymentAmt = 0;
+            customerPaymentAmt = Convert.ToInt32(txtAmountPayed.Text);
+            processPayment(customerPaymentAmt, Convert.ToInt32(lblAmountDue.Text));
+            Panel2.Visible = true;
+        }
+    }
+
+    private void processPayment(int payedAmount, int amountDue)
+    {
+        int total = 0;
+        if (payedAmount >= amountDue)
+        {
+            total = payedAmount - amountDue;
+            lblResult.Text = "You Change: ";
+            lblChanges.Text = total.ToString();
+        }
+        else
+            if (payedAmount < amountDue)
+            {
+
+
+                total = amountDue - payedAmount;
+                lblResult.Text = "Money Due: ";
+                lblChanges.Text = total.ToString();
+            }
+    }
 }

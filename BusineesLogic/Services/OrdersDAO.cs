@@ -237,7 +237,7 @@ public class OrdersDAO : IOder
     }
 
 
-    private void updateAmount(string id,int amount)
+    public void updateAmount(string id,int amount)
     {
         con.Open();
         SqlCommand cmd = con.CreateCommand();
@@ -246,4 +246,6 @@ public class OrdersDAO : IOder
         cmd.ExecuteNonQuery();
         con.Close();
     }
+
+    
 }
