@@ -23,7 +23,7 @@ public partial class site1_Purchase : System.Web.UI.Page
     private IProduct productService = new ProductDAO();
     private ICustomers customerService = new CustomerDAO();
      
-    private string amt;
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         session();
@@ -72,12 +72,15 @@ public partial class site1_Purchase : System.Web.UI.Page
         {
             string productCode = txtProductID.Text;
             bool productExist = false;
+
               
             string quantity = txtQuantiy.Text;
             string custId = custList.SelectedItem.Value;
             string productName = "";
             string price = "";
             totalAmt.Text = string.Empty;
+            string updateAmount = "0";
+             string amt ="0";
 
 
             if (facade.findProduct(Convert.ToInt32(productCode)) == null)
@@ -116,25 +119,45 @@ public partial class site1_Purchase : System.Web.UI.Page
                 }
                 else
                 {
-                    amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity)) + Convert.ToDecimal(ogAmount)).ToString();
 
-                    grandTotal.Text = amt;
                     lblErrorProd.Visible = false;
                     custError.Visible = false;
                     foreach (GridViewRow row in GridView1.Rows)
                     {
                         if (row.Cells[1].Text == productCode)
                         {
-                            productExist=true;
-                            row.Cells[1].Text = (Convert.ToInt32(row.Cells[1].Text) + quantity).ToString();
+                           // productExist=true;
+                           // table.Rows.InsertAt(Convert.ToInt32(row.Cells[3].Text) + quantity).ToString(),1)= (Convert.ToInt32(row.Cells[3].Text) + quantity).ToString();
+                            updateAmount = (Convert.ToDecimal(price) * Convert.ToInt32(Convert.ToInt32(row.Cells[4].Text))).ToString();
+                            quantity = (Convert.ToInt32(quantity) + Convert.ToInt32(row.Cells[4].Text)).ToString();
+                           
+                            table.Rows.RemoveAt(row.RowIndex);
+                            
                             break;
                         }
+                        else
+                        {
+                            updateAmount = "0";
+                        }
                     }
+                    if (updateAmount == "0")
+                    {
+
+                        amt = ((Convert.ToDecimal(price) * Convert.ToInt32(quantity)) + Convert.ToDecimal(ogAmount)).ToString();
+                    }
+                    else
+                    {
+                           amt = (Convert.ToDecimal(ogAmount) - Convert.ToDecimal(updateAmount)).ToString();
+                           amt =(Convert.ToDecimal(amt)+ (Convert.ToDecimal(price) * Convert.ToInt32(quantity)) ).ToString();
+                    
+                    }
+                    grandTotal.Text = amt;
                     if (productExist == false)
                     {
                         DataRow dr = table.NewRow();
                         dr["ProductCode"] = productCode;
                         dr["Product"] = productName;
+                        dr["Price"] = price;
                         dr["Quantity"] = quantity;
                         table.Rows.Add(dr);
 
@@ -144,17 +167,17 @@ public partial class site1_Purchase : System.Web.UI.Page
                     product.productQuantity = Convert.ToInt32(quantity);
                     order.orderItems = new List<Products>();
 
-                    if (order.orderItems.Contains(product))
-                    {
-                        Products foundproduct;
-                        foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
-                        foundproduct.productQuantity += product.productQuantity;
-                    }
-                    else
-                    {
+                    //if (order.orderItems.Contains(product))
+                    //{
+                    //    Products foundproduct;
+                    //    foundproduct = order.orderItems.Find(t => t.productNumber == product.productNumber);
+                    //    foundproduct.productQuantity += product.productQuantity;
+                    //}
+                    //else
+                    //{
 
 
-                    }
+                    //}
 
 
                     txtProductID.Text = string.Empty;
@@ -168,9 +191,28 @@ public partial class site1_Purchase : System.Web.UI.Page
             ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + "Make sure you entered correct format " + "');", true);
                     
         }
+        catch (Exception ex)
+        {
+            Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+        }
         
     }
 
+    protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            TableCell statusCell = e.Row.Cells[2];
+            if (statusCell.Text == "A")
+            {
+                statusCell.Text = "Absent";
+            }
+            if (statusCell.Text == "P")
+            {
+                statusCell.Text = "Present";
+            }
+        }
+    }
     private void BindGrid()
     {
         GridView1.DataSource = table;
@@ -242,7 +284,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         MakeTable();
         ViewState["DataTable"] = table;
         grandTotal.Text = "";
-        amt = "";
+        //amt = "";
     }
 
     private void ExceptionRedirect(Exception ex)
@@ -270,5 +312,9 @@ public partial class site1_Purchase : System.Web.UI.Page
     {
         GridView1.AutoGenerateSelectButton = true;
         GridView1.AutoGenerateDeleteButton = true;
+    }
+    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+
     }
 }
