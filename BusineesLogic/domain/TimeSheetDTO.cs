@@ -11,12 +11,14 @@ namespace BusineesLogic.domain
         public TimeSheetDTO(TimeSheetBuilder timeSheetBuilder)
         {
             this.id = timeSheetBuilder.id;
+            this.employeeId = timeSheetBuilder.employeeId;
             this.date = timeSheetBuilder.date;
             this.hourIn = timeSheetBuilder.hourIn;
             this.hourOut = timeSheetBuilder.hourOut;
 
         }
         public int id { get; set; }
+        public int employeeId { get; set; }
 
         public DateTime date { get; set; }
         public int hourIn { get; set; }
@@ -26,6 +28,7 @@ namespace BusineesLogic.domain
         public class TimeSheetBuilder
         {
             public int id;
+            public int employeeId;
             public DateTime date;
             public int hourIn;
             public int hourOut;
@@ -34,6 +37,10 @@ namespace BusineesLogic.domain
             public TimeSheetBuilder buildId(int id)
             {
                 this.id = id;
+                return this;
+            }
+            public TimeSheetBuilder buildEmployeeID(int employeeId){
+                this.employeeId = employeeId;
                 return this;
             }
             public TimeSheetBuilder buildDate(DateTime date)
@@ -54,6 +61,7 @@ namespace BusineesLogic.domain
             public TimeSheetBuilder copy(TimeSheetDTO timesheetDto)
             {
                 this.id = timesheetDto.id;
+                this.employeeId = timesheetDto.employeeId;
                 this.date = timesheetDto.date;
                 this.hourIn = timesheetDto.hourIn;
                 this.hourOut = timesheetDto.hourOut;
