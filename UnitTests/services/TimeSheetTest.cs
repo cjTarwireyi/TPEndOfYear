@@ -24,13 +24,17 @@ namespace UnitTests.services
            Assert.IsNotNull(timesheet);
 
             //TEST UPDATE
-           //TestUpdate
+            
            TimeSheetDTO update = new TimeSheetDTO.TimeSheetBuilder()
            .copy(timesheet)
            .buildHourIn(24)
            .build();
            service.UpdateTimeSheet(update);
            Assert.AreEqual(24, service.getLastReocrd().hourIn);
+
+            //TEST DELETE
+           bool deleted = service.Delete(service.getLastReocrd().id);
+           Assert.IsTrue(deleted);
 
         }
     }
