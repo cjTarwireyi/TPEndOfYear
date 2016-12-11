@@ -63,9 +63,9 @@
                             ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtDescription" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
                     </div>
-                    <asp:Button ID="btnAdd" ValidationGroup="Group1" Visible="false" runat="server" Height="32px" Text="Add"
+                    <asp:Button ID="btnAdd" ValidationGroup="Group1"  runat="server" Height="32px" Text="Add"
                         Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
-                    <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Submit"
+                    <asp:Button ID="btnSubmit" runat="server" Visible="false" Height="32px" Text="Submit"
                         Width="126px" class="btn btn-success" OnClick="Submit_Click" />
 
                     <asp:Button ID="btnCancel" Visible ="false" runat="server" Height="32px" Text="Cancel Order"
@@ -80,9 +80,16 @@
                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="roleId" Height="190px" Width="1080px" AllowSorting="True" AllowPaging="true" GridLines="Vertical" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowUpdated="GridView1_RowUpdated">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
-                                <asp:BoundField HeaderText="ID" DataField="roleid" />
+                                <asp:BoundField HeaderText="ID" DataField="roleid" InsertVisible="False" ReadOnly="True" Visible="False" />
                                 <asp:BoundField HeaderText="Role Title" DataField="RoleName" />
                                 <asp:BoundField HeaderText="Description" DataField="RoleDescription" />
+                            
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblRoleID" runat="server" Text='<%#Eval("roleid") %>'></asp:Label>
+                
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             </Columns>
                              <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
