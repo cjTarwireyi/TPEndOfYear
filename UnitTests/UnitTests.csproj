@@ -68,6 +68,7 @@
     <Compile Include="services\ProductTest.cs" />
     <Compile Include="services\RoleTest.cs" />
     <Compile Include="services\TimeSheetTest.cs" />
+    <Compile Include="services\PromotionTest.cs" />
     <Compile Include="services\UserTest.cs" />
   </ItemGroup>
   <ItemGroup>

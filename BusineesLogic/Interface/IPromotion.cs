@@ -10,10 +10,10 @@ namespace BusineesLogic.Interface
   public  interface IPromotion
     {
         PromotionDTO getTimeSheet(DateTime date);
-        bool ifTimeSheetExis(string id);
-        int getTimesheetId(DateTime date);
-        bool addTimeSheet(PromotionDTO model);
-        bool UpdateTimeSheet(PromotionDTO model);
+        bool ifExis(string id);
+        int getId(DateTime date);
+        bool add(PromotionDTO model);
+        bool Update(PromotionDTO model);
         PromotionDTO getLastReocrd();
 
         bool Delete(int id);
