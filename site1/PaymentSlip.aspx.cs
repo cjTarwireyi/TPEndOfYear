@@ -59,8 +59,8 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 doc.SetPageSize(two);
                 doc.Open();
                 
-                string filename = HttpContext.Current.Server.MapPath("../site1/images/images.png");
-                string signature = HttpContext.Current.Server.MapPath("../site1/images/signature.jpg");
+                string filename = HttpContext.Current.Server.MapPath("../site1/images/asp pics/white.png");
+                string signature = HttpContext.Current.Server.MapPath("../site1/images/signCottle.png");
                 System.IO.Stream ImageStream = new System.IO.FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
                 
                 iTextSharp.text.Image gif = iTextSharp.text.Image.GetInstance(ImageStream);
@@ -70,7 +70,7 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
 
                 Font heading = FontFactory.GetFont("Arial", 26, Font.BOLD, BaseColor.BLACK);
                 Font heading2 = FontFactory.GetFont("Arial", 15, Font.BOLD, BaseColor.BLACK);
-                Font heading3 = FontFactory.GetFont("Arial", 15, BaseColor.BLACK);
+                Font heading3 = FontFactory.GetFont("Arial", 13, BaseColor.BLACK);
                 Font font = FontFactory.GetFont("Arial", 10, Font.NORMAL, BaseColor.BLACK);
                 Font arialB = FontFactory.GetFont("Arial", 10, Font.BOLD, BaseColor.BLACK);
                 Font unserline = FontFactory.GetFont("Arial", 10, Font.BOLD | Font.ITALIC);
@@ -106,13 +106,13 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 sign.Alignment = iTextSharp.text.Image.RIGHT_ALIGN;
                 sign.ScalePercent(50f);
                 doc.Add(sign);
-                p = new Paragraph("Company Manger", heading2);
-                p.Add(new Chunk("\nSiraaj Wilkinson",heading3));
+                p = new Paragraph("Company Manger", heading3);
+                p.Add(new Chunk("\nNawaal Cottle",heading3));
                 p.Alignment = Element.ALIGN_RIGHT;
                 doc.Add(p);
 
                 //Account Created 
-                p = new Paragraph("\n\nAccount created on:" + customer.dateAccountCreated , heading2);
+                p = new Paragraph("\n\nAccount created on:\n" + customer.dateAccountCreated , heading2);
                 p.Alignment = Element.ALIGN_CENTER;
                 doc.Add(p);
 
