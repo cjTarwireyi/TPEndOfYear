@@ -84,7 +84,6 @@ public partial class site1_Roles : System.Web.UI.Page
             string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
             service.deleteRole(Convert.ToInt32(id));
             LoadGridHelper();
-            
         }
         catch (Exception ex)
         {
