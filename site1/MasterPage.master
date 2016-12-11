@@ -32,9 +32,9 @@
                     <button type="button" class="navbar-toggle collapsed"   id="menu-toggle">
                       <span class="glyphicon glyphicon-th-large" ></span>
                     </button>
-                    <div style="padding: 20px 30px 2px 30px;font-size: 18px ;">
-                        <a class="navbar-brand"><i class="fa fa-book fa-8"></i> 
-                            <strong><font size="4">Admin</font></strong>Ordering</a>
+                    <div style="padding: 20px 30px 2px 30px;font-size: 25px ;">
+                        <a class="navbar-brand"><i class="fa fa-shopping-bag"></i> 
+                            <strong><font size="4">Trendy</font></strong>Zone</a>
                      </div>
                 </div>
         <p>         
