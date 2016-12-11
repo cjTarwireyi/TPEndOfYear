@@ -75,6 +75,7 @@
     <Compile Include="factories\RoleFactory.cs" />
     <Compile Include="factories\TimeSheetFactory.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
+    <Compile Include="Interface\IPromotion.cs" />
     <Compile Include="Interface\IRoleService.cs" />
     <Compile Include="Interface\ITimeSheet.cs" />
     <Compile Include="services\BrandDAO.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="domain\PayRoleDTO.cs" />
     <Compile Include="services\ProductDAO.cs" />
     <Compile Include="domain\Products.cs" />
+    <Compile Include="services\PromotionDAO.cs" />
     <Compile Include="services\ReturnDAO.cs" />
     <Compile Include="services\RoleDAO.cs" />
     <Compile Include="services\SupplierDAO.cs" />
