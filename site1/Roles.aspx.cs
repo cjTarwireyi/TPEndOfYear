@@ -52,12 +52,22 @@ public partial class site1_Roles : System.Web.UI.Page
     }
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
+        int roleId = 0;
         GridViewRow row = GridView1.Rows[e.RowIndex];
-        string id = ((TextBox)row.Cells[1].Controls[0]).Text;
+        Label lblId = (Label)row.FindControl("lblRoleID");
+        if (lblId.Text == "")
+        {
+            roleId = 0;
+        }
+        else
+        {
+            roleId = Convert.ToInt32(lblId.Text);
+        }
+       // string id = ((TextBox)row.Cells[1].Controls[0]).Text;
         string roleName = ((TextBox)row.Cells[2].Controls[0]).Text;
         string desc = ((TextBox)row.Cells[3].Controls[0]).Text;
         role = new RoleDTO.RoleBuilder()
-        .buildRoleID(Convert.ToInt32(id))
+        .buildRoleID(Convert.ToInt32(roleId))
         .buildRoleName(roleName)
         .buildroleDescription(desc)
         .build();
@@ -82,7 +92,18 @@ public partial class site1_Roles : System.Web.UI.Page
         try
         {
             string id = GridView1.Rows[e.RowIndex].Cells[1].Text;
-            service.deleteRole(Convert.ToInt32(id));
+            int roleId = 0;
+            GridViewRow row = GridView1.Rows[e.RowIndex];
+            Label lblId = (Label)row.FindControl("lblRoleID");
+            if (lblId.Text == "")
+            {
+                roleId = 0;
+            }
+            else
+            {
+                roleId = Convert.ToInt32(lblId.Text);
+            }
+            service.deleteRole(roleId);
             LoadGridHelper();
         }
         catch (Exception ex)

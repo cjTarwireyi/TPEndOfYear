@@ -20,6 +20,23 @@ namespace UnitTests.services
             PromotionDTO createDto = PromotionFactory.createPromotion(1, createDetails, DateTime.Now);
             bool added = service.add(createDto);
             Assert.IsTrue(added);
+
+            //TEST FIND LAST RECORD
+            PromotionDTO timesheet = service.getLastReocrd();
+            Assert.IsNotNull(timesheet);
+
+            //TESTUPDATE
+            PromotionDTO updatePromotion = new PromotionDTO.PromotionBuilder()
+            .copy(timesheet)
+            .buildDateCreated(DateTime.Parse("1/1/2017 09:00:00 AM"))
+            .build();
+            service.Update(updatePromotion);
+            Assert.AreEqual(DateTime.Parse("1/1/2017 09:00:00 AM"), service.getLastReocrd().dateCreated);
+
+            //TEST DELETE
+            bool deleted = service.Delete(service.getLastReocrd().id);
+            Assert.IsTrue(deleted);
+
         }
     }
 }
