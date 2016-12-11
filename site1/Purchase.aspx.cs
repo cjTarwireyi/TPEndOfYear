@@ -217,9 +217,19 @@ public partial class site1_Purchase : System.Web.UI.Page
     {
         try
         {
-            generateOrder();
-            order = accessOrders.getLastReocrd();
-            Response.Redirect("Receipt.aspx?Id=" + order.orderId, false);
+           bool orderGenerated= generateOrder();
+           if (orderGenerated)
+           {
+               order = accessOrders.getLastReocrd();
+               Response.Redirect("Receipt.aspx?Id=" + order.orderId, false);
+           }
+           else
+           {
+               ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + " No Order has been generated " + "');", true);
+                    
+
+           }
+           
         }
         catch(Exception ex)
         {
@@ -232,7 +242,7 @@ public partial class site1_Purchase : System.Web.UI.Page
          
     }
 
-    private void generateOrder()
+    private bool generateOrder()
     {
         decimal amt = 0;
         List<Products> list = new List<Products>();
@@ -250,15 +260,25 @@ public partial class site1_Purchase : System.Web.UI.Page
 
         }
         userDto = (UserDTO)Session["userDto"];
-        OrderDTO buliOrder = new OrderDTO.OrderBuilder()
+        OrderDTO buidOrder = new OrderDTO.OrderBuilder()
             .buildProducts(list)
             .buildEmpId(userDto.Id)
             .buildAmount(amt)
             .buildPayed(false)
             .buildCustId(Convert.ToInt32(custList.SelectedItem.Value))
-            .build();   
+            .build();
+        if (buidOrder.amount > 0)
+        {
+            facade.makeOrder(buidOrder);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
                  
-        facade.makeOrder(buliOrder);
+       
+
     }
 
     protected void Cancel_Click(object sender, EventArgs e)
