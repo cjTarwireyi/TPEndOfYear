@@ -14,6 +14,8 @@ namespace BusineesLogic.Interface
         int getTimesheetId(DateTime date);
         bool addTimeSheet(TimeSheetDTO model);
         bool UpdateTimeSheet(TimeSheetDTO model);
+        TimeSheetDTO getLastReocrd();
+        
         bool Delete(int id);
     }
 }
