@@ -97,18 +97,17 @@ public class OrdersDAO : IOder
 
     public OrderDTO makeOrderDTO(SqlDataReader myDR)
     {
-        OrderDTO order = new OrderDTO();
-        order.orderId = myDR.GetInt32(0);
-        order.customerId = myDR.GetInt32(1);
-        order.payed = myDR.GetBoolean(2);
-        order.amount = myDR.GetDecimal(3);
-        order.orderDate = myDR.GetDateTime(4);
-        order.employeeId = myDR.GetInt32(5);
+         OrderDTO order = order = new OrderDTO.OrderBuilder()
+        .buildorderId(myDR.GetInt32(0))
+        .buildCustId(myDR.GetInt32(1))
+        .buildPayed(myDR.GetBoolean(2))
+        .buildAmount(myDR.GetDecimal(3))
+        .buildOrderDate(myDR.GetDateTime(4))
+        .buildEmpId(myDR.GetInt32(5))
+        .build();
         //ordercode missing 
-
         //booking.Hours = myDR.GetInt32(8);
         return order;
-
     }
 
     public OrderDTO getLastReocrd()
