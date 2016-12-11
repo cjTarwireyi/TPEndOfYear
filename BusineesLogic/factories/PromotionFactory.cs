@@ -9,7 +9,7 @@ namespace BusineesLogic.factories
 {
     public class PromotionFactory
     {
-        public static PromotionDTO createRole( int productID, PromotionDetailsDTO promotionDetails,DateTime dateCreated)
+        public static PromotionDTO createPromotion(int productID, PromotionDetailsDTO promotionDetails, DateTime dateCreated)
         {
             return new PromotionDTO.PromotionBuilder()
 
