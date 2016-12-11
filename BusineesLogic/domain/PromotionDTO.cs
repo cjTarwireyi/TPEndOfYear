@@ -8,18 +8,21 @@ namespace BusineesLogic.domain
 {
     public class PromotionDTO
     {
+        private PromotionDTO() { }
         public PromotionDTO(PromotionBuilder promotionBuilder)
         {
             this.id = promotionBuilder.id;
             this.productId = promotionBuilder.productId;
             this.dateCreated = promotionBuilder.createdDate;
+            this.promotionDetails = promotionBuilder.promotionDetails;
+
         }
         public int id { get; set; }
         public int productId { get; set; }
         
         public DateTime dateCreated { get; set; }
-        public PromotionDetailsDTO promotionDetails { get; set; }
-        public class PromotionBuilder
+        public PromotionDetailsDTO promotionDetails{get;set;}
+        public  class PromotionBuilder
         {
             public int id;
             public int productId;             
@@ -44,6 +47,7 @@ namespace BusineesLogic.domain
             }
             public PromotionBuilder buildPromotionDetails(PromotionDetailsDTO promotionDetails)
             {
+                
                 this.promotionDetails = promotionDetails;
                 return this;
             }
