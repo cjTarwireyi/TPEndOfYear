@@ -1,6 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site1/MasterPage.master" AutoEventWireup="true" CodeFile="Roles.aspx.cs" Inherits="site1_Roles" %>
-
-<%-- Add content controls here --%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site1/MasterPage.master" AutoEventWireup="true" CodeFile="TimeSheet.aspx.cs" Inherits="TimeSheet" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="Server">
 </asp:Content>
 
@@ -21,6 +19,7 @@
             <li><a href="Roles.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Roles</a></li>
             <li><a href="Customers.aspx"><i class="glyphicon glyphicon-cog"></i>&nbsp;Customers</a></li>
             <li><a href="Employee.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Employees</a></li>
+                <li><a href="TimeSheet.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;TimeSheet</a></li>
             <li><a href="Suppliers.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Suppliers</a></li>
             <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-list "></i>&nbsp;Register User</a></li>
             </asp:Panel>
@@ -47,7 +46,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
                             <asp:TextBox ID="txtRole"   runat="server" Width="290px"
-                                class="form-control" placeholder="Role Title " ></asp:TextBox>
+                                class="form-control" placeholder="TimeSheet " ></asp:TextBox>
                         </div>
                         <asp:RequiredFieldValidator ValidationGroup="Group1" ID="RequiredFieldValidator1" runat="server"
                             ErrorMessage="Role  Title Required!" ControlToValidate="txtRole" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -105,5 +104,5 @@
                 </asp:UpdatePanel>
             </div>
         </div>
-    
+    </div>
 </asp:Content>
