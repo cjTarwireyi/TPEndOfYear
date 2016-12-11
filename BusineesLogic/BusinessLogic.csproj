@@ -60,6 +60,7 @@
     <Compile Include="domain\LeaveDTO.cs" />
     <Compile Include="domain\ProductAnalysisDTO.cs" />
     <Compile Include="domain\ProductTypeDTO.cs" />
+    <Compile Include="domain\PromotionDetailsDTO.cs" />
     <Compile Include="domain\PromotionDTO.cs" />
     <Compile Include="domain\ReportDTO.cs" />
     <Compile Include="domain\ReportTypeDTO.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="domain\Transaction.cs" />
     <Compile Include="domain\UserAnalysisDTO.cs" />
     <Compile Include="factories\BrandFactory.cs" />
+    <Compile Include="factories\PromotionFactory.cs" />
     <Compile Include="factories\RoleFactory.cs" />
     <Compile Include="factories\TimeSheetFactory.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
