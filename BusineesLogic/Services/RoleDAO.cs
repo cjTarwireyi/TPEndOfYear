@@ -142,6 +142,7 @@ namespace BusineesLogic.services
                 string updateQuery = "Update Role Set RoleName= '" + role.roleName + "',RoleDescription='" + role.roleDescription + "',DateAdded='" + DateTime.Now + "' Where roleId ='" + role.roleId + "'";
                 SqlCommand cmd = new SqlCommand(updateQuery, con);
                 cmd.ExecuteNonQuery();
+                con.Close();
                 return true;
             }
             catch (Exception e)

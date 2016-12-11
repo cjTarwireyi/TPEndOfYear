@@ -80,6 +80,7 @@
                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="roleId" Height="190px" Width="1080px" AllowSorting="True" AllowPaging="true" GridLines="Vertical" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowUpdated="GridView1_RowUpdated">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
+                                <asp:BoundField HeaderText="ID" DataField="roleid" />
                                 <asp:BoundField HeaderText="Role Title" DataField="RoleName" />
                                 <asp:BoundField HeaderText="Description" DataField="RoleDescription" />
                             </Columns>
