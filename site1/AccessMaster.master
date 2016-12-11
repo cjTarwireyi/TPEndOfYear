@@ -13,7 +13,7 @@
      <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 
-     <%--  --%>
+    
      <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
  
     <style type="text/css">

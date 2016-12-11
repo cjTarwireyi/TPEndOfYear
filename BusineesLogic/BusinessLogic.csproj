@@ -60,6 +60,7 @@
     <Compile Include="domain\LeaveDTO.cs" />
     <Compile Include="domain\ProductAnalysisDTO.cs" />
     <Compile Include="domain\ProductTypeDTO.cs" />
+    <Compile Include="domain\PromotionDetailsDTO.cs" />
     <Compile Include="domain\PromotionDTO.cs" />
     <Compile Include="domain\ReportDTO.cs" />
     <Compile Include="domain\ReportTypeDTO.cs" />
@@ -69,9 +70,13 @@
     <Compile Include="domain\Transaction.cs" />
     <Compile Include="domain\UserAnalysisDTO.cs" />
     <Compile Include="factories\BrandFactory.cs" />
+    <Compile Include="factories\PromotionDetailsFactory.cs" />
+    <Compile Include="factories\PromotionFactory.cs" />
     <Compile Include="factories\RoleFactory.cs" />
+    <Compile Include="factories\TimeSheetFactory.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
     <Compile Include="Interface\IRoleService.cs" />
+    <Compile Include="Interface\ITimeSheet.cs" />
     <Compile Include="services\BrandDAO.cs" />
     <Compile Include="services\CustomerDAO.cs" />
     <Compile Include="domain\CustomerDTO.cs" />
@@ -107,6 +112,7 @@
     <Compile Include="services\SupplierDAO.cs" />
     <Compile Include="domain\SupplierDTO.cs" />
     <Compile Include="domain\RoleDTO.cs" />
+    <Compile Include="services\TimeSheetDAO.cs" />
     <Compile Include="services\UserDAO.cs" />
     <Compile Include="domain\UserDTO.cs" />
     <Compile Include="logic\UserFacade.cs" />

@@ -57,18 +57,18 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
                             <asp:Textbox ID="txtDescription" TextMode="multiline" Columns="50" Rows="5" runat="server" Height="100px" Width="290px"
-                                class="form-control" placeholder="Quantity" MaxLength="50" ></asp:Textbox>
+                                class="form-control" placeholder="Description" MaxLength="50" ></asp:Textbox>
                         </div>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                             ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtDescription" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
                     </div>
-                    <asp:Button ID="btnAdd" ValidationGroup="Group1" runat="server" Height="32px" Text="Add"
+                    <asp:Button ID="btnAdd" ValidationGroup="Group1" Visible="false" runat="server" Height="32px" Text="Add"
                         Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
                     <asp:Button ID="btnSubmit" runat="server" Height="32px" Text="Submit"
                         Width="126px" class="btn btn-success" OnClick="Submit_Click" />
 
-                    <asp:Button ID="btnCancel" runat="server" Height="32px" Text="Cancel Order"
+                    <asp:Button ID="btnCancel" Visible ="false" runat="server" Height="32px" Text="Cancel Order"
                         Width="126px" class="btn btn-danger" OnClick="Cancel_Click" />
                     </div>
                 </ContentTemplate>
