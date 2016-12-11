@@ -76,7 +76,20 @@ namespace BusineesLogic.services
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                con.Open();
+                string deleteQuery = "DELETE FROM TimeSheet WHERE  Id ='" + id + "'";
+                SqlCommand cmd = new SqlCommand(deleteQuery, con);
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
 
