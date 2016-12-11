@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusineesLogic.domain;
+using BusineesLogic.services;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,6 +14,9 @@ using System.Web;
 public class OrdersDAO : IOder
 {
     private SqlConnection con;
+    private ProductDAO productService = new ProductDAO();
+    private ReturnDTO itemReturned;
+    private ReturnDAO returnService = new ReturnDAO();
 
     public OrdersDAO()
     {
@@ -45,7 +50,7 @@ public class OrdersDAO : IOder
 
         
         con.Open();
-        string insertQuery = "INSERT INTO Orders (custId,payed,amount,orderDate,employeeId,orderCode) VALUES ('" + order.customerId + "','" + order.payed + "','" + order.amount + "','" + DateTime.Now.ToString() + "','" + order.employeeId + "','" + orderCode.Trim() + "')";
+        string insertQuery = "INSERT INTO Orders (custId,payed,amount,orderDate,employeeId,orderCode,active) VALUES ('" + order.customerId + "','" + order.payed + "','" + order.amount + "','" + DateTime.Now.ToString() + "','" + order.employeeId + "','" + orderCode.Trim() + "','True')";
         SqlCommand cmd = new SqlCommand(insertQuery, con);
         cmd.ExecuteNonQuery();
 
@@ -57,7 +62,7 @@ public class OrdersDAO : IOder
     {
         return true;
     }
-    public bool DeleteOrder(int orderId)
+    public bool deleteOrder(int orderId)
     {
 
         int created = 0;
@@ -125,7 +130,7 @@ public class OrdersDAO : IOder
     {
         OrderDTO order = new OrderDTO();
         con.Open();
-        String selectCustomer = "select * from Orders where orderId =" + id + " ";
+        String selectCustomer = "select * from Orders where orderId =" + id + " and active = 'True' ";
         SqlCommand myComm = new SqlCommand(selectCustomer, con);
         SqlDataReader myDR;
         myDR = myComm.ExecuteReader();
@@ -157,7 +162,7 @@ public class OrdersDAO : IOder
     public DataTable searchOrder(DataTable orderRecord, string id, bool status)
     {
 
-        string query = @"select orderid,custid,payed,amount,orderDate,employeeid,orderCode from Orders where orderid = '" + id + "' and payed = '" + status + "' ";
+        string query = @"select orderid,custid,payed,amount,orderDate,employeeid,orderCode from Orders where orderid = '" + id + "' and payed = '" + status + "' and active = 'True' ";
         SqlCommand cmd = new SqlCommand(query, con);
         con.Open();
         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -170,7 +175,7 @@ public class OrdersDAO : IOder
     {
         string year = date.Substring(0, 4);
         string month = date.Substring(5, 1);
-        string query = "select * from Orders where SUBSTRING (CONVERT(nvarchar(10),orderDate,112),6,2) = '" + month + "' and SUBSTRING (CONVERT(nvarchar(10),orderDate,112),1,4) = '" + year + "' and payed = '" + payed + "'";
+        string query = "select * from Orders where SUBSTRING (CONVERT(nvarchar(10),orderDate,112),6,2) = '" + month + "' and SUBSTRING (CONVERT(nvarchar(10),orderDate,112),1,4) = '" + year + "' and payed = '" + payed + "' and active='True'";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -184,7 +189,7 @@ public class OrdersDAO : IOder
     public DataTable populateGrid(string month, string year, bool status)
     {
         DataTable orders = new DataTable();
-        string query = "select * from Orders where SUBSTRING (CONVERT(nvarchar(10),orderDate,112),5,2) = '" + month + "' and SUBSTRING (CONVERT(nvarchar(10),orderDate,112),1,4) = '" + year + "' and payed ='" + status + "'";
+        string query = "select * from Orders where SUBSTRING (CONVERT(nvarchar(10),orderDate,112),5,2) = '" + month + "' and SUBSTRING (CONVERT(nvarchar(10),orderDate,112),1,4) = '" + year + "' and payed ='" + status + "' and active = 'True' ";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -213,7 +218,7 @@ public class OrdersDAO : IOder
                         on OrderLine.OrderID = Orders.orderId
                         inner join Customers
                         on Orders.custId = Customers.CustomerID
-                        where orderline.OrderID = 101 and Customers.CustomerID = 12
+                        where orderline.OrderID = 101 and Customers.CustomerID = 12 and active='True'
                         order by orderline.OrderID";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
@@ -247,5 +252,66 @@ public class OrdersDAO : IOder
         con.Close();
     }
 
-    
+    public void paid(string id)
+    {
+        bool paid = true;
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "update orders set payed ='" + paid+ "' where orderid = '" + id + "' ";
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
+
+
+    public void cancelOrder(string orderNo)
+    {
+        DataTable dtOrder = new DataTable();
+        dtOrder = getOrderLine(orderNo);
+        foreach(DataRow row in dtOrder.Rows)
+        {
+            string productID = row["ProductID"].ToString();
+            string quantity = row["Quantity"].ToString();
+            string orderID = row["OrderID"].ToString();
+            
+
+            //update quantity
+            productService.itemBought(productID,quantity,"+");
+
+            //builder objcet
+             itemReturned = new ReturnDTO.ReturnBuilder()
+            .customerNumber(Convert.ToInt32(2))
+            .orderNumber(Convert.ToInt32(orderID))
+            .productNumber(Convert.ToInt32(productID))
+            .build();
+
+             //insert into return item
+             returnService.save(itemReturned);
+        }
+        cancel(orderNo);
+    }
+
+    private DataTable getOrderLine(string orderNo)
+    {
+        DataTable orders = new DataTable();
+        string query = "select * from orderline where OrderID = '"+orderNo+"' ";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(orders);
+        da.Dispose();
+        con.Close();
+        return orders;
+    }
+
+
+    private void cancel(string id)
+    {
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "update orders set active = 'False' where orderid = '" + id + "' ";
+        cmd.ExecuteNonQuery();
+        con.Close();
+    }
 }

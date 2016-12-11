@@ -101,7 +101,8 @@
                     <br />
                     <asp:Button ID="btnPay" ValidationGroup="Group1" runat="server" Height="32px" Text="Pay"
                         Width="126px" class="btn btn-success" OnClick="btnPay_Click"  />
-                    <div class="modal-dialog">
+                     &nbsp;&nbsp;<asp:Button ID="btnCancel" ValidationGroup="Group1" runat="server" Height="32px" Text="Cancel Orders"
+                        Width="126px" class="btn btn-danger"  OnClick="btnCancel_Click" />
                 </asp:Panel>
             </ContentTemplate>
         </asp:UpdatePanel>

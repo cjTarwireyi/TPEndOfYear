@@ -17,14 +17,14 @@ public partial class site1_Orders : System.Web.UI.Page
     {
 
         GridView1.AutoGenerateSelectButton = true;
-        // session();
+        session();
         if (!Page.IsPostBack)
             generateCurrentDate();
         populateGrid();
     }
     protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
     {
-        GridView1.DataBind();
+        populateGrid();
     }
     protected void TextBox1_TextChanged(object sender, EventArgs e)
     {
@@ -190,7 +190,7 @@ public partial class site1_Orders : System.Web.UI.Page
             int id = Convert.ToInt32(row.Cells[1].Text);
             result = order.getOrder(id);
             lblCustomerName.Text = result.customerId.ToString();
-            lblOrderNo.Text = result.employeeId.ToString();
+            lblOrderNo.Text = result.orderId.ToString();
             lblAmountDue.Text = result.amount.ToString();
         }
     }
@@ -214,15 +214,27 @@ public partial class site1_Orders : System.Web.UI.Page
             total = payedAmount - amountDue;
             lblResult.Text = "You Change: ";
             lblChanges.Text = total.ToString();
+            order.updateAmount(lblOrderNo.Text.ToString(),0);
+            order.paid(lblOrderNo.Text.ToString());
         }
         else
             if (payedAmount < amountDue)
             {
-
-
                 total = amountDue - payedAmount;
                 lblResult.Text = "Money Due: ";
                 lblChanges.Text = total.ToString();
+                order.updateAmount(lblOrderNo.Text.ToString(), total);
             }
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        if (GridView1.SelectedIndex >= 0)
+        {
+            row = GridView1.SelectedRow;
+            string id = row.Cells[1].Text;
+            order.cancelOrder(id);
+            populateGrid();
+        }
     }
 }

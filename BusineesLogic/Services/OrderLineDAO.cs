@@ -15,7 +15,8 @@ using System;
 /// </summary>
 public class OrderLineDAO : InterfaceOrderLine
 {
-    SqlConnection con;
+    private SqlConnection con;
+    
 
     public OrderLineDAO()
     {
@@ -155,5 +156,4 @@ public class OrderLineDAO : InterfaceOrderLine
         con.Close();
         return orders;
     }
-
 }

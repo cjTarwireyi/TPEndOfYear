@@ -44,7 +44,7 @@ namespace UnitTests.Repos
            .build();
 
             //TESTING DELETE
-             orderService.DeleteOrder(addedOrder.orderId);
+             orderService.deleteOrder(addedOrder.orderId);
              OrderDTO deletedOrder = orderService.getOrder(addedOrder.orderId);
              Assert.IsNull(deletedOrder);
 
