@@ -1,47 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Threading;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using BusineesLogic.Interface;
-using BusineesLogic.services;
-using BusineesLogic.factories;
-using System.Drawing;
-using BusineesLogic.domain;
 
-public partial class site1_Roles : System.Web.UI.Page
+public partial class TimeSheet : System.Web.UI.Page
 {
-    private DataTable table;
-    private IRoleService service = new RoleDAO();
-    private EmailDTO email = new EmailDTO();
-    private RoleDTO role;
-
- 
- 
-    private UserDTO userDto;
-    private UserDTO userDtoUpdate;
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        session();
-
-        accessRights(); 
-        if (!this.IsPostBack) 
-        {
-             
-            table = new DataTable();
-            MakeTable();
-            //GridView1.DataSource = "";
-           /// GridView1.DataBind();
-
-            LoadGridHelper();
-        }
-        else
-            table = (DataTable)ViewState["DataTable"];
-        ViewState["DataTable"] = table;
     }
     protected void Submit_Click(object sender, EventArgs e)
     { }
@@ -49,19 +17,19 @@ public partial class site1_Roles : System.Web.UI.Page
     { }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        RoleDTO role = RoleFactory.createRole(txtRole.Text,txtDescription.Text);
-        service.addRole(role);
-        
+        //RoleDTO role = RoleFactory.createRole(txtRole.Text, txtDescription.Text);
+        //service.addRole(role);
 
-        table = new DataTable();
+
+        //table = new DataTable();
         MakeTable();
-         
+
 
         LoadGridHelper();
         txtRole.Text = string.Empty;
         txtDescription.Text = string.Empty;
-        
-         
+
+
     }
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
@@ -76,16 +44,16 @@ public partial class site1_Roles : System.Web.UI.Page
         {
             roleId = Convert.ToInt32(lblId.Text);
         }
-       // string id = ((TextBox)row.Cells[1].Controls[0]).Text;
+        // string id = ((TextBox)row.Cells[1].Controls[0]).Text;
         string roleName = ((TextBox)row.Cells[2].Controls[0]).Text;
         string desc = ((TextBox)row.Cells[3].Controls[0]).Text;
-        role = new RoleDTO.RoleBuilder()
-        .buildRoleID(Convert.ToInt32(roleId))
-        .buildRoleName(roleName)
-        .buildroleDescription(desc)
-        .build();
-        
-        service.updateRole(role);
+        //role = new RoleDTO.RoleBuilder()
+        //.buildRoleID(Convert.ToInt32(roleId))
+        //.buildRoleName(roleName)
+        //.buildroleDescription(desc)
+        //.build();
+
+       // service.updateRole(role);
         GridView1.EditIndex = -1;
         LoadGridHelper();
     }
@@ -93,7 +61,7 @@ public partial class site1_Roles : System.Web.UI.Page
     {
         GridView1.EditIndex = e.NewEditIndex;
         LoadGridHelper();
-        
+
     }
     protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
@@ -116,7 +84,7 @@ public partial class site1_Roles : System.Web.UI.Page
             {
                 roleId = Convert.ToInt32(lblId.Text);
             }
-            service.deleteRole(roleId);
+           // service.deleteRole(roleId);
             LoadGridHelper();
         }
         catch (Exception ex)
@@ -137,32 +105,32 @@ public partial class site1_Roles : System.Web.UI.Page
     }
     private void MakeTable()
     {
-        table.Columns.Add("roleId");
-        table.Columns.Add("RoleName");
-        table.Columns.Add("RoleDescription");
-       
+        //table.Columns.Add("roleId");
+        //table.Columns.Add("RoleName");
+        //table.Columns.Add("RoleDescription");
+
     }
     private void BindGrid()
     {
-        GridView1.DataSource = table;
+        GridView1.DataSource = "";// table;
         GridView1.DataBind();
     }
     private void AppendLastRecordGrid()
     {
-        RoleDTO role = service.getLastReocrd();
-        DataRow dr = table.NewRow();
-        dr["roleId"] = role.roleId;
-        dr["RoleName"] = role.roleName;
-            dr["RoleDescription"] = role.roleDescription;
-            table.Rows.Add(dr);
-        
+        //RoleDTO role = service.getLastReocrd();
+        //DataRow dr = table.NewRow();
+        //dr["roleId"] = role.roleId;
+        //dr["RoleName"] = role.roleName;
+        //dr["RoleDescription"] = role.roleDescription;
+        //table.Rows.Add(dr);
+
 
         // AddToDataTable();
         BindGrid();
     }
     private void LoadGridHelper()
     {
- 
+
         //List<RoleDTO> roles;
         //roles = service.getAllRoles();
 
@@ -179,7 +147,7 @@ public partial class site1_Roles : System.Web.UI.Page
 
         try
         {
-            GridView1.DataSource = service.populateGrid();
+            GridView1.DataSource="";
             GridView1.DataBind();
         }
         catch (Exception ex)
@@ -201,18 +169,7 @@ public partial class site1_Roles : System.Web.UI.Page
     }
     private void session()
     {
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        lblUser.Text = userDto.username;
-
-        if (userDto.userTypeName.Trim() != "Admin")
-            Response.Redirect("Home.aspx");
-            AdminLinkPanel.Visible = false;
+        
     }
 
 }

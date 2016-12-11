@@ -8,19 +8,21 @@ using System.Web.UI.WebControls;
 public partial class site1_Users : System.Web.UI.Page
 {
     UserDTO userDto = new UserDTO();
+    UserDTO userDtoUpdate = new UserDTO();
     protected void Page_Load(object sender, EventArgs e)
     {
-        UserDTO userDtoUpdate = new UserDTO();
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
-        userDto = (UserDTO)Session["userDto"];
-        if (userDto == null )
-            Response.Redirect("LoginPage.aspx");
+        
+        session();
+        //userDtoUpdate = (UserDTO)Session["userUpdate"];
+        //Session.Remove("userUpdate");
+        //userDto = (UserDTO)Session["userDto"];
+        //if (userDto == null )
+        //    Response.Redirect("LoginPage.aspx");
         lblUser.Text = userDto.username;
 
-        if (userDto.userTypeName.Trim() != "Admin")
-            
-            AdminLinkPanel.Visible = false;
+        //if (userDto.userTypeName.Trim() != "Admin")
+        //    Response.Redirect("Home.aspx");
+        //    AdminLinkPanel.Visible = false;
     }
 
     protected void Register_Click(object sender, EventArgs e)
@@ -97,5 +99,21 @@ public partial class site1_Users : System.Web.UI.Page
 
         Response.Redirect("LoginPage.aspx");
     }
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        lblUser.Text = userDto.username;
+
+        if (userDto.userTypeName.Trim() != "Admin")
+            Response.Redirect("Home.aspx");
+        AdminLinkPanel.Visible = false;
+    }
+
 
 }

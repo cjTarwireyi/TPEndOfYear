@@ -84,7 +84,7 @@ namespace BusineesLogic.services
         {
             con.Open();
             List<RoleDTO> roleList = new List<RoleDTO>();
-            string select = "SELECT * FROM Role ";
+            string select = "SELECT * FROM Role  Order by roleId DESC ";
 
             SqlCommand cmd = new SqlCommand(select, con);
             SqlDataReader reader = cmd.ExecuteReader();
@@ -103,7 +103,7 @@ namespace BusineesLogic.services
         public DataTable populateGrid()
         {
             DataTable customers = new DataTable();
-            string query = "select * from Role";
+            string query = "select * from Role  Order by roleId DESC";
             con.Open();
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
