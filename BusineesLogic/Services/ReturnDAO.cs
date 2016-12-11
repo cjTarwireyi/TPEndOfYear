@@ -31,7 +31,7 @@ namespace BusineesLogic.services
                              on orders.orderId = orderline.OrderID
                              inner join Products
                              on orderline.ProductID = Products.Id
-                             where orders.orderId = '"+orderNumber+"' and customers.CustomerID = '"+customerNumber+"' ";
+                             where orders.orderId = '"+orderNumber+"' and customers.CustomerID = '"+customerNumber+"' and orders.active = 'True'";
             con.Open();
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
