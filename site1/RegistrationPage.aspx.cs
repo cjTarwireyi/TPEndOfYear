@@ -12,10 +12,12 @@ public partial class RegistrationPage : System.Web.UI.Page
 {
     private UserTypeFacade facade = new UserTypeFacade();
     private UserDTO userDtoUpdate = new UserDTO();
+    private UserDTO userDto = new UserDTO();
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        UserDTO userDto = new UserDTO();
+        
+        //session();
         string type;
         int empno = 0;
 
@@ -26,8 +28,12 @@ public partial class RegistrationPage : System.Web.UI.Page
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
+
+        if (userDto.userTypeName.Trim() != "Admin")
+            Response.Redirect("Home.aspx");
+        //AdminLinkPanel.Visible = false;
         userDtoUpdate = (UserDTO)Session["userUpdate"];
-        //Session.Remove("userUpdate");
+        Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
 
 
@@ -155,5 +161,20 @@ public partial class RegistrationPage : System.Web.UI.Page
         Session.Clear();
 
         Response.Redirect("LoginPage.aspx");
+    }
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("LoginPage.aspx");
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        lblUser.Text = userDto.username;
+
+        if (userDto.userTypeName.Trim() != "Admin")
+            Response.Redirect("Home.aspx");
+        //AdminLinkPanel.Visible = false;
     }
 }
