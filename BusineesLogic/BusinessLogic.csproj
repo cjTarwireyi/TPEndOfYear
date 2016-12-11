@@ -70,6 +70,7 @@
     <Compile Include="domain\Transaction.cs" />
     <Compile Include="domain\UserAnalysisDTO.cs" />
     <Compile Include="factories\BrandFactory.cs" />
+    <Compile Include="factories\PromotionDetailsFactory.cs" />
     <Compile Include="factories\PromotionFactory.cs" />
     <Compile Include="factories\RoleFactory.cs" />
     <Compile Include="factories\TimeSheetFactory.cs" />

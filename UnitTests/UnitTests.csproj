@@ -60,6 +60,7 @@
     <Compile Include="domain\TestOrderLine.cs" />
     <Compile Include="domain\TestRole.cs" />
     <Compile Include="domain\TestTimeSheet.cs" />
+    <Compile Include="domain\TestPromotion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\OrderTest.cs" />
     <Compile Include="services\OrderLineTest.cs" />
@@ -68,7 +69,6 @@
     <Compile Include="services\RoleTest.cs" />
     <Compile Include="services\TimeSheetTest.cs" />
     <Compile Include="services\UserTest.cs" />
-    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusineesLogic\BusinessLogic.csproj">
