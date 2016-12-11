@@ -133,7 +133,6 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
             ExceptionRedirect(ex);
         }
     }
-
     private void ExceptionRedirect(Exception ex)
     {
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
