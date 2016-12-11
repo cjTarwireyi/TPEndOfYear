@@ -14,11 +14,14 @@ namespace BusineesLogic.domain
            this.startDate = promotionBuilder.startDate;
            this.endDate = promotionBuilder.endDate;
        }
+       public PromotionDetailsDTO()
+       { }
+       
         public decimal discountPercent { get; set; }
         public DateTime startDate { get; set; }
         public DateTime endDate { get; set; }
 
-        public class PromotionDetailsBuilder
+        public  class PromotionDetailsBuilder
         {
             public decimal discountPercent;
             public DateTime startDate;
