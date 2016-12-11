@@ -38,7 +38,7 @@
     <div class="main row">
         <h1><strong>Roles</strong></h1>
         <br />
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-lg-offset-4">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
                     
@@ -63,31 +63,27 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                             ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtDescription" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
-                    </div>
+                    
                     <asp:Button ID="btnAdd" ValidationGroup="Group1"  runat="server" Height="32px" Text="Add"
                         Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
-                    <asp:Button ID="btnSubmit" runat="server" Visible="false" Height="32px" Text="Submit"
-                        Width="126px" class="btn btn-success" OnClick="Submit_Click" />
-
-                    <asp:Button ID="btnCancel" Visible ="false" runat="server" Height="32px" Text="Cancel Order"
-                        Width="126px" class="btn btn-danger" OnClick="Cancel_Click" />
-                    </div>
+                     </div>
+                     
                 </ContentTemplate>
             </asp:UpdatePanel>
-
+            </div>
             <div class="col-lg-6">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="roleId" Height="190px" Width="1080px" AllowSorting="True" AllowPaging="true" GridLines="Vertical" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowUpdated="GridView1_RowUpdated">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
-                                <asp:BoundField HeaderText="ID" DataField="roleid" InsertVisible="False" ReadOnly="True" Visible="False" />
+                                <asp:BoundField HeaderText="ID" DataField="roleId" InsertVisible="False" ReadOnly="True" Visible="False" />
                                 <asp:BoundField HeaderText="Role Title" DataField="RoleName" />
                                 <asp:BoundField HeaderText="Description" DataField="RoleDescription" />
                             
                             <asp:TemplateField Visible="false">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblRoleID" runat="server" Text='<%#Eval("roleid") %>'></asp:Label>
+                                    <asp:Label ID="lblRoleID" runat="server" Text='<%#Eval("roleId") %>'></asp:Label>
                 
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -104,7 +100,7 @@
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                         </asp:GridView>
 
-                        </div>
+                        
                                         </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

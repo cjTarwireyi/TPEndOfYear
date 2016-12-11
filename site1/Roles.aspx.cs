@@ -46,7 +46,15 @@ public partial class site1_Roles : System.Web.UI.Page
     {
         RoleDTO role = RoleFactory.createRole(txtRole.Text,txtDescription.Text);
         service.addRole(role);
-        AppendLastRecordGrid();
+        
+
+        table = new DataTable();
+        MakeTable();
+         
+
+        LoadGridHelper();
+        txtRole.Text = string.Empty;
+        txtDescription.Text = string.Empty;
         
          
     }
@@ -124,8 +132,9 @@ public partial class site1_Roles : System.Web.UI.Page
     }
     private void MakeTable()
     {
-        table.Columns.Add("RoleTitle");
-        table.Columns.Add("Description");
+        table.Columns.Add("roleId");
+        table.Columns.Add("RoleName");
+        table.Columns.Add("RoleDescription");
        
     }
     private void BindGrid()
@@ -137,8 +146,9 @@ public partial class site1_Roles : System.Web.UI.Page
     {
         RoleDTO role = service.getLastReocrd();
         DataRow dr = table.NewRow();
-            dr["RoleTitle"] = role.roleName;
-            dr["Description"] = role.roleDescription;
+        dr["roleId"] = role.roleId;
+        dr["RoleName"] = role.roleName;
+            dr["RoleDescription"] = role.roleDescription;
             table.Rows.Add(dr);
         
 
