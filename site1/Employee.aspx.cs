@@ -62,7 +62,8 @@ public partial class site1_Employee : System.Web.UI.Page
         lblUser.Text = userDto.username;
 
         if (userDto.userTypeName.Trim() != "Admin")
-            AdminLinkPanel.Visible = false;
+            Response.Redirect("Home.aspx");
+           // AdminLinkPanel.Visible = false;
    
     }
 

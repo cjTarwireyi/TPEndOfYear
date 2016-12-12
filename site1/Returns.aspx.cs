@@ -66,6 +66,9 @@ public partial class site1_Returns : System.Web.UI.Page
             Response.Redirect("LoginPage.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
+
+        if (userDto.userTypeName.Trim() != "Admin")
+            AdminLinkPanel.Visible = false;
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {

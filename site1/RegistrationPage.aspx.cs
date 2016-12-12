@@ -31,6 +31,7 @@ public partial class RegistrationPage : System.Web.UI.Page
 
         if (userDto.userTypeName.Trim() != "Admin")
             Response.Redirect("Home.aspx");
+        userPanel.Visible = false;
         //AdminLinkPanel.Visible = false;
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");

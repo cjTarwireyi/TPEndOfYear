@@ -176,8 +176,8 @@ public partial class site1_Orders : System.Web.UI.Page
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
 
-        /* if (userDto.userTypeName.Trim() != "Admin")
-             AdminLinkPanel.Visible = false;*/
+         if (userDto.userTypeName.Trim() != "Admin")
+             AdminLinkPanel.Visible = false;
     }
 
     protected void btnPay_Click(object sender, EventArgs e)
