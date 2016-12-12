@@ -77,17 +77,19 @@ public partial class site1_Returns : System.Web.UI.Page
         string productID = GridView1.Rows[e.RowIndex].Cells[2].Text;
         string orderlineID = GridView1.Rows[e.RowIndex].Cells[4].Text;
         string orderID = GridView1.Rows[e.RowIndex].Cells[1].Text;
+        string quantity = GridView1.Rows[e.RowIndex].Cells[5].Text;
 
         itemReturned = new ReturnDTO.ReturnBuilder()
         .customerNumber(customerID)
         .orderNumber(Convert.ToInt32(orderID))
         .productNumber(Convert.ToInt32(productID))
+        .productQuantity(Convert.ToInt32(quantity))
         .build();
         try
         {
             returns.save(itemReturned);
             orderline.removeItem(productID, orderlineID);
-            order.calculateOrder(orderID);// recalculating order
+            order.calculateOrder(orderID,itemReturned.customerID.ToString());// recalculating order
 
             searchOrders();
         }
@@ -114,4 +116,6 @@ public partial class site1_Returns : System.Web.UI.Page
     {
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
+
+   
 }

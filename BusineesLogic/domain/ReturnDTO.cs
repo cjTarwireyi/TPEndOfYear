@@ -13,6 +13,7 @@ namespace BusineesLogic.domain
         public int customerID { get; set; }
         public string reason { get; set; }
         public string dateReturned { get; set; }
+        public int quantity { get; set; }
 
         private ReturnDTO() { }
         public ReturnDTO( ReturnBuilder itemReturned)
@@ -22,6 +23,7 @@ namespace BusineesLogic.domain
             this.customerID = itemReturned.customerID;
             this.reason = itemReturned.reason;
             this.dateReturned = itemReturned.dateReturned;
+            this.quantity = itemReturned.quantity;
         }
          public class ReturnBuilder
          {
@@ -30,7 +32,7 @@ namespace BusineesLogic.domain
              public int customerID;
              public string reason;
              public string dateReturned;
-
+             public int quantity;
              public ReturnBuilder productNumber(int productID)
              {
                  this.productID = productID;
@@ -51,6 +53,12 @@ namespace BusineesLogic.domain
                  this.reason = reason;
                  return this;
              }
+
+             public ReturnBuilder productQuantity(int quantity)
+             {
+                 this.quantity = quantity;
+                 return this;
+             }
              public ReturnBuilder date(string dateReturned)
              {
                  this.dateReturned = dateReturned;
@@ -63,6 +71,7 @@ namespace BusineesLogic.domain
                  this.customerID = itemReturned.customerID;
                  this.reason = itemReturned.reason;
                  this.dateReturned = itemReturned.dateReturned;
+                 this.quantity = itemReturned.quantity;
                  return this;
              }
              public ReturnDTO build()

@@ -51,12 +51,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
     <div class="  main">
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="select orderline.OrderID,orderline.OrderLineID,products.Id,products.ProductName,orderline.Quantity
-from products
-inner join orderline
-on products.Id = orderline.ProductID
-where orderline.OrderID = @id
-order by orderline.OrderID"
+        <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT OrderLine.OrderID, OrderLine.OrderLineID, Products.Id, Products.ProductName, OrderLine.Quantity, Customers.CustomerID FROM Products INNER JOIN OrderLine ON Products.Id = OrderLine.ProductID INNER JOIN Orders ON OrderLine.OrderID = Orders.orderId INNER JOIN Customers ON Orders.custId = Customers.CustomerID WHERE (OrderLine.OrderID = @id) ORDER BY OrderLine.OrderID"
             DeleteCommand="DELETE FROM OrderLine WHERE (OrderLineID = @OrderLineID)">
             <DeleteParameters>
                 <asp:Parameter Name="OrderLineID" />
@@ -64,7 +59,7 @@ order by orderline.OrderID"
             <SelectParameters>
                 <asp:QueryStringParameter Name="id" QueryStringField="id" />
             </SelectParameters>
-        </asp:SqlDataSource>
+        </asp:SqlDataSource>--%>
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="main row">
             <h1><strong>Update</strong>Order</h1>
@@ -104,15 +99,15 @@ order by orderline.OrderID"
                 <div class="col-lg-6">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False" DataKeyNames="OrderLineID,Id" DataSourceID="SqlDataSource1" OnRowDeleting="GridView1_RowDeleting" OnRowUpdating="GridView1_RowUpdating">
+                            <asp:GridView runat="server" ID="GridView1" ShowHeaderWhenEmpty="True" align="right" CellPadding="4" ForeColor="#333333" Width="557px" AutoGenerateColumns="False"  OnRowDeleting="GridView1_RowDeleting" OnRowUpdating="GridView1_RowUpdating">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
-                                    <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" />
                                     <asp:BoundField HeaderText="OrderID" DataField="OrderID" SortExpression="OrderID" />
                                     <asp:BoundField HeaderText="OrderLineID" DataField="OrderLineID" InsertVisible="False" ReadOnly="True" SortExpression="OrderLineID" />
                                     <asp:BoundField HeaderText="Id" DataField="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
                                     <asp:BoundField HeaderText="ProductName" DataField="ProductName" SortExpression="ProductName" />
                                     <asp:BoundField DataField="Quantity" HeaderText="Quantity" SortExpression="Quantity" />
+                                    <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" InsertVisible="False" ReadOnly="True" SortExpression="CustomerID" />
                                 </Columns>
                                 <EditRowStyle BackColor="#999999" />
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

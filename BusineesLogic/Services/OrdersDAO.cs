@@ -199,14 +199,14 @@ public class OrdersDAO : IOder
     }
 
 
-    public void calculateOrder(string id)
+    public void calculateOrder(string orderID,string customerID)
     {
 
-        calculate(id); 
+        calculate(orderID,customerID); 
     }
 
 
-    private  DataTable getOrderItem()
+    private  DataTable getOrderItem(string orderID,string customerID)
     {
         DataTable itemPrices = new DataTable();
         string query = @"select orderline.Quantity,Products.Price
@@ -217,8 +217,7 @@ public class OrdersDAO : IOder
                         on OrderLine.OrderID = Orders.orderId
                         inner join Customers
                         on Orders.custId = Customers.CustomerID
-                        where orderline.OrderID = 101 and Customers.CustomerID = 12 and active='True'
-                        order by orderline.OrderID";
+                        where orderline.OrderID = '"+orderID+"' and Customers.CustomerID = '"+customerID+"' and orders.active='True' order by orderline.OrderID";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -229,10 +228,10 @@ public class OrdersDAO : IOder
     }
 
 
-    private void calculate(string id)
+    private void calculate(string id,string customerID)
     {
         int total = 0;
-        DataTable dt = getOrderItem();
+        DataTable dt = getOrderItem(id,customerID);
         foreach(DataRow row in dt.Rows)
         {
             total = total + (Convert.ToInt32(row["Quantity"].ToString()) * Convert.ToInt32(row["Price"].ToString()));
@@ -273,7 +272,6 @@ public class OrdersDAO : IOder
             string quantity = row["Quantity"].ToString();
             string orderID = row["OrderID"].ToString();
             
-
             //update quantity
             productService.itemBought(productID,quantity,"+");
 
@@ -302,7 +300,6 @@ public class OrdersDAO : IOder
         con.Close();
         return orders;
     }
-
 
     private void cancel(string id)
     {

@@ -143,11 +143,13 @@ public class OrderLineDAO : InterfaceOrderLine
     public DataTable getAllOrders(string id)
     {
         DataTable orders = new DataTable();
-        string query = @"select orderline.OrderID,orderline.OrderLineID,products.Id,products.ProductName,orderline.Quantity
-                        from products
-                        inner join orderline
-                        on products.Id = orderline.ProductID
-                        where orderline.OrderID = '" + id + "'order by orderline.OrderID";
+        string query = @"SELECT OrderLine.OrderID, OrderLine.OrderLineID, Products.Id, Products.ProductName, OrderLine.Quantity, Customers.CustomerID 
+                         FROM Products 
+                         INNER JOIN OrderLine ON Products.Id = OrderLine.ProductID 
+                         INNER JOIN Orders ON OrderLine.OrderID = Orders.orderId 
+                         INNER JOIN Customers ON Orders.custId = Customers.CustomerID 
+                         WHERE (OrderLine.OrderID = '"+id+"') ORDER BY OrderLine.OrderID";
+
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);

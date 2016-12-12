@@ -200,7 +200,7 @@ public class ProductDAO : IProduct
     {
         DataTable products = new DataTable();
         bool status = false;
-        string query = @"select  products.Id,products.ProductName, sum(OrderLine.Quantity) as ProductSold
+        string query = @"select top 10 products.Id,products.ProductName, sum(OrderLine.Quantity) as [Number Of Times Sold]
                         from orderline 
                         inner join Products
                         on orderline.ProductID = Products.Id
