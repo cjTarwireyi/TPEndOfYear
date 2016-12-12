@@ -55,6 +55,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
         HTMLWorker htmlparser = new HTMLWorker(pdfdoc);
         PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
         Font heading = FontFactory.GetFont("Arial", 26, Font.BOLD, BaseColor.BLACK);
+        Font heading2 = FontFactory.GetFont("Arial", 15, Font.NORMAL, BaseColor.BLACK);
         pdfdoc.Open();
 
 
@@ -63,12 +64,19 @@ public partial class site1_productAnalysis : System.Web.UI.Page
         System.IO.Stream ImageStream = new System.IO.FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
         iTextSharp.text.Image gif = iTextSharp.text.Image.GetInstance(ImageStream);
         gif.Alignment = iTextSharp.text.Image.LEFT_ALIGN;
-        gif.ScalePercent(50f);
+        gif.ScalePercent(40f);
         pdfdoc.Add(gif);
 
-        p = new Paragraph(reportType + "\n\n", heading);
+
+
+        p = new Paragraph(reportType, heading);
         p.Alignment = Element.ALIGN_CENTER;
         pdfdoc.Add(p);
+
+        p = new Paragraph(DateTime.Now.ToShortDateString()+"\n\n",heading2);
+        p.Alignment = Element.ALIGN_CENTER;
+        pdfdoc.Add(p);
+
 
         htmlparser.Parse(srr);
 
@@ -81,7 +89,6 @@ public partial class site1_productAnalysis : System.Web.UI.Page
     {
         GridView1.DataSource = accessProduct.mostSoldProducts();
         GridView1.DataBind();
-
     }
 
     private void ExceptionRedirect(Exception ex)
