@@ -23,7 +23,7 @@ namespace BusineesLogic.services
         public DataTable searchOrder(string orderNumber,string customerNumber)
         {
             DataTable order = new DataTable();
-            string query = @"select orders.orderId AS ORDER_ID ,orderline.ProductID AS PRODUCT_ID,Products.ProductName AS PRODUCT_NAME,orderline.OrderLineID
+            string query = @"select orders.orderId AS ORDER_ID ,orderline.ProductID AS PRODUCT_ID,Products.ProductName AS PRODUCT_NAME,orderline.OrderLineID,orderline.Quantity as [Quantity]
                              from customers
                              inner join orders
                              on customers.CustomerID = Orders.custId
@@ -47,7 +47,7 @@ namespace BusineesLogic.services
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert into Returns ([OrderID],[CustomerID],[ProductID],[DateReturned]) values('" + returns.orderID + "','" + returns.customerID + "','" + returns.productID + "','" + DateTime.Now.ToString() + "')";
+            cmd.CommandText = "insert into Returns ([OrderID],[CustomerID],[ProductID],[DateReturned],[Quantity]) values('" + returns.orderID + "','" + returns.customerID + "','" + returns.productID + "','" + DateTime.Now.ToString() + "','"+returns.quantity+"')";
             cmd.ExecuteNonQuery();
             con.Close();
         }
