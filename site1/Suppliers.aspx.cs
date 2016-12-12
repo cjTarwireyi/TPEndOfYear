@@ -34,6 +34,8 @@ public partial class site1_Suppliers : System.Web.UI.Page
         if (userDto == null)
             Response.Redirect("LoginPage.aspx");
         lblUser.Text = userDto.username;
+        if (userDto.userTypeName.Trim() != "Admin")
+            Response.Redirect("Home.aspx");
     }
 
     private void loadSuppliers()

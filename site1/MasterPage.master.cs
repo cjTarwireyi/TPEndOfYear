@@ -14,6 +14,12 @@ public partial class MasterPage : System.Web.UI.MasterPage
         if (!this.IsPostBack) {
             ModalPopupExtender1.Show();
         }*/
+
+        
+
+
+
+  
     }
     protected void LogoutMethod(object sender, EventArgs e)
     {

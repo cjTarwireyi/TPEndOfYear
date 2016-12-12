@@ -212,7 +212,7 @@ public partial class site1_Roles : System.Web.UI.Page
 
         if (userDto.userTypeName.Trim() != "Admin")
             Response.Redirect("Home.aspx");
-            AdminLinkPanel.Visible = false;
+          //  AdminLinkPanel.Visible = false;
     }
 
 }
