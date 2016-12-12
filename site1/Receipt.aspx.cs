@@ -157,5 +157,4 @@ public partial class site1_Receipt : System.Web.UI.Page
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
 
-
 }
