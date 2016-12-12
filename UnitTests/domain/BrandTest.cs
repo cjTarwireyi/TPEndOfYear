@@ -9,7 +9,7 @@ namespace UnitTests.domain
     public class BrandTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestBrand()
         {
             //CREATE
             BrandDTO createBrand = BrandFactory.createBrand("test", "test", DateTime.Parse("1/1/1900 12:00:00 AM"),true);
@@ -17,6 +17,14 @@ namespace UnitTests.domain
             Assert.AreEqual("test", createBrand.brandDescription);
             Assert.AreEqual(DateTime.Parse("1/1/1900 12:00:00 AM"), createBrand.dateCreated);
             Assert.AreEqual(true, createBrand.active);
+
+            //UPDATE
+            BrandDTO updateBrand = new BrandDTO.BrandBuilder()
+            .copy(createBrand)
+            .buildBrandDescription("update brand")
+            .build();
+            Assert.AreEqual("update brand", updateBrand.brandDescription);
+            Assert.AreEqual("test", updateBrand.brandName);
         }
     }
 }
