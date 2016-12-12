@@ -195,4 +195,22 @@ public class ProductDAO : IProduct
         cmd.ExecuteNonQuery();
         con.Close();
     }
+
+    public DataTable mostSoldProducts()
+    {
+        DataTable products = new DataTable();
+        bool status = false;
+        string query = @"select  products.Id,products.ProductName, sum(OrderLine.Quantity) as ProductSold
+                        from orderline 
+                        inner join Products
+                        on orderline.ProductID = Products.Id
+                        group by products.id ,Products.ProductName";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(products);
+        da.Dispose();
+        con.Close();
+        return products;
+    }
 }

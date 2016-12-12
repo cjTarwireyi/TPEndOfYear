@@ -48,7 +48,7 @@ public partial class site1_Receipt : System.Web.UI.Page
 
 
                 doc.Open();
-                string filename = HttpContext.Current.Server.MapPath("../site1/images/images.png");
+                string filename = HttpContext.Current.Server.MapPath("../site1/images/asp pics/white.png");
                 System.IO.Stream ImageStream = new System.IO.FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
                 iTextSharp.text.Image gif = iTextSharp.text.Image.GetInstance(ImageStream);
                 gif.Alignment = iTextSharp.text.Image.MIDDLE_ALIGN;
@@ -95,15 +95,17 @@ public partial class site1_Receipt : System.Web.UI.Page
                 doc.Add(p);
 
                 p = new Paragraph("\n", heading3);
+                p.Alignment = Element.ALIGN_CENTER;
                 List<OrderLineDTO> items = accesssOrderLine.getOrderItems(Id);
+                p.Add("Product Name" + "                          " + "Price" + "         " + "Quantity" + "\n");
                 for (int i = 0; i < items.Count; i++)
                 {
                     orderline = (OrderLineDTO)items[i];
                     product = accessProduct.getProduct(orderline.productID);
-                    p.Add(product.productName + "         " + product.price + "\n");
+                    p.Add(product.productName + "         " + product.price + "            " + product.productQuantity + "\n");
                     // ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + order.productID+ "');", true);
                 }
-                p.Add("\n\n");
+                p.Add("\n\n\n\n");
                 doc.Add(p);
 
                 //totals
@@ -111,8 +113,12 @@ public partial class site1_Receipt : System.Web.UI.Page
                 p.Alignment = Element.ALIGN_LEFT;
                 doc.Add(p);
                 p = new Paragraph(null, heading3);
-                p.Add("Total Amount Due: " + order.amount);
+                p.Add("Total Amount Due: R" + order.amount);
                 p.Alignment = Element.ALIGN_LEFT;
+                doc.Add(p);
+
+                p = new Paragraph("\n\nDate:\n" + order.orderDate, heading2);
+                p.Alignment = Element.ALIGN_CENTER;
                 doc.Add(p);
 
 
@@ -150,6 +156,5 @@ public partial class site1_Receipt : System.Web.UI.Page
     {
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
-
 
 }
