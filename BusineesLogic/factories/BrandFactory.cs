@@ -9,36 +9,20 @@ namespace BusineesLogic.factories
 {
     public class BrandFactory
     {
-        private static BrandFactory singleton;
-        private BrandFactory() { }
+        
 
-        //=======================
-        //Get Instance of factory
-        //=======================
-        public static BrandFactory getInstance
-        {
-            get
-            {
-                if (singleton == null)
-                {
-                    singleton = new BrandFactory();
-                    return singleton;
-                }
-                return singleton;
-            }
-        }
 
-        //=====================
-        //Public static methods
-        //=====================
-        public static Brand createBrandDTO(int id, List<string> brandDetails)
+
+        public static BrandDTO createBrand(string brandName, string brandDesc, DateTime dateCreated, bool active)
         {
-            Brand brand = new Brand();
-            brand.brandId = id;
-            brand.brandName = brandDetails[0];
-            brand.brandDescription = brandDetails[1];
-            brand.dateCreated = DateTime.Now;
-            return brand;
+            return new BrandDTO.BrandBuilder()
+
+            .buildBrandName(brandName)
+            .buildBrandDescription(brandDesc)
+            .buildDateCreated(dateCreated)
+            .buildActive(active)
+            .build();
+
         }
     }
 }

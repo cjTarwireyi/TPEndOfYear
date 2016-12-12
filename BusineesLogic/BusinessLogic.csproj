@@ -47,7 +47,6 @@
     <Compile Include="Class1.cs" />
     <Compile Include="domain\AccountDTO.cs" />
     <Compile Include="domain\Address.cs" />
-    <Compile Include="domain\Brand.cs" />
     <Compile Include="domain\BrandDTO.cs" />
     <Compile Include="domain\CategoryDTO.cs" />
     <Compile Include="domain\CompanyRulesDTO.cs" />

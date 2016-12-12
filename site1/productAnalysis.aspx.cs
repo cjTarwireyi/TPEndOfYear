@@ -23,7 +23,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
 
     public override void VerifyRenderingInServerForm(Control control)
     {
-        //base.VerifyRenderingInServerForm(control);
+         
     }
    
     protected void Submit_Click(object sender, EventArgs e)
