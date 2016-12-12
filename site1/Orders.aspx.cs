@@ -42,7 +42,8 @@ public partial class site1_Orders : System.Web.UI.Page
         {
             row = GridView1.SelectedRow;
             string id = row.Cells[1].Text;
-            Response.Redirect("UpdateOrder.aspx?Id=" + id, false);
+            string customerID = row.Cells[2].Text;
+            Response.Redirect(String.Format("UpdateOrder.aspx?Id={0}&identityCode={1}",id,customerID), false);
         }
     }
     protected void btnViewOrder_Click(object sender, EventArgs e)
