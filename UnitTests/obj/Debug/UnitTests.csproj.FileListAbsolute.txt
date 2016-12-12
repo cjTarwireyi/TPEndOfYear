@@ -1,8 +1,8 @@
-C:\Users\Public\TPEndOfYear\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\Public\TPEndOfYear\UnitTests\bin\Debug\UnitTests.dll.config
 C:\Users\Public\TPEndOfYear\UnitTests\bin\Debug\UnitTests.dll
 C:\Users\Public\TPEndOfYear\UnitTests\bin\Debug\UnitTests.pdb
 C:\Users\Public\TPEndOfYear\UnitTests\bin\Debug\BusineesLogic.dll
 C:\Users\Public\TPEndOfYear\UnitTests\bin\Debug\BusineesLogic.pdb
+C:\Users\Public\TPEndOfYear\UnitTests\obj\Debug\UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\Public\TPEndOfYear\UnitTests\obj\Debug\UnitTests.dll
 C:\Users\Public\TPEndOfYear\UnitTests\obj\Debug\UnitTests.pdb

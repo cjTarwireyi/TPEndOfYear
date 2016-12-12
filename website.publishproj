@@ -21,7 +21,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     <SourceWebVirtualPath>/TPEndOfYear</SourceWebVirtualPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SourceWebProject>http://localhost:40442</SourceWebProject>
-    <SourceWebMetabasePath>/IISExpress/7.5/LM/W3SVC/2/ROOT</SourceWebMetabasePath>
+    <SourceWebMetabasePath>/IISExpress/7.5/LM/W3SVC/9/ROOT</SourceWebMetabasePath>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -40,6 +40,12 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     <AssemblyAttributes Include="AssemblyVersion">
       <Value>$(AssemblyVersion)</Value>
     </AssemblyAttributes>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="BusineesLogic\BusinessLogic.csproj">
+      <Project>{1BD12CE1-391A-4294-8BD7-61389165291D}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(_WebPublishTargetsPath)\Web\Microsoft.WebSite.Publishing.targets" />
 </Project>
