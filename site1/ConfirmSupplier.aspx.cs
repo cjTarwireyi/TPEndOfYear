@@ -43,7 +43,7 @@ public partial class site1_ConfirmSupplier : System.Web.UI.Page
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            Response.Redirect("Default.aspx");
         else
             lblSupplierName.Text = supplierDTO.supplierName;
             lblSupplierSurname.Text = supplierDTO.supplierSurname;
