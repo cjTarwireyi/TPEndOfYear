@@ -82,7 +82,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
         try
         {
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=GridViewExport.pdf");
+            Response.AddHeader("content-disposition", "attachment;filename='"+reportType+"'.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             StringWriter swr = new StringWriter();
             HtmlTextWriter htmlwr = new HtmlTextWriter(swr);
@@ -125,7 +125,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
         }
         catch (ThreadAbortException ex)
         {
-            ExceptionRedirect(ex);
+            //ExceptionRedirect(ex);
         }
     }
 

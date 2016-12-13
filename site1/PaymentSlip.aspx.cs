@@ -59,8 +59,8 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 doc.SetPageSize(two);
                 doc.Open();
                 
-                string filename = HttpContext.Current.Server.MapPath("../site1/images/asp pics/white.png");
-                string signature = HttpContext.Current.Server.MapPath("../site1/images/signCottle.png");
+                string filename = HttpContext.Current.Server.MapPath("~/site1/images/asp pics/white.png");
+                string signature = HttpContext.Current.Server.MapPath("~/site1/images/signCottle.png");
                 System.IO.Stream ImageStream = new System.IO.FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
                 
                 iTextSharp.text.Image gif = iTextSharp.text.Image.GetInstance(ImageStream);

@@ -38,7 +38,7 @@ public partial class site1_customer_Customers : System.Web.UI.Page
         {
             GridViewRow row = GridView1.SelectedRow;
             string id = row.Cells[1].Text;
-            Response.Redirect("PaymentSlip.aspx?Id=" + id, false);
+            Response.Redirect("~/site1/PaymentSlip.aspx?Id=" + id, false);
         }
     }
 

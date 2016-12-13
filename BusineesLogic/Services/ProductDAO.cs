@@ -260,7 +260,7 @@ public class ProductDAO : IProduct
     {
         DataTable customer = new DataTable();
         string query = "";
-        query = @"select customers.CustomerName as [NAME],customers.CustomerSurname as [SURNAME],count(orders.orderId) as [NUMBER OF ORDERS PAID],sum(orders.amount)as [TOTAL AMOUNT]
+        query = @"select customers.CustomerName as [NAME],customers.CustomerSurname as [SURNAME],count(orders.orderId) as [NUMBER OF ORDERS PAID],sum(orders.totalAmount)as [TOTAL AMOUNT]
                   from customers
                   inner join orders
                   on customers.CustomerID = orders.custId

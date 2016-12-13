@@ -28,7 +28,7 @@ public partial class LoginPage : System.Web.UI.Page
                 if ((userDto.username.Trim() == txtUsername.Text.Trim()) || (userDto.password.Trim() == txtPassword.Text.Trim()))
                 {
                     Session["userDto"] = userDto;
-                    Response.Redirect("../site1/Home.aspx");
+                    Response.Redirect("Home.aspx");
                 }
                 else
                     Label1.Text = "Wrong Log in credentials";

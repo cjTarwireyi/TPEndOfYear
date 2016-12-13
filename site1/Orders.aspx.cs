@@ -151,15 +151,13 @@ public partial class site1_Orders : System.Web.UI.Page
     {
         try
         {
-            string month = DateTime.Now.ToString().Substring(5, 2);
-            string currentYear = DateTime.Now.Year.ToString();
+            string month = DateTime.Now.Month.ToString("d2");
+            
             if (DropDownList1.Items.FindByValue(month) != null)
             {
                 DropDownList1.SelectedValue = month;
-                txtYear.Text = currentYear;
+                txtYear.Text = DateTime.Now.Year.ToString();
             }
-            /*GridView1.DataSource = order.populateGrid(month, currentYear, false);
-            GridView1.DataBind();*/
         }
         catch (Exception ex)
         {
@@ -218,7 +216,7 @@ public partial class site1_Orders : System.Web.UI.Page
             total = payedAmount - amountDue;
             lblResult.Text = "You Change: ";
             lblChanges.Text = total.ToString();
-            //order.updateAmount(lblOrderNo.Text.ToString(),0);
+            order.updateAmount(lblOrderNo.Text.ToString(),0);
             order.paid(lblOrderNo.Text.ToString());
         }
         else

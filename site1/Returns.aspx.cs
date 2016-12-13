@@ -66,7 +66,7 @@ public partial class site1_Returns : System.Web.UI.Page
             Response.Redirect("Default.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
-
+        lblUser.Text = userDto.username; 
         if (userDto.userTypeName.Trim() != "Admin")
             AdminLinkPanel.Visible = false;
         else

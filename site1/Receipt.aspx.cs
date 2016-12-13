@@ -48,7 +48,7 @@ public partial class site1_Receipt : System.Web.UI.Page
 
 
                 doc.Open();
-                string filename = HttpContext.Current.Server.MapPath("../site1/images/asp pics/white.png");
+                string filename = HttpContext.Current.Server.MapPath("~/site1/images/asp pics/white.png");
                 System.IO.Stream ImageStream = new System.IO.FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
                 iTextSharp.text.Image gif = iTextSharp.text.Image.GetInstance(ImageStream);
                 gif.Alignment = iTextSharp.text.Image.MIDDLE_ALIGN;

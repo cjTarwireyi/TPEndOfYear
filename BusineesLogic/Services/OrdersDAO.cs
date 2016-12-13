@@ -50,7 +50,7 @@ public class OrdersDAO : IOder
 
         
         con.Open();
-        string insertQuery = "INSERT INTO Orders (custId,payed,amount,orderDate,employeeId,orderCode,active) VALUES ('" + order.customerId + "','" + order.payed + "','" + order.amount + "','" + DateTime.Now.ToString() + "','" + order.employeeId + "','" + orderCode.Trim() + "','True')";
+        string insertQuery = "INSERT INTO Orders (custId,payed,amount,orderDate,employeeId,orderCode,active,totalAmount) VALUES ('" + order.customerId + "','" + order.payed + "','" + order.amount + "','" + DateTime.Now.ToString() + "','" + order.employeeId + "','" + orderCode.Trim() + "','True','"+order.amount+"')";
         SqlCommand cmd = new SqlCommand(insertQuery, con);
         cmd.ExecuteNonQuery();
 
