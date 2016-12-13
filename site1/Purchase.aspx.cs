@@ -210,7 +210,7 @@ public partial class site1_Purchase : System.Web.UI.Page
 
         Session.Abandon();
         Session.Clear();
-        Response.Redirect("LoginPage.aspx");
+        Response.Redirect("Default.aspx");
     }
 
     protected void Submit_Click(object sender, EventArgs e)
@@ -310,8 +310,10 @@ public partial class site1_Purchase : System.Web.UI.Page
         Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
 
-        /*if (userDto.userTypeName.Trim() != "Admin")
-            AdminLinkPanel.Visible = false;*/
+        if (userDto.userTypeName.Trim() != "Admin")
+            AdminLinkPanel.Visible = false;
+        else
+            userPanel.Visible = false;
     }
 
     private void accessRights()

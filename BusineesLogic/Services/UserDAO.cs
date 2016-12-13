@@ -158,11 +158,11 @@ public class UserDAO:IUser
             user.Id = reader.GetInt32(0);
             user.username = reader.GetString(1);
             user.password = reader.GetString(2);
-            //
+            
             usertypeDto.Id = reader.GetInt32(3);
-            //usertypeDto.name = reader.GetString(4);
+            usertypeDto.name = reader.GetString(5);
             user.userTypeId = usertypeDto.Id;
-           // user.userTypeName = usertypeDto.name;
+            user.userTypeName = usertypeDto.name;
         }
 
         return user;

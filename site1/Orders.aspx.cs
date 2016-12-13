@@ -35,7 +35,7 @@ public partial class site1_Orders : System.Web.UI.Page
     {
         Session.Abandon();
         Session.Clear();
-        Response.Redirect("LoginPage.aspx");
+        Response.Redirect("Default.aspx");
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
@@ -176,9 +176,12 @@ public partial class site1_Orders : System.Web.UI.Page
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("Default.aspx");
+        lblUser.Text = userDto.username;
 
-        /* if (userDto.userTypeName.Trim() != "Admin")
-             AdminLinkPanel.Visible = false;*/
+        if (userDto.userTypeName.Trim() != "Admin")
+            AdminLinkPanel.Visible = false;
+        else
+            userPanel.Visible = false;
     }
 
     protected void btnPay_Click(object sender, EventArgs e)

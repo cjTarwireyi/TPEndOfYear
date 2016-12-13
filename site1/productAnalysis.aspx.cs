@@ -18,7 +18,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
     private ProductDAO accessProduct = new ProductDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        session();
     }
 
 
@@ -29,7 +29,10 @@ public partial class site1_productAnalysis : System.Web.UI.Page
 
     protected void Submit_Click(object sender, EventArgs e)
     {
+        Session.Abandon();
+        Session.Clear();
 
+        Response.Redirect("Default.aspx");
     }
     protected void ddlReportType_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -49,25 +52,28 @@ public partial class site1_productAnalysis : System.Web.UI.Page
     }
     protected void btnPrint_Click(object sender, EventArgs e)
     {
-        int index = Convert.ToInt32(ddlReportType.SelectedValue);
-        if (index == 0)
-            print("PRODUCT SALES REPORT");
-        else
-            if (index == 1)
-                print("MOST RETURNED PRODUCTS REPORT");
+        if (ddlReportType.SelectedValue != "")
+        {
+            int index = Convert.ToInt32(ddlReportType.SelectedValue);
+            if (index == 0)
+                print("PRODUCT SALES REPORT");
             else
-                if (index == 2)
-                    print("OUTSTANDING INCOME REPORT ");
-
+                if (index == 1)
+                    print("MOST RETURNED PRODUCTS REPORT");
                 else
-                    if (index == 3)
-                        print("YEAR REVENUE MADE FROM REPORT");
+                    if (index == 2)
+                        print("OUTSTANDING INCOME REPORT ");
+
                     else
-                        if (index == 4)
-                            print("TOP BUYING CUSTOMERS REPORT");
+                        if (index == 3)
+                            print("YEAR REVENUE MADE FROM REPORT");
                         else
-                            if (index == 5)
-                            print("TOTAL ORDRES NOT PAID BY CUSTOMERS");
+                            if (index == 4)
+                                print("TOP BUYING CUSTOMERS REPORT");
+                            else
+                                if (index == 5)
+                                    print("TOTAL ORDRES NOT PAID BY CUSTOMERS");
+        }
 
     }
 
@@ -117,7 +123,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
             Response.Write(pdfdoc);
             Response.End();
         }
-        catch(ThreadAbortException ex)
+        catch (ThreadAbortException ex)
         {
             ExceptionRedirect(ex);
         }
@@ -161,5 +167,26 @@ public partial class site1_productAnalysis : System.Web.UI.Page
     {
         int value = Convert.ToInt32(ddlReportType.SelectedValue);
         loadGrid(value, txtSearchYear.Text);
+    }
+
+    private void session()
+    {
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        userDto = (UserDTO)Session["userDto"];
+        if (userDto == null)
+            Response.Redirect("Default.aspx");
+        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        Session.Remove("userUpdate");
+        lblUser.Text = userDto.username;
+
+        if (userDto.userTypeName.Trim() != "Admin")
+        {
+            AdminLinkPanel.Visible = false;
+            Response.Redirect("Home.aspx");
+        }
+        else
+            userPanel.Visible = false;
+        // AdminLinkPanel.Visible = false;
     }
 }

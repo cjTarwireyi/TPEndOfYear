@@ -67,8 +67,10 @@ public partial class site1_Returns : System.Web.UI.Page
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
 
-       /* if (userDto.userTypeName.Trim() != "Admin")
-            AdminLinkPanel.Visible = false;*/
+        if (userDto.userTypeName.Trim() != "Admin")
+            AdminLinkPanel.Visible = false;
+        else
+            userPanel.Visible = false;
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
@@ -117,5 +119,12 @@ public partial class site1_Returns : System.Web.UI.Page
         Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
 
-   
+
+    protected void Submit_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Session.Clear();
+
+        Response.Redirect("Default.aspx");
+    }
 }

@@ -213,6 +213,8 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Orders.aspx");
+        Session.Abandon();
+        Session.Clear();
+        Response.Redirect("Default.aspx");
     }
 }
