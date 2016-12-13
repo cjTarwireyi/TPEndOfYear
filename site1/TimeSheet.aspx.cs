@@ -103,7 +103,7 @@ public partial class TimeSheet : System.Web.UI.Page
 
         Session.Abandon();
         Session.Clear();
-        Response.Redirect("LoginPage.aspx");
+        Response.Redirect("Default.aspx");
     }
     private void MakeTable()
     {

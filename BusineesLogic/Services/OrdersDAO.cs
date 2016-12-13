@@ -188,7 +188,7 @@ public class OrdersDAO : IOder
     public DataTable populateGrid(string month, string year, bool status)
     {
         DataTable orders = new DataTable();
-        string query = "select * from Orders where SUBSTRING (CONVERT(nvarchar(10),orderDate,112),5,2) = '" + month + "' and SUBSTRING (CONVERT(nvarchar(10),orderDate,112),1,4) = '" + year + "' and payed ='" + status + "' and active = 'True' ";
+        string query = "select * from Orders where SUBSTRING (CONVERT(nvarchar(10),orderDate,112),5,2) = '" + month + "' and SUBSTRING (CONVERT(nvarchar(10),orderDate,112),1,4) = '" + year + "' and payed ='" + status + "' and active = 'True' order by orderID DESC ";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);

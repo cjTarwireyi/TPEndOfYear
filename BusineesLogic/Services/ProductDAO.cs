@@ -119,7 +119,7 @@ public class ProductDAO : IProduct
     {
         DataTable products = new DataTable();
         bool status = true;
-        string query = "select * from products where active ='" + status + "' ";
+        string query = "select * from products where active ='" + status + "' order by id DESC ";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -133,7 +133,7 @@ public class ProductDAO : IProduct
     {
         DataTable products = new DataTable();
         bool status = false;
-        string query = "select * from products where active ='" + status + "' ";
+        string query = "select * from products where active ='" + status + "' order by id DESC";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
