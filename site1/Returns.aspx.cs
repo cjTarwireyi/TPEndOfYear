@@ -22,7 +22,7 @@ public partial class site1_Returns : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        session();
     }
     protected void btnSearchOrder_Click(object sender, EventArgs e)
     {
@@ -63,12 +63,12 @@ public partial class site1_Returns : System.Web.UI.Page
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            Response.Redirect("Default.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
 
-        if (userDto.userTypeName.Trim() != "Admin")
-            AdminLinkPanel.Visible = false;
+       /* if (userDto.userTypeName.Trim() != "Admin")
+            AdminLinkPanel.Visible = false;*/
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
