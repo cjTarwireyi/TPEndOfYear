@@ -15,7 +15,8 @@ public partial class site1_Orders : System.Web.UI.Page
     private GridViewRow row;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        btnPay.Attributes["data-toggle"] = "modal";
+        btnPay.Attributes["data-target"] = "#myPaymentModal";
         GridView1.AutoGenerateSelectButton = true;
         session();
         if (!Page.IsPostBack)
@@ -174,10 +175,10 @@ public partial class site1_Orders : System.Web.UI.Page
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            Response.Redirect("Default.aspx");
 
-         if (userDto.userTypeName.Trim() != "Admin")
-             AdminLinkPanel.Visible = false;
+        /* if (userDto.userTypeName.Trim() != "Admin")
+             AdminLinkPanel.Visible = false;*/
     }
 
     protected void btnPay_Click(object sender, EventArgs e)
@@ -185,8 +186,7 @@ public partial class site1_Orders : System.Web.UI.Page
         if (GridView1.SelectedIndex >= 0)
         {
             
-            btnPay.Attributes["data-toggle"] = "modal";
-            btnPay.Attributes["data-target"] = "#myPaymentModal";
+            
             row = GridView1.SelectedRow;
             int id = Convert.ToInt32(row.Cells[1].Text);
             result = order.getOrder(id);
@@ -215,7 +215,7 @@ public partial class site1_Orders : System.Web.UI.Page
             total = payedAmount - amountDue;
             lblResult.Text = "You Change: ";
             lblChanges.Text = total.ToString();
-            order.updateAmount(lblOrderNo.Text.ToString(),0);
+            //order.updateAmount(lblOrderNo.Text.ToString(),0);
             order.paid(lblOrderNo.Text.ToString());
         }
         else
