@@ -59,16 +59,18 @@
                         <asp:RequiredFieldValidator ValidationGroup="Group1" ID="RequiredFieldValidator1" runat="server"
                             ErrorMessage="OrderNumber Required!" ControlToValidate="txtOrderNumber" ForeColor="Red"></asp:RequiredFieldValidator>
                         <br />
-                        <asp:Label ID="lblErrorProd" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
+                        <asp:Label ID="lblErrorProd" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label><br />
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ForeColor="Red" ControlToValidate="txtOrderNumber" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
                             <asp:TextBox ID="txtCustomerNumber" runat="server" Height="35px" Width="290px"
-                                class="form-control" placeholder="Custoemr Number" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                                class="form-control" placeholder="Customer Number"></asp:TextBox>
                         </div>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                            ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtCustomerNumber" ForeColor="Red"></asp:RequiredFieldValidator>
+                            ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtCustomerNumber" ForeColor="Red"></asp:RequiredFieldValidator><br />
+                        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" ForeColor="Red" ControlToValidate="txtCustomerNumber" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator>
                     </div>
                 </div>
                 <div style="width: 290px; margin: 0 auto;">

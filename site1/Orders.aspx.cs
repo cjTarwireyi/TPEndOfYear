@@ -44,7 +44,7 @@ public partial class site1_Orders : System.Web.UI.Page
             row = GridView1.SelectedRow;
             string id = row.Cells[1].Text;
             string customerID = row.Cells[2].Text;
-            Response.Redirect(String.Format("UpdateOrder.aspx?Id={0}&identityCode={1}",id,customerID), false);
+            Response.Redirect(String.Format("UpdateOrder.aspx?Id={0}&identityCode={1}", id, customerID), false);
         }
     }
     protected void btnViewOrder_Click(object sender, EventArgs e)
@@ -72,7 +72,10 @@ public partial class site1_Orders : System.Web.UI.Page
     }
 
     protected void dgrvData_Filter(object sender, EventArgs e)
-    {
+    { 
+        
+        if(testForNumber(txtSearch.Text) != false)
+        {
         DataTable searchedOrder = new DataTable();
         string date = txtYear.Text + DropDownList1.SelectedValue;
         string searchID = txtSearch.Text;
@@ -99,6 +102,7 @@ public partial class site1_Orders : System.Web.UI.Page
             {
                 ExceptionRedirect(ex);
             }
+        }
         }
     }
 
@@ -152,7 +156,7 @@ public partial class site1_Orders : System.Web.UI.Page
         try
         {
             string month = DateTime.Now.Month.ToString("d2");
-            
+
             if (DropDownList1.Items.FindByValue(month) != null)
             {
                 DropDownList1.SelectedValue = month;
@@ -186,8 +190,8 @@ public partial class site1_Orders : System.Web.UI.Page
     {
         if (GridView1.SelectedIndex >= 0)
         {
-            
-            
+
+
             row = GridView1.SelectedRow;
             int id = Convert.ToInt32(row.Cells[1].Text);
             result = order.getOrder(id);
@@ -198,13 +202,22 @@ public partial class site1_Orders : System.Web.UI.Page
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        if (!txtAmountPayed.Text.Equals(string.Empty))
+        bool payed;
+            if (RadioButton1.Checked == true)
+                payed = true;
+            else
+                payed = false;
+        bool number = testForNumber(txtAmountPayed.Text);
+        if (number == true)
         {
-
-            int customerPaymentAmt = 0;
-            customerPaymentAmt = Convert.ToInt32(txtAmountPayed.Text);
-            processPayment(customerPaymentAmt, Convert.ToInt32(lblAmountDue.Text));
-            Panel2.Visible = true;
+            if (!txtAmountPayed.Text.Equals(string.Empty))
+            {
+                int customerPaymentAmt = 0;
+                customerPaymentAmt = Convert.ToInt32(txtAmountPayed.Text);
+                processPayment(customerPaymentAmt, Convert.ToInt32(lblAmountDue.Text));
+                Panel2.Visible = true;
+                refreshOnPayment(DropDownList1.SelectedValue, txtYear.Text, payed);
+            }
         }
     }
 
@@ -216,7 +229,7 @@ public partial class site1_Orders : System.Web.UI.Page
             total = payedAmount - amountDue;
             lblResult.Text = "You Change: ";
             lblChanges.Text = total.ToString();
-            order.updateAmount(lblOrderNo.Text.ToString(),0);
+            order.updateAmount(lblOrderNo.Text.ToString(), 0);
             order.paid(lblOrderNo.Text.ToString());
         }
         else
@@ -239,4 +252,18 @@ public partial class site1_Orders : System.Web.UI.Page
             populateGrid();
         }
     }
+
+    private bool testForNumber(string number)
+    {
+        int temp;
+        return int.TryParse(number, out temp);
+    }
+
+    private void refreshOnPayment(string month, string cureentYear,bool payed)
+    {
+        GridView1.DataSource = order.populateGrid(month, cureentYear, payed);
+        GridView1.DataBind();
+    }
+
+    
 }

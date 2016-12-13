@@ -80,6 +80,7 @@
                 </asp:DropDownList><br />
                 <br />
                 <asp:TextBox ID="txtSearchYear" placeholder="Search Specific Year" runat="server" Visible="False"></asp:TextBox><asp:Button ID="btnSubmit" runat="server" Text="submit" OnClick="btnSubmit_Click" Visible="False" /><br />
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" ControlToValidate="txtSearchYear" runat="server" ErrorMessage="Only Numbers allowed" ValidationExpression="\d+"></asp:RegularExpressionValidator><br />
                 <br />
             </div>
             <div style="width: 600px; margin: 0 auto;">

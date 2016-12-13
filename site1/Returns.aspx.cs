@@ -19,15 +19,20 @@ public partial class site1_Returns : System.Web.UI.Page
     private UserDTO userDtoUpdate;
     private ReturnDTO itemReturned;
     private GridViewRow row;
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
         session();
     }
     protected void btnSearchOrder_Click(object sender, EventArgs e)
     {
-        lblResult.Visible = false;
-        searchOrders();
+        bool orderNo = testForNumber(txtOrderNumber.Text);
+        bool customerNo = testForNumber(txtCustomerNumber.Text);
+        if (orderNo == true && customerNo == true)
+        {
+            lblResult.Visible = false;
+            searchOrders();
+        }
     }
 
     private void searchOrders()
@@ -52,7 +57,7 @@ public partial class site1_Returns : System.Web.UI.Page
                 }
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ExceptionRedirect(ex);
         }
@@ -66,7 +71,7 @@ public partial class site1_Returns : System.Web.UI.Page
             Response.Redirect("Default.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
-        lblUser.Text = userDto.username; 
+        lblUser.Text = userDto.username;
         if (userDto.userTypeName.Trim() != "Admin")
             AdminLinkPanel.Visible = false;
         else
@@ -91,11 +96,11 @@ public partial class site1_Returns : System.Web.UI.Page
         {
             returns.save(itemReturned);
             orderline.removeItem(productID, orderlineID);
-            order.calculateOrder(orderID,itemReturned.customerID.ToString());// recalculating order
+            order.calculateOrder(orderID, itemReturned.customerID.ToString());// recalculating order
 
             searchOrders();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ExceptionRedirect(ex);
         }
@@ -126,5 +131,11 @@ public partial class site1_Returns : System.Web.UI.Page
         Session.Clear();
 
         Response.Redirect("Default.aspx");
+    }
+
+    private bool testForNumber(string number)
+    {
+        int temp;
+        return int.TryParse(number, out temp);
     }
 }
