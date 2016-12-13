@@ -28,35 +28,35 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="sideBarNav" runat="server">
     <div id="sidebar-wrapper">
         <asp:Panel ID="userPanel" runat="server">
-        <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-            <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
-              
-                   <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
-            <li><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
-            <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
-            <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>
-            <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
-        </ul>
-            </asp:Panel>
+            <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
+                <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+
+                <li><a href="productAnalysis.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
+                <li><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
+                <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+                <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>
+                <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
+            </ul>
+        </asp:Panel>
         <asp:Panel ID="AdminLinkPanel" runat="server">
-                  <ul class="sidebar-nav nav-pills nav-stacked" id="menu2">
-                       <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
-              
-                   <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
-            <li><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
-            <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
-            <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>
-            <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
-            <li ><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
-            <li class="active"><a href="Roles.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Roles</a></li>
-            <li><a href="Customers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Customers</a></li>
-            <li><a href="Employee.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Employees</a></li>
-            <li><a href="Suppliers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Suppliers</a></li>
-            <li  ><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-user "></i>&nbsp;Register User</a></li>
-           </ul>
-                      </asp:Panel>
+            <ul class="sidebar-nav nav-pills nav-stacked" id="menu2">
+                <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+
+                <li><a href="productAnalysis.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
+                <li><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
+                <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
+                <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>
+                <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
+                <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+                <li class="active"><a href="Roles.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Roles</a></li>
+                <li><a href="Customers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Customers</a></li>
+                <li><a href="Employee.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Employees</a></li>
+                <li><a href="Suppliers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Suppliers</a></li>
+                <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-user "></i>&nbsp;Register User</a></li>
+            </ul>
+        </asp:Panel>
     </div>
 
 </asp:Content>
@@ -117,9 +117,9 @@
                     <br />
                     <br />
                     <asp:Button ID="btnPay" ValidationGroup="Group1" runat="server" Height="32px" Text="Pay"
-                        Width="126px" class="btn btn-success" OnClick="btnPay_Click"  />
-                     &nbsp;&nbsp;<asp:Button ID="btnCancel" ValidationGroup="Group1" runat="server" Height="32px" Text="Cancel Orders"
-                        Width="126px" class="btn btn-danger"  OnClick="btnCancel_Click" />
+                        Width="126px" class="btn btn-success" OnClick="btnPay_Click" />
+                    &nbsp;&nbsp;<asp:Button ID="btnCancel" ValidationGroup="Group1" runat="server" Height="32px" Text="Cancel Orders"
+                        Width="126px" class="btn btn-danger" OnClick="btnCancel_Click" />
                 </asp:Panel>
             </ContentTemplate>
         </asp:UpdatePanel>
@@ -187,7 +187,7 @@
                             </div>
                             <asp:Panel ID="Panel2" runat="server" HorizontalAlign="Right" Visible="False">
                                 <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
-                       <asp:Label ID="lblChanges" runat="server" Text="Label"></asp:Label>
+                                <asp:Label ID="lblChanges" runat="server" Text="Label"></asp:Label>
                             </asp:Panel>
                             <div align="center">
                                 <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
