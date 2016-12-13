@@ -44,7 +44,7 @@ public partial class site1_ConfirmProduct : System.Web.UI.Page
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            Response.Redirect("Default.aspx");
         else
         lblName.Text = "Name: " + product.productName;
         lblDescription.Text = "Discription: " + product.productDescription;

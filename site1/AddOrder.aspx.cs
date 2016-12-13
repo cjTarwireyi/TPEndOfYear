@@ -48,7 +48,7 @@ public partial class site1_AddOrder : System.Web.UI.Page
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            Response.Redirect("Default.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
     }

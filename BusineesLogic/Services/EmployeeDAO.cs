@@ -58,7 +58,7 @@ public class EmployeeDAO : IDatabaseFunctions
     public DataTable populateGrid()
     {
         DataTable employees = new DataTable();
-        string query = "select * from employees";
+        string query = "select * from employees order by employeeID DESC";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);

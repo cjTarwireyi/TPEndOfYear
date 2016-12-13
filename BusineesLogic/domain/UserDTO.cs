@@ -27,11 +27,8 @@ public class UserDTO
     public string contact { get; set; }
     public string email { get; set; }
     public string password { get; set; }   
-    
     public int userTypeId { get; set; }
-     
     public  string userTypeName  { get ; set; }
-
     public class UserBuilder
     {
         public string userName;

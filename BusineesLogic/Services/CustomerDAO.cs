@@ -73,7 +73,7 @@ public class CustomerDAO:ICustomers,IDatabaseFunctions
     {
     //  List<CustomerDTO> customers = new List<CustomerDTO>();
         con.Open();
-        String selectCustomer = "SELECT  CustomerID, Concat(CustomerName,CustomerSurname) As custName  FROM  Customers Order by CustomerName Asc ";
+        String selectCustomer = "SELECT  CustomerID, Concat(CustomerName,CustomerSurname) As custName  FROM  Customers Order by CustomerName DESC ";
         SqlCommand myComm = new SqlCommand(selectCustomer, con);
         SqlDataReader myDR;
         DataTable table = new DataTable(); 
@@ -85,7 +85,7 @@ public class CustomerDAO:ICustomers,IDatabaseFunctions
     public DataTable populateGrid()
     {
         DataTable customers = new DataTable();
-        string query = "select * from customers";
+        string query = "select * from customers order by customerID DESC";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);

@@ -119,7 +119,7 @@ public class ProductDAO : IProduct
     {
         DataTable products = new DataTable();
         bool status = true;
-        string query = "select * from products where active ='" + status + "' ";
+        string query = "select * from products where active ='" + status + "' order by id DESC ";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -133,7 +133,7 @@ public class ProductDAO : IProduct
     {
         DataTable products = new DataTable();
         bool status = false;
-        string query = "select * from products where active ='" + status + "' ";
+        string query = "select * from products where active ='" + status + "' order by id DESC";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -199,11 +199,13 @@ public class ProductDAO : IProduct
     public DataTable mostSoldProducts()
     {
         DataTable products = new DataTable();
-        bool status = false;
-        string query = @"select top 10 products.Id,products.ProductName, sum(OrderLine.Quantity) as [Number Of Times Sold]
+        string query = @"select products.Id,products.ProductName, sum(OrderLine.Quantity) as [Number Of Times Sold]
                         from orderline 
                         inner join Products
                         on orderline.ProductID = Products.Id
+						inner join orders 
+						on orderline.OrderID = orders.orderId
+						where orders.active = 'true'
                         group by products.id ,Products.ProductName";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
@@ -213,4 +215,64 @@ public class ProductDAO : IProduct
         con.Close();
         return products;
     }
+
+
+    public DataTable mostReturnedProducts()
+    {
+        DataTable products = new DataTable();
+        string query = @"select products.Id,products.ProductName, sum(Returns.Quantity) as [Number Of Times Returned]
+                        from orders 
+                        inner join returns
+                        on orders.orderId = returns.OrderID
+                        inner join orderline 
+                        on Returns.OrderID = OrderLine.OrderID
+                        inner join Products
+                        on orderline.ProductID = Products.Id
+                        where orders.active = 'true'
+                        group by products.id ,Products.ProductName";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(products);
+        da.Dispose();
+        con.Close();
+        return products;
+    }
+
+    public DataTable monthlyAmount(string year,bool amountDueOrMade)
+    {
+        DataTable products = new DataTable();
+        string query = "";
+        query = @"select  datename(MONTH,dateadd(mm,datediff(mm,0,orders.orderdate),0)) as [Month Name] ,sum(orders.amount) as [Amount]
+                  from orders
+                  where year(orders.orderdate) = '"+year+"' and orders.payed = '"+amountDueOrMade +"' and orders.active = 'true' group by dateadd(mm,datediff(mm,0,orders.orderdate),0) order by dateadd(mm,datediff(mm,0,orders.orderdate),0)";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(products);
+        da.Dispose();
+        con.Close();
+        return products;
+    }
+
+
+    public DataTable generateCustomersOrderHistory(bool paid)
+    {
+        DataTable customer = new DataTable();
+        string query = "";
+        query = @"select customers.CustomerName as [NAME],customers.CustomerSurname as [SURNAME],count(orders.orderId) as [NUMBER OF ORDERS PAID],sum(orders.amount)as [TOTAL AMOUNT]
+                  from customers
+                  inner join orders
+                  on customers.CustomerID = orders.custId
+                  where orders.payed = '"+paid+"' and orders.active ='true' group by customers.CustomerID,customers.CustomerName,customers.CustomerSurname order by customers.CustomerID";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(customer);
+        da.Dispose();
+        con.Close();
+        return customer;
+    }
+
+
 }

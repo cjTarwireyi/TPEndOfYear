@@ -59,7 +59,7 @@ public class SupplierDAO : IDatabaseFunctions
     public DataTable populateGrid()
     {
         DataTable supplier = new DataTable();
-        string query = "select * from suppliers";
+        string query = "select * from suppliers order by supplierID DESC ";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);

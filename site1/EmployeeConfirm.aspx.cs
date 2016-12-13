@@ -46,7 +46,7 @@ public partial class site1_EmployeeConfirm : System.Web.UI.Page
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            Response.Redirect("Default.aspx");
         else
            lblName.Text = employeeDTO.employeeName;
            lblSurname.Text = employeeDTO.employeeSurname;

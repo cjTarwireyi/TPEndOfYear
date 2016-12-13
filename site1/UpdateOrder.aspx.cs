@@ -141,7 +141,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            Response.Redirect("Default.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
@@ -213,6 +213,8 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Orders.aspx");
+        Session.Abandon();
+        Session.Clear();
+        Response.Redirect("Default.aspx");
     }
 }

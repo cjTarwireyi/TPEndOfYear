@@ -20,7 +20,7 @@ public partial class Home : System.Web.UI.Page
         
         Session.Abandon();
         Session.Clear();
-        Response.Redirect("LoginPage.aspx");
+        Response.Redirect("Default.aspx");
     }
 
     private void session()
@@ -31,11 +31,13 @@ public partial class Home : System.Web.UI.Page
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            Response.Redirect("Default.aspx");
 
         else
             lblUser.Text = userDto.username;
-        if(userDto.userTypeName.Trim()!="Admin")
+        if (userDto.userTypeName.Trim() != "Admin")
             AdminLinkPanel.Visible = false;
+        else
+            userPanel.Visible = false;
     }
 }
