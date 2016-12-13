@@ -160,9 +160,9 @@ public class UserDAO:IUser
             user.password = reader.GetString(2);
             //
             usertypeDto.Id = reader.GetInt32(3);
-            usertypeDto.name = reader.GetString(4);
+            //usertypeDto.name = reader.GetString(4);
             user.userTypeId = usertypeDto.Id;
-            user.userTypeName = usertypeDto.name;
+           // user.userTypeName = usertypeDto.name;
         }
 
         return user;
