@@ -34,14 +34,16 @@ public partial class RegistrationPage : System.Web.UI.Page
         userPanel.Visible = false;
         //AdminLinkPanel.Visible = false;
         userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
+       // Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
 
 
 
-
-        userType.Items.Clear();
-        userType.Items.AddRange(facade.getUserTypes().ToArray());
+        if (!IsPostBack)
+        {
+            userType.Items.Clear();
+            userType.Items.AddRange(facade.getUserTypes().ToArray());
+        }
 
         type = (string)Session["userTypeUpdate"];
         if (lblTitle.Text != "User Update")
@@ -97,14 +99,14 @@ public partial class RegistrationPage : System.Web.UI.Page
         {
             try
             {
-                if (facade.getEmployee(Convert.ToInt32(empNo.Text)) == "ok")
-                {
+                //if (facade.getEmployee(Convert.ToInt32(empNo.Text)) == "ok" && lblTitle.Text != "User Update" )
+                //{
                     if (lblTitle.Text == "User Update")
                     {
                         if (userDtoUpdate.password.Trim() == oldPass.Text.Trim())
                         {
                             uId = (int)Session["userId"];
-                            userFacade.updateUser(Username.Text, Rpassword.Text, Convert.ToInt32(userFacade.getUserTypeId(userType.Text)), uId);
+                            userFacade.updateUser(Username.Text, Rpassword.Text, Convert.ToInt32(userFacade.getUserTypeId(userType.SelectedItem.Text)), uId);
                             Session.Remove("userUpdate");
                             Session.Remove("userTypeUpdate");
                             Session.Remove("userId");
@@ -130,11 +132,11 @@ public partial class RegistrationPage : System.Web.UI.Page
                             usernameError.Visible = true;
                         }
                     }
-                }
-                else
-                {
-                    lblErrorEmp.Visible = true;
-                }
+               // }
+                //else
+                //{
+                  //  lblErrorEmp.Visible = true;
+                //}
             }
             catch (FormatException ex)
             {
@@ -169,13 +171,12 @@ public partial class RegistrationPage : System.Web.UI.Page
     }
     private void session()
     {
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
+         
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("Default.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
+       // Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
 
         if (userDto.userTypeName.Trim() != "Admin")

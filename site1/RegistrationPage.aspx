@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site1/MasterPage.master" AutoEventWireup="true" CodeFile="RegistrationPage.aspx.cs" Inherits="RegistrationPage" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/site1/MasterPage.master" AutoEventWireup="true" CodeFile="RegistrationPage.aspx.cs" Inherits="RegistrationPage"  EnableViewState="true" %>
 
 <%--<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>--%>
 <asp:Content ID="Content5" ContentPlaceHolderID="details" runat="Server">
@@ -72,7 +72,7 @@
 
 
         </div>
-        <div class="row">
+      <!--  <div class="row">
 
             <div class="form-group  col-xs-6">
                 <div class="input-group" id="Div4">
@@ -88,7 +88,7 @@
 
 
 
-        </div>
+        </div>-->
         <!----------------------------------------------new row-->
         <div class="row">
             <div class="form-group col-xs-6">
