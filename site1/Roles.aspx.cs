@@ -205,13 +205,13 @@ public partial class site1_Roles : System.Web.UI.Page
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            Response.Redirect("Default.aspx");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
 
-        if (userDto.userTypeName.Trim() != "Admin")
-            Response.Redirect("Home.aspx");
+        /*if (userDto.userTypeName.Trim() != "Admin")
+            Response.Redirect("Home.aspx");*/
           //  AdminLinkPanel.Visible = false;
     }
 
