@@ -32,10 +32,10 @@ public partial class site1_Suppliers : System.Web.UI.Page
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
-            Response.Redirect("LoginPage.aspx");
+            Response.Redirect("Default.aspx");
         lblUser.Text = userDto.username;
-        if (userDto.userTypeName.Trim() != "Admin")
-            Response.Redirect("Home.aspx");
+        /*if (userDto.userTypeName.Trim() != "Admin")
+            Response.Redirect("Home.aspx");*/
     }
 
     private void loadSuppliers()
