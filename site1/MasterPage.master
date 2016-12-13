@@ -1,84 +1,62 @@
-﻿ <!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
     <title>
         <asp:ContentPlaceHolder ID="title" runat="server">
         </asp:ContentPlaceHolder>
     </title>
 
-    <asp:ContentPlaceHolder id="head" runat="server">
-       
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="bootstrap/css/simple-sidebar.css" rel="stylesheet"/>
-    <link href="bootstrap/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="bootstrap/css/simple-sidebar.css" rel="stylesheet" />
+    <link href="bootstrap/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="bootstrap/custom css/Modal.css" rel="Stylesheet" />
     <link href="bootstrap/custom css/login.css" rel="Stylesheet" />
 
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="navbar navbar-default no-margin" style="background-color:azure">
-    <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header fixed-brand">
-                    <button type="button" class="navbar-toggle collapsed"   id="menu-toggle">
-                      <span class="glyphicon glyphicon-th-large" ></span>
-                    </button>
-                    <div style="padding: 20px 30px 2px 30px;font-size: 25px ;">
-                        <a class="navbar-brand"><i class="fa fa-shopping-bag"></i> 
-                            <strong><font size="4">Trendy</font></strong>Zone</a>
-                     </div>
+        <div class="navbar navbar-default no-margin" style="background-color: azure">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header fixed-brand">
+                <button type="button" class="navbar-toggle collapsed" id="menu-toggle">
+                    <span class="glyphicon glyphicon-th-large"></span>
+                </button>
+                <div style="padding: 20px 30px 2px 30px; font-size: 25px;">
+                    <a class="navbar-brand"><i class="fa fa-shopping-bag"></i>
+                        <strong><font size="4">Trendy</font></strong>Zone</a>
                 </div>
-        <p>         
-        </p>
-        <asp:ContentPlaceHolder id="details" runat="server">
-           
-     </asp:ContentPlaceHolder>
-        
-    </div>
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <asp:ContentPlaceHolder id="sideBarNav" runat="server">
-            <div id="sidebar-wrapper">
-        <ul class="sidebar-nav nav-pills nav-stacked" id="menus" >
-            <li runat="server" id="home"><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
-            <asp:Panel ID="AdminLinkPanel" runat="server">
-            <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
-            <li><a href="Roles.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Roles</a></li>
-            <li><a href="Customers.aspx"><i class="glyphicon glyphicon-cog"></i>&nbsp;Customers</a></li>
-            <li><a href="Employee.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Employees</a></li>
-            <li><a href="Suppliers.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Suppliers</a></li>
-            <li><a href="RegistrationPage.aspx"><i class="glyphicon glyphicon-list "></i>&nbsp;Register User</a></li>
-            </asp:Panel>
-                <li><a href="Reports.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
-            <li><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
-            <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
-            <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>
-            <li class="active"><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-envelope"></i>&nbsp;Quick Email..</a></li>
-        </ul>
-    </div>
-         </asp:ContentPlaceHolder>
+            </div>
+            <p>
+            </p>
+            <asp:ContentPlaceHolder ID="details" runat="server">
+            </asp:ContentPlaceHolder>
 
-        <div id="page-content-wrapper">
-             <asp:ContentPlaceHolder id="content" runat="server">
-        
-             </asp:ContentPlaceHolder>
-        </div> 
-    </div>
-        <div align = "right">
+        </div>
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <asp:ContentPlaceHolder ID="sideBarNav" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <div id="page-content-wrapper">
+                <asp:ContentPlaceHolder ID="content" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+        <div align="right">
             <a href="javascript:;" id="scrollToTop">&#x25B2;</a>
         </div>
-   
-         </form>
+
+    </form>
     <script src="bootstrap/js/jquery-1.12.3.min.js" type="text/javascript" />
     <script src="bootstrap/js/bootstrap.min.js" type="text/javascript" />
     <script src="bootstrap/js/sidebar-menu.js" type="text/javascript" />
@@ -86,7 +64,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script type = "text/javascript">
+    <script type="text/javascript">
         $(function () {
             $('#scrollToTop').bind("click", function () {
                 $('html, body').animate({ scrollTop: 0 }, 1200);
@@ -94,6 +72,6 @@
             });
         });
     </script>
-     
+
 </body>
 </html>
