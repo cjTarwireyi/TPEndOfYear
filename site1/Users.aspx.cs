@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class site1_Users : System.Web.UI.Page
 {
     private UserDTO userDto;
-    private UserDTO userDtoUpdate;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         
@@ -38,31 +38,31 @@ public partial class site1_Users : System.Web.UI.Page
     {
 
         UserTypeDTO userType = new UserTypeDTO();
-
+        UserDTO userDtoUpdate = new UserDTO();
 
         if (GridView1.SelectedIndex > -1)
         {
             GridViewRow row = GridView1.SelectedRow;
-            int userId;
-            int empno = 2;
+            int userId =0;
+            int empno = userDto.Id;
 
             Label lblId = (Label)row.FindControl("lblUserId");
             if (lblId.Text == "")
             {
-                userId = 0;
+                //userId = 0;
             }
             else
             {
                 userId = Convert.ToInt32(lblId.Text);
             }
-            userDto.Id = Convert.ToInt32(userId);
+            userDtoUpdate.Id = userId;
 
-            userDto.name = row.Cells[2].Text;
-            userDto.password = row.Cells[3].Text;
+            userDtoUpdate.name = row.Cells[2].Text;
+            userDtoUpdate.password = row.Cells[3].Text;
             string type = row.Cells[6].Text;
 
             // userDto.userTypeDto.name =  userType.name;
-            Session["userUpdate"] = userDto;
+            Session["userUpdate"] = userDtoUpdate;
             Session["userTypeUpdate"] = type;
             Session["empNo"] = empno;
             Session["userId"] = userId;
@@ -101,12 +101,11 @@ public partial class site1_Users : System.Web.UI.Page
     }
     private void session()
     {
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
+
         userDto = (UserDTO)Session["userDto"];
         if (userDto == null)
             Response.Redirect("Default.aspx");
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
+        //userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         lblUser.Text = userDto.username;
 
