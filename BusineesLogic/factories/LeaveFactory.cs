@@ -7,7 +7,7 @@ using BusineesLogic.domain;
 
 namespace BusineesLogic.factories
 {
-    class LeaveFactory
+   public class LeaveFactory
     {
         public static LeaveDTO createLeave(string title, string Desc,DateTime dateModified)
         {
