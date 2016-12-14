@@ -113,6 +113,7 @@ public partial class RegistrationPage : System.Web.UI.Page
                             Username.Text = string.Empty;
                             Rpassword.Text = string.Empty;
                             empNo.Text = string.Empty;
+                            Response.Redirect("Users.aspx");
                         }
                         else
                         {
@@ -125,6 +126,7 @@ public partial class RegistrationPage : System.Web.UI.Page
                         {
 
                             userFacade.makeUser(Username.Text, Rpassword.Text, Convert.ToInt32(userFacade.getUserTypeId(userType.Text)));
+                            Response.Redirect("Users.aspx");
                         }
 
                         else
