@@ -83,6 +83,7 @@
     <Compile Include="factories\RoleFactory.cs" />
     <Compile Include="factories\SupplierFactory.cs" />
     <Compile Include="factories\TimeSheetFactory.cs" />
+    <Compile Include="factories\TransactionFactory.cs" />
     <Compile Include="factories\UserAnalysisFactory.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
     <Compile Include="Interface\IPromotion.cs" />
