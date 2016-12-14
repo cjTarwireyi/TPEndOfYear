@@ -8,7 +8,7 @@ namespace BusineesLogic.factories
 {
     public class UserAnalysisFactory
     {
-        public static UserAnalysisDTO createLeave(int userId, string Desc, DateTime dateModified)
+        public static UserAnalysisDTO createAnalysis(int userId, string Desc, DateTime dateModified)
         {
             return new UserAnalysisDTO.UserAnalysisBuilder()
 
