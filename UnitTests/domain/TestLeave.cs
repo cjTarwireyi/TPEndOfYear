@@ -17,7 +17,16 @@ namespace UnitTests.domain
             Assert.AreEqual(DateTime.Parse("1/1/1900 12:00:00 AM"), leaveDto.dateModified);
             Assert.AreEqual("Sick Leave", leaveDto.leaveTitle);
             Assert.AreEqual("sick", leaveDto.description);
- 
+
+            //UPDATE TEST
+            LeaveDTO update = new LeaveDTO.LeaveBuilder()
+                .copy(leaveDto)
+                .buildLeaveTitle("normal leave")
+                .build();
+            Assert.AreEqual("normal leave", update.leaveTitle);
+            Assert.AreEqual(update.description, leaveDto.description);
+            Assert.AreEqual(update.dateModified, leaveDto.dateModified);
+             
 
         }
     }
