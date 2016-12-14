@@ -13,4 +13,8 @@ namespace BusineesLogic.domain
         public string description{get; set;}
         public DateTime dateModified { get; set; }
     }
+    public class LeaveBuilder
+    {
+
+    }
 }
