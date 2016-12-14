@@ -107,7 +107,6 @@
             <PagerStyle CssClass="cssPager" />
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-
                 <asp:BoundField DataField="EmployeeID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="EmployeeID" />
                 <asp:BoundField DataField="EmployeeName" HeaderText="Name" SortExpression="EmployeeName" />
                 <asp:BoundField DataField="EmployeeSurname" HeaderText="Surname" SortExpression="EmployeeSurname" />
@@ -141,7 +140,6 @@
                     OnClick="btnSetDays_Click" data-toggle="modal" data-target="#myModal" />
             </ContentTemplate>
         </asp:UpdatePanel>
-
     </div>
 
 

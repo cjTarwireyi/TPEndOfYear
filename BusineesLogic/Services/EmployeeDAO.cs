@@ -25,7 +25,7 @@ public class EmployeeDAO : IDatabaseFunctions
         con.Open();
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandType = CommandType.Text;
-        if (emp.employeeNumber == null)
+        if (getHolidayInfo(emp.employeeNumber.ToString()) == null )
         {
             cmd.CommandText = "insert into Employees([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName],[EmployeeSuburb],[EmployeePostalCode],[DateHired])values('" + emp.employeeName + "','" + emp.employeeSurname + "','" + emp.employeeCellNumber + "','" + emp.employeeStreetName + "','" + emp.employeeSuburb + "','" + emp.employeePostalCode + "','" + DateTime.Now + "" + "')";
         }
@@ -41,12 +41,16 @@ public class EmployeeDAO : IDatabaseFunctions
         con.Open();
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandType = CommandType.Text;
-        cmd.CommandText = "insert into EmployeeHolidays([EmployeeID], [HolidaysExPublic], [ReligiousHolidays], [SickLeaveDays],[ApprovedBy])values('" +id+ "','" + emp.daysExcludingPublic + "','" + emp.religiousHolidays + "','" + emp.sickLeaveDays + "','" + emp.employeeID + "')";
-
+        if(emp.employeeID == null)
+            cmd.CommandText = "insert into EmployeeHolidays([EmployeeID], [HolidaysExPublic], [ReligiousHolidays], [SickLeaveDays],[ApprovedBy])values('" +id+ "','" + emp.daysExcludingPublic + "','" + emp.religiousHolidays + "','" + emp.sickLeaveDays + "','" + emp.employeeID + "')";
+        else
+            cmd.CommandText = "update employeeHolidays set holidaysExPublic ='"+emp.daysExcludingPublic+"', sickLeaveDays='"+emp.sickLeaveDays+"', religiousHolidays='"+emp.religiousHolidays+"',approvedBy ='"+id+"' where employeeID = '"+emp.employeeID+"' ";
         cmd.ExecuteNonQuery();
         con.Close();
 
     }
+
+    
 
     public EmployeeDTO makeEmployeeDTO(SqlDataReader myDR)
     {
