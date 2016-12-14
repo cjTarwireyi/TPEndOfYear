@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using BusineesLogic.Interface;
+using BusineesLogic.domain;
  
 
 /// <summary>
@@ -24,9 +25,27 @@ public class EmployeeDAO : IDatabaseFunctions
         con.Open();
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandType = CommandType.Text;
-        cmd.CommandText = "insert into Employees([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName],[EmployeeSuburb],[EmployeePostalCode],[DateHired])values('" + emp.employeeName + "','" + emp.employeeSurname + "','" + emp.employeeCellNumber + "','" + emp.employeeStreetName + "','" + emp.employeeSuburb + "','" + emp.employeePostalCode + "','" + DateTime.Now + "" + "')";
+        if (emp.employeeNumber == null)
+        {
+            cmd.CommandText = "insert into Employees([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName],[EmployeeSuburb],[EmployeePostalCode],[DateHired])values('" + emp.employeeName + "','" + emp.employeeSurname + "','" + emp.employeeCellNumber + "','" + emp.employeeStreetName + "','" + emp.employeeSuburb + "','" + emp.employeePostalCode + "','" + DateTime.Now + "" + "')";
+        }
+        else
+        cmd.CommandText = "update employees set employeeName ='" + emp.employeeName + "', employeeSurname='" + emp.employeeSurname + "',employeeCellNumber='" + emp.employeeCellNumber + "',employeeStreetName='" + emp.employeeStreetName + "', employeeSuburb ='" + emp.employeeSuburb + "',employeePostalCode='" + emp.employeePostalCode + "' where employeeID = '" + emp.employeeNumber + "' ";
+
         cmd.ExecuteNonQuery();
         con.Close();
+    }
+
+    public void saveHoliday(HolidaysDTO emp,string id)
+    {
+        con.Open();
+        SqlCommand cmd = con.CreateCommand();
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = "insert into EmployeeHolidays([EmployeeID], [HolidaysExPublic], [ReligiousHolidays], [SickLeaveDays],[ApprovedBy])values('" +id+ "','" + emp.daysExcludingPublic + "','" + emp.religiousHolidays + "','" + emp.sickLeaveDays + "','" + emp.employeeID + "')";
+
+        cmd.ExecuteNonQuery();
+        con.Close();
+
     }
 
     public EmployeeDTO makeEmployeeDTO(SqlDataReader myDR)
@@ -37,6 +56,7 @@ public class EmployeeDAO : IDatabaseFunctions
         .empSurname(myDR.GetString(2))
         .empCellNumber(myDR.GetString(3))
         .empAddress(myDR.GetString(4), myDR.GetString(5), myDR.GetString(6))
+        .empDateHired(myDR.GetString(7))
         .build();
         return employee;
     }
@@ -86,5 +106,18 @@ public class EmployeeDAO : IDatabaseFunctions
         cmd.CommandText = "update employees set employeeName ='" + employee[0] + "', employeeSurname='" + employee[1] + "',employeeCellNumber='" + employee[2] + "',employeeStreetName='" + employee[3] + "', employeeSuburb ='" + employee[4] + "',employeePostalCode='" + employee[5] + "' where employeeID = '" + id + "' ";
         cmd.ExecuteNonQuery();
         con.Close();
+    }
+
+    public DataTable getHolidayInfo(string id)
+    {
+        DataTable employees = new DataTable();
+        string query = "select * from employeeHolidays where employeeID = '" + id + "'";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(employees);
+        da.Dispose();
+        con.Close();
+        return employees;
     }
 }

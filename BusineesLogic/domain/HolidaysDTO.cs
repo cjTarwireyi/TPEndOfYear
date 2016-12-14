@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.domain
 {
-    class HolidaysDTO
+    public class HolidaysDTO
     {
         public int employeeID { get; set; }
         public int daysExcludingPublic { get; set; }
         public int sickLeaveDays { get; set; }
         public int religiousHolidays { get; set; }
-        private HolidaysDTO() { }
+        public HolidaysDTO() { }
 
         public HolidaysDTO (HolidaysBuilder holidays)
         {

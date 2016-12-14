@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System;
 using BusineesLogic.Interface;
+using System.Data;
 /// <summary>
 /// Summary description for Service
 /// </summary>
@@ -168,5 +169,16 @@ public class UserDAO:IUser
         return user;
     }
 
-
+    public DataTable getLoginDetails(int id)
+    {
+        DataTable customers = new DataTable();
+        string query = "select * from users where userid = '"+id+"'";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(customers);
+        da.Dispose();
+        con.Close();
+        return customers;
+    }
 }

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BusineesLogic.domain;
 
 public partial class site1_Employee : System.Web.UI.Page
 {
     private EmployeeDAO employee = new EmployeeDAO();
     private UserDTO userDtoUpdate;
     private UserDTO userDto;
+    private HolidaysDTO empHolidays;
     protected void Page_Load(object sender, EventArgs e)
     {
         loadSession();
@@ -43,7 +45,7 @@ public partial class site1_Employee : System.Web.UI.Page
             GridView1.DataSource = employee.populateGrid();
             GridView1.DataBind();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ExceptionRedirect(ex);
         }
@@ -51,7 +53,7 @@ public partial class site1_Employee : System.Web.UI.Page
 
     private void loadSession()
     {
-        
+
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];
@@ -105,13 +107,13 @@ public partial class site1_Employee : System.Web.UI.Page
     }
     protected void GridView1_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
-            GridView1.EditIndex = -1;
-            loadEmployees();
+        GridView1.EditIndex = -1;
+        loadEmployees();
     }
     protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
     {
-            GridView1.EditIndex = e.NewEditIndex;
-            loadEmployees();
+        GridView1.EditIndex = e.NewEditIndex;
+        loadEmployees();
     }
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
@@ -130,7 +132,7 @@ public partial class site1_Employee : System.Web.UI.Page
             GridView1.EditIndex = -1;
             loadEmployees();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ExceptionRedirect(ex);
         }
@@ -139,5 +141,46 @@ public partial class site1_Employee : System.Web.UI.Page
     {
         GridView1.PageIndex = e.NewPageIndex;
         loadEmployees();
+    }
+
+    protected void btnHolidays_Click(object sender, EventArgs e)
+    {
+        lblAppproved.Visible = false;
+        bool leaveDays = testForNumber(txtLeaveDays.Text);
+        bool religiousDays = testForNumber(txtReligiousDays.Text);
+        bool sickDays = testForNumber(txtSickDays.Text);
+
+        if (lblID.Text != "No Employee Selected")
+        {
+            GridViewRow row = GridView1.SelectedRow;
+            string id = row.Cells[1].Text;
+            if (leaveDays == true && religiousDays == true && sickDays == true)
+            {
+                empHolidays = new HolidaysDTO.HolidaysBuilder()
+            .buildEmpID(userDto.Id)
+            .buidlDaysExcPublic(Convert.ToInt32(txtLeaveDays.Text))
+            .buildReligiousDays(Convert.ToInt32(txtReligiousDays.Text))
+            .buildSickLeave(Convert.ToInt32(txtSickDays.Text))
+            .build();
+                employee.saveHoliday(empHolidays,id);
+                lblAppproved.Visible = true;
+                txtLeaveDays.Text = String.Empty;
+                txtReligiousDays.Text = String.Empty;
+                txtSickDays.Text = String.Empty;
+            }
+        }
+    }
+    protected void btnSetDays_Click(object sender, EventArgs e)
+    {
+        if (GridView1.SelectedIndex >= 0)
+        {
+            GridViewRow row = GridView1.SelectedRow;
+            lblID.Text = row.Cells[2].Text + " " + row.Cells[3].Text;
+        }
+    }
+    private bool testForNumber(string number)
+    {
+        int temp;
+        return int.TryParse(number, out temp);
     }
 }
