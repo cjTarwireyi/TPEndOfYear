@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.domain
 {
-    class UserAnalysisDTO
+    public class UserAnalysisDTO
     {
+        public int id { get; set; }
+        public int userId { get; set; }
+        public string description { get; set; }
+        public DateTime dateModified { get; set; }
     }
 }
