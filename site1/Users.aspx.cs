@@ -66,7 +66,7 @@ public partial class site1_Users : System.Web.UI.Page
             Session["userTypeUpdate"] = type;
             Session["empNo"] = empno;
             Session["userId"] = userId;
-            Response.Redirect("../site1/RegistrationPage.aspx");
+            Response.Redirect("RegistrationPage.aspx");
 
         }
         else
