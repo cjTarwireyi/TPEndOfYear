@@ -26,7 +26,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         accessRights();
         if (!IsPostBack)
             loadOrders();
-        
+
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
@@ -36,31 +36,38 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         string orderID = Request.QueryString["id"];
         string customerID = Request.QueryString["identityCode"];
         lblQuantity.Text = "";
-        int currentQuan = product.getItemQuantity(id);
-        if (orderID != null)
+
+        bool number = testForNumber(quantity);
+        bool number2 = testForNumber(productID);
+        
+        if (number == true && number2 == true)
         {
+            int currentQuan = product.getItemQuantity(id);
+            if (orderID != null)
+            {
 
-            if (currentQuan == 0)
-                lblQuantity.Text = "No items available order new STOCK";
-            else
-                if (Convert.ToInt32(quantity) > currentQuan)
-                {
-                    quantity = currentQuan.ToString();
-                    lblQuantity.Text = "There are only " + currentQuan + " items left";
-                    //addToGridView(productID, quantity);
-                    insertUpdateItem(productID, quantity);
-                    order.calculateOrder(orderID,customerID);
-                    
-
-                }
+                if (currentQuan == 0)
+                    lblQuantity.Text = "No items available order new STOCK";
                 else
-                {
-                    
-                   insertUpdateItem(productID, quantity); 
-                   //addToGridView(productID, quantity); // adds to the database
-                  order.calculateOrder(orderID,customerID);
-                }
+                    if (Convert.ToInt32(quantity) > currentQuan)
+                    {
+                        quantity = currentQuan.ToString();
+                        lblQuantity.Text = "There are only " + currentQuan + " items left";
+                        //addToGridView(productID, quantity);
+                        insertUpdateItem(productID, quantity);
+                        order.calculateOrder(orderID, customerID);
+                    }
+                    else
+                    {
+
+                        insertUpdateItem(productID, quantity);
+                        //addToGridView(productID, quantity); // adds to the database
+                        order.calculateOrder(orderID, customerID);
+                    }
+            }
         }
+        else
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Numbers Only!!!');", true);
     }
 
     protected void Cancel_Click(object sender, EventArgs e)
@@ -69,17 +76,21 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
     }
     protected void txtProductID_TextChanged(object sender, EventArgs e)
     {
-        int id = Convert.ToInt32(txtProductID.Text);
-        prodResult = product.getProduct(id);
-        if (prodResult == null)
+        bool number = testForNumber(txtProductID.Text);
+        if (txtProductID.Text != String.Empty && number == true)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Product ID does not ');", true);
-            txtProductID.Text = string.Empty;
-        }
-        else if (prodResult.productStatus == false)
-        {
-            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Product is no longer active ');", true);
-            txtProductID.Text = string.Empty;
+            int id = Convert.ToInt32(txtProductID.Text);
+            prodResult = product.getProduct(id);
+            if (prodResult == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Product ID does not exist ');", true);
+                txtProductID.Text = string.Empty;
+            }
+            else if (prodResult.productStatus == false)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Product is no longer active ');", true);
+                txtProductID.Text = string.Empty;
+            }
         }
     }
 
@@ -107,7 +118,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         try
         {
             orderline.removeItem(productID, orderlineID);
-            order.calculateOrder(orderID,customerID);
+            order.calculateOrder(orderID, customerID);
             returns.save(itemReturned);
             loadOrders();
 
@@ -116,7 +127,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         {
             ExceptionRedirect(ex);
         }
-       
+
     }
 
     private void addToGridView(string productID, string quantity)
@@ -206,15 +217,19 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
 
     private void accessRights()
     {
-        
+
         //rights code 
         GridView1.AutoGenerateDeleteButton = true;
-       
+
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
-        Session.Abandon();
-        Session.Clear();
-        Response.Redirect("Default.aspx");
+        Response.Redirect("Orders.aspx");
+    }
+
+    private bool testForNumber(string number)
+    {
+        int temp;
+        return int.TryParse(number, out temp);
     }
 }

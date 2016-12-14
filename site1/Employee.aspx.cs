@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BusineesLogic.domain;
+using System.Data;
 
 public partial class site1_Employee : System.Web.UI.Page
 {
@@ -182,5 +183,33 @@ public partial class site1_Employee : System.Web.UI.Page
     {
         int temp;
         return int.TryParse(number, out temp);
+    }
+    protected void dgrvData_Filter(object sender, EventArgs e)
+    {
+        if (testForNumber(txtSearch.Text) != false || txtSearch.Text == String.Empty)
+        {
+            DataTable searchedOrder = new DataTable();
+
+
+            if (txtSearch.Text.ToString().Trim().Length == 0)
+                loadEmployees();
+            else
+            {
+                try
+                {
+
+                    GridView1.DataSource = employee.searchEmployee(txtSearch.Text);
+                    GridView1.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    ExceptionRedirect(ex);
+                }
+            }
+        }
+    }
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+
     }
 }

@@ -45,41 +45,20 @@
         </asp:Panel>
     </div></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" Runat="Server">
-    <div class="  main">
-            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="images/Su16_NABD_FB_AirJordanV_Lateral_V1_native_1600.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Labe<asp:ImageMap ID="ImageMap1" runat="server"></asp:ImageMap>l</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="images/Su16_NABD_FB_AirJordanV_Lateral_V1_native_1600.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="images/Su16_NABD_FB_AirJordanV_Lateral_V1_native_1600.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="images/Su16_NABD_FB_AirJordanV_Lateral_V1_native_1600.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div>
-           
-           
-           <!-- Jumbotron -->
-      <div class="jumbotron" >
-        <h1 ">Dreams!</h1>
-        <p class="lead">All men dream, but not equally. Those who dream by night in the dusty recesses of their minds, 
-            wake in the day to find that it was vanity: but the dreamers of the day are dangerous men,
-             for they may act on their dreams with open eyes, to make them possible. T. E. Lawrence 
- </p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Get started today</a></p>
-      </div>
-        </div>
+    <div style="width: 500px; margin: 0 auto;">
+        <h1><strong>PRODUCT NOTIFICATION</strong></h1>
+    </div>
+    <div style="width: 700px; margin: 0 auto;">
+        <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="704px">
+            <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+            <PagerStyle BackColor="#FFFFCC" ForeColor="#330099" HorizontalAlign="Center" />
+            <RowStyle BackColor="White" ForeColor="#330099" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="#663399" />
+            <SortedAscendingCellStyle BackColor="#FEFCEB" />
+            <SortedAscendingHeaderStyle BackColor="#AF0101" />
+            <SortedDescendingCellStyle BackColor="#F6F0C0" />
+            <SortedDescendingHeaderStyle BackColor="#7E0000" />
+        </asp:GridView>
+    </div>
  </asp:Content>

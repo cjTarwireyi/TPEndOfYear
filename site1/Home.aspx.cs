@@ -9,9 +9,11 @@ public partial class Home : System.Web.UI.Page
 {
     private UserDTO userDtoUpdate;
     private UserDTO userDto;
+    private ProductDAO serviceProduct = new ProductDAO();
     protected void Page_Load(object sender, EventArgs e) 
     {
         session();
+        loadNotification();
         
       //  AdminLinkPanel.Visible = false;
     }
@@ -39,5 +41,22 @@ public partial class Home : System.Web.UI.Page
             AdminLinkPanel.Visible = false;
         else
             userPanel.Visible = false;
+    }
+
+    private void loadNotification()
+    {
+        try
+        {
+            GridView1.DataSource = serviceProduct.loadNotification();
+            GridView1.DataBind();
+        }
+        catch(Exception ex){
+            ExceptionRedirect(ex);
+        }
+    }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
 }

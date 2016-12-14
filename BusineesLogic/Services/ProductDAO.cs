@@ -13,6 +13,7 @@ using BusineesLogic.Interface;
 /// </summary>
 public class ProductDAO : IProduct
 {
+    
     private SqlConnection con;
     public ProductDAO()
     {
@@ -274,5 +275,16 @@ public class ProductDAO : IProduct
         return customer;
     }
 
-
+       public DataTable loadNotification()
+    {
+        DataTable customers = new DataTable();
+        string query = "select id, ProductName, price, quantity from products where Quantity < 10";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(customers);
+        da.Dispose();
+        con.Close();
+        return customers;
+    }
 }

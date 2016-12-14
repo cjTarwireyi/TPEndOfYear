@@ -36,20 +36,26 @@ public partial class site1_Profile : System.Web.UI.Page
         txtSuburb.Text = employee.employeeSuburb;
         txtAddress.Text = employee.employeeStreetName;
         txtPostalCode.Text = employee.employeePostalCode;
-        dt = serviceUsers.getLoginDetails(userDto.userTypeId);
-        foreach (DataRow row in dt.Rows)
+        try
         {
-            txtPassword.Text = row["pass"].ToString();
-            txtUsername.Text= row["userName"].ToString();
+            dt = serviceUsers.getLoginDetails(userDto.userTypeId);
+            foreach (DataRow row in dt.Rows)
+            {
+                txtPassword.Text = row["pass"].ToString();
+                txtUsername.Text = row["userName"].ToString();
+            }
+            dt = serviceEmployee.getHolidayInfo(userDto.Id.ToString());
+            foreach (DataRow row in dt.Rows)
+            {
+                txtLeaveDays.Text = row["HolidaysExPublic"].ToString();
+                txtReligiousDays.Text = row["ReligiousHolidays"].ToString();
+                txtSickDays.Text = row["SickLeaveDays"].ToString();
+            }
+            lockEmutableData();
         }
-        dt = serviceEmployee.getHolidayInfo(userDto.Id.ToString());
-        foreach (DataRow row in dt.Rows)
-        {
-            txtLeaveDays.Text = row["HolidaysExPublic"].ToString();
-            txtReligiousDays.Text = row["ReligiousHolidays"].ToString();
-            txtSickDays.Text = row["SickLeaveDays"].ToString();
+        catch(Exception ex){
+            ExceptionRedirect(ex);
         }
-        lockEmutableData();
     }
 
     private void lockEmutableData()
@@ -77,6 +83,7 @@ public partial class site1_Profile : System.Web.UI.Page
     }
     protected void BtnSave_Click(object sender, EventArgs e)
     {
+
         employee = new EmployeeDTO.EmployeeBuilder()
         .empNumber(userDto.Id)
         .empName(txtName.Text)
@@ -90,9 +97,21 @@ public partial class site1_Profile : System.Web.UI.Page
             .buildPassword(txtPassword.Text)
             .buildUsername(txtUsername.Text)
             .build();
-            
-        serviceEmployee.save(employee);
-        serviceUsers.UpdateUser(update);
+
+        try
+        {
+            serviceEmployee.save(employee);
+            serviceUsers.UpdateUser(update);
+        }
+        catch(Exception ex)
+        {
+            ExceptionRedirect(ex);     
+        }
+    }
+
+    private void ExceptionRedirect(Exception ex)
+    {
+        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
     protected void btnShow_Click(object sender, EventArgs e)
     {

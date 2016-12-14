@@ -72,37 +72,37 @@ public partial class site1_Orders : System.Web.UI.Page
     }
 
     protected void dgrvData_Filter(object sender, EventArgs e)
-    { 
-        
-        if(testForNumber(txtSearch.Text) != false)
-        {
-        DataTable searchedOrder = new DataTable();
-        string date = txtYear.Text + DropDownList1.SelectedValue;
-        string searchID = txtSearch.Text;
-        string month = DropDownList1.SelectedValue;
-        string currentYear = txtYear.Text;
-        bool payed;
+    {
 
-        if (RadioButton1.Checked == true)
-            payed = true;
-        else
-            payed = false;
-
-        if (txtSearch.Text.ToString().Trim().Length == 0)
-            populateGrid();
-        else
+        if (testForNumber(txtSearch.Text) != false)
         {
-            try
+            DataTable searchedOrder = new DataTable();
+            string date = txtYear.Text + DropDownList1.SelectedValue;
+            string searchID = txtSearch.Text;
+            string month = DropDownList1.SelectedValue;
+            string currentYear = txtYear.Text;
+            bool payed;
+
+            if (RadioButton1.Checked == true)
+                payed = true;
+            else
+                payed = false;
+
+            if (txtSearch.Text.ToString().Trim().Length == 0)
+                populateGrid();
+            else
             {
-                order.searchOrder(searchedOrder, searchID, payed);
-                GridView1.DataSource = searchedOrder;
-                GridView1.DataBind();
+                try
+                {
+                    order.searchOrder(searchedOrder, searchID, payed);
+                    GridView1.DataSource = searchedOrder;
+                    GridView1.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    ExceptionRedirect(ex);
+                }
             }
-            catch (Exception ex)
-            {
-                ExceptionRedirect(ex);
-            }
-        }
         }
     }
 
@@ -203,10 +203,10 @@ public partial class site1_Orders : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         bool payed;
-            if (RadioButton1.Checked == true)
-                payed = true;
-            else
-                payed = false;
+        if (RadioButton1.Checked == true)
+            payed = true;
+        else
+            payed = false;
         bool number = testForNumber(txtAmountPayed.Text);
         if (number == true)
         {
@@ -259,11 +259,11 @@ public partial class site1_Orders : System.Web.UI.Page
         return int.TryParse(number, out temp);
     }
 
-    private void refreshOnPayment(string month, string cureentYear,bool payed)
+    private void refreshOnPayment(string month, string cureentYear, bool payed)
     {
         GridView1.DataSource = order.populateGrid(month, cureentYear, payed);
         GridView1.DataBind();
     }
 
-    
+
 }

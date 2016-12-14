@@ -114,4 +114,18 @@ public class CustomerDAO:ICustomers,IDatabaseFunctions
         cmd.ExecuteNonQuery();
         con.Close();
     }
+
+
+    public DataTable searchCustomer(string id)
+    {
+        DataTable customers = new DataTable();
+        string query = "select * from customers where customerID = '"+id+"'";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(customers);
+        da.Dispose();
+        con.Close();
+        return customers;
+    }
 }

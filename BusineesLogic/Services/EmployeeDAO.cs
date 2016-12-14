@@ -22,15 +22,16 @@ public class EmployeeDAO : IDatabaseFunctions
 
     public void save(EmployeeDTO emp)
     {
+        DataTable dt = new DataTable();
+        dt = getHolidayInfo(emp.employeeNumber.ToString());
+
         con.Open();
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandType = CommandType.Text;
-        if (getHolidayInfo(emp.employeeNumber.ToString()) == null )
-        {
+        if ( dt == null )
             cmd.CommandText = "insert into Employees([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName],[EmployeeSuburb],[EmployeePostalCode],[DateHired])values('" + emp.employeeName + "','" + emp.employeeSurname + "','" + emp.employeeCellNumber + "','" + emp.employeeStreetName + "','" + emp.employeeSuburb + "','" + emp.employeePostalCode + "','" + DateTime.Now + "" + "')";
-        }
         else
-        cmd.CommandText = "update employees set employeeName ='" + emp.employeeName + "', employeeSurname='" + emp.employeeSurname + "',employeeCellNumber='" + emp.employeeCellNumber + "',employeeStreetName='" + emp.employeeStreetName + "', employeeSuburb ='" + emp.employeeSuburb + "',employeePostalCode='" + emp.employeePostalCode + "' where employeeID = '" + emp.employeeNumber + "' ";
+            cmd.CommandText = "update employees set employeeName ='" + emp.employeeName + "', employeeSurname='" + emp.employeeSurname + "',employeeCellNumber='" + emp.employeeCellNumber + "',employeeStreetName='" + emp.employeeStreetName + "', employeeSuburb ='" + emp.employeeSuburb + "',employeePostalCode='" + emp.employeePostalCode + "' where employeeID = '" + emp.employeeNumber + "' ";
 
         cmd.ExecuteNonQuery();
         con.Close();
@@ -116,6 +117,19 @@ public class EmployeeDAO : IDatabaseFunctions
     {
         DataTable employees = new DataTable();
         string query = "select * from employeeHolidays where employeeID = '" + id + "'";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(employees);
+        da.Dispose();
+        con.Close();
+        return employees;
+    }
+
+    public DataTable searchEmployee(string id)
+    {
+        DataTable employees = new DataTable();
+        string query = "select * from employees where employeeID = '" + id + "'";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);

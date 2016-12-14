@@ -65,76 +65,43 @@
     <div class="  main">
         <h1 align="center"><strong>Employees</strong></h1>
         <br />
-        <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT * FROM [Employees]" ConflictDetection="CompareAllValues" DeleteCommand="DELETE FROM [Employees] WHERE [EmployeeID] = @original_EmployeeID AND (([EmployeeName] = @original_EmployeeName) OR ([EmployeeName] IS NULL AND @original_EmployeeName IS NULL)) AND (([EmployeeSurname] = @original_EmployeeSurname) OR ([EmployeeSurname] IS NULL AND @original_EmployeeSurname IS NULL)) AND (([EmployeeCellNumber] = @original_EmployeeCellNumber) OR ([EmployeeCellNumber] IS NULL AND @original_EmployeeCellNumber IS NULL)) AND (([EmployeeStreetName] = @original_EmployeeStreetName) OR ([EmployeeStreetName] IS NULL AND @original_EmployeeStreetName IS NULL)) AND (([EmployeeSuburb] = @original_EmployeeSuburb) OR ([EmployeeSuburb] IS NULL AND @original_EmployeeSuburb IS NULL)) AND (([EmployeePostalCode] = @original_EmployeePostalCode) OR ([EmployeePostalCode] IS NULL AND @original_EmployeePostalCode IS NULL)) AND (([DateHired] = @original_DateHired) OR ([DateHired] IS NULL AND @original_DateHired IS NULL))" InsertCommand="INSERT INTO [Employees] ([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName], [EmployeeSuburb], [EmployeePostalCode], [DateHired]) VALUES (@EmployeeName, @EmployeeSurname, @EmployeeCellNumber, @EmployeeStreetName, @EmployeeSuburb, @EmployeePostalCode, @DateHired)" OldValuesParameterFormatString="original_{0}" UpdateCommand="UPDATE [Employees] SET [EmployeeName] = @EmployeeName, [EmployeeSurname] = @EmployeeSurname, [EmployeeCellNumber] = @EmployeeCellNumber, [EmployeeStreetName] = @EmployeeStreetName, [EmployeeSuburb] = @EmployeeSuburb, [EmployeePostalCode] = @EmployeePostalCode, [DateHired] = @DateHired WHERE [EmployeeID] = @original_EmployeeID AND (([EmployeeName] = @original_EmployeeName) OR ([EmployeeName] IS NULL AND @original_EmployeeName IS NULL)) AND (([EmployeeSurname] = @original_EmployeeSurname) OR ([EmployeeSurname] IS NULL AND @original_EmployeeSurname IS NULL)) AND (([EmployeeCellNumber] = @original_EmployeeCellNumber) OR ([EmployeeCellNumber] IS NULL AND @original_EmployeeCellNumber IS NULL)) AND (([EmployeeStreetName] = @original_EmployeeStreetName) OR ([EmployeeStreetName] IS NULL AND @original_EmployeeStreetName IS NULL)) AND (([EmployeeSuburb] = @original_EmployeeSuburb) OR ([EmployeeSuburb] IS NULL AND @original_EmployeeSuburb IS NULL)) AND (([EmployeePostalCode] = @original_EmployeePostalCode) OR ([EmployeePostalCode] IS NULL AND @original_EmployeePostalCode IS NULL)) AND (([DateHired] = @original_DateHired) OR ([DateHired] IS NULL AND @original_DateHired IS NULL))">
-                <DeleteParameters>
-                    <asp:Parameter Name="original_EmployeeID" Type="Int32" />
-                    <asp:Parameter Name="original_EmployeeName" Type="String" />
-                    <asp:Parameter Name="original_EmployeeSurname" Type="String" />
-                    <asp:Parameter Name="original_EmployeeCellNumber" Type="String" />
-                    <asp:Parameter Name="original_EmployeeStreetName" Type="String" />
-                    <asp:Parameter Name="original_EmployeeSuburb" Type="String" />
-                    <asp:Parameter Name="original_EmployeePostalCode" Type="String" />
-                    <asp:Parameter Name="original_DateHired" Type="String" />
-                </DeleteParameters>
-                <InsertParameters>
-                    <asp:Parameter Name="EmployeeName" Type="String" />
-                    <asp:Parameter Name="EmployeeSurname" Type="String" />
-                    <asp:Parameter Name="EmployeeCellNumber" Type="String" />
-                    <asp:Parameter Name="EmployeeStreetName" Type="String" />
-                    <asp:Parameter Name="EmployeeSuburb" Type="String" />
-                    <asp:Parameter Name="EmployeePostalCode" Type="String" />
-                    <asp:Parameter Name="DateHired" Type="String" />
-                </InsertParameters>
-                <UpdateParameters>
-                    <asp:Parameter Name="EmployeeName" Type="String" />
-                    <asp:Parameter Name="EmployeeSurname" Type="String" />
-                    <asp:Parameter Name="EmployeeCellNumber" Type="String" />
-                    <asp:Parameter Name="EmployeeStreetName" Type="String" />
-                    <asp:Parameter Name="EmployeeSuburb" Type="String" />
-                    <asp:Parameter Name="EmployeePostalCode" Type="String" />
-                    <asp:Parameter Name="DateHired" Type="String" />
-                    <asp:Parameter Name="original_EmployeeID" Type="Int32" />
-                    <asp:Parameter Name="original_EmployeeName" Type="String" />
-                    <asp:Parameter Name="original_EmployeeSurname" Type="String" />
-                    <asp:Parameter Name="original_EmployeeCellNumber" Type="String" />
-                    <asp:Parameter Name="original_EmployeeStreetName" Type="String" />
-                    <asp:Parameter Name="original_EmployeeSuburb" Type="String" />
-                    <asp:Parameter Name="original_EmployeePostalCode" Type="String" />
-                    <asp:Parameter Name="original_DateHired" Type="String" />
-                </UpdateParameters>
-            </asp:SqlDataSource>--%>
-        <asp:GridView ID="GridView1" runat="server" AllowSorting="True" CellPadding="4" AutoGenerateColumns="False" DataKeyNames="EmployeeID" AllowPaging="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1" Height="175px" Width="1080px" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" GridLines="Horizontal" OnPageIndexChanging="GridView1_PageIndexChanging">
-            <PagerStyle CssClass="cssPager" />
-            <AlternatingRowStyle BackColor="White" />
-            <Columns>
-                <asp:BoundField DataField="EmployeeID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="EmployeeID" />
-                <asp:BoundField DataField="EmployeeName" HeaderText="Name" SortExpression="EmployeeName" />
-                <asp:BoundField DataField="EmployeeSurname" HeaderText="Surname" SortExpression="EmployeeSurname" />
-                <asp:BoundField DataField="EmployeeCellNumber" HeaderText="CellNumber" SortExpression="EmployeeCellNumber" />
-                <asp:BoundField DataField="EmployeeStreetName" HeaderText="StreetName" SortExpression="EmployeeStreetName" />
-                <asp:BoundField DataField="EmployeeSuburb" HeaderText="Suburb" SortExpression="EmployeeSuburb" />
-                <asp:BoundField DataField="EmployeePostalCode" HeaderText="PostalCode" SortExpression="EmployeePostalCode" />
-                <asp:BoundField DataField="DateHired" HeaderText="DateHired" SortExpression="DateHired" />
-            </Columns>
-            <EditRowStyle BackColor="#999999" />
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-        </asp:GridView>
-        <br />
-        <asp:Button ID="Register" runat="server" Height="32px" Text="Register New"
-            Width="126px" class="btn btn-success"
-            data-toggle="tooltip" data-placement="left"
-            title="Insert new tecnician to database" OnClick="Register_Click" /><br />
-        <br />
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+                <div class="topCorner">
+                    <asp:TextBox ID="txtSearch" AutoPostBack="true" runat="server" Type="Integer" placeholder="Enter OrderID" Width="131px" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" /><br />
+                </div>
+
+                <asp:GridView ID="GridView1" runat="server" AllowSorting="True" CellPadding="4" AutoGenerateColumns="False" DataKeyNames="EmployeeID" AllowPaging="true" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1" Height="175px" Width="1080px" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" GridLines="Horizontal" OnPageIndexChanging="GridView1_PageIndexChanging">
+                    <PagerStyle CssClass="cssPager" />
+                    <AlternatingRowStyle BackColor="White" />
+                    <Columns>
+                        <asp:BoundField DataField="EmployeeID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="EmployeeID" />
+                        <asp:BoundField DataField="EmployeeName" HeaderText="Name" SortExpression="EmployeeName" />
+                        <asp:BoundField DataField="EmployeeSurname" HeaderText="Surname" SortExpression="EmployeeSurname" />
+                        <asp:BoundField DataField="EmployeeCellNumber" HeaderText="CellNumber" SortExpression="EmployeeCellNumber" />
+                        <asp:BoundField DataField="EmployeeStreetName" HeaderText="StreetName" SortExpression="EmployeeStreetName" />
+                        <asp:BoundField DataField="EmployeeSuburb" HeaderText="Suburb" SortExpression="EmployeeSuburb" />
+                        <asp:BoundField DataField="EmployeePostalCode" HeaderText="PostalCode" SortExpression="EmployeePostalCode" />
+                        <asp:BoundField DataField="DateHired" HeaderText="DateHired" SortExpression="DateHired" />
+                    </Columns>
+                    <EditRowStyle BackColor="#999999" />
+                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                </asp:GridView>
+                <br />
+                <asp:Button ID="Register" runat="server" Height="32px" Text="Register New"
+                    Width="126px" class="btn btn-success"
+                    data-toggle="tooltip" data-placement="left"
+                    title="Insert new tecnician to database" OnClick="Register_Click" /><br />
+                <br />
+
                 <asp:Button ID="btnSetDays" runat="server" Height="32px" Text="Set Days Off"
                     Width="126px" class="btn btn-primary"
                     OnClick="btnSetDays_Click" data-toggle="modal" data-target="#myModal" />
