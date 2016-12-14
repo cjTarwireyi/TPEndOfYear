@@ -67,7 +67,7 @@
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div class="topCorner">
-                    <asp:TextBox ID="txtSearch" AutoPostBack="true" runat="server" Type="Integer"  placeholder="Enter OrderID" Width="131px" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" /><br />
+                    <asp:TextBox ID="txtSearch" AutoPostBack="true" runat="server" Type="Integer"  placeholder="Enter Customer ID" Width="131px" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" /><br />
                 </div>
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="CustomerID" Height="190px" Width="1080px" AllowSorting="True" AllowPaging="true" GridLines="Vertical" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowUpdated="GridView1_RowUpdated" OnPageIndexChanging="GridView1_PageIndexChanging">
                     <PagerStyle CssClass="cssPager" />

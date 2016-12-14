@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -129,5 +130,38 @@ public partial class site1_Suppliers : System.Web.UI.Page
     {
         GridView1.PageIndex = e.NewPageIndex;
         loadSuppliers();
+    }
+    protected void dgrvData_Filter(object sender, EventArgs e)
+    {
+        if (testForNumber(txtSearch.Text) != false || txtSearch.Text == String.Empty)
+        {
+            DataTable searchedOrder = new DataTable();
+
+
+            if (txtSearch.Text.ToString().Trim().Length == 0)
+                loadSuppliers();
+            else
+            {
+                try
+                {
+                    GridView1.DataSource = supplier.searchSupplier(txtSearch.Text);
+                    GridView1.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    ExceptionRedirect(ex);
+                }
+            }
+        }
+    }
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+        
+    }
+
+    private bool testForNumber(string number)
+    {
+        int temp;
+        return int.TryParse(number, out temp);
     }
 }

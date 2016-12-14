@@ -28,6 +28,9 @@
     <div>
         <h1 align="center"><strong>Products</strong></h1>
         <br />
+        <div class="topCorner">
+            <asp:TextBox ID="txtSearch" AutoPostBack="true" runat="server" Type="Integer" placeholder="Enter ProductID" Width="131px" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" /><br />
+        </div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" Align="Center" Height="110px" Width="1080px" AllowPaging="True" AllowSorting="True" HorizontalAlign="Justify" OnRowCancelingEdit="gridView1_RowCancelingEdit" OnRowDeleting="gridView1_RowDeleting" OnRowEditing="gridView1_RowEditing" OnRowUpdating="gridView1_RowUpdating" GridLines="Vertical" OnPageIndexChanging="GridView1_PageIndexChanging">
             <PagerStyle CssClass="cssPager" />
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -84,7 +87,7 @@
             <ul class="sidebar-nav nav-pills nav-stacked" id="menu2">
                 <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
                 <li><a href="Profile.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;My Profile</a></li>
-                <li ><a href="productAnalysis.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
+                <li><a href="productAnalysis.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Reports</a></li>
                 <li><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
                 <li class="active"><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
                 <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>

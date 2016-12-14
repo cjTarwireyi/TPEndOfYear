@@ -16,6 +16,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
     private UserDTO userDto;
     private UserDTO userDtoUpdate;
     private ProductDAO accessProduct = new ProductDAO();
+    private DataTable dt = new DataTable();
     protected void Page_Load(object sender, EventArgs e)
     {
         session();
@@ -52,27 +53,30 @@ public partial class site1_productAnalysis : System.Web.UI.Page
     }
     protected void btnPrint_Click(object sender, EventArgs e)
     {
-        if (ddlReportType.SelectedValue != "")
+        if (lblInvalid.Visible != true)
         {
-            int index = Convert.ToInt32(ddlReportType.SelectedValue);
-            if (index == 0)
-                print("PRODUCT SALES REPORT");
-            else
-                if (index == 1)
-                    print("MOST RETURNED PRODUCTS REPORT");
+            if (ddlReportType.SelectedValue != "")
+            {
+                int index = Convert.ToInt32(ddlReportType.SelectedValue);
+                if (index == 0)
+                    print("PRODUCT SALES REPORT");
                 else
-                    if (index == 2)
-                        print("OUTSTANDING INCOME REPORT ");
-
+                    if (index == 1)
+                        print("MOST RETURNED PRODUCTS REPORT");
                     else
-                        if (index == 3)
-                            print("YEAR REVENUE MADE FROM REPORT");
+                        if (index == 2)
+                            print("OUTSTANDING INCOME REPORT ");
+
                         else
-                            if (index == 4)
-                                print("TOP BUYING CUSTOMERS REPORT");
+                            if (index == 3)
+                                print("YEAR REVENUE MADE FROM REPORT");
                             else
-                                if (index == 5)
-                                    print("TOTAL ORDRES NOT PAID BY CUSTOMERS");
+                                if (index == 4)
+                                    print("TOP BUYING CUSTOMERS REPORT");
+                                else
+                                    if (index == 5)
+                                        print("TOTAL ORDRES NOT PAID BY CUSTOMERS");
+            }
         }
 
     }
@@ -82,7 +86,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
         try
         {
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename='"+reportType+"'.pdf");
+            Response.AddHeader("content-disposition", "attachment;filename='" + reportType + "'.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             StringWriter swr = new StringWriter();
             HtmlTextWriter htmlwr = new HtmlTextWriter(swr);
@@ -131,6 +135,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
 
     private void loadGrid(int index, string year)
     {
+        lblInvalid.Visible = false;
         if (index == 0)
             GridView1.DataSource = accessProduct.mostSoldProducts();
         else
@@ -139,23 +144,48 @@ public partial class site1_productAnalysis : System.Web.UI.Page
             else
                 if (index == 2)
                 {
-                    GridView1.DataSource = accessProduct.monthlyAmount(year, true);
-                    txtSearchYear.Visible = true;
-                    btnSubmit.Visible = true;
-                }
-                else
-                    if (index == 3)
+                    dt = accessProduct.monthlyAmount(year, true);
+                    if (dt.Rows.Count > 0)
                     {
-                        GridView1.DataSource = accessProduct.monthlyAmount(year, false);
+                        GridView1.DataSource = accessProduct.monthlyAmount(year, true);
                         txtSearchYear.Visible = true;
                         btnSubmit.Visible = true;
                     }
                     else
+                        lblInvalid.Visible = true;
+
+                }
+                else
+                    if (index == 3)
+                    {
+                        dt = accessProduct.monthlyAmount(year, false);
+                        if (dt.Rows.Count > 0)
+                        {
+                            GridView1.DataSource = accessProduct.monthlyAmount(year, false);
+                            txtSearchYear.Visible = true;
+                            btnSubmit.Visible = true;
+                        }
+                        else
+                        lblInvalid.Visible = true;
+                    }
+                    else
                         if (index == 4)
-                            GridView1.DataSource = accessProduct.generateCustomersOrderHistory(true);
+                        {
+                            dt = accessProduct.generateCustomersOrderHistory(true);
+                            if (dt.Rows.Count > 0)
+                                GridView1.DataSource = accessProduct.generateCustomersOrderHistory(true);
+                            else
+                                lblInvalid.Visible = true;
+                        }
                         else
                             if (index == 5)
-                                GridView1.DataSource = accessProduct.generateCustomersOrderHistory(false);
+                            {
+                                dt = accessProduct.generateCustomersOrderHistory(false);
+                                if (dt.Rows.Count > 0)
+                                    GridView1.DataSource = accessProduct.generateCustomersOrderHistory(false);
+                                else
+                                    lblInvalid.Visible = true;
+                            }
         GridView1.DataBind();
     }
 

@@ -276,9 +276,10 @@ public class ProductDAO : IProduct
     }
 
        public DataTable loadNotification()
-    {
+       {
+           bool status = true;
         DataTable customers = new DataTable();
-        string query = "select id, ProductName, price, quantity from products where Quantity < 10";
+        string query = "select id, ProductName, price, quantity from products where Quantity < 10 and active ='"+status+"'";
         con.Open();
         SqlCommand cmd = new SqlCommand(query, con);
         SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -287,4 +288,18 @@ public class ProductDAO : IProduct
         con.Close();
         return customers;
     }
+
+       public DataTable searchProducts(string id,bool active)
+       {
+           
+           DataTable products = new DataTable();
+           string query = "select *from products where id ='"+id+"' and active = '"+active+"' ";
+           con.Open();
+           SqlCommand cmd = new SqlCommand(query, con);
+           SqlDataAdapter da = new SqlDataAdapter(cmd);
+           da.Fill(products);
+           da.Dispose();
+           con.Close();
+           return products;
+       }
 }

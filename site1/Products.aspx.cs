@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading;
@@ -153,5 +154,39 @@ public partial class site1_Products : System.Web.UI.Page
     {
         GridView1.PageIndex = e.NewPageIndex;
         loadProducts();
+    }
+    protected void dgrvData_Filter(object sender, EventArgs e)
+    {
+        if (testForNumber(txtSearch.Text) != false || txtSearch.Text == String.Empty)
+        {
+            DataTable searchedOrder = new DataTable();
+
+
+            if (txtSearch.Text.ToString().Trim().Length == 0)
+                loadProducts();
+            else
+            {
+                try
+                {
+
+                    GridView1.DataSource = products.searchProducts(txtSearch.Text, true);
+                    GridView1.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    ExceptionRedirect(ex);
+                }
+            }
+        }
+    }
+    protected void btnSearch_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private bool testForNumber(string number)
+    {
+        int temp;
+        return int.TryParse(number, out temp);
     }
 }

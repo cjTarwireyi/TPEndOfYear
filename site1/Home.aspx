@@ -46,7 +46,8 @@
     </div></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="content" Runat="Server">
     <div style="width: 500px; margin: 0 auto;">
-        <h1><strong>PRODUCT NOTIFICATION</strong></h1>
+        <h1><strong>PRODUCT NOTIFICATION</strong></h1><br />
+        <h3>YOU ARE RUNNING LOW OR NO MORE STOCK FOR FOLLOWING PRODUCTS: </h3><br /><br />
     </div>
     <div style="width: 700px; margin: 0 auto;">
         <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4" Width="704px">

@@ -89,4 +89,17 @@ public class SupplierDAO : IDatabaseFunctions
         con.Close();
     }
 
+    public DataTable searchSupplier(string id)
+    {
+        DataTable supplier = new DataTable();
+        string query = "select * from suppliers where supplierID ='"+id+"' ";
+        con.Open();
+        SqlCommand cmd = new SqlCommand(query, con);
+        SqlDataAdapter da = new SqlDataAdapter(cmd);
+        da.Fill(supplier);
+        da.Dispose();
+        con.Close();
+        return supplier;
+    }
+
 }

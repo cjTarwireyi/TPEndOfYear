@@ -22,25 +22,25 @@ public partial class site1_Purchase : System.Web.UI.Page
     private Products product = new Products();
     private IProduct productService = new ProductDAO();
     private ICustomers customerService = new CustomerDAO();
-     
-    
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
         session();
         accessRights();
-        
-        
-        
+
+
+
         if (!this.IsPostBack)
         {
             custDataTable = new DataTable();
             custDataTable = customerService.getAllCustomers();
-            
+
 
             custList.DataSource = custDataTable;
             custList.DataValueField = "CustomerID";
             custList.DataTextField = "custName";
-           // custList.Col = "CustomerSurname" +"  CustomerName" ;
+            // custList.Col = "CustomerSurname" +"  CustomerName" ;
             custList.DataBind();
             custList.SelectedIndex = -1;
             table = new DataTable();
@@ -54,8 +54,15 @@ public partial class site1_Purchase : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        AddToDataTable();
-        BindGrid();
+        bool number = testForNumber(txtProductID.Text);
+        bool number2 = testForNumber(txtQuantiy.Text);
+        if (number == true && number2 == true)
+        {
+            AddToDataTable();
+            BindGrid();
+        }
+        else
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Numbers Only!!!');", true);
     }
 
     private void MakeTable()
@@ -73,14 +80,14 @@ public partial class site1_Purchase : System.Web.UI.Page
             string productCode = txtProductID.Text;
             bool productExist = false;
 
-              
+
             string quantity = txtQuantiy.Text;
             string custId = custList.SelectedItem.Value;
             string productName = "";
             string price = "";
             totalAmt.Text = string.Empty;
             string updateAmount = "0";
-             string amt ="0";
+            string amt = "0";
 
 
             if (facade.findProduct(Convert.ToInt32(productCode)) == null)
@@ -126,12 +133,12 @@ public partial class site1_Purchase : System.Web.UI.Page
                     {
                         if (row.Cells[1].Text == productCode)
                         {
-                            
+
                             updateAmount = (Convert.ToDecimal(price) * Convert.ToInt32(Convert.ToInt32(row.Cells[4].Text))).ToString();
                             quantity = (Convert.ToInt32(quantity) + Convert.ToInt32(row.Cells[4].Text)).ToString();
-                           
+
                             table.Rows.RemoveAt(row.RowIndex);
-                            
+
                             break;
                         }
                         else
@@ -146,9 +153,9 @@ public partial class site1_Purchase : System.Web.UI.Page
                     }
                     else
                     {
-                           amt = (Convert.ToDecimal(ogAmount) - Convert.ToDecimal(updateAmount)).ToString();
-                           amt =(Convert.ToDecimal(amt)+ (Convert.ToDecimal(price) * Convert.ToInt32(quantity)) ).ToString();
-                    
+                        amt = (Convert.ToDecimal(ogAmount) - Convert.ToDecimal(updateAmount)).ToString();
+                        amt = (Convert.ToDecimal(amt) + (Convert.ToDecimal(price) * Convert.ToInt32(quantity))).ToString();
+
                     }
                     grandTotal.Text = amt;
                     if (productExist == false)
@@ -160,7 +167,7 @@ public partial class site1_Purchase : System.Web.UI.Page
                         dr["Quantity"] = quantity;
                         table.Rows.Add(dr);
 
-                   
+
                     }
                     product.productNumber = Convert.ToInt32(productCode);
                     product.productQuantity = Convert.ToInt32(quantity);
@@ -175,13 +182,13 @@ public partial class site1_Purchase : System.Web.UI.Page
         catch (NotFiniteNumberException ex)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + "Make sure you entered correct format " + "');", true);
-                    
+
         }
         catch (Exception ex)
         {
             Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
         }
-        
+
     }
 
     protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
@@ -217,21 +224,21 @@ public partial class site1_Purchase : System.Web.UI.Page
     {
         try
         {
-           bool orderGenerated= generateOrder();
-           if (orderGenerated)
-           {
-               order = accessOrders.getLastReocrd();
-               Response.Redirect("Receipt.aspx?Id=" + order.orderId, false);
-           }
-           else
-           {
-               ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + " No Order has been generated " + "');", true);
-                    
+            bool orderGenerated = generateOrder();
+            if (orderGenerated)
+            {
+                order = accessOrders.getLastReocrd();
+                Response.Redirect("Receipt.aspx?Id=" + order.orderId, false);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + " No Order has been generated " + "');", true);
 
-           }
-           
+
+            }
+
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ExceptionRedirect(ex);
         }
@@ -239,7 +246,7 @@ public partial class site1_Purchase : System.Web.UI.Page
 
     protected void txtProductID_TextChanged(object sender, EventArgs e)
     {
-         
+
     }
 
     private bool generateOrder()
@@ -254,7 +261,7 @@ public partial class site1_Purchase : System.Web.UI.Page
             product.productNumber = Convert.ToInt32(row.Cells[1].Text);
             product.productQuantity = Convert.ToInt32(row.Cells[4].Text);
             amt += facade.findProduct(product.productNumber).price * product.productQuantity;
-             
+
             list.Add(product);
             productService.updateQuantity(product.productNumber, product.productQuantity);
 
@@ -276,8 +283,8 @@ public partial class site1_Purchase : System.Web.UI.Page
         {
             return false;
         }
-                 
-       
+
+
 
     }
 
@@ -324,5 +331,11 @@ public partial class site1_Purchase : System.Web.UI.Page
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
 
+    }
+
+    private bool testForNumber(string number)
+    {
+        int temp;
+        return int.TryParse(number, out temp);
     }
 }
