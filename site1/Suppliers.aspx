@@ -69,6 +69,9 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
+                <div class="topCorner">
+                    <asp:TextBox ID="txtSearch" AutoPostBack="true" runat="server" Type="Integer" placeholder="Enter Supplier ID" Width="131px" OnTextChanged="dgrvData_Filter"></asp:TextBox><asp:Button ID="btnSearch" runat="server" Text="Search" Height="23px" Width="63px" OnClick="btnSearch_Click" /><br />
+                </div>
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="SupplierID" AllowPaging="True" GridLines="Vertical" Height="100px" Width="1080px" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" AllowSorting="True" CellPadding="4" ForeColor="#333333" OnPageIndexChanging="GridView1_PageIndexChanging">
                     <PagerStyle CssClass="cssPager" />
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />

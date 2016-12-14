@@ -84,7 +84,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
                             <asp:TextBox ID="txtQuantiy" runat="server" Height="35px" Width="290px"
-                                class="form-control" placeholder="Quantity" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                                class="form-control" placeholder="Quantity"></asp:TextBox>
                         </div>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
                             ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtQuantiy" ForeColor="Red"></asp:RequiredFieldValidator>

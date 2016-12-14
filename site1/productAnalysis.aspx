@@ -34,7 +34,7 @@
     <div id="sidebar-wrapper">
         <asp:Panel ID="userPanel" runat="server">
             <ul class="sidebar-nav nav-pills nav-stacked" id="menu">
-               <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
+                <li><a href="Home.aspx"><i class="glyphicon glyphicon-home"></i>&nbsp;Home</a></li>
                 <li><a href="Profile.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;My Profile</a></li>
                 <li><a href="Customers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Customers</a></li>
                 <li class="active"><a href="Orders.aspx"><i class="glyphicon glyphicon-book"></i>&nbsp;Orders</a></li>
@@ -53,7 +53,7 @@
                 <li><a href="Products.aspx"><i class="glyphicon glyphicon-briefcase"></i>&nbsp;Products</a></li>
                 <li><a href="Returns.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Item Returns</a></li>
                 <li><a href="Purchase.aspx"><i class="glyphicon glyphicon-time"></i>&nbsp;Purchase</a></li>
-                <li ><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
+                <li><a href="Users.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Users</a></li>
                 <li><a href="Roles.aspx"><i class="glyphicon glyphicon-list-alt"></i>&nbsp;Roles</a></li>
                 <li><a href="Customers.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Customers</a></li>
                 <li><a href="Employee.aspx"><i class="glyphicon glyphicon-user"></i>&nbsp;Employees</a></li>
@@ -89,11 +89,14 @@
 
                 <asp:GridView ID="GridView1" runat="server" Width="569px"></asp:GridView>
                 <br />
+                <div style="width: 248px; margin: 0 auto;">
+                    <asp:Label ID="lblInvalid" runat="server" Text="NO RECORDS" Visible="False" Font-Size="XX-Large"></asp:Label>
+                </div>
                 <br />
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
     <div style="vertical-align: bottom; margin: 0 auto;">
-        <asp:Button ID="btnPrint" runat="server" Text="Print" OnClick="btnPrint_Click" />
+        <asp:Button ID="btnPrint" runat="server" Text="Download and Print" OnClick="btnPrint_Click" />
     </div>
 </asp:Content>
