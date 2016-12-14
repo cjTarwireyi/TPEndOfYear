@@ -73,6 +73,7 @@
     <Compile Include="factories\EmailFactory.cs" />
     <Compile Include="factories\EmployeeFactory.cs" />
     <Compile Include="factories\EmployeeHolidayFactory.cs" />
+    <Compile Include="factories\LeaveFactory.cs" />
     <Compile Include="factories\ProductFactory.cs" />
     <Compile Include="factories\PromotionDetailsFactory.cs" />
     <Compile Include="factories\PromotionFactory.cs" />
