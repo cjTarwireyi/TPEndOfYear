@@ -6,10 +6,10 @@ using BusineesLogic.domain;
 namespace UnitTests.domain
 {
     [TestClass]
-    public class BrandTest
+    public class TestBrand
     {
         [TestMethod]
-        public void TestBrand()
+        public void TestBrandDTO()
         {
             //CREATE
             BrandDTO createBrand = BrandFactory.createBrand("test", "test", DateTime.Parse("1/1/1900 12:00:00 AM"),true);
