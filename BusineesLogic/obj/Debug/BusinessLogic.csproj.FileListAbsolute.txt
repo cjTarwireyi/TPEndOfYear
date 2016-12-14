@@ -24,4 +24,3 @@ C:\Users\Public\TPEndOfYear\BusineesLogic\bin\Debug\BusineesLogic.dll
 C:\Users\Public\TPEndOfYear\BusineesLogic\bin\Debug\BusineesLogic.pdb
 C:\Users\Public\TPEndOfYear\BusineesLogic\obj\Debug\BusineesLogic.dll
 C:\Users\Public\TPEndOfYear\BusineesLogic\obj\Debug\BusineesLogic.pdb
-C:\Users\Public\TPEndOfYear\BusineesLogic\obj\Debug\BusinessLogic.csprojResolveAssemblyReference.cache
