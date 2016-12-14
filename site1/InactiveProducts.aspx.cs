@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BusineesLogic.domain;
+using BusineesLogic.services;
 
 public partial class site1_InactiveProducts : System.Web.UI.Page
 {
