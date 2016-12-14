@@ -19,45 +19,46 @@ namespace BusineesLogic.domain
         public string leaveTitle{get;set;}
         public string description{get; set;}
         public DateTime dateModified { get; set; }
-    }
-    public class LeaveBuilder
-    {
-        public int Id;
-        public string leaveTitle;
-        public string description;
-        public DateTime dateModified;
-        public LeaveBuilder buildId(int id)
+
+        public class LeaveBuilder
         {
-            this.Id = id;
-            return this;
-        }
-        public LeaveBuilder buildLeaveTitle(string leaveTitle)
-        {
-            this.leaveTitle = leaveTitle;
-            return this;
-            
-        }
-        public LeaveBuilder buildDescription(string description)
-        {
-            this.description = description;
-            return this;
-        }
-        public LeaveBuilder buildDateModified(DateTime dateModified)
-        {
-            this.dateModified = dateModified;
-            return this;
-        }
-        public LeaveBuilder copy(LeaveDTO leaveDto)
-        {
-            this.Id = leaveDto.Id;
-            this.leaveTitle = leaveDto.leaveTitle;
-            this.description = leaveDto.description;
-            this.dateModified = leaveDto.dateModified;
-            return this;
-        }
-        public LeaveDTO build()
-        {
-            return new LeaveDTO(this);
+            public int Id;
+            public string leaveTitle;
+            public string description;
+            public DateTime dateModified;
+            public LeaveBuilder buildId(int id)
+            {
+                this.Id = id;
+                return this;
+            }
+            public LeaveBuilder buildLeaveTitle(string leaveTitle)
+            {
+                this.leaveTitle = leaveTitle;
+                return this;
+
+            }
+            public LeaveBuilder buildDescription(string description)
+            {
+                this.description = description;
+                return this;
+            }
+            public LeaveBuilder buildDateModified(DateTime dateModified)
+            {
+                this.dateModified = dateModified;
+                return this;
+            }
+            public LeaveBuilder copy(LeaveDTO leaveDto)
+            {
+                this.Id = leaveDto.Id;
+                this.leaveTitle = leaveDto.leaveTitle;
+                this.description = leaveDto.description;
+                this.dateModified = leaveDto.dateModified;
+                return this;
+            }
+            public LeaveDTO build()
+            {
+                return new LeaveDTO(this);
+            }
         }
     }
 }

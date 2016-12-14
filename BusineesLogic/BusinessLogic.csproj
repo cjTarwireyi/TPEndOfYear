@@ -66,13 +66,14 @@
     <Compile Include="domain\ReturnDTO.cs" />
     <Compile Include="domain\SuplierAnalysisDTO.cs" />
     <Compile Include="domain\TimeSheetDTO.cs" />
-    <Compile Include="domain\Transaction.cs" />
+    <Compile Include="domain\TransactionDTO.cs" />
     <Compile Include="domain\UserAnalysisDTO.cs" />
     <Compile Include="factories\AddressFactory.cs" />
     <Compile Include="factories\BrandFactory.cs" />
     <Compile Include="factories\EmailFactory.cs" />
     <Compile Include="factories\EmployeeFactory.cs" />
     <Compile Include="factories\EmployeeHolidayFactory.cs" />
+    <Compile Include="factories\LeaveFactory.cs" />
     <Compile Include="factories\ProductFactory.cs" />
     <Compile Include="factories\PromotionDetailsFactory.cs" />
     <Compile Include="factories\PromotionFactory.cs" />
@@ -80,8 +81,11 @@
     <Compile Include="factories\ReportTypeFactory.cs" />
     <Compile Include="factories\ReturnFactory.cs" />
     <Compile Include="factories\RoleFactory.cs" />
+    <Compile Include="factories\SupplierAnalysisFactory.cs" />
     <Compile Include="factories\SupplierFactory.cs" />
     <Compile Include="factories\TimeSheetFactory.cs" />
+    <Compile Include="factories\TransactionFactory.cs" />
+    <Compile Include="factories\UserAnalysisFactory.cs" />
     <Compile Include="Interface\IDatabaseFunctions.cs" />
     <Compile Include="Interface\IPromotion.cs" />
     <Compile Include="Interface\IRoleService.cs" />
