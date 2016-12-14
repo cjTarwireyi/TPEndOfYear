@@ -28,19 +28,19 @@ namespace BusineesLogic.domain
             public string name;
             public string message;
 
-            public EmailBuilder buildSuburb(string emailAddress)
+            public EmailBuilder buildEmailAddress(string emailAddress)
             {
                 this.emailAddress = emailAddress;
                 return this;
             }
 
-            public EmailBuilder buildSuburb(string name)
+            public EmailBuilder buildName(string name)
             {
                 this.name = name;
                 return this;
             }
 
-            public EmailBuilder buildSuburb(string message)
+            public EmailBuilder buildMessage(string message)
             {
                 this.message = message;
                 return this;

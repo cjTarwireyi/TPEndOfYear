@@ -16,7 +16,7 @@ public partial class site1_Roles : System.Web.UI.Page
 {
     private DataTable table;
     private IRoleService service = new RoleDAO();
-    private EmailDTO email = new EmailDTO();
+    private EmailDTO email;
     private RoleDTO role;
 
  
