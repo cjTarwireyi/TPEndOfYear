@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.domain
 {
-    class PeriodDTO
+    class SeasonDTO
     {
     }
 }

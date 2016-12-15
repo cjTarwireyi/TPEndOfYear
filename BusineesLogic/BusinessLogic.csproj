@@ -49,7 +49,8 @@
     <Compile Include="domain\Address.cs" />
     <Compile Include="domain\BrandDTO.cs" />
     <Compile Include="domain\CategoryDTO.cs" />
-    <Compile Include="domain\CompanyRulesDTO.cs" />
+    <Compile Include="domain\BusinessRulesDTO.cs" />
+    <Compile Include="domain\CurrencyDTO.cs" />
     <Compile Include="domain\CustomerAnalysisiDTO.cs" />
     <Compile Include="domain\EmailDTO.cs" />
     <Compile Include="domain\EmployeeAnalysisDTO.cs" />
@@ -64,6 +65,8 @@
     <Compile Include="domain\ReportDTO.cs" />
     <Compile Include="domain\ReportTypeDTO.cs" />
     <Compile Include="domain\ReturnDTO.cs" />
+    <Compile Include="domain\SaleDTO.cs" />
+    <Compile Include="domain\SeasonDTO.cs" />
     <Compile Include="domain\SuplierAnalysisDTO.cs" />
     <Compile Include="domain\TimeSheetDTO.cs" />
     <Compile Include="domain\TransactionDTO.cs" />
@@ -99,7 +102,7 @@
     <Compile Include="domain\EmployeeDTO.cs" />
     <Compile Include="domain\FormulaDTO.cs" />
     <Compile Include="domain\PaymentDTO.cs" />
-    <Compile Include="domain\PeriodDTO.cs" />
+    <Compile Include="domain\OrderPeriodDTO.cs" />
     <Compile Include="Interface\IBrand.cs" />
     <Compile Include="Interface\ICategory.cs" />
     <Compile Include="Interface\ICustomers.cs" />
