@@ -168,16 +168,16 @@
                             <h4 class="modal-title" align="center">Payment</h4>
                             <div align="right">
                                 Total: 
-                        <asp:Label ID="lblAmountDue" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblAmountDue" runat="server" Text="No Customer Selected"></asp:Label>
                             </div>
                             <div id="Customer Details">
                                 <asp:Label ID="label" runat="server" Text="Customer: "></asp:Label>
-                                <asp:Label ID="lblCustomerName" runat="server" Text="111"></asp:Label>
+                                <asp:Label ID="lblCustomerName" runat="server" Text="No Customer Selected"></asp:Label>
                             </div>
                             <div id="OrderDetails">
                                 <br />
                                 <asp:Label ID="Label1" runat="server" Text="Order Number: "></asp:Label>
-                                <asp:Label ID="lblOrderNo" runat="server" Text="111"></asp:Label>
+                                <asp:Label ID="lblOrderNo" runat="server" Text="No customer Selected"></asp:Label>
                             </div>
                         </div>
                         <div class="modal-body">
