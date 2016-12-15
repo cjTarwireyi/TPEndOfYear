@@ -23,7 +23,10 @@ public partial class site1_Profile : System.Web.UI.Page
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
+        Session.Abandon();
+        Session.Clear();
 
+        Response.Redirect("Default.aspx");
     }
 
     private void loadProfile()
@@ -38,7 +41,7 @@ public partial class site1_Profile : System.Web.UI.Page
         txtPostalCode.Text = employee.employeePostalCode;
         try
         {
-            dt = serviceUsers.getLoginDetails(userDto.userTypeId);
+            dt = serviceUsers.getLoginDetails(userDto.Id);
             foreach (DataRow row in dt.Rows)
             {
                 txtPassword.Text = row["pass"].ToString();
