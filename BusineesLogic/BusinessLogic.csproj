@@ -64,6 +64,8 @@
     <Compile Include="domain\ReportDTO.cs" />
     <Compile Include="domain\ReportTypeDTO.cs" />
     <Compile Include="domain\ReturnDTO.cs" />
+    <Compile Include="domain\SaleDTO.cs" />
+    <Compile Include="domain\SeasonDTO.cs" />
     <Compile Include="domain\SuplierAnalysisDTO.cs" />
     <Compile Include="domain\TimeSheetDTO.cs" />
     <Compile Include="domain\TransactionDTO.cs" />
