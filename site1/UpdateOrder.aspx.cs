@@ -39,7 +39,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
 
         bool number = testForNumber(quantity);
         bool number2 = testForNumber(productID);
-        
+
         if (number == true && number2 == true)
         {
             int currentQuan = product.getItemQuantity(id);
@@ -100,6 +100,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
     }
     protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
+
         lblQuantity.Text = "";
         row = GridView1.SelectedRow;
         string productID = GridView1.Rows[e.RowIndex].Cells[3].Text;
@@ -121,7 +122,6 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
             order.calculateOrder(orderID, customerID);
             returns.save(itemReturned);
             loadOrders();
-
         }
         catch (Exception ex)
         {

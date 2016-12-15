@@ -28,7 +28,7 @@ public class EmployeeDAO : IDatabaseFunctions
         con.Open();
         SqlCommand cmd = con.CreateCommand();
         cmd.CommandType = CommandType.Text;
-        if ( dt == null )
+        if ( emp.employeeNumber == 0)
             cmd.CommandText = "insert into Employees([EmployeeName], [EmployeeSurname], [EmployeeCellNumber], [EmployeeStreetName],[EmployeeSuburb],[EmployeePostalCode],[DateHired])values('" + emp.employeeName + "','" + emp.employeeSurname + "','" + emp.employeeCellNumber + "','" + emp.employeeStreetName + "','" + emp.employeeSuburb + "','" + emp.employeePostalCode + "','" + DateTime.Now + "" + "')";
         else
             cmd.CommandText = "update employees set employeeName ='" + emp.employeeName + "', employeeSurname='" + emp.employeeSurname + "',employeeCellNumber='" + emp.employeeCellNumber + "',employeeStreetName='" + emp.employeeStreetName + "', employeeSuburb ='" + emp.employeeSuburb + "',employeePostalCode='" + emp.employeePostalCode + "' where employeeID = '" + emp.employeeNumber + "' ";

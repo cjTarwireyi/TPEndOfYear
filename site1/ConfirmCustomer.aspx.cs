@@ -40,12 +40,12 @@ public partial class site1_ConfirmCustomer : System.Web.UI.Page
     private void SendMail()
     {
 
-        customerDTO = (CustomerDTO)Session["CustomerDTO"];
+        customerDTO = customer.getLastReocrd();
         string fromAddress = "siraaj.wilkonson1995@gmail.com";
         string toAddress = customerDTO.email.ToString();
         const string fromPassword = "wilkonson1995";
         string subject = "Customer Number Keep Safe";
-        string body = "Hi " + customerDTO.name + " " + customerDTO.surname + "\nYour customer number is:" + "'" + customer.getLastReocrd() + "'" + "Please keep it safe as it would be required from you everytime you purchase items";
+        string body = "Hi " + customerDTO.name.Trim() + " " + customerDTO.surname.Trim() + "\nYour customer number is:" + "'" + customerDTO.customerNumber.ToString().Trim() + "'" + "Please keep it safe as it would be required from you everytime you purchase items";
         try
         {
             // smtp settings4

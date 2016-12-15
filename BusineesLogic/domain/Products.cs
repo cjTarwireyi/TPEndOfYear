@@ -71,7 +71,7 @@ public class Products
 
         public ProductsBuilder prodQuantity(int productQuantity)
         {
-            this.productQuantity = productNumber;
+            this.productQuantity = productQuantity;
             return this;
         }
 

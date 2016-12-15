@@ -191,7 +191,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
 
     private void ExceptionRedirect(Exception ex)
     {
-        Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+        Response.Redirect("/ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
