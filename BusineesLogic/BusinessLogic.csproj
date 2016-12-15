@@ -50,6 +50,7 @@
     <Compile Include="domain\BrandDTO.cs" />
     <Compile Include="domain\CategoryDTO.cs" />
     <Compile Include="domain\BusinessRulesDTO.cs" />
+    <Compile Include="domain\CurrencyDTO.cs" />
     <Compile Include="domain\CustomerAnalysisiDTO.cs" />
     <Compile Include="domain\EmailDTO.cs" />
     <Compile Include="domain\EmployeeAnalysisDTO.cs" />
