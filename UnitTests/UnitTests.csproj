@@ -74,6 +74,7 @@
     <Compile Include="factories\TestReturns.cs" />
     <Compile Include="factories\TestDepartment.cs" />
     <Compile Include="factories\TestSale.cs" />
+    <Compile Include="factories\TestPayment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\OrderTest.cs" />
     <Compile Include="services\OrderLineTest.cs" />

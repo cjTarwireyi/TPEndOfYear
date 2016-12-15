@@ -58,6 +58,7 @@
     <Compile Include="domain\EmployeeType.cs" />
     <Compile Include="domain\HolidaysDTO.cs" />
     <Compile Include="domain\LeaveDTO.cs" />
+    <Compile Include="domain\PaymentFactory.cs" />
     <Compile Include="domain\ProductAnalysisDTO.cs" />
     <Compile Include="domain\ProductTypeDTO.cs" />
     <Compile Include="domain\PromotionDetailsDTO.cs" />
