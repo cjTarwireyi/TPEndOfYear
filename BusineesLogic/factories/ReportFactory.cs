@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.factories
 {
-    class ReportFactory
+    public class ReportFactory
     {
         public static ReportDTO createReport(List<string> reportDetails)
         {

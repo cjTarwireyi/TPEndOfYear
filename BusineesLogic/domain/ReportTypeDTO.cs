@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.domain
 {
-    class ReportTypeDTO
+    public class ReportTypeDTO
     {
-        string reportCategory { get; set; }
-        string peroidForStats { get; set; }
+        public string reportCategory { get; set; }
+        public string peroidForStats { get; set; }
 
-        private ReportTypeDTO() { }
+        public ReportTypeDTO() { }
 
         public ReportTypeDTO (ReportTypeBuilder reportType)
         {

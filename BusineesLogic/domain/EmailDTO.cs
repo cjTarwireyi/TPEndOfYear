@@ -46,7 +46,7 @@ namespace BusineesLogic.domain
                 return this;
             }
 
-            public EmailBuilder buildSuburb(EmailDTO email)
+            public EmailBuilder copy(EmailDTO email)
             {
                 this.emailAddress = email.emailAddress;
                 this.name = email.name;

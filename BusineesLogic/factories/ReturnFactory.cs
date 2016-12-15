@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.factories
 {
-    class ReturnFactory
+    public class ReturnFactory
     {
         public static ReturnDTO createReturnRecord(List<int> returnDetails)
         {

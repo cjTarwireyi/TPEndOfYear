@@ -49,7 +49,7 @@ public class Address
              return this;
          }
 
-         public AddressBuilder buildPostalCode(Address address)
+         public AddressBuilder copy(Address address)
          {
              this.suburb = address.suburb;
              this.streetName = address.streetName;

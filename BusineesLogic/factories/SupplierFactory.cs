@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.factories
 {
-    class SupplierFactory
+    public class SupplierFactory
     {
         public static SupplierDTO createSupplier(List<string> supplierDetails)
         {

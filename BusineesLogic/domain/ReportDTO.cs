@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.domain
 {
-    class ReportDTO
+    public class ReportDTO
     {
-        string reportName { get; set; }
-        DateTime dateGenerated { get; set; }
-        string reportContent { get; set; }
+        public string reportName { get; set; }
+        public DateTime dateGenerated { get; set; }
+        public string reportContent { get; set; }
 
         private ReportDTO() { }
 

@@ -74,9 +74,11 @@
     <Compile Include="factories\AddressFactory.cs" />
     <Compile Include="factories\BrandFactory.cs" />
     <Compile Include="factories\CategoryFactory.cs" />
+    <Compile Include="factories\DepartmentFactory.cs" />
     <Compile Include="factories\EmailFactory.cs" />
     <Compile Include="factories\EmployeeFactory.cs" />
     <Compile Include="factories\EmployeeHolidayFactory.cs" />
+    <Compile Include="factories\Holidayfactory.cs" />
     <Compile Include="factories\LeaveFactory.cs" />
     <Compile Include="factories\ProductFactory.cs" />
     <Compile Include="factories\PromotionDetailsFactory.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="factories\ReportTypeFactory.cs" />
     <Compile Include="factories\ReturnFactory.cs" />
     <Compile Include="factories\RoleFactory.cs" />
+    <Compile Include="factories\SaleFactory.cs" />
     <Compile Include="factories\SupplierAnalysisFactory.cs" />
     <Compile Include="factories\SupplierFactory.cs" />
     <Compile Include="factories\TimeSheetFactory.cs" />
