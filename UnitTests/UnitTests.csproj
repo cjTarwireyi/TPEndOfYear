@@ -50,22 +50,30 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="domain\TestCustomer.cs" />
-    <Compile Include="domain\TestEmployee.cs" />
-    <Compile Include="domain\TestProducts.cs" />
-    <Compile Include="domain\TestSupplier.cs" />
-    <Compile Include="domain\TestUser.cs" />
-    <Compile Include="domain\TestOrder.cs" />
-    <Compile Include="domain\TestOrderLine.cs" />
-    <Compile Include="domain\TestRole.cs" />
-    <Compile Include="domain\TestTimeSheet.cs" />
-    <Compile Include="domain\TestPromotion.cs" />
-    <Compile Include="domain\TestBrand.cs" />
-    <Compile Include="domain\TestLeave.cs" />
-    <Compile Include="domain\TestUserAnalysis.cs" />
-    <Compile Include="domain\TestTransaction.cs" />
-    <Compile Include="domain\TestSupplierAnalysis.cs" />
-    <Compile Include="domain\TestCategory.cs" />
+    <Compile Include="factories\TestCustomer.cs" />
+    <Compile Include="factories\TestEmployee.cs" />
+    <Compile Include="factories\TestProducts.cs" />
+    <Compile Include="factories\TestSupplier.cs" />
+    <Compile Include="factories\TestUser.cs" />
+    <Compile Include="factories\TestOrder.cs" />
+    <Compile Include="factories\TestOrderLine.cs" />
+    <Compile Include="factories\TestRole.cs" />
+    <Compile Include="factories\TestTimeSheet.cs" />
+    <Compile Include="factories\TestPromotion.cs" />
+    <Compile Include="factories\TestBrand.cs" />
+    <Compile Include="factories\TestLeave.cs" />
+    <Compile Include="factories\TestUserAnalysis.cs" />
+    <Compile Include="factories\TestTransaction.cs" />
+    <Compile Include="factories\TestSupplierAnalysis.cs" />
+    <Compile Include="factories\TestCategory.cs" />
+    <Compile Include="factories\TestAddress.cs" />
+    <Compile Include="factories\TestEmail.cs" />
+    <Compile Include="factories\TestHoliday.cs" />
+    <Compile Include="factories\TestReport.cs" />
+    <Compile Include="factories\TestReportType.cs" />
+    <Compile Include="factories\TestReturns.cs" />
+    <Compile Include="factories\TestDepartment.cs" />
+    <Compile Include="factories\TestSale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="services\OrderTest.cs" />
     <Compile Include="services\OrderLineTest.cs" />
@@ -77,14 +85,14 @@
     <Compile Include="services\UserTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\BusineesLogic\BusinessLogic.csproj">
       <Project>{1bd12ce1-391a-4294-8bd7-61389165291d}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

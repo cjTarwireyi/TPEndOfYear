@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.factories
 {
-    class AddressFactory
+    public class AddressFactory
     {
         public static Address createAddress(List<string> addressDetails)
         {

@@ -54,7 +54,7 @@ namespace BusineesLogic.domain
                 return this;
             }
 
-            public HolidaysBuilder build(HolidaysDTO holidays)
+            public HolidaysBuilder copy(HolidaysDTO holidays)
             {
                 this.employeeID = holidays.employeeID;
                 this.daysExcludingPublic = holidays.daysExcludingPublic;

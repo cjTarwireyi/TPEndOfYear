@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.factories
 {
-    class EmployeeFactory
+    public class EmployeeFactory
     {
         public static EmployeeDTO createEmployee(List<string> employeeDetails)
         {
@@ -14,8 +14,8 @@ namespace BusineesLogic.factories
             .empName(employeeDetails[0])
             .empSurname(employeeDetails[1])
             .empCellNumber(employeeDetails[2])
-            .empDateHired(employeeDetails[3])
-            .empAddress(employeeDetails[4], employeeDetails[5], employeeDetails[6])
+            .empDateHired(DateTime.Now.ToString())
+            .empAddress(employeeDetails[3], employeeDetails[4], employeeDetails[5])
             .build();
 
         }

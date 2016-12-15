@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusineesLogic.factories
 {
-    class EmailFactory
+    public class EmailFactory
     {
         public static EmailDTO createEmail(List<string> emailDetails)
         {

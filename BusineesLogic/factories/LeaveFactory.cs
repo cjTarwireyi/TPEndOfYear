@@ -12,7 +12,6 @@ namespace BusineesLogic.factories
         public static LeaveDTO createLeave(string title, string Desc,DateTime dateModified)
         {
             return new LeaveDTO.LeaveBuilder()
-
             .buildLeaveTitle(title)
             .buildDescription(Desc)
             .buildDateModified(dateModified)
