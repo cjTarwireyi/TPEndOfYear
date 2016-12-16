@@ -141,6 +141,7 @@ namespace BusineesLogic.repositories.Impl
            .buildPayed(myDR.GetBoolean(2))
            .buildAmount(myDR.GetDecimal(3))
            .buildOrderDate(myDR.GetDateTime(4))
+           
            .buildEmpId(myDR.GetInt32(5))
            .build();
             //ordercode missing 
@@ -166,7 +167,7 @@ namespace BusineesLogic.repositories.Impl
         public DataTable getOrdersDetails(DataTable productsOrdered, int orderID)
         {
 
-            string query = @"select orders.orderId,Products.id,Products.productName
+            string query = @"select orders.orderId,Products.id,Products.productName ,orderline.Quantity
                         from orders
                         inner join OrderLine on orders.orderId = orderline.OrderID
                         inner join Products on  orderline.ProductID = Products.id 
@@ -180,8 +181,33 @@ namespace BusineesLogic.repositories.Impl
             con.Close();
             return productsOrdered;
         }
+        public List<Products>orderList( int orderID)
+        {
+            List<Products> lst = new List<Products>();
+            string query = @"select orders.orderId,Products.id,Products.productName ,orderline.Quantity,Products.Price,orders.TotalAmount
+                        from orders
+                        inner join OrderLine on orders.orderId = orderline.OrderID
+                        inner join Products on  orderline.ProductID = Products.id 
+                        where orderline.OrderID = '" + orderID + "'order by orders.orderId ";
 
-
+            SqlCommand cmd = new SqlCommand(query, con);
+            con.Open();
+            SqlDataReader myDR;
+            myDR = cmd.ExecuteReader();
+             while(myDR.Read()){
+           Products product = new Products.ProductsBuilder()
+            .prodNumber(myDR.GetInt32(1))
+            .prodName(myDR.GetString(2))             
+            .prodPrice(myDR.GetDecimal(4))
+            .prodQuantity(myDR.GetInt32(3))
+             
+            .build();
+                 lst.Add(product);
+             }
+            return lst;
+             
+        
+        }
         public DataTable searchOrder(DataTable orderRecord, string id, bool status)
         {
             string query = @"select orderid,custid,payed,amount,orderDate,employeeid,orderCode from Orders where orderid = '" + id + "' and payed = '" + status + "' and active = 'True' ";

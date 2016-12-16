@@ -257,7 +257,7 @@ public partial class site1_Purchase : System.Web.UI.Page
         custError.Visible = false;
         foreach (GridViewRow row in GridView1.Rows)
         {
-
+            product= new Products();
             product.productNumber = Convert.ToInt32(row.Cells[1].Text);
             product.productQuantity = Convert.ToInt32(row.Cells[4].Text);
             amt += facade.findProduct(product.productNumber).price * product.productQuantity;
