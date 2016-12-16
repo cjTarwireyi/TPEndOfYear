@@ -22,5 +22,11 @@ namespace UnitTests.Repos
             Assert.AreEqual(result.email.Trim(),"siraajw19@gmail.com");
             Assert.AreEqual(result.customerNumber, 4);
         }
+
+        [TestMethod]
+        public void test()
+        {
+            
+        }
     }
 }

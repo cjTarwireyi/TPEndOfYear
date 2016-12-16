@@ -78,6 +78,7 @@
     <Compile Include="factories\CategoryFactory.cs" />
     <Compile Include="factories\DepartmentFactory.cs" />
     <Compile Include="factories\EmailFactory.cs" />
+    <Compile Include="factories\EmployeeAnalysisFactory.cs" />
     <Compile Include="factories\EmployeeFactory.cs" />
     <Compile Include="factories\EmployeeHolidayFactory.cs" />
     <Compile Include="factories\Holidayfactory.cs" />
