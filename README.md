@@ -11,7 +11,7 @@
   -Doubleclick localhost_40442.sln<br/>
   See screen shot below
   <img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/cloning project.PNG"/><br/></p>
-  #Project Structure<br/>
+#Project Structure<br/>
    <b>FrondEnd</b><br/>
   TPEndOfYear(1) - consist of all frond end classes and pages
   
