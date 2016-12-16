@@ -12,6 +12,6 @@ public interface IOder
       bool UpdateOrder(OrderDTO model);
       bool deleteOrder(int orderId);
       OrderDTO getLastReocrd();
-      OrderDTO getOrder(int id);
+      OrderDTO getOrderByID(int id);
        
 } 

@@ -119,6 +119,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         try
         {
             orderline.removeItem(productID, orderlineID);
+            product.itemBought(productID, quantity, "+");
             order.calculateOrder(orderID, customerID);
             returns.save(itemReturned);
             loadOrders();
@@ -175,7 +176,6 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
                 if (exist == true)
                 {
                     update(i);
-                    product.itemBought(productID, quantity, "+");
                     break;
                 }
             }
@@ -183,6 +183,7 @@ public partial class site1_UpdateOrder : System.Web.UI.Page
         }
         if (exist == false)
             addToGridView(productID, quantity);
+        product.itemBought(productID, quantity, "+");
         loadOrders();
     }
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)

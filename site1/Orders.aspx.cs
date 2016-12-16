@@ -194,7 +194,7 @@ public partial class site1_Orders : System.Web.UI.Page
 
             row = GridView1.SelectedRow;
             int id = Convert.ToInt32(row.Cells[1].Text);
-            result = order.getOrder(id);
+            result = order.getOrderByID(id);
             lblCustomerName.Text = result.customerId.ToString();
             lblOrderNo.Text = result.orderId.ToString();
             lblAmountDue.Text = result.amount.ToString();

@@ -73,7 +73,7 @@ public partial class site1_Receipt : System.Web.UI.Page
                 doc.Add(p);
 
                 //Customer
-                order = accessOrder.getOrder(Id);
+                order = accessOrder.getOrderByID(Id);
                 customer = accessCustomer.getCustomerID(order.customerId);
                 p = new Paragraph("\n\n", heading3);
                 doc.Add(p);

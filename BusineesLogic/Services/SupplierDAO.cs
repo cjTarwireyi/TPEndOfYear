@@ -1,4 +1,5 @@
 ﻿using BusineesLogic.Interface;
+using BusineesLogic.repositories.Impl;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,96 +11,39 @@ using System.Web;
 /// <summary>
 /// Summary description for SupplierDAO
 /// </summary>
-public class SupplierDAO : IDatabaseFunctions
+public class SupplierDAO 
 {
-    private SqlConnection con;
-    public SupplierDAO()
-    {
-        con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
-    }
+    private SupplierRepositoryImpl repo = new SupplierRepositoryImpl();
+    public SupplierDAO() { }
 
     public void save(SupplierDTO supplier)
     {
-
-        con.Open();
-        SqlCommand cmd = con.CreateCommand();
-        cmd.CommandType = CommandType.Text;
-        cmd.CommandText = "insert into Suppliers([SupplierName], [SupplierSurname], [SupplierCellNumber], [SupplierStreetName],[SupplierSuburb],[SupplierPostalCode])values('" + supplier.supplierName.Trim() + "','" + supplier.supplierSurname.Trim() + "','" + supplier.supplierCellNumber.Trim() + "','" + supplier.supplierStreetName.Trim() + "','" + supplier.supplierSuburb.Trim() + "','" + supplier.supplierPostalCode.Trim() + "')";
-        cmd.ExecuteNonQuery();
-        con.Close();
+        repo.save(supplier);
     }
 
-    public SupplierDTO makeSupplierDTO(SqlDataReader myDR)
-    {
-        SupplierDTO supplier = new SupplierDTO.SupplierBuilder()
-        .supNumber(myDR.GetInt32(0))
-        .supName(myDR.GetString(1))
-        .supSurname(myDR.GetString(2))
-        .supCellNumber(myDR.GetString(3))
-        .supAddress(myDR.GetString(4), myDR.GetString(5), myDR.GetString(6))
-        .build();
-        return supplier;
-    }
 
     public SupplierDTO getSupplier(int id)
     {
-        con.Open();
-        String selectProduct = "select * from Suppliers where SupplierID =" + id + " ";
-        SqlCommand myComm = new SqlCommand(selectProduct, con);
-        SqlDataReader myDR;
-        myDR = myComm.ExecuteReader();
-        if (!myDR.Read())
-            return null;
-        SupplierDTO updateSupplier = makeSupplierDTO(myDR);
-        con.Close();
-
-        return updateSupplier;
+        return repo.findByID(id);
     }
 
     public DataTable populateGrid()
     {
-        DataTable supplier = new DataTable();
-        string query = "select * from suppliers order by supplierID DESC ";
-        con.Open();
-        SqlCommand cmd = new SqlCommand(query, con);
-        SqlDataAdapter da = new SqlDataAdapter(cmd);
-        da.Fill(supplier);
-        da.Dispose();
-        con.Close();
-        return supplier;
+        return repo.findAll();
     }
 
     public void delete(string id)
     {
-        con.Open();
-        SqlCommand cmd = con.CreateCommand();
-        cmd.CommandType = CommandType.Text;
-        cmd.CommandText = "delete from suppliers where supplierID = '" + id + "' ";
-        cmd.ExecuteNonQuery();
-        con.Close();
+        repo.delete(Convert.ToInt32(id));
     }
 
     public void update(string id, List<string> supplierDetails)
     {
-        con.Open();
-        SqlCommand cmd = con.CreateCommand();
-        cmd.CommandType = CommandType.Text;
-        cmd.CommandText = "update suppliers set supplierName ='" + supplierDetails[0] + "', supplierSurname='" + supplierDetails[1] + "',supplierCellNumber='" + supplierDetails[2] + "',supplierStreetName='" + supplierDetails[3] + "',supplierSuburb='" + supplierDetails[4] + "',supplierPostalCode='" + supplierDetails[5] + "' where supplierID = '" + id + "' ";
-        cmd.ExecuteNonQuery();
-        con.Close();
+        repo.updateSupplier(id,supplierDetails);
     }
 
     public DataTable searchSupplier(string id)
     {
-        DataTable supplier = new DataTable();
-        string query = "select * from suppliers where supplierID ='"+id+"' ";
-        con.Open();
-        SqlCommand cmd = new SqlCommand(query, con);
-        SqlDataAdapter da = new SqlDataAdapter(cmd);
-        da.Fill(supplier);
-        da.Dispose();
-        con.Close();
-        return supplier;
+        return repo.searchSupplier(id);
     }
-
 }
