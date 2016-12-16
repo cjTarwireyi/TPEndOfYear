@@ -9,3 +9,7 @@
   -Open TPEndOfYear folder  <br/>
   -Doubleclick localhost_40442.sln<br/>
   
+#Domain Model
+
+<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/DomainStructure.jpg"/> 
+ 
