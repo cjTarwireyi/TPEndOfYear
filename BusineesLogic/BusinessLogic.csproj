@@ -74,6 +74,7 @@
     <Compile Include="domain\UserAnalysisDTO.cs" />
     <Compile Include="factories\AddressFactory.cs" />
     <Compile Include="factories\BrandFactory.cs" />
+    <Compile Include="factories\BusinessRuleFactory.cs" />
     <Compile Include="factories\CategoryFactory.cs" />
     <Compile Include="factories\DepartmentFactory.cs" />
     <Compile Include="factories\EmailFactory.cs" />
