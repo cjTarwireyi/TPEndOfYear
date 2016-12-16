@@ -21,9 +21,10 @@
   <b>Testing</b>
   factories folder- contains test cases fo objects creation and updating
   services folder - contains test cases for CRUD
+ 
   
  
-  "https://github.com/cjTarwireyi/TPEndOfYear/blob/master/projectStructure.PNG"/>
+ <img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/projectStructure.PNG"/>
   
 #Domain Model
 
