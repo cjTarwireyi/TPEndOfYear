@@ -14,5 +14,6 @@ namespace BusineesLogic.repositories
         void delete(int id);
         DataTable findAll();
         E findByID(ID id);
+
     }
 }

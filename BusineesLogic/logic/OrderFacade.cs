@@ -53,9 +53,10 @@ public class OrderFacade
     private bool makeOrderLine(List< Products> products, int orderId)
     {
         List<OrderLineDTO> range = new List<OrderLineDTO>();
-        OrderLineDTO ol = new OrderLineDTO();
+        OrderLineDTO ol;
         foreach (var product in products)
         {
+            ol = new OrderLineDTO();
             ol.orderId = orderId; 
             ol.productID = product.productNumber;
             ol.quantity = product.productQuantity;

@@ -96,13 +96,13 @@ public partial class site1_Receipt : System.Web.UI.Page
 
                 p = new Paragraph("\n", heading3);
                 p.Alignment = Element.ALIGN_CENTER;
-                List<OrderLineDTO> items = accesssOrderLine.getOrderItems(Id);
+                List<Products> items = accessOrder.orderList(Id);
                 p.Add("Product Name" + "                          " + "Price" + "         " + "Quantity" + "\n");
                 for (int i = 0; i < items.Count; i++)
                 {
-                    orderline = (OrderLineDTO)items[i];
-                    product = accessProduct.getProduct(orderline.productID);
-                    p.Add(product.productName + "         " + product.price + "            " + product.productQuantity + "\n");
+                    product = (Products)items[i];
+                   // product = accessProduct.getProduct(orderline.productID);
+                    p.Add(product.productName + "       " + product.price + "            " + product.productQuantity + "\n");
                     // ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('" + order.productID+ "');", true);
                 }
                 p.Add("\n\n\n\n");

@@ -55,6 +55,10 @@ public class OrdersDAO : IOder
     {
         return repo.populateGrid(month,year,status);
     }
+    public List<Products> orderList(int orderID)
+    {
+        return repo.orderList(orderID);
+    }
 
     public void calculateOrder(string orderID,string customerID)
     {
