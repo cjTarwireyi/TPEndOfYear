@@ -11,7 +11,7 @@
   See screen shot below
   <img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/cloning project.PNG"/>
   
-  #Project Structure
+  #Project Structure<br/>
    <b>FrondEnd</b><br/>
   TPEndOfYear(1) - consist of all frond end classes and pages
   
