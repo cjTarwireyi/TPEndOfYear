@@ -9,3 +9,5 @@
   -Open TPEndOfYear folder  <br/>
   -Doubleclick localhost_40442.sln<br/>
   
+#Domain Model
+https://cloud.githubusercontent.com/assets/10824003/21251314/87b77b12-c355-11e6-86eb-fdb46d8b6ee2.jpg
