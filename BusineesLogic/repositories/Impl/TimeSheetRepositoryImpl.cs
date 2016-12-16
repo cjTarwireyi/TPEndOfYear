@@ -115,10 +115,10 @@ namespace BusineesLogic.repositories.Impl
             {
                 timeSheet = new TimeSheetDTO.TimeSheetBuilder()
                                    .buildId(reader.GetInt32(0))
-                                   .buildDate(reader.GetDateTime(1))
-                                   .buildHourIn(reader.GetInt32(2))
-                                   .buildHourOut(reader.GetInt32(3))
-                                   .buildEmployeeID(reader.GetInt32(4))
+                                   .buildDate(reader.GetDateTime(2))
+                                   .buildHourIn(reader.GetInt32(3))
+                                   .buildHourOut(reader.GetInt32(4))
+                                   .buildEmployeeID(reader.GetInt32(1))
                                    .build();
 
             }
