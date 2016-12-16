@@ -8,6 +8,8 @@
   -Clone the project into : ‪C:\Users\Public (to avoid changing the connection string)<br/>
   -Open TPEndOfYear folder  <br/>
   -Doubleclick localhost_40442.sln<br/>
+  See screen shot below
+  <img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/cloning project.PNG"/>
   
   #Project Structure
    <b>FrondEnd</b>
