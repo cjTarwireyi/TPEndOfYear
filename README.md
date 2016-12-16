@@ -4,12 +4,13 @@
       SQL Server 
       Windows 8 and above
       Google Chrome Browser
+      <p>
 #Instructions On How Run The Project
   -Clone the project into : ‪C:\Users\Public (to avoid changing the connection string)<br/>
   -Open TPEndOfYear folder  <br/>
   -Doubleclick localhost_40442.sln<br/>
   See screen shot below
-  <img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/cloning project.PNG"/>
+  <img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/cloning project.PNG"/><br/></p>
   
   #Project Structure<br/>
    <b>FrondEnd</b><br/>
