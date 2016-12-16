@@ -12,15 +12,15 @@
   <img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/cloning project.PNG"/>
   
   #Project Structure
-   <b>FrondEnd</b>
+   <b>FrondEnd</b><br/>
   TPEndOfYear(1) - consist of all frond end classes and pages
   
-  <b>Backend</b>
+  <b>Backend</b><br/>
   domain folder- contains all the domain classes.<br/>
   factories- containr all the factories used to create objects<br/>
   intarface folder- contains all interface methods<br/>
   services(repository)- contains classes that accesses the database<br/>
-  <b>Testing</b>
+  <b>Testing</b><br/>
   factories folder- contains test cases fo objects creation and updating<br/>
   services folder - contains test cases for CRUD<br/>
  
