@@ -8,26 +8,42 @@ using BusineesLogic.Interface;
 using System.Data;
 using BusineesLogic.domain;
 using BusineesLogic.factories;
+using BusineesLogic.services;
 
 public partial class TimeSheet : System.Web.UI.Page
 {
     private DataTable empDataTable;
+    private DataTable table;
     private UserDTO userDto;
     private UserDTO userDtoUpdate;
-    private EmployeeDAO service = new EmployeeDAO();
+    private EmployeeDAO employeeService = new EmployeeDAO();
+    private TimeSheetDAO timeSheetService;
     protected void Page_Load(object sender, EventArgs e)
     {
         session();
+        if (!this.IsPostBack)
+        {
+
+            table = new DataTable();
+            MakeTable();
+             
+            LoadGridHelper();
+        }
+        else
+            table = (DataTable)ViewState["DataTable"];
+        ViewState["DataTable"] = table;
             empDataTable = new DataTable();
-            empDataTable = service.getEmpComboboxData();
+            empDataTable = employeeService.getEmpComboboxData();
 
 
             empList.DataSource = empDataTable;
             empList.DataValueField = "EmployeeID";
             empList.DataTextField = "empName";
-            // custList.Col = "CustomerSurname" +"  CustomerName" ;
+            
             empList.DataBind();
             empList.SelectedIndex = -1;
+           // BindGrid();
+
     }
     protected void Submit_Click(object sender, EventArgs e)
     { }
@@ -35,32 +51,38 @@ public partial class TimeSheet : System.Web.UI.Page
     { }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        TimeSheetDTO timesheeetDto; 
-         
-        string name = Request.Form["tdate"];
-        
-        
-       string dt = this.Request.Form.Get("tdate");
-       DateTime date = DateTime.Parse(dt);
-       String timeIn = this.Request.Form.Get("timein");
-       String timeOut = this.Request.Form.Get("timeout");
-    //   timesheeetDto = TimeSheetFactory.createTimeSheet(Convert.ToInt32(empList.SelectedItem.Value), date, timeIn, timeOut, txtComents.Text);
-       
 
-         
-        
-        
-        
-        ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Numbers Only!!!');", true);
-        //table = new DataTable();
-       // MakeTable();
+        try
+        {
+            TimeSheetDTO timesheeetDto;
+            timeSheetService = new TimeSheetDAO();
+
+            string name = Request.Form["tdate"];
 
 
-       // LoadGridHelper();
-        //txtRole.Text = string.Empty;
-        //txtDescription.Text = string.Empty;
+            string dt = this.Request.Form.Get("tdate");
+            DateTime date = DateTime.Parse(dt);
+            String timeIn = this.Request.Form.Get("timein");
+            String timeOut = this.Request.Form.Get("timeout");
+            timesheeetDto = TimeSheetFactory.createTimeSheet(Convert.ToInt32(empList.SelectedItem.Value), date, timeIn, timeOut, txtComents.Text);
+            timeSheetService.addTimeSheet(timesheeetDto);
 
 
+
+
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('TimeSheet SuccessFully Added!!!');", true);
+
+            table = new DataTable();
+            MakeTable();
+
+
+            LoadGridHelper();
+        }
+        catch (Exception ex)
+        {
+            Response.Redirect("ErrorPage.aspx?ErrorMessage=" + ex.Message.Replace('\n', ' '), false);
+        }
     }
     protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
     {
@@ -136,14 +158,17 @@ public partial class TimeSheet : System.Web.UI.Page
     }
     private void MakeTable()
     {
-        //table.Columns.Add("roleId");
-        //table.Columns.Add("RoleName");
-        //table.Columns.Add("RoleDescription");
+        table.Columns.Add("TimeSheetId");
+        table.Columns.Add("empName");
+        table.Columns.Add("TimeSheetDate");
+        table.Columns.Add("TimeIn");
+        table.Columns.Add("TimeOut");
+        table.Columns.Add("Comments");
 
     }
     private void BindGrid()
     {
-        GridView1.DataSource = "";// table;
+        GridView1.DataSource =  table;
         GridView1.DataBind();
     }
     private void AppendLastRecordGrid()
@@ -178,7 +203,8 @@ public partial class TimeSheet : System.Web.UI.Page
 
         try
         {
-            GridView1.DataSource="";
+            timeSheetService = new TimeSheetDAO();
+            GridView1.DataSource=timeSheetService.findAll();
             GridView1.DataBind();
         }
         catch (Exception ex)

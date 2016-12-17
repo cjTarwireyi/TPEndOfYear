@@ -24,7 +24,10 @@ namespace BusineesLogic.services
         {
             throw new NotImplementedException();
         }
-
+        public DataTable findAll()
+        {
+            return repo.findAll();
+        }
         public bool ifTimeSheetExis(string id)
         {
             throw new NotImplementedException();

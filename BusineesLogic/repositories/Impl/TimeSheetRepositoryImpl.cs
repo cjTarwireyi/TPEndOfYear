@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data;
 namespace BusineesLogic.repositories.Impl
 {
     public class TimeSheetRepositoryImpl : TimeSheetRepository
@@ -31,10 +31,18 @@ namespace BusineesLogic.repositories.Impl
         {
             throw new NotImplementedException();
         }
-
-        public System.Data.DataTable findAll()
+        
+        public DataTable findAll()
         {
-            throw new NotImplementedException();
+            DataTable timesheets = new DataTable();
+            string query = "select id,DateWorked,TimeIn,TimeOut,Comments, Concat(EmployeeName,EmployeeSurname)AS empName from TimeSheet inner join Employees on Timesheet.EmployeeID = Employees.EmployeeID  Order by id DESC";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(timesheets);
+            da.Dispose();
+            con.Close();
+            return timesheets;
         }
 
         public domain.TimeSheetDTO findByID(int id)

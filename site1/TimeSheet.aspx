@@ -46,12 +46,13 @@
 </asp:Content>
 
 
+
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <div class="main row">
+    <div class="main row col-lg-offset-0">
         <h1><strong>TimeSheet</strong></h1>
         <br />
-        <div class="col-lg-6 col-lg-offset-4">
+        <div class="col-lg-6 col-lg-offset-0">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
 
@@ -109,7 +110,7 @@
                             <asp:TextBox ID="txtComents" TextMode="multiline" Columns="50" Rows="5" runat="server" Height="100px" Width="290px"
                                 class="form-control" placeholder="Comments" MaxLength="50"></asp:TextBox>
                         </div>
-                        
+                        <br />
 
                         <asp:Button ID="btnAdd" ValidationGroup="Group1" runat="server" Height="32px" Text="Add"
                             Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />
@@ -118,22 +119,25 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-lg-offset-0">
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="roleId" Height="190px" Width="1080px" AllowSorting="True" AllowPaging="true" GridLines="Vertical" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowUpdated="GridView1_RowUpdated">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" Height="190px" Width="500px" AllowSorting="True" AllowPaging="True" GridLines="None" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" OnRowUpdated="GridView1_RowUpdated" CellPadding="4" ForeColor="#333333">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
-                            <asp:BoundField HeaderText="ID" DataField="roleId" InsertVisible="False" ReadOnly="True" Visible="False" />
-                            <asp:BoundField HeaderText="Role Title" DataField="RoleName" />
-                            <asp:BoundField HeaderText="Description" DataField="RoleDescription" />
+                            <asp:BoundField HeaderText="ID" DataField="Id" InsertVisible="False" ReadOnly="True" Visible="False" />
+                            <asp:BoundField DataField="empName" HeaderText="Employee" />
+                            <asp:BoundField DataField="DateWorked" HeaderText="Date Worked" />
+                            <asp:BoundField HeaderText="Time In" DataField="TimeIn" />
 
                             <asp:TemplateField Visible="false">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblRoleID" runat="server" Text='<%#Eval("roleId") %>'></asp:Label>
+                                    <asp:Label ID="lblID" runat="server" Text='<%#Eval("Id") %>'></asp:Label>
 
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:BoundField DataField="TimeOut" HeaderText="Time Out" />
+                            <asp:BoundField DataField="Comments" HeaderText="Comments" />
                         </Columns>
                         <EditRowStyle BackColor="#999999" />
                         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
