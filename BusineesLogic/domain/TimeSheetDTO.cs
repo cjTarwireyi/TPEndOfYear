@@ -13,16 +13,18 @@ namespace BusineesLogic.domain
             this.id = timeSheetBuilder.id;
             this.employeeId = timeSheetBuilder.employeeId;
             this.date = timeSheetBuilder.date;
-            this.hourIn = timeSheetBuilder.hourIn;
-            this.hourOut = timeSheetBuilder.hourOut;
+            this.timeIn = timeSheetBuilder.timeIn;
+            this.timeOut = timeSheetBuilder.timeOut;
+            this.comments = timeSheetBuilder.comments;
 
         }
         public int id { get; set; }
         public int employeeId { get; set; }
 
         public DateTime date { get; set; }
-        public int hourIn { get; set; }
-        public int hourOut { get; set; }
+        public string timeOut { get; set; }
+        public string timeIn { get; set; }
+        public string comments { get; set; }
        // public int minutes { get; set; }
 
         public class TimeSheetBuilder
@@ -30,9 +32,9 @@ namespace BusineesLogic.domain
             public int id;
             public int employeeId;
             public DateTime date;
-            public int hourIn;
-            public int hourOut;
-           // public int minutes;
+            public string timeIn;
+            public string timeOut;
+            public string comments;
 
             public TimeSheetBuilder buildId(int id)
             {
@@ -48,14 +50,19 @@ namespace BusineesLogic.domain
                 this.date = date;
                 return this;
             }
-            public TimeSheetBuilder buildHourIn(int hourIn)
+            public TimeSheetBuilder buildTimeIn(string timeIn)
             {
-                this.hourIn = hourIn;
+                this.timeIn = timeIn;
                 return this;
             }
-            public TimeSheetBuilder buildHourOut(int hourOut)
+            public TimeSheetBuilder buildTimeOut(string timeOut)
             {
-                this.hourOut = hourOut;
+                this.timeOut = timeOut;
+                return this;
+            }
+            public TimeSheetBuilder buildComments(string comments)
+            {
+                this.comments = comments;
                 return this;
             }
             public TimeSheetBuilder copy(TimeSheetDTO timesheetDto)
@@ -63,8 +70,9 @@ namespace BusineesLogic.domain
                 this.id = timesheetDto.id;
                 this.employeeId = timesheetDto.employeeId;
                 this.date = timesheetDto.date;
-                this.hourIn = timesheetDto.hourIn;
-                this.hourOut = timesheetDto.hourOut;
+                this.timeIn = timesheetDto.timeIn;
+                this.timeOut = timesheetDto.timeOut;
+                this.comments = timesheetDto.comments;
                 return this;
             }
             public TimeSheetDTO build()

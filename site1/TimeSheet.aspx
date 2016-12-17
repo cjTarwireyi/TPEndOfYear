@@ -60,7 +60,7 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
                             
-                            <asp:DropDownList ID="custList" runat="server"  Height="35px" Width="290px"
+                            <asp:DropDownList ID="empList" runat="server"  Height="35px" Width="290px"
                                 class="form-control" placeholder="Customer">
                             </asp:DropDownList><br/>                  
 

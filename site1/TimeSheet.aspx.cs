@@ -4,14 +4,30 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BusineesLogic.Interface;
+using System.Data;
+using BusineesLogic.domain;
+using BusineesLogic.factories;
 
 public partial class TimeSheet : System.Web.UI.Page
 {
+    private DataTable empDataTable;
     private UserDTO userDto;
     private UserDTO userDtoUpdate;
+    private EmployeeDAO service = new EmployeeDAO();
     protected void Page_Load(object sender, EventArgs e)
     {
         session();
+            empDataTable = new DataTable();
+            empDataTable = service.getEmpComboboxData();
+
+
+            empList.DataSource = empDataTable;
+            empList.DataValueField = "EmployeeID";
+            empList.DataTextField = "empName";
+            // custList.Col = "CustomerSurname" +"  CustomerName" ;
+            empList.DataBind();
+            empList.SelectedIndex = -1;
     }
     protected void Submit_Click(object sender, EventArgs e)
     { }
@@ -19,14 +35,16 @@ public partial class TimeSheet : System.Web.UI.Page
     { }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        //RoleDTO role = RoleFactory.createRole(txtRole.Text, txtDescription.Text);
-        //service.addRole(role);
+        TimeSheetDTO timesheeetDto; 
+         
         string name = Request.Form["tdate"];
-        //DateTime dt = new DateTime();
+        
+        
        string dt = this.Request.Form.Get("tdate");
        DateTime date = DateTime.Parse(dt);
        String timeIn = this.Request.Form.Get("timein");
        String timeOut = this.Request.Form.Get("timeout");
+    //   timesheeetDto = TimeSheetFactory.createTimeSheet(Convert.ToInt32(empList.SelectedItem.Value), date, timeIn, timeOut, txtComents.Text);
        
 
          

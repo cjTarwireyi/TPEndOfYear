@@ -48,7 +48,7 @@ namespace BusineesLogic.repositories.Impl
                 var Datetime = DateTime.Now;
 
                 con.Open();
-                string insertQuery = "INSERT INTO TimeSheet (DateWorked,HourIn,HourOut,EmployeeID) VALUES ('" + model.date + "','" + model.hourIn + "','" + model.hourOut + "','" + model.employeeId + "')";
+                string insertQuery = "INSERT INTO TimeSheet (DateWorked,TimeIn,TimeOut,EmployeeID,Comments) VALUES ('" + model.date + "','" + model.timeIn + "','" + model.timeOut + "','" + model.employeeId + "','"+model.comments+"')";
                 SqlCommand cmd = new SqlCommand(insertQuery, con);
                 cmd.ExecuteNonQuery();
 
@@ -67,7 +67,7 @@ namespace BusineesLogic.repositories.Impl
             try
             {
                 con.Open();
-                string updateQuery = "Update TimeSheet Set DateWorked= '" + model.date + "',HourIn='" + model.hourIn + "',HourOut='" + model.hourOut + "',EmployeeID='" + model.employeeId + "' Where Id ='" + model.id + "'";
+                string updateQuery = "Update TimeSheet Set DateWorked= '" + model.date + "',TimeIn='" + model.timeIn + "',TimeOut='" + model.timeOut + "',EmployeeID='" + model.employeeId + "', Comments = '"+model.comments+"' Where Id ='" + model.id + "'";
                 SqlCommand cmd = new SqlCommand(updateQuery, con);
                 cmd.ExecuteNonQuery();
                 return true;
@@ -116,8 +116,8 @@ namespace BusineesLogic.repositories.Impl
                 timeSheet = new TimeSheetDTO.TimeSheetBuilder()
                                    .buildId(reader.GetInt32(0))
                                    .buildDate(reader.GetDateTime(2))
-                                   .buildHourIn(reader.GetInt32(3))
-                                   .buildHourOut(reader.GetInt32(4))
+                                   .buildTimeIn(reader.GetString(3))
+                                   .buildTimeOut(reader.GetString(4))
                                    .buildEmployeeID(reader.GetInt32(1))
                                    .build();
 

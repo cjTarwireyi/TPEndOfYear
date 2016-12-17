@@ -9,13 +9,14 @@ namespace BusineesLogic.factories
 {
    public class TimeSheetFactory
     {
-       public static TimeSheetDTO createTimeSheet(int employeeId, DateTime day, int hour, int minutes)
+       public static TimeSheetDTO createTimeSheet(int employeeId, DateTime date, string timeIn, string timeOut,string comments)
        {
            return new TimeSheetDTO.TimeSheetBuilder()
            .buildEmployeeID(employeeId)
-           .buildDate(day)
-           .buildHourIn(hour)
-           .buildHourOut(minutes)
+           .buildDate(date)
+           .buildTimeIn(timeIn)
+           .buildTimeOut(timeOut)
+           .buildComments(comments)
            .build();
        }
         

@@ -51,7 +51,10 @@ public class EmployeeDAO
     {
         return repo.getHolidayInfo(id);
     }
-
+    public DataTable getEmpComboboxData()
+    {
+        return repo.findAll();
+    }
     public DataTable searchEmployee(string id)
     {
         return repo.searchEmployee(id);

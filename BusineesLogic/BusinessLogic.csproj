@@ -47,9 +47,11 @@
     <Compile Include="Class1.cs" />
     <Compile Include="domain\AccountDTO.cs" />
     <Compile Include="domain\Address.cs" />
+    <Compile Include="domain\Brand.cs" />
     <Compile Include="domain\BrandDTO.cs" />
     <Compile Include="domain\CategoryDTO.cs" />
     <Compile Include="domain\BusinessRulesDTO.cs" />
+    <Compile Include="domain\CompanyRulesDTO.cs" />
     <Compile Include="domain\CurrencyDTO.cs" />
     <Compile Include="domain\CustomerAnalysisiDTO.cs" />
     <Compile Include="domain\EmailDTO.cs" />
@@ -58,6 +60,8 @@
     <Compile Include="domain\EmployeeType.cs" />
     <Compile Include="domain\HolidaysDTO.cs" />
     <Compile Include="domain\LeaveDTO.cs" />
+    <Compile Include="domain\PeriodDTO.cs" />
+    <Compile Include="domain\ProductReturn.cs" />
     <Compile Include="factories\AccountFactory.cs" />
     <Compile Include="factories\PaymentFactory.cs" />
     <Compile Include="domain\ProductAnalysisDTO.cs" />
@@ -119,6 +123,7 @@
     <Compile Include="repositories\OrderLineRepository.cs" />
     <Compile Include="repositories\OrdersRepository.cs" />
     <Compile Include="repositories\ProductRepository.cs" />
+    <Compile Include="repositories\PromotionRepository.cs" />
     <Compile Include="repositories\ReturnRepository.cs" />
     <Compile Include="repositories\RoleRepository.cs" />
     <Compile Include="repositories\SupplierRepository.cs" />
