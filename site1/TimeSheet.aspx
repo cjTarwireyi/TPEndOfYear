@@ -49,33 +49,67 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="content" runat="Server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="main row">
-        <h1><strong>Roles</strong></h1>
+        <h1><strong>TimeSheet</strong></h1>
         <br />
         <div class="col-lg-6 col-lg-offset-4">
             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                 <ContentTemplate>
 
+                    <div class="form-group">
+                        Employee
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
+                            
+                            <asp:DropDownList ID="custList" runat="server"  Height="35px" Width="290px"
+                                class="form-control" placeholder="Customer">
+                            </asp:DropDownList><br/>                  
+
+                        </div>
+ 
+                        <asp:Label ID="Label1" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
+                    </div>
+                    
+
 
                     <div class="form-group">
+                         Date
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
-                            <asp:TextBox ID="txtRole" runat="server" Width="290px"
-                                class="form-control" placeholder="TimeSheet "></asp:TextBox>
+                           
+                             <input type="date"  class="form-control" id="tdate" style="width:200px" name="tdate"/><br />
                         </div>
-                        <asp:RequiredFieldValidator ValidationGroup="Group1" ID="RequiredFieldValidator1" runat="server"
-                            ErrorMessage="Role  Title Required!" ControlToValidate="txtRole" ForeColor="Red"></asp:RequiredFieldValidator>
-                        <br />
-                        <asp:Label ID="lblErrorProd" Visible="false" runat="server" ForeColor="Red" Text="invalid Product Code"></asp:Label>
-                    </div>
+                           </div>
+                    
+
+                     <div class="form-group">
+                        Timein
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
+                                                        
+                            <input type="time" name="timein" id="timein" class="form-control" style="width:200px"><br/>
+                           
+                              
+                        </div>
+                         </div>
+
+                     <div class="form-group">
+                        TimeOut
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
+                                                        
+                            <input type="time" name="timeout" id="timeout" class="form-control" style="width:200px"><br/>
+                           
+                              
+                        </div>
+                         </div>
+                      
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-cubes"></span></span>
-                            <asp:TextBox ID="txtDescription" TextMode="multiline" Columns="50" Rows="5" runat="server" Height="100px" Width="290px"
-                                class="form-control" placeholder="Description" MaxLength="50"></asp:TextBox>
+                            <asp:TextBox ID="txtComents" TextMode="multiline" Columns="50" Rows="5" runat="server" Height="100px" Width="290px"
+                                class="form-control" placeholder="Comments" MaxLength="50"></asp:TextBox>
                         </div>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                            ErrorMessage="Quantity Required!" ValidationGroup="Group1" ControlToValidate="txtDescription" ForeColor="Red"></asp:RequiredFieldValidator>
-                        <br />
+                        
 
                         <asp:Button ID="btnAdd" ValidationGroup="Group1" runat="server" Height="32px" Text="Add"
                             Width="126px" class="btn btn-success" OnClick="btnAdd_Click" />

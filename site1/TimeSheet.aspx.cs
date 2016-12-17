@@ -21,15 +21,26 @@ public partial class TimeSheet : System.Web.UI.Page
     {
         //RoleDTO role = RoleFactory.createRole(txtRole.Text, txtDescription.Text);
         //service.addRole(role);
+        string name = Request.Form["tdate"];
+        //DateTime dt = new DateTime();
+       string dt = this.Request.Form.Get("tdate");
+       DateTime date = DateTime.Parse(dt);
+       String timeIn = this.Request.Form.Get("timein");
+       String timeOut = this.Request.Form.Get("timeout");
+       
 
-
+         
+        
+        
+        
+        ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Numbers Only!!!');", true);
         //table = new DataTable();
-        MakeTable();
+       // MakeTable();
 
 
-        LoadGridHelper();
-        txtRole.Text = string.Empty;
-        txtDescription.Text = string.Empty;
+       // LoadGridHelper();
+        //txtRole.Text = string.Empty;
+        //txtDescription.Text = string.Empty;
 
 
     }

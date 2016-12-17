@@ -51,7 +51,7 @@
 
 
         <h3>
-            <asp:Label ID="lblTitle" runat="server" ForeColor="Red" Text="User   Registration</"></asp:Label>
+            <asp:Label ID="lblTitle" runat="server"  Text="User   Registration</"></asp:Label>
         </h3>
 
 
