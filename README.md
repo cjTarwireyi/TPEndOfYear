@@ -10,8 +10,8 @@
 	The required format is: yyyy-MM-dd
 	Very important please set you time format to this!!!!!
 #NOTICE
-	please note that none of the data is actual data this is testing database uploaded<br/>
-	<b>Passowrd for login</b><br/>
+	Please note that none of the data is actual data this is testing database uploaded
+	Passowrd for login
 	Admin
 		username :cj   password:cj
 	Non Admin
