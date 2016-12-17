@@ -109,6 +109,7 @@
     <Compile Include="repositories\Impl\OrderLineRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\OrderRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\ProductRepositoryImpl.cs" />
+    <Compile Include="repositories\Impl\PromotionRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\ReturnRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\RoleRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\SupplierRepositoryImpl.cs" />
