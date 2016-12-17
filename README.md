@@ -17,7 +17,9 @@
 		username :cj   password:cj
 	Non Admin
 		username:sw password:sw
-	
+#LINK
+	http://admindeploy-001-site1.ctempurl.com/Default.aspx
+		
 #System Requirements
       Visual Studio Ultimate 2013
       SQL Server 
