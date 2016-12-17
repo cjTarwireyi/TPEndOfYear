@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using iTextSharp.text;
 using  iTextSharp.text.pdf;
+using BusineesLogic.domain;
+
 
 
 
@@ -112,7 +114,7 @@ public partial class site1_PaymentSlip : System.Web.UI.Page
                 doc.Add(p);
 
                 //Account Created 
-                p = new Paragraph("\n\nAccount created on:\n" + customer.dateAccountCreated , heading2);
+                p = new Paragraph("\n\nAccount created on:\n" + customer.dateCreated , heading2);
                 p.Alignment = Element.ALIGN_CENTER;
                 doc.Add(p);
 

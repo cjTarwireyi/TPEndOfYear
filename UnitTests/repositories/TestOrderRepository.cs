@@ -1,16 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BusineesLogic.repositories.Impl;
+using System.Collections.Generic;
 using BusineesLogic.factories;
-namespace UnitTests.Repos
+
+namespace UnitTests.repositories
 {
     [TestClass]
-    public class OrderTest
+    public class TestOrderRepository
     {
+        private OrderDTO result;
+        private OrderRepositoryImpl repo = new OrderRepositoryImpl();
+
         [TestMethod]
-        public void TestMethod1()
-        {
-            IOder orderService = new OrdersDAO();
+        public void testInsertUpdateDeleteOrder()
+        {  
             Products product = new Products();
             Products product2 = new Products();
             decimal amt = 0;
@@ -30,26 +34,25 @@ namespace UnitTests.Repos
             prodList.Add(product2);
 
             OrderDTO order = OrderFactory.createOrder(1, 1, amt, true, prodList);
-            orderService.AddOrder(order);
 
             //INSERTING ORDER
-           OrderDTO addedOrder= orderService.getLastReocrd();
-           Assert.AreEqual(30, addedOrder.amount);
-           Assert.AreEqual(true, addedOrder.payed);
+            repo.AddOrder(order);
+            OrderDTO addedOrder = repo.getLastReocrd();
+            Assert.AreEqual(30, addedOrder.amount);
+            Assert.AreEqual(true, addedOrder.payed);
 
             //TESTING UPDATE
-           OrderDTO updateOrder = new OrderDTO.OrderBuilder()
-           
-           .copy(addedOrder)
-           .buildAmount(40)
-           .build();
+            OrderDTO updateOrder = new OrderDTO.OrderBuilder()
+
+            .copy(addedOrder)
+            .buildAmount(40)
+            .build();
 
             //TESTING DELETE
-             orderService.deleteOrder(addedOrder.orderId);
-             OrderDTO deletedOrder = orderService.getOrderByID(addedOrder.orderId);
-             Assert.IsNull(deletedOrder);
+            repo.deleteOrder(addedOrder.orderId);
+            OrderDTO deletedOrder = repo.findByID(addedOrder.orderId);
+            Assert.IsNull(deletedOrder);
 
-             
         }
     }
 }

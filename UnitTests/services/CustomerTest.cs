@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BusineesLogic.domain;
 
 namespace UnitTests.Repos
 {

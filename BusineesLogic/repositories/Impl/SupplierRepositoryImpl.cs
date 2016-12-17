@@ -30,7 +30,12 @@ namespace BusineesLogic.repositories.Impl
 
         public void update(SupplierDTO entity)
         {
-            throw new NotImplementedException();
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update suppliers set supplierName ='" + entity.supplierName + "', supplierSurname='" + entity.supplierSurname + "',supplierCellNumber='" + entity.supplierCellNumber + "',supplierStreetName='" + entity.supplierStreetName + "',supplierSuburb='" + entity.supplierSuburb + "',supplierPostalCode='" + entity.supplierPostalCode + "' where supplierID = '" + entity.supplierNumber + "' ";
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
 
         public void delete(int id)
@@ -103,6 +108,20 @@ namespace BusineesLogic.repositories.Impl
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(supplier);
             da.Dispose();
+            con.Close();
+            return supplier;
+        }
+
+        public SupplierDTO getLastReocrd()//last customer
+        {
+            SupplierDTO supplier = null;
+            con.Open();
+            String selectCustomer = "SELECT TOP 1 * FROM  suppliers Order by supplierID DESC ";
+            SqlCommand myComm = new SqlCommand(selectCustomer, con);
+            SqlDataReader myDR;
+            myDR = myComm.ExecuteReader();
+            if (myDR.Read())
+                supplier = makeSupplierDTO(myDR);
             con.Close();
             return supplier;
         }

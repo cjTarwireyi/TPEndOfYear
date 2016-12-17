@@ -16,11 +16,7 @@ using BusineesLogic.repositories.Impl;
 public class EmployeeDAO
 {
     private EmployeeRepositoryImpl repo = new EmployeeRepositoryImpl();
-    public EmployeeDAO()
-    {
-        
-    }
-
+    public EmployeeDAO() { }
     public void save(EmployeeDTO emp)
     {
         repo.save(emp);
@@ -29,7 +25,6 @@ public class EmployeeDAO
     public void saveHoliday(HolidaysDTO emp,string id)
     {
         repo.saveHoliday(emp, id);
-
     }
 
     public EmployeeDTO getEmployee(int id)

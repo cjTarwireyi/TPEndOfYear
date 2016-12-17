@@ -77,7 +77,14 @@
     <Compile Include="factories\TestPayment.cs" />
     <Compile Include="factories\TestPromotionDetails.cs" />
     <Compile Include="factories\TestEmployeeAnalysis.cs" />
+    <Compile Include="factories\TestAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="repositories\TestCustomerRepository.cs" />
+    <Compile Include="repositories\TestEmployeeRepository.cs" />
+    <Compile Include="repositories\TestOrderRepository.cs" />
+    <Compile Include="repositories\TestProductRepository.cs" />
+    <Compile Include="repositories\TestReturnRepository.cs" />
+    <Compile Include="repositories\TestSupplierRepository.cs" />
     <Compile Include="services\OrderTest.cs" />
     <Compile Include="services\OrderLineTest.cs" />
     <Compile Include="services\CustomerTest.cs" />
@@ -98,9 +105,6 @@
       <Project>{1bd12ce1-391a-4294-8bd7-61389165291d}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="repositories\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

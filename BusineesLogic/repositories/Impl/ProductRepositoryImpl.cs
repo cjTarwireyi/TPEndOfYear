@@ -33,7 +33,12 @@ namespace BusineesLogic.repositories.Impl
 
         public void update(Products entity)
         {
-            throw new NotImplementedException();
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update products set productName ='" + entity.productName + "', productDescription='" + entity.productDescription + "',price='" + entity.price + "',Quantity='" + entity.productQuantity + "',supplierID='" + entity.productSupplierID + "' where id = '" + entity.productNumber + "' ";
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
 
         public void delete(int id)
@@ -307,6 +312,21 @@ namespace BusineesLogic.repositories.Impl
             da.Dispose();
             con.Close();
             return products;
+        }
+
+
+        public Products getLastReocrd()//last customer
+        {
+            Products product = null;
+            con.Open();
+            String selectCustomer = "SELECT TOP 1 * FROM  products Order by id DESC ";
+            SqlCommand myComm = new SqlCommand(selectCustomer, con);
+            SqlDataReader myDR;
+            myDR = myComm.ExecuteReader();
+            if (myDR.Read())
+                product = makeProductDTO(myDR);
+            con.Close();
+            return product;
         }
 
     }

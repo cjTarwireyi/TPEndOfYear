@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusineesLogic.domain;
 
 namespace BusineesLogic.repositories.Impl
 {
@@ -31,7 +32,12 @@ namespace BusineesLogic.repositories.Impl
 
         public void update(CustomerDTO entity)
         {
-            throw new NotImplementedException();
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update customers set CustomerName ='" + entity.name+ "', CustomerSurname='" + entity.surname + "',CustomerCellNumber='" + entity.cellNumber + "',CustomerEmail='" + entity.email + "', CustomerStreetName ='" + entity.StreetName + "',CustomerSuburb='" + entity.Suburb + "',CustomerPostalCode='" + entity.postalCode + "' where CustomerID = '" + entity.customerNumber + "' ";
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
 
         public void delete(int id)

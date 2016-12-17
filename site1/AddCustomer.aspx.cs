@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BusineesLogic.domain;
 
 public partial class site1_AddCustomer : System.Web.UI.Page
 {
