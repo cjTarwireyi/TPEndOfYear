@@ -46,4 +46,14 @@ public class SupplierDAO
     {
         return repo.searchSupplier(id);
     }
+
+    public SupplierDTO getLastReocrd()
+    {
+        return repo.getLastReocrd();
+    }
+
+    public void updateSupplier(SupplierDTO supplier)
+    {
+        repo.update(supplier);
+    }
 }

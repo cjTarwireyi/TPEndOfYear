@@ -1,18 +1,17 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BusineesLogic.repositories.Impl;
 using System.Collections.Generic;
 using BusineesLogic.factories;
 
-namespace UnitTests.repositories
+namespace UnitTests.services
 {
     [TestClass]
-    public class TestEmployeeRepository
+    public class EmployeeTest
     {
         private EmployeeDTO result;
-        private EmployeeRepositoryImpl repo = new EmployeeRepositoryImpl();
+        private EmployeeDAO service = new EmployeeDAO();
         [TestMethod]
-        public void testCreateUpdateRepository()
+        public void testInsertUpdateDeleteEmployee()
         {
             List<string> employeeDetails = new List<string>();
             employeeDetails.Add("Shireen");
@@ -22,10 +21,10 @@ namespace UnitTests.repositories
             employeeDetails.Add("Rocklands");
             employeeDetails.Add("7798");
             EmployeeDTO employee = EmployeeFactory.createEmployee(employeeDetails);
-            
+
             //insert
-            repo.save(employee);
-            result = repo.getLastReocrd();
+            service.save(employee);
+            result = service.getLastRecrd();
             int id = result.employeeNumber;
             Assert.IsNotNull(result);
 
@@ -33,15 +32,16 @@ namespace UnitTests.repositories
             EmployeeDTO updateEmployee = new EmployeeDTO.EmployeeBuilder()
                                                         .copy(result)
                                                         .empName("Siraaj")
-                                                          .build();
-            repo.update(updateEmployee);
-            result = repo.findByID(id);
-           // Assert.AreEqual(result.employeeName.Trim(),"Siraaj");
+                                                        .build();
+
+            service.updateEmployee(updateEmployee);
+            result = service.getEmployee(id);
+            // Assert.AreEqual(result.employeeName.Trim(),"Siraaj");
 
 
             //delete
-            repo.delete(id);
-            result = repo.findByID(id);
+            service.delete(id.ToString());
+            result = service.getEmployee(id);
             Assert.IsNull(result);
         }
     }

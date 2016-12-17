@@ -32,7 +32,6 @@ public partial class site1_productAnalysis : System.Web.UI.Page
     {
         Session.Abandon();
         Session.Clear();
-
         Response.Redirect("Default.aspx");
     }
     protected void ddlReportType_SelectedIndexChanged(object sender, EventArgs e)
@@ -47,7 +46,8 @@ public partial class site1_productAnalysis : System.Web.UI.Page
             txtSearchYear.Visible = false;
             btnSubmit.Visible = false;
             int value = Convert.ToInt32(ddlReportType.SelectedValue);
-            loadGrid(value, DateTime.Now.Year.ToString());
+            txtSearchYear.Text = DateTime.Now.Year.ToString(); 
+            loadGrid(value,DateTime.Now.Year.ToString());
         }
 
     }
@@ -66,7 +66,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
                     else
                         if (index == 2)
                             print("OUTSTANDING INCOME REPORT ");
-
+            
                         else
                             if (index == 3)
                                 print("YEAR REVENUE MADE FROM REPORT");
@@ -91,7 +91,7 @@ public partial class site1_productAnalysis : System.Web.UI.Page
             StringWriter swr = new StringWriter();
             HtmlTextWriter htmlwr = new HtmlTextWriter(swr);
             GridView1.AllowPaging = false;
-            loadGrid(Convert.ToInt32(ddlReportType.SelectedValue), DateTime.Now.Year.ToString());
+            loadGrid(Convert.ToInt32(ddlReportType.SelectedValue),txtSearchYear.Text.ToString());
             GridView1.RenderControl(htmlwr);
             StringReader srr = new StringReader(swr.ToString());
             Document pdfdoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
@@ -110,7 +110,12 @@ public partial class site1_productAnalysis : System.Web.UI.Page
             gif.ScalePercent(40f);
             pdfdoc.Add(gif);
 
-
+            int index = Convert.ToInt32(ddlReportType.SelectedValue);
+            if(index == 3 || index == 2){
+                p = new Paragraph("Year Selected: "+txtSearchYear.Text + "\n\n", heading2);
+                p.Alignment = Element.ALIGN_RIGHT;
+                pdfdoc.Add(p);
+            }
 
             p = new Paragraph(reportType, heading);
             p.Alignment = Element.ALIGN_CENTER;
@@ -119,6 +124,8 @@ public partial class site1_productAnalysis : System.Web.UI.Page
             p = new Paragraph(DateTime.Now.ToShortDateString() + "\n\n", heading2);
             p.Alignment = Element.ALIGN_CENTER;
             pdfdoc.Add(p);
+
+            
 
 
             htmlparser.Parse(srr);

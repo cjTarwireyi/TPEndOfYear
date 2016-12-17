@@ -22,6 +22,11 @@ public class ProductDAO : IProduct
         repo.save(product);
     }
 
+    public void updateProduct(Products product)
+    {
+        repo.update(product);
+    }
+
     public Products getProduct(int id)
     {
         return repo.findByID(id);
@@ -115,5 +120,10 @@ public class ProductDAO : IProduct
     public DataTable searchProducts(string id, bool active)
     {
         return repo.searchProducts(id,active);
+    }
+
+    public Products getLastReocrd()
+    {
+        return repo.getLastReocrd();
     }
 }
