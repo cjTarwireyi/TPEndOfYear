@@ -212,11 +212,17 @@ public partial class site1_Orders : System.Web.UI.Page
         {
             if (!txtAmountPayed.Text.Equals(string.Empty))
             {
-                int customerPaymentAmt = 0;
-                customerPaymentAmt = Convert.ToInt32(txtAmountPayed.Text);
-                processPayment(customerPaymentAmt, Convert.ToInt32(lblAmountDue.Text));
-                Panel2.Visible = true;
-                refreshOnPayment(DropDownList1.SelectedValue, txtYear.Text, payed);
+                if (Convert.ToInt32(txtAmountPayed.Text) > 0)
+                {
+                    int customerPaymentAmt = 0;
+                    customerPaymentAmt = Convert.ToInt32(txtAmountPayed.Text);
+                    processPayment(customerPaymentAmt, Convert.ToInt32(lblAmountDue.Text));
+                    Panel2.Visible = true;
+                    refreshOnPayment(DropDownList1.SelectedValue, txtYear.Text, payed);
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Invalid Amount');", true);
+
             }
         }
     }

@@ -16,18 +16,11 @@ public class ProductDAO : IProduct
 {
     private ProductRepositoryImpl repo = new ProductRepositoryImpl();
 
-    public ProductDAO()
-    {
-
-    }
-
+    public ProductDAO() { }
     public void save(Products product)
     {
         repo.save(product);
     }
-
-
-
 
     public Products getProduct(int id)
     {

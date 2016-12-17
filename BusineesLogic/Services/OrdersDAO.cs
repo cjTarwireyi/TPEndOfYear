@@ -17,9 +17,6 @@ public class OrdersDAO : IOder
     private OrderRepositoryImpl repo = new OrderRepositoryImpl();
 
     public OrdersDAO() { }
-     
-    
-
     public int AddOrder(OrderDTO order)
     {
         return repo.AddOrder(order);
@@ -82,4 +79,6 @@ public class OrdersDAO : IOder
     {
         repo.cancelOrder(orderNo);
     }
+
+    
 }

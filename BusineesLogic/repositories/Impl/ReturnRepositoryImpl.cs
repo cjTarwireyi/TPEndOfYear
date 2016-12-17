@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusineesLogic.domain;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -68,6 +69,32 @@ namespace BusineesLogic.repositories.Impl
             con.Close();
 
             return order;
+        }
+
+        public ReturnDTO getLastReocrd()//last customer
+        {
+            ReturnDTO returns = null;
+            con.Open();
+            String selectCustomer = "SELECT TOP 1 * FROM  returns Order by returnID DESC ";
+            SqlCommand myComm = new SqlCommand(selectCustomer, con);
+            SqlDataReader myDR;
+            myDR = myComm.ExecuteReader();
+            if (myDR.Read())
+                returns = makeEmployeeDTO(myDR);
+            con.Close();
+            return returns;
+        }
+
+        public ReturnDTO makeEmployeeDTO(SqlDataReader myDR)
+        {
+
+            ReturnDTO returns = new ReturnDTO.ReturnBuilder()
+                                            .customerNumber(myDR.GetInt32(2))
+                                            .orderNumber(myDR.GetInt32(1))
+                                            .productNumber(myDR.GetInt32(3))
+                                            .productQuantity(myDR.GetInt32(5))
+                                            .build();
+            return returns;
         }
     }
 }

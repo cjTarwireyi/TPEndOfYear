@@ -35,7 +35,12 @@ namespace BusineesLogic.repositories.Impl
 
         public void update(EmployeeDTO entity)
         {
-            throw new NotImplementedException();
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = "update employees set employeeName ='" + entity.employeeName + "', employeeSurname='" + entity.employeeSurname + "',employeeCellNumber='" + entity.employeeCellNumber + "',employeeStreetName='" + entity.employeeStreetName + "', employeeSuburb ='" + entity.employeeSuburb + "',employeePostalCode='" + entity.employeePostalCode + "' where employeeID = '" + entity.employeeNumber + "' ";
+            cmd.ExecuteNonQuery();
+            con.Close();
         }
 
         public void delete(int id)
@@ -140,6 +145,20 @@ namespace BusineesLogic.repositories.Impl
             da.Dispose();
             con.Close();
             return employees;
+        }
+
+        public EmployeeDTO getLastReocrd()//last customer
+        {
+            EmployeeDTO employee = null;
+            con.Open();
+            String selectCustomer = "SELECT TOP 1 * FROM  employees Order by employeeID DESC ";
+            SqlCommand myComm = new SqlCommand(selectCustomer, con);
+            SqlDataReader myDR;
+            myDR = myComm.ExecuteReader();
+            if (myDR.Read())
+                employee = makeEmployeeDTO(myDR);
+            con.Close();
+            return employee;
         }
     }
 }

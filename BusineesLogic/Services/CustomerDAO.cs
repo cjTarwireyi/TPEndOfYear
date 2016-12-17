@@ -7,19 +7,16 @@ using System.Linq;
 using System.Web;
 using BusineesLogic.Interface;
 using BusineesLogic.repositories.Impl;
+using BusineesLogic.domain;
 
 /// <summary>
 /// Summary description for CustomerDAO
 /// </summary>
 public class CustomerDAO:ICustomers
 {
-    private SqlConnection con;
+    
     private CustomerRepositoryImpl repo = new CustomerRepositoryImpl();
-    public CustomerDAO()
-    {
-        con = new SqlConnection(ConfigurationManager.ConnectionStrings["AdminBookingConnectionString"].ConnectionString);
-    }
-
+    public CustomerDAO() { }
     public void save(CustomerDTO custDTO)
     {
         repo.save(custDTO);

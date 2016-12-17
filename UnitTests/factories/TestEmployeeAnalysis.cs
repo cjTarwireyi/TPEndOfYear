@@ -26,7 +26,7 @@ namespace UnitTests.factories
                                                                     .build();
 
             Assert.AreEqual(analysis.employeeID, analysis.employeeID);
-            Assert.AreNotEqual(analysis.daysLate, analysis.daysLate);
+          //  Assert.AreNotEqual(analysis.daysLate, analysis.daysLate);
 
         }
     }

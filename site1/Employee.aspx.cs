@@ -176,6 +176,7 @@ public partial class site1_Employee : System.Web.UI.Page
         if (GridView1.SelectedIndex >= 0)
         {
             GridViewRow row = GridView1.SelectedRow;
+            loadHolidayInfo(row.Cells[1].Text);
             lblID.Text = row.Cells[2].Text + " " + row.Cells[3].Text;
         }
     }
@@ -189,15 +190,12 @@ public partial class site1_Employee : System.Web.UI.Page
         if (testForNumber(txtSearch.Text) != false || txtSearch.Text == String.Empty)
         {
             DataTable searchedOrder = new DataTable();
-
-
             if (txtSearch.Text.ToString().Trim().Length == 0)
                 loadEmployees();
             else
             {
                 try
                 {
-
                     GridView1.DataSource = employee.searchEmployee(txtSearch.Text);
                     GridView1.DataBind();
                 }
@@ -211,5 +209,17 @@ public partial class site1_Employee : System.Web.UI.Page
     protected void btnSearch_Click(object sender, EventArgs e)
     {
 
+    }
+
+    private void loadHolidayInfo(string id)
+    {
+        DataTable dt = new DataTable();
+        dt = employee.getHolidayInfo(id);
+        foreach (DataRow row in dt.Rows)
+        {
+            txtLeaveDays.Text = row["HolidaysExPublic"].ToString();
+            txtReligiousDays.Text = row["ReligiousHolidays"].ToString();
+            txtSickDays.Text = row["SickLeaveDays"].ToString();
+        }
     }
 }
