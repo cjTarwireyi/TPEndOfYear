@@ -52,12 +52,12 @@
 
 
 #OVERVIEW 
-Nawaal Cottle has a small business which she runs at home she buys and sells clothing,perfume,jewellery etc.He business is based in a rural area where people can really buy this<br/>
+Nawaal Cottle has a small business which she runs at home she buys and sells clothing,perfume,jewellery etc.Her business is based in a rural area where people can really buy this<br/>
 So she decided to start up a business where CLIENTS CAN BUY PRODUCTS which there will recieve on the spot BUT THEY WILL ONLY PAY FOR IT AT THE END OF THE MONTH FOR A THAN STORE PRICE<br/>
 She will be able to create orders,add products and very importantly track her stock as she sells product<br/>
 
 #WHY IS THIS UNQIUE
-We have discoverd that there are MANY small businesses like this in rural area but no system has been designed for this type of business yet, she this a good to create something that has not been created yet<br>
+We have discoverd that there are MANY small businesses like this in rural areas but no system has been designed for this type of business yet, this a good chance to create something that has not been created yet<br>
 
 #PURPOSE
 This system is designed to keep track of all orders purchased by clients over various months and years<br/>
