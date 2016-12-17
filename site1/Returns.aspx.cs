@@ -19,6 +19,7 @@ public partial class site1_Returns : System.Web.UI.Page
     private UserDTO userDtoUpdate;
     private ReturnDTO itemReturned;
     private GridViewRow row;
+   
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -39,12 +40,15 @@ public partial class site1_Returns : System.Web.UI.Page
     {
         string customerNumber = txtCustomerNumber.Text;
         string orderNumber = txtOrderNumber.Text;
+        string id = null;
         try
         {
             dtOrders = returns.searchOrder(orderNumber, customerNumber);
             if (dtOrders != null)
             {
-                if (dtOrders.Rows.Count > 0)
+                OrderDTO result = order.getOrderByID(Convert.ToInt32(orderNumber)); 
+                
+                if (dtOrders.Rows.Count > 0 || result != null)
                 {
                     GridView1.DataSource = dtOrders;
                     GridView1.DataBind();
