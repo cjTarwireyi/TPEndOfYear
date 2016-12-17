@@ -22,6 +22,11 @@ public class EmployeeDAO
         repo.save(emp);
     }
 
+    public void updateEmployee(EmployeeDTO emp)
+    {
+        repo.update(emp);
+    }
+
     public void saveHoliday(HolidaysDTO emp,string id)
     {
         repo.saveHoliday(emp, id);
@@ -56,4 +61,11 @@ public class EmployeeDAO
     {
         return repo.searchEmployee(id);
     }
+
+    public EmployeeDTO getLastRecrd()
+    {
+        return repo.getLastReocrd();
+    }
+
+    
 }

@@ -33,7 +33,8 @@ namespace UnitTests.repositories
             EmployeeDTO updateEmployee = new EmployeeDTO.EmployeeBuilder()
                                                         .copy(result)
                                                         .empName("Siraaj")
-                                                        .build();
+                                                          .build();
+            repo.update(updateEmployee);
             result = repo.findByID(id);
            // Assert.AreEqual(result.employeeName.Trim(),"Siraaj");
 

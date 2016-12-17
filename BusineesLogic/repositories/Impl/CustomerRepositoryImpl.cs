@@ -96,7 +96,7 @@ namespace BusineesLogic.repositories.Impl
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "update customers set CustomerName ='" + customer[0] + "', CustomerSurname='" + customer[1] + "',CustomerCellNumber='" + customer[2] + "',CustomerEmail='" + customer[3] + "', CustomerStreetName ='" + customer[4] + "',CustomerSuburb='" + customer[5] + "',CustomerPostalCode='" + customer[6] + "' where CustomerID = '" + id + "' ";
+            cmd.CommandText = "update customers set CustomerName ='" + customer[0] + "', CustomerSurname='" + customer[1] + "',CustomerCellNumber='" + customer[2] + "',CustomerEmail='" + customer[3] + "', CustomerStreetName ='" + customer[4] + "',CustomerSuburb='" + customer[5] + "',CustomerPostalCode='" + customer[6] + "' where CustomerID = '" + id.Trim() + "' ";
             cmd.ExecuteNonQuery();
             con.Close();
         }

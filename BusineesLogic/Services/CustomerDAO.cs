@@ -21,6 +21,11 @@ public class CustomerDAO:ICustomers
     {
         repo.save(custDTO);
     }
+
+    public void updateCustomer(CustomerDTO custDTO)
+    {
+        repo.update(custDTO);
+    }
     public CustomerDTO getCustomerID(int number)
     {
         return repo.findByID(number);

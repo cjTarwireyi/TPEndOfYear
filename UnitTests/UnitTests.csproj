@@ -94,6 +94,7 @@
     <Compile Include="services\PromotionTest.cs" />
     <Compile Include="services\TestReturns.cs" />
     <Compile Include="services\TestSupplier.cs" />
+    <Compile Include="services\EmployeeTest.cs" />
     <Compile Include="services\UserTest.cs" />
   </ItemGroup>
   <ItemGroup>

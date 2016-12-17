@@ -29,5 +29,10 @@ namespace BusineesLogic.services
         {
             repo.save(returns);
         }
+
+        public ReturnDTO getLastReocrd()
+        {
+            return repo.getLastReocrd();
+        }
     }
 }

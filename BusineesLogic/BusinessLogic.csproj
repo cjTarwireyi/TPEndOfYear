@@ -119,6 +119,7 @@
     <Compile Include="repositories\OrderLineRepository.cs" />
     <Compile Include="repositories\OrdersRepository.cs" />
     <Compile Include="repositories\ProductRepository.cs" />
+    <Compile Include="repositories\PromotionRepository.cs" />
     <Compile Include="repositories\ReturnRepository.cs" />
     <Compile Include="repositories\RoleRepository.cs" />
     <Compile Include="repositories\SupplierRepository.cs" />
