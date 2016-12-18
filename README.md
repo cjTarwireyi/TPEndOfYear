@@ -46,13 +46,13 @@ Keeping track of stock will be so much easier<br/>
       Windows 8 and above
       Google Chrome Browser
       <p>
-#Instructions On How To Run The Project
+      <b>Instructions On How To Run The Project</b><br/>
   -Clone the project into :C:\Users\Public (to avoid changing the connection string)<br/>
   -Open TPEndOfYear folder  <br/>
   -Doubleclick localhost_40442.sln<br/>
   See screen shot below
   <img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/cloning project.PNG"/><br/></p>
-#Project Structure<br/>
+<b>Project Structure</b><br/>
    <b>FrondEnd</b><br/>
   TPEndOfYear(1) - consist of all frond end classes and pages
   
