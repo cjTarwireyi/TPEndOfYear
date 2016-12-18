@@ -48,7 +48,7 @@ Keeping track of stock will be so much easier<br/>
       <p>
       <b>Instructions On How To Run The Project</b><br/>
   -Clone the project into :C:\Users\Public (to avoid changing the connection string)<br/>
-  OR Clone the project ib any folder and click this link for for steps on setting connection stringhttps://github.com/cjTarwireyi/TPEndOfYear/issues/1
+  OR Clone the project in any folder and click this link for for steps on setting connection string<br/>https://github.com/cjTarwireyi/TPEndOfYear/issues/1<br/>
   -Open TPEndOfYear folder  <br/>
   -Doubleclick localhost_40442.sln<br/>
   See screen shot below
