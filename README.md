@@ -19,7 +19,10 @@
 		username:sw password:sw
 #LINK
 	http://admindeploy-001-site1.ctempurl.com/Default.aspx
-		
+
+#VIDEO LINK
+	https://drive.google.com/file/d/0BzfC0Iq2N7TzOFEtWG81ajZSc1E/view?usp=sharing		
+
 #System Requirements
       Visual Studio Ultimate 2013
       SQL Server 
