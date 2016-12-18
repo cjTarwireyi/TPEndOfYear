@@ -39,6 +39,8 @@ Keeping track of stock will be so much easier<br/>
 		username:sw password:sw
 #LINK
 	http://admindeploy-001-site1.ctempurl.com/Default.aspx
+#VIDEO LINK
+	https://drive.google.com/file/d/0BzfC0Iq2N7TzOFEtWG81ajZSc1E/view?usp=sharing
 		
 #System Requirements For Running On Local PC
       Visual Studio Ultimate 2013
@@ -78,4 +80,10 @@ A)right click on Default.aspx -> on the options chose "Set As Start Page"
 <br/>B)click build -> on the options clean and build<br/>
 C)click to run the project
 <br/>NB Log in details are on the NOTICE section above.
-<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/runLocal.PNG"/> 
+<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/runLocal.PNG"/> <br/>
+
+<b>Running Tests</b>
+A) Click Test->Windows->Test Explorer.<br/>
+Test Explorer window Appears<br/>
+B) On the Test Explorer different options can be chosen to run tests
+<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/running tests.PNG"/> <br/>

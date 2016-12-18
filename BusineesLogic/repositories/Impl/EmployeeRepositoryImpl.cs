@@ -132,7 +132,19 @@ namespace BusineesLogic.repositories.Impl
             con.Close();
         }
 
+        public DataTable loadEmployees()
+        {
+            DataTable employees = new DataTable();
+            string query = "select * from employees order by employeeID DESC";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(employees);
+            da.Dispose();
+            con.Close();
+            return employees;
 
+        }
 
         public DataTable getHolidayInfo(string id)
         {

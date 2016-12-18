@@ -39,7 +39,7 @@ public class EmployeeDAO
 
     public DataTable populateGrid()
     {
-        return repo.findAll();
+        return repo.loadEmployees();
     }
 
     public void delete(string id)
