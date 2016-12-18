@@ -9,12 +9,13 @@ namespace BusineesLogic.factories
 {
    public class TransactionFactory
     {
-       public static TransactionDTO create(string code, decimal amount, DateTime dateModified)
+       public static TransactionDTO create(string code, decimal amount,string transUser, DateTime dateModified)
        {
            return new TransactionDTO.TransactionBuilder()
 
            .buildCode(code)
            .buildAmount(amount)
+           .buildTransUser(transUser)
            .buildDateModified(dateModified)
            .build();
 

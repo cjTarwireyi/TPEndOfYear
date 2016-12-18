@@ -14,7 +14,7 @@ namespace UnitTests.domain
             //CREATE TEST
             DateTime date = DateTime.Parse("1/1/1900 12:00:00 AM");
 
-            TransactionDTO transaction = TransactionFactory.create("123", 200, date);
+            TransactionDTO transaction = TransactionFactory.create("123", 200,"cj", date);
             Assert.AreEqual(DateTime.Parse("1/1/1900 12:00:00 AM"), transaction.dateModified);
             Assert.AreEqual(200, transaction.amount);
             Assert.AreEqual("123", transaction.code);

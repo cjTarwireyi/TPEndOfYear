@@ -117,9 +117,11 @@
     <Compile Include="repositories\Impl\RoleRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\SupplierRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\TimeSheetRepositoryImpl.cs" />
+    <Compile Include="repositories\Impl\TransactionRepository.cs" />
     <Compile Include="repositories\Impl\UserAnalysisRepository.cs" />
     <Compile Include="repositories\Impl\UserRepositoryImp.cs" />
     <Compile Include="repositories\Impl\UserTypeRepositoryImpl.cs" />
+    <Compile Include="repositories\ITransactionRepository.cs" />
     <Compile Include="repositories\IUserAnalysisRepository.cs" />
     <Compile Include="repositories\OrderLineRepository.cs" />
     <Compile Include="repositories\OrdersRepository.cs" />
@@ -168,6 +170,7 @@
     <Compile Include="domain\SupplierDTO.cs" />
     <Compile Include="domain\RoleDTO.cs" />
     <Compile Include="services\TimeSheetDAO.cs" />
+    <Compile Include="services\TransactionDAO.cs" />
     <Compile Include="services\UserAnalysisDAO.cs" />
     <Compile Include="services\UserDAO.cs" />
     <Compile Include="domain\UserDTO.cs" />

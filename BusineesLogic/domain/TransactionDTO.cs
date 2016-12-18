@@ -14,10 +14,12 @@ namespace BusineesLogic.domain
             this.code = builder.code;
             this.amount = builder.amount;
             this.dateModified = builder.dateModified;
+            this.transUser = builder.transUser;
         }
         public int id { get; set; }
         public string code { get; set; }
         public decimal amount { get; set; }
+        public string transUser { get; set; }
         public DateTime dateModified { get; set; }
 
         public class TransactionBuilder
@@ -26,6 +28,7 @@ namespace BusineesLogic.domain
             public string code;
             public decimal amount;
             public DateTime dateModified;
+            public string transUser;
 
             public TransactionBuilder buildId(int id)
             {
@@ -47,12 +50,18 @@ namespace BusineesLogic.domain
                 this.dateModified = date;
                 return this;
             }
+            public TransactionBuilder buildTransUser(string transUser)
+            {
+                this.transUser = transUser;
+                return this;
+            }
             public TransactionBuilder copy(TransactionDTO transDto)
             {
                 this.id = transDto.id;
                 this.code = transDto.code;
                 this.amount = transDto.amount;
                 this.dateModified = transDto.dateModified;
+                this.transUser = transDto.transUser;
                 return this;
             }
             public TransactionDTO build()

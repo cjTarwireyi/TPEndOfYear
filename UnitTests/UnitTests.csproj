@@ -89,6 +89,7 @@
     <Compile Include="repositories\TestPromotionRepository.cs" />
     <Compile Include="repositories\TestOrderLineRepository.cs" />
     <Compile Include="repositories\TestUserAnalysisRepository.cs" />
+    <Compile Include="repositories\TestTransactionRepository.cs" />
     <Compile Include="services\TestUserService.cs" />
     <Compile Include="repositories\TestTimesheetRepository.cs" />
     <Compile Include="services\OrderTest.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="services\EmployeeTest.cs" />
     <Compile Include="repositories\TestUserRepository.cs" />
     <Compile Include="services\TestUserAnalysisService.cs" />
+    <Compile Include="services\TestTransactionService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
