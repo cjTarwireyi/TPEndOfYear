@@ -8,10 +8,10 @@ using BusineesLogic.domain;
 namespace UnitTests.services
 {
     [TestClass]
-    public class PromotionTest
+    public class TestPromotionService
     {
         [TestMethod]
-        public void PromotionCrudTest()
+        public void TestPromotionServiceMethods()
         {
             //CREATE TEST
             DateTime date = DateTime.Parse("1/1/1900 12:00:00 AM");
