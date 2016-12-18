@@ -20,14 +20,14 @@
 #LINK
 	http://admindeploy-001-site1.ctempurl.com/Default.aspx
 		
-#System Requirements
+#System Requirements For Running On Local PC
       Visual Studio Ultimate 2013
-      SQL Server 
+      SQL Server 2012 
       Windows 8 and above
       Google Chrome Browser
       <p>
-#Instructions On How Run The Project
-  -Clone the project into : â€ªC:\Users\Public (to avoid changing the connection string)<br/>
+#Instructions On How To Run The Project
+  -Clone the project into :C:\Users\Public (to avoid changing the connection string)<br/>
   -Open TPEndOfYear folder  <br/>
   -Doubleclick localhost_40442.sln<br/>
   See screen shot below
@@ -40,10 +40,12 @@
   domain folder- contains all the domain classes.<br/>
   factories- containr all the factories used to create objects<br/>
   intarface folder- contains all interface methods<br/>
-  services(repository)- contains classes that accesses the database<br/>
+  services folder- contains classes that accesses repositories<br/>
+  repositories folder- contains access to the database<br/>
   <b>Testing</b><br/>
   factories folder- contains test cases fo objects creation and updating<br/>
   services folder - contains test cases for CRUD<br/>
+  repositories folder- test cases for repositories<br/>
  
    
  <img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/projectStructure.PNG"/>
