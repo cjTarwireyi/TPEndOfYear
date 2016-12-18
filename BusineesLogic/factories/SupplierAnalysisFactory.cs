@@ -9,11 +9,12 @@ namespace BusineesLogic.factories
 {
   public  class SupplierAnalysisFactory
     {
-      public static SuplierAnalysisDTO create(int supplierId, string Desc, DateTime dateModified)
+      public static SuplierAnalysisDTO create(int supplierId,int productId, string Desc, DateTime dateModified)
       {
           return new SuplierAnalysisDTO.SupplierAnalysisBuilder()
 
-          .buildSupplierId(supplierId)
+          .buildId(supplierId)
+          .buildProductId(productId)
           .buildDescription(Desc)
           .buildDateModified(dateModified)
           .build();

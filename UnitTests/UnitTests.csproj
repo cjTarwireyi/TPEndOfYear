@@ -85,17 +85,28 @@
     <Compile Include="repositories\TestProductRepository.cs" />
     <Compile Include="repositories\TestReturnRepository.cs" />
     <Compile Include="repositories\TestSupplierRepository.cs" />
+    <Compile Include="repositories\TestRoleRepository.cs" />
+    <Compile Include="repositories\TestPromotionRepository.cs" />
+    <Compile Include="repositories\TestOrderLineRepository.cs" />
+    <Compile Include="repositories\TestUserAnalysisRepository.cs" />
+    <Compile Include="repositories\TestTransactionRepository.cs" />
+    <Compile Include="repositories\TestSupplierAnalysisRepository.cs" />
+    <Compile Include="services\TestUserService.cs" />
+    <Compile Include="repositories\TestTimesheetRepository.cs" />
     <Compile Include="services\OrderTest.cs" />
-    <Compile Include="services\OrderLineTest.cs" />
+    <Compile Include="services\TestOrderLineService.cs" />
     <Compile Include="services\CustomerTest.cs" />
     <Compile Include="services\ProductTest.cs" />
-    <Compile Include="services\RoleTest.cs" />
-    <Compile Include="services\TimeSheetTest.cs" />
-    <Compile Include="services\PromotionTest.cs" />
+    <Compile Include="services\TestRoleService.cs" />
+    <Compile Include="services\TestTimeSheetService.cs" />
+    <Compile Include="services\TestPromotionService.cs" />
     <Compile Include="services\TestReturns.cs" />
     <Compile Include="services\TestSupplier.cs" />
     <Compile Include="services\EmployeeTest.cs" />
-    <Compile Include="services\UserTest.cs" />
+    <Compile Include="repositories\TestUserRepository.cs" />
+    <Compile Include="services\TestUserAnalysisService.cs" />
+    <Compile Include="services\TestTransactionService.cs" />
+    <Compile Include="services\TestSupplierAnalysisService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

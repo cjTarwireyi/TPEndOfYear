@@ -56,6 +56,19 @@ namespace BusineesLogic.repositories.Impl
         public System.Data.DataTable findAll()
         {
             DataTable employees = new DataTable();
+            string query = "select * from employees order by employeeID DESC";
+            con.Open();
+            SqlCommand cmd = new SqlCommand(query, con);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(employees);
+            da.Dispose();
+            con.Close();
+            return employees;
+        }
+
+        public System.Data.DataTable getEmpComboboxData()
+        {
+            DataTable employees = new DataTable();
             string query = "select EmployeeID, Concat(EmployeeName,EmployeeSurname) As empName from employees order by employeeID DESC";
             con.Open();
             SqlCommand cmd = new SqlCommand(query, con);

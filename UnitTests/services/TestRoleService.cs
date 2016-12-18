@@ -7,10 +7,10 @@ using BusineesLogic.domain;
 namespace UnitTests.services
 {
     [TestClass]
-    public class RoleTest
+    public class TestRoleService
     {
         [TestMethod]
-        public void TestRole()
+        public void TestRoleServiceMethods()
         {
             IRoleService service = new RoleDAO();
 

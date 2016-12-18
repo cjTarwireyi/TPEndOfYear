@@ -2,16 +2,18 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusineesLogic.Interface;
 using BusineesLogic.factories;
+using BusineesLogic.repositories;
+using BusineesLogic.repositories.Impl;
+
 namespace UnitTests.Repos
 {
     [TestClass]
     public class UserTest
     {
         [TestMethod]
-        public void InsertUserTest()
+        public void TestUserRepo()
         {
-            
-            IUser user = new UserDAO() ;
+            UserRepositoryImp user = new UserRepositoryImp();
             UserDTO deletedUser,  addeUser = new UserDTO();
 
             UserDTO existingUser,modifiedUser = new UserDTO();

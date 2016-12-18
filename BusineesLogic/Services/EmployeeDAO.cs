@@ -58,7 +58,7 @@ public class EmployeeDAO
     }
     public DataTable getEmpComboboxData()
     {
-        return repo.findAll();
+        return repo.getEmpComboboxData();
     }
     public DataTable searchEmployee(string id)
     {
