@@ -11,18 +11,18 @@ namespace BusineesLogic.domain
         public SuplierAnalysisDTO(SupplierAnalysisBuilder builder)
         {
             this.id = builder.id;
-            this.supplierId = builder.supplierId;
+            this.productId = builder.productId;
             this.description = builder.description;
             this.dateModified = builder.dateModified;
         }
         public int id { get; set; }
-        public int supplierId { get; set; }
+        public int productId { get; set; }
         public string description { get; set; }
         public DateTime dateModified { get; set; }
         public class SupplierAnalysisBuilder
         {
             public int id;
-            public int supplierId;
+            public int productId;
             public string description;
             public DateTime dateModified;
 
@@ -31,9 +31,9 @@ namespace BusineesLogic.domain
                 this.id = id;
                 return this;
             }
-            public SupplierAnalysisBuilder buildSupplierId(int supplierId)
+            public SupplierAnalysisBuilder buildProductId(int productId)
             {
-                this.supplierId = supplierId;
+                this.productId = productId;
                 return this;
             }
             public SupplierAnalysisBuilder buildDescription(string desc)
@@ -50,7 +50,7 @@ namespace BusineesLogic.domain
             public SupplierAnalysisBuilder copy(SuplierAnalysisDTO supierAnalysisDto)
             {
                 this.id = supierAnalysisDto.id;
-                this.supplierId = supierAnalysisDto.supplierId;
+                this.productId = supierAnalysisDto.productId;
                 this.description = supierAnalysisDto.description;
                 this.dateModified = supierAnalysisDto.dateModified;
                 return this;
