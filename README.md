@@ -78,10 +78,10 @@ A)right click on Default.aspx -> on the options chose "Set As Start Page"
 <br/>B)click build -> on the options clean and build<br/>
 C)click to run the project
 <br/>NB Log in details are on the NOTICE section above.
-<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/runLocal.PNG"/> <b/>
+<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/runLocal.PNG"/> <br/>
 
 <b>Running Tests</b>
 A) Click Test->Windows->Test Explorer.<br/>
 Test Explorer window Appears<br/>
 B) On the Test Explorer different options can be chosen to run tests
-<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/running tests.PNG"/> <b/>
+<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/running tests.PNG"/> <br/>
