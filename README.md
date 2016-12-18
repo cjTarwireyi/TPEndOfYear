@@ -39,6 +39,8 @@ Keeping track of stock will be so much easier<br/>
 		username:sw password:sw
 #LINK
 	http://admindeploy-001-site1.ctempurl.com/Default.aspx
+#VIDEO LINK
+	https://drive.google.com/file/d/0BzfC0Iq2N7TzOFEtWG81ajZSc1E/view?usp=sharing
 		
 #System Requirements For Running On Local PC
       Visual Studio Ultimate 2013
