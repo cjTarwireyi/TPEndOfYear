@@ -4,6 +4,26 @@
 	Cornelious Tarwareyi (214051471)
 	Micheal Hendricks (210116986)
 	Yongama Ngwenduna (NOT A STUDENT)
+	
+	#Domain Model
+
+<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/DomainStructure.jpg"/> 
+
+
+#OVERVIEW 
+Nawaal Cottle has a small business which she runs at home she buys and sells clothing,perfume,jewellery etc.Her business is based in a rural area where people can really buy this<br/>
+So she decided to start up a business where CLIENTS CAN BUY PRODUCTS which there will recieve on the spot BUT THEY WILL ONLY PAY FOR IT AT THE END OF THE MONTH FOR A THAN STORE PRICE<br/>
+She will be able to create orders,add products and very importantly track her stock as she sells product<br/>
+
+#WHY IS THIS UNQIUE
+We have discoverd that there are MANY small businesses like this in rural areas but no system has been designed for this type of business yet, this a good chance to create something that has not been created yet<br>
+
+#PURPOSE
+This system is designed to keep track of all orders purchased by clients over various months and years<br/>
+It will enable the owner to see which products sells and does not sell well<br/>
+It will also allow the owner to see who the good customers and bad customers are<br/>
+Keeping track of stock will be so much easier<br/>
+
 
 #Important
 	You need to change the time format
@@ -50,21 +70,3 @@
    
  <img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/projectStructure.PNG"/>
   
-#Domain Model
-
-<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/DomainStructure.jpg"/> 
-
-
-#OVERVIEW 
-Nawaal Cottle has a small business which she runs at home she buys and sells clothing,perfume,jewellery etc.Her business is based in a rural area where people can really buy this<br/>
-So she decided to start up a business where CLIENTS CAN BUY PRODUCTS which there will recieve on the spot BUT THEY WILL ONLY PAY FOR IT AT THE END OF THE MONTH FOR A THAN STORE PRICE<br/>
-She will be able to create orders,add products and very importantly track her stock as she sells product<br/>
-
-#WHY IS THIS UNQIUE
-We have discoverd that there are MANY small businesses like this in rural areas but no system has been designed for this type of business yet, this a good chance to create something that has not been created yet<br>
-
-#PURPOSE
-This system is designed to keep track of all orders purchased by clients over various months and years<br/>
-It will enable the owner to see which products sells and does not sell well<br/>
-It will also allow the owner to see who the good customers and bad customers are<br/>
-Keeping track of stock will be so much easier<br/>
