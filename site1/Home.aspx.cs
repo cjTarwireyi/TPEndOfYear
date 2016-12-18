@@ -27,8 +27,8 @@ public partial class Home : System.Web.UI.Page
 
     private void session()
     {
-        userDtoUpdate = (UserDTO)Session["userUpdate"];
-        Session.Remove("userUpdate");
+        //userDtoUpdate = (UserDTO)Session["userUpdate"];
+        //Session.Remove("userUpdate");
         userDtoUpdate = (UserDTO)Session["userUpdate"];
         Session.Remove("userUpdate");
         userDto = (UserDTO)Session["userDto"];

@@ -1,7 +1,7 @@
 ﻿#<u> TPEndOfYear</u>
 #Group Members
 	Siraaj Wilkinson (214068730)
-	Cornelious Tarwareyi (214051471)
+	Cornelious Tarwireyi (214051471)
 	Micheal Hendricks (210116986)
 	Yongama Ngwenduna (NOT A STUDENT)
 	
@@ -37,7 +37,7 @@ Keeping track of stock will be so much easier<br/>
 		username :cj   password:cj
 	Non Admin
 		username:sw password:sw
-#LINK
+#LINK TO DEPLOYED SYSTEM
 	http://admindeploy-001-site1.ctempurl.com/Default.aspx
 #VIDEO LINK
 	https://drive.google.com/file/d/0BzfC0Iq2N7TzOFEtWG81ajZSc1E/view?usp=sharing
