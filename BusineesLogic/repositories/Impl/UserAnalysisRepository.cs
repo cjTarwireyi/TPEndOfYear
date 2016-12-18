@@ -10,7 +10,7 @@ using BusineesLogic.domain;
 using System.Data;
 namespace BusineesLogic.repositories.Impl
 {
-    class UserAnalysisRepository:IUserAnalysisRepository
+   public class UserAnalysisRepository:IUserAnalysisRepository
     {
         private SqlConnection con;
         public UserAnalysisRepository()
@@ -21,10 +21,12 @@ namespace BusineesLogic.repositories.Impl
         {
             try
             {
+                if (con.State.ToString() == "Open")
+                    con.Close();
                 var Datetime = DateTime.Now;
 
                 con.Open();
-                string insertQuery = "INSERT INTO UserAnalysis (UserId,TimesAccessed,PageAccessed,DateAdded) VALUES ('" + entity.userId + "','" + entity.timesAccessed + "','"+entity.pageAccessed+"','" + DateTime.Now.ToString() + "')";
+                string insertQuery = "INSERT INTO UserAnalysis (UserId,TimesAccessed,PageAccessed,DateAccessed) VALUES ('" + entity.userId + "','" + entity.timesAccessed + "','"+entity.pageAccessed+"','" + DateTime.Now.ToString() + "')";
                 SqlCommand cmd = new SqlCommand(insertQuery, con);
                 cmd.ExecuteNonQuery();
 
@@ -98,6 +100,7 @@ namespace BusineesLogic.repositories.Impl
             SqlDataReader myDR;
             myDR = myComm.ExecuteReader();
             if (myDR.Read())
+            {
                 userAnalysis = new UserAnalysisDTO.UserAnalysisBuilder()
                     .buildId(myDR.GetInt32(0))
                     .buildUserId(myDR.GetInt32(1))
@@ -105,14 +108,21 @@ namespace BusineesLogic.repositories.Impl
                     .buildPageAccessed(myDR.GetString(3))
                     .buildDateModified(myDR.GetDateTime(4))
                     .build();
+            }
+            else
+            {
+                userAnalysis = null;
+            }
             con.Close();
             return userAnalysis;
         }
-        public UserAnalysisDTO getLastReocrd()//last customer
+        public UserAnalysisDTO getLastReocrd( )
         {
+            if (con.State.ToString() == "Open")
+                con.Close();
             UserAnalysisDTO userAnalysis = null;
             con.Open();
-            String querry = "SELECT TOP 1 * FROM  UserAnalysis Order by CustomerID DESC ";
+            String querry = "SELECT TOP 1 * FROM  UserAnalysis Order by Id DESC ";
             SqlCommand myComm = new SqlCommand(querry, con);
             SqlDataReader myDR;
             myDR = myComm.ExecuteReader();
