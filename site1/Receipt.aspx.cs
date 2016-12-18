@@ -72,6 +72,11 @@ public partial class site1_Receipt : System.Web.UI.Page
                 p = new Paragraph("Order Receipt", Uderlineheading);
                 p.Alignment = Element.ALIGN_CENTER;
                 doc.Add(p);
+                
+                //Order Number
+                p = new Paragraph("Order No: " + Request.QueryString["id"],heading3);
+                p.Alignment = Element.ALIGN_RIGHT;
+                doc.Add(p);
 
                 //Customer
                 order = accessOrder.getOrderByID(Id);

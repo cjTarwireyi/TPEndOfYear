@@ -43,6 +43,7 @@
                             </ContentTemplate>
                         </asp:UpdatePanel>
                         <h3 align="center">Please wait...</h3>
+                        <h3 align="center">Sending Email...</h3>
                     </div>
                 </div>
             </div>
