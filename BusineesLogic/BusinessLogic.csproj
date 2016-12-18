@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="domain\AccountDTO.cs" />
     <Compile Include="domain\Address.cs" />
     <Compile Include="domain\BrandDTO.cs" />
@@ -115,12 +114,14 @@
     <Compile Include="repositories\Impl\PromotionRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\ReturnRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\RoleRepositoryImpl.cs" />
+    <Compile Include="repositories\Impl\SupplierAnalysisRepository.cs" />
     <Compile Include="repositories\Impl\SupplierRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\TimeSheetRepositoryImpl.cs" />
     <Compile Include="repositories\Impl\TransactionRepository.cs" />
     <Compile Include="repositories\Impl\UserAnalysisRepository.cs" />
     <Compile Include="repositories\Impl\UserRepositoryImp.cs" />
     <Compile Include="repositories\Impl\UserTypeRepositoryImpl.cs" />
+    <Compile Include="repositories\ISupplierAnalysisRepository.cs" />
     <Compile Include="repositories\ITransactionRepository.cs" />
     <Compile Include="repositories\IUserAnalysisRepository.cs" />
     <Compile Include="repositories\OrderLineRepository.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="services\PromotionDAO.cs" />
     <Compile Include="services\ReturnDAO.cs" />
     <Compile Include="services\RoleDAO.cs" />
+    <Compile Include="services\SupplierAnalysisDAO.cs" />
     <Compile Include="services\SupplierDAO.cs" />
     <Compile Include="domain\SupplierDTO.cs" />
     <Compile Include="domain\RoleDTO.cs" />
