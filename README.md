@@ -78,3 +78,4 @@ A)right click on Default.aspx -> on the options chose "Set As Start Page"
 <br/>B)click build -> on the options clean and build<br/>
 C)click to run the project
 <br/>NB Log in details are on the NOTICE section above.
+<img src="https://github.com/cjTarwireyi/TPEndOfYear/blob/master/runLocal.PNG"/> 
