@@ -13,13 +13,14 @@ using System.Threading;
 public partial class LoginPage : System.Web.UI.Page
 {
     private UserFacade userFacade = new UserFacade();
-    private UserDTO userDto = new UserDTO();
+    private UserDTO userDto ;
     protected void Page_Load(object sender, EventArgs e)
     {
         loginSession();
     }
     protected void Submit_Click(object sender, EventArgs e)
     {
+        userDto = new UserDTO();
         try
         {
             userDto = userFacade.login(txtUsername.Text, txtPassword.Text);
@@ -58,8 +59,8 @@ public partial class LoginPage : System.Web.UI.Page
         }
         else
         {
-            Session.Abandon();
-            Session.Clear();
+           // Session.Abandon();
+            //Session.Clear();
         }
 
     }
